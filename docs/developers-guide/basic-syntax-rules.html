@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Learning the basics of Motoko :: Dfinity ドキュメント</title>
+    <link rel="canonical" href="https://localhost/docs/developers-guide/basic-syntax-rules.html">
+    <meta name="generator" content="Antora 2.3.4">
+<link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:title" content="Internet Computer | Documentation" />
+<meta property="og:description" content="Documentation for the internet computer." />
+<meta property="og:image" content="../../_/img/share.jpg" />
+<meta property="og:image:url" content="../../_/img/share.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DFINITYDev" />
+<meta name="twitter:image" content="../../_/img/logo-RGB.png" />
+<meta name="twitter:image:alt" content="DFINITY Logo" />
+    <!-- Appzi: Capture Insightful Feedback -->
+    <script async src="https://w.appzi.io/w.js?token=Zrf92"></script>
+    <!-- End Appzi -->
+
+    <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<script>
+  function switchToLightMode(persist) {
+    document.querySelector("body").classList.remove("dark-mode");
+    if (persist) {
+      localStorage.setItem("theme-preference", "light");
+    }
+  }
+  function switchToDarkMode(persist) {
+    document.querySelector("body").classList.add("dark-mode");
+    if (persist) {
+      localStorage.setItem("theme-preference", "dark");
+    }
+  }
+
+  var themePreference = localStorage.getItem("theme-preference");
+
+  if (themePreference == "dark") {
+    switchToDarkMode(false);
+  } else if (themePreference == "light") {
+    switchToLightMode(false);
+  } else {
+    // dark mode by default
+    switchToDarkMode(false);
+
+    // uncomment to enable setting the defult by user preference
+    // try {
+    //   if (
+    //     window.matchMedia &&
+    //     window.matchMedia("(prefers-color-scheme: dark)").matches
+    //   ) {
+    //     switchToDarkMode(false);
+    //   }
+    // } catch {}
+  }
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="logo-container" href="/docs/introduction/welcome.html">
+        <img class="header-logo" src="../../_/img/logo.svg">
+        <img class="header-logo dark" src="../../_/img/logo-dark.svg">
+        <h1 class="header-title">Dfinity ドキュメント</h1>
+      </a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+          <a class="navbar-item" target="blank" href="https://dfinity.org/">DFINITY.org</a>
+          <a class="navbar-item" target="blank" href="https://forum.dfinity.org/">Forum</a>
+          <!--<a class="navbar-item" target="blank" href="mailto:support@dfinity.org?subject=Feedback - SDK Developer Center">Email us</a>-->
+          <a class="navbar-item" target="blank" href="https://support.dfinity.org/">Support</a>          
+          <a class="navbar-item" target="blank" href="https://www.twitter.com/dfinitydev">
+            <img class="light-only" src="../../_/img/social/twitter-icon.svg">
+            <img class="dark-only" src="../../_/img/social/twitter-icon-dark.svg">
+          </a>
+      </div>
+    <div class="nav-items-wrapper">
+      <button class="to-light-mode dark-only" aria-label="switch to light mode" onclick="switchToLightMode(true)"></button>
+      <button class="to-dark-mode light-only" aria-label="switch to dark mode" onclick="switchToDarkMode(true)"></button>
+      <div class="search-container">
+  <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M11.8654 12.5892C10.8213 13.4695 9.47259 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.47209 13.4699 10.8204 12.5901 11.8643L17.3625 16.6367L16.6377 17.3615L11.8654 12.5892ZM12.9333 8C12.9333 10.7246 10.7246 12.9333 8 12.9333C5.2754 12.9333 3.06667 10.7246 3.06667 8C3.06667 5.2754 5.2754 3.06667 8 3.06667C10.7246 3.06667 12.9333 5.2754 12.9333 8Z"
+      fill="black" />
+  </svg>
+
+
+  <input class="search-input" placeholder="Search" type="search" />
+</div>      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      </div>
+      
+    <div class="gradient-decoration"></div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="docs" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title">Docs</h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../introduction/welcome.html"><strong>Introduction</strong></a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-first-timers">For: First-Timers</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-developers">For: Developers</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-protocol-enthusiasts">For: Protocol Enthusiasts</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstart/quickstart-intro.html">Quick Start</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/newcomers.html">For Newcomers</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/local-quickstart.html">Local Development</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/network-quickstart.html">Network Deployment</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Docs</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introducing the SDK</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="install-upgrade-remove.html">Install, upgrade, or remove software</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.3-rn.html">0.8.3</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.2-rn.html">0.8.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.1-rn.html">0.8.1</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.0-rn.html">0.8.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.7-rn.html">0.7.7</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.2-rn.html">0.7.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.1-rn.html">0.7.1</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.0-rn.html">0.7.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.26-rn.html">0.6.26</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.25-rn.html">0.6.25</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.24-rn.html">0.6.24</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.23-rn.html">0.6.23</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.22-rn.html">0.6.22</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.21-rn.html">0.6.21</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.20-rn.html">0.6.20</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introducing DFX</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="cli-reference.html">DFX commands</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="cli-reference/dfx-envars.html">DFX environment variables</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Building on the Internet Computer</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Learn how to:</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="sdk-guide.html">Develop smart contracts on the IC</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="design-apps.html">Design apps</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="customize-projects.html">Manage projects</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="working-with-canisters.html">Manage canisters</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="default-wallet.html">Use the default cycles wallet</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/explore-templates.html">Explore the default project</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/define-an-actor.html">Query using an actor</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/hello-location.html">Pass text arguments</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/counter-tutorial.html">Increment a natural number</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/calculator.html">Use integers in calculator functions</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/phonebook.html">Import library modules</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/multiple-actors.html">Use multiple actors</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/intercanister-calls.html">Make inter-canister calls</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/access-control.html">Add access control with identities</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/simple-cycles.html">Accept cycles from a wallet</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/reproducible-builds.html">Build canisters reproducibly</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="troubleshooting.html">Troubleshoot issues</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Explore our languages</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="work-with-languages.html">Develop using different languages</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#language-guide:motoko.adoc">Motoko</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#base-libraries:stdlib-intro.adoc">Motoko Base Library</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Motoko Guide</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:about-this-guide.adoc">About the language guide</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:motoko-introduction.adoc">Introduction</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:basic-concepts.adoc">Basic concepts and terms</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:mutable-state.adoc">Mutable state</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:local-objects-classes.adoc">Local objects and classes</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:actors-async.adoc">Actors and async data</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:errors.adoc">Error handling</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:pattern-matching.adoc">Pattern matching</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:sharing.adoc">Sharing data and behavior</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:modules-and-imports.adoc">Modules and imports</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:control-flow.adoc">Imperative control flow</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:structural-equality.adoc">Structural equality</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:actor-classes.adoc">Actor classes</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:caller-id.adoc">Principals and caller identification</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:cycles.adoc">Managing cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:upgrades.adoc">Stable variables and upgrade methods</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:language-manual.adoc">Language quick reference</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:compiler-ref.adoc">Compiler reference</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:motoko-grammar.adoc">Motoko grammar</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:style.adoc">Motoko style guidelines</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#rust-guide:rust-intro.adoc">Rust</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#rust-guide:rust-quickstart.adoc">Hello, World! Quick Start</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#rust-guide:rust-counter.adoc">Simple counter tutorial</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#rust-guide:multiply-dependency.adoc">Basic dependency tutorial</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#rust-guide:rust-profile.adoc">Profile tutorial</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#rust-guide:rust-optimize.adoc">Optimize a Rust program</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#candid-guide:candid-intro.adoc">Candid</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#candid-guide:candid-concepts.adoc">What is Candid?</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#candid-guide:candid-howto.adoc">How to</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#candid-guide:candid-ref.adoc">Reference</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#candid-guide:candid-types.adoc">Supported types</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text"><a href="https://github.com/dfinity/candid" target="_blank" rel="noopener">Candid specification</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text"><a href="https://docs.rs/candid" target="_blank" rel="noopener">Candid Rust crate</a></span>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introducing the Internet Identity</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#ic-identity-guide:what-is-ic-identity.adoc">What is Internet Identity</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#ic-identity-guide:auth-how-to.adoc">How to use the Internet Identity</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#ic-identity-guide:hello-guide.adoc">Windows Hello Guide</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Frontend development</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="webpack-config.html">Add frontend assets</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/custom-frontend.html">Customize the front-end</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="tutorials/my-contacts.html">Add a stylesheet</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Protocol Docs</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="concepts/concepts-intro.html">Concepts</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="concepts/what-is-IC.html">What is the {IC}</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#interface-spec:index.adoc">Internet Computer Interface Specification</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="concepts/nodes-subnets.html">Nodes and sub-networks</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="concepts/data-centers.html">Decentralized data centers</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="concepts/canisters-code.html">Canisters and code</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="concepts/tokens-cycles.html">Tokens and cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="concepts/governance.html">Neurons and governance</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">General Docs</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of self-custody</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../token-holders/custody-options-intro.html">Choosing self-custody for digital assets</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../token-holders/self-custody-quickstart.html">Self-custody quick start</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of ledger</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integration/ledger-quick-start.html">Ledger quick start</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of the NNS App</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../token-holders/nns-app-quickstart.html">NNS App quick start</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Additional Resources</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer videos</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=oxEr8UzGeBo&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=11&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Internet Identity</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=4eSceDOS-Ms&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=21&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Motoko</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=GzkRsbqPaA0&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Building a multiplayer game for the Internet Computer</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=b_nc6yx5_DQ&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=7&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Deploying static sites to the Internet Computer</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=2miweY9-vZc&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=6&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Zero to fullstack: web apps on the Internet Computer </a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Protocol videos</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://dfinity.org/technicals/" target="_blank" rel="noopener">Technical library</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer tooling</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../download.html">DFINITY Canister SDK</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cdk-rs" target="_blank" rel="noopener">Rust CDK</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/kritzcreek/vessel" target="_blank" rel="noopener">Vessel Package Manager</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko" target="_blank" rel="noopener">Motoko VS Code Extension</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/agent-js" target="_blank" rel="noopener">Agent JS</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/sudograph/sudograph" target="_blank" rel="noopener">Sudograph</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cycles-wallet" target="_blank" rel="noopener">Cycles Wallet</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/quill" target="_blank" rel="noopener">Quill</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Examples</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Awesome DFINITY</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cancan" target="_blank" rel="noopener">CanCan</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Mini Motoko examples</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Community created resources</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://ic.rocks/" target="_blank" rel="noopener">ic.rocks (Block explorer)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://plugwallet.ooo/" target="_blank" rel="noopener">Plug (Browser-based wallet extension)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://fleek.co/" target="_blank" rel="noopener">Fleek (Netlify for the open web)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="http://faucet.dfinity.org/" target="_blank" rel="noopener">Cycles Faucet</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="computation-and-storage-costs.html">Computation and Storage Costs</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Community</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://discord.gg/cA7y6ezyE2" target="_blank" rel="noopener">Developer Discord</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://forum.dfinity.org/" target="_blank" rel="noopener">Developer Forum</a></span>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Developer Center</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Developer Center</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle">Table of contents</button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Developer Center</a></li>
+    <li><a href="basic-syntax-rules.html">Learning the basics of Motoko</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/hoosan/docs/edit/main/modules/developers-guide/pages/basic-syntax-rules.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  </div>
+<div class="main-content">
+<article class="doc">
+<h1 class="page">Learning the basics of Motoko</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>One key feature of the Internet Computer platform is the Motoko programming language.
+The Motoko programming language is a high-level, general purpose language that is similar to other modern programming languages, but specifically designed to handle asynchronous messaging efficiently.</p>
+</div>
+<div class="paragraph">
+<p>Although Motoko provides an interpreter that can be used interactively and a standalone compiler, you can write programs and compile your code without using either one directly.
+Instead, in most cases, you interact with the programming language indirectly through an editor of your choice and using the <code>dfx</code> command-line execution tool.</p>
+</div>
+<div class="paragraph">
+<p>To help you get started using this new language, this section provides a brief overview of the language and describes a few basic conventions for writing programs using Motoko.
+For more complete information about programming in Motoko, including specific language features and detailed examples, see the <em>Language Reference Guide</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_actors_and_asynchronous_messaging"><a class="anchor" href="#_actors_and_asynchronous_messaging"></a>Actors and asynchronous messaging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As you start to explore the Motoko programming language, you should keep in mind that each application consists of an <strong>actor</strong> that communicates with other actors by passing messages asynchronously.</p>
+</div>
+<div class="paragraph">
+<p>An actor is a special kind of object that passes its messages in an isolated state.
+When you define an actor, its messages are processed in sequence but in isolation from on each other. As an example of using actors, consider the following program:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">let result1 = await service1.computeAnswer(params);
+let result2 = await service2.computeAnswer(params);
+finalStep(result1, result2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the program makes two requests to two distinct
+services.
+Each service is implemented internally as an actor (object).
+The program waits using the <code>await</code> keyword to wait for each result value in sequence.
+The program then uses the result from each request them in the final step, calling the function <code>finalStep</code>.</p>
+</div>
+<div class="paragraph">
+<p>The actor-based programming model is particularly well-suited for writing programs intended to run on the Internet Computer platform.
+However, you can also write programs in Motoko to run on other platforms and inside of other frameworks.
+If you are writing programs to run on other platforms, you might not use actor objects or asynchronous messaging at all.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interface_descriptions_and_motoko"><a class="anchor" href="#_interface_descriptions_and_motoko"></a>Interface descriptions and Motoko</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To support multiple languages and cross-language communication, the Motoko compiler automates the production and consumption of interface descriptions.
+The Motoko compiler generates the interface descriptions using the type signatures in your Motoko programs and the structure of imported pre-defined interfaces.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prelude_and_standard_library_functions"><a class="anchor" href="#_prelude_and_standard_library_functions"></a>Prelude and standard library functions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Like other languages, Motoko includes many common functions in predefined prelude and standard library files that you can import into your programs.
+By importing the prelude or standard library, you can use common functions like <code>println</code> without explicitly defining them in your programs.</p>
+</div>
+<div class="paragraph">
+<p>For example, you might include a line similar to the following to import list functions from the standard library:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">import List "../../motoko/base/list";</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_language_features"><a class="anchor" href="#_basic_language_features"></a>Basic language features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes the basic language conventions you need to know for programming in Motoko.</p>
+</div>
+<div class="sect2">
+<h3 id="_comments"><a class="anchor" href="#_comments"></a>Comments</h3>
+<div class="paragraph">
+<p>You can use single-line, multi-line, or nested multi-line comments to include descriptive non-executable text in your code.
+For example, use comments to add context about a code block as a note to yourself or as information you want to share with anyone reviewing or maintaining your code.
+Properly-formatted comments are treated as whitespace and ignored by the compiler.</p>
+</div>
+<div class="sect3">
+<h4 id="_single_line_comments"><a class="anchor" href="#_single_line_comments"></a>Single-line comments</h4>
+<div class="paragraph">
+<p>Single-line comments begin with two forward-slashes (//) and consist of the characters following <code>//</code> to the end of the same line.
+For example, you can have single-line comments above, below, or on the same line as the code to which the comment applies.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// This is a single-line comment on its own line above relevant code
+import List = "ListLib";</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_multi_line_and_nested_comments"><a class="anchor" href="#_multi_line_and_nested_comments"></a>Multi-line and nested comments</h4>
+<div class="paragraph">
+<p>You can also include single-line, multi-line, and nested multi-line comments by starting with a forward-slash followed by an asterisk (/*) and ending with an asterisk followed by a forward-slash (*/).
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">/*
+This is a comment that is split into
+multiple lines.
+*/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also write nested multi-line comments by starting a multi-line comment block, then starting a second multi-line comment within the first block.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">/* This is the start of the first multi-line comment block.
+   /* This is the second, nested multi-line comment. */
+This is the end of the first multi-line comment block. */</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_programs_declarations_and_expressions"><a class="anchor" href="#_programs_declarations_and_expressions"></a>Programs, declarations, and expressions</h3>
+<div class="paragraph">
+<p>Each Motoko program consists of zero or more declarations, followed by an optional expression.
+For example, the following snippet consists of two declarations for the variables <code>x</code> and <code>y</code> followed by an expression, forming a single program:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">let x = 1;
+let y = x + 1;
+x * y + x;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As illustrated in this example, you use a semi-colon (;) to terminate declarations and expressions. For example, to evaluate a simple equation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">1 + 3; // When executed, the result would be "4 : Nat" value and type</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_numbers_text_and_operators"><a class="anchor" href="#_numbers_text_and_operators"></a>Numbers, text and operators</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Motoko supports the following number types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Natural numbers (<code>Nat</code>) are positive whole integers.</p>
+</li>
+<li>
+<p>Integer numbers (<code>Int</code>) are positive, negative, or zero whole number values.</p>
+</li>
+<li>
+<p>Floating point numbers (<code>Float</code>) are fractional numeric 32-bit or 64-bit values.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Basic arithmetic operators work as you would expect. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">1 + 1;      // = 2
+0.1 + 0.2;  // = 0.3
+8 - 1;      // = 7
+10 * 2;     // = 20
+35 / 5;     // = 7</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can use double (") quotes to enclose text. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">let name = "Chris"; // let name : Text = "Chris"</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_relational_operators"><a class="anchor" href="#_relational_operators"></a>Relational operators</h3>
+<div class="paragraph">
+<p>You can use the following relational operators in Motoko programs.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Use this</th>
+<th class="tableblock halign-left valign-top">To define this relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>␣&lt;␣</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Less than. The operator must be enclosed in whitespace.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>␣&gt;␣</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Greater than. The operator must be enclosed in whitespace.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>==</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equals.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>!=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not equals.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Less than or equal to.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&gt;=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Greater than or equal to.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_numeric_binary_operators"><a class="anchor" href="#_numeric_binary_operators"></a>Numeric binary operators</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Use this</th>
+<th class="tableblock halign-left valign-top">For this operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>+</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Addition.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subtraction.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiplication.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Division.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>%</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modulo.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exponentiation.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_bitwise_binary_operators"><a class="anchor" href="#_bitwise_binary_operators"></a>Bitwise binary operators</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Use this</th>
+<th class="tableblock halign-left valign-top">For this operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&amp;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bitwise AND.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bitwise OR.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>^</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exclusive OR.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;&lt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shift left.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>␣&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shift right. The operator must be preceded by whitespace.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;&lt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rotate left.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rotate right.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_string_operators"><a class="anchor" href="#_string_operators"></a>String operators</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Use this</th>
+<th class="tableblock halign-left valign-top">For this operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text concatenation.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_assignment_operators"><a class="anchor" href="#_assignment_operators"></a>Assignment operators</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Use this</th>
+<th class="tableblock halign-left valign-top">For this operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assignment using an in-place update.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>+=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place addition.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place subtraction.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place multiplication.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place divide.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>%=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place modulo.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place exponentiation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&amp;=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place logical AND.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>|=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place logical OR.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>^=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place exclusive OR.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;&lt;=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place shift left.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&gt;&gt;=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place shift right.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;&lt;&gt;=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place rotate left.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;&gt;&gt;=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place rotate right.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In place concatenation.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_variables"><a class="anchor" href="#_variables"></a>Variables</h3>
+<div class="paragraph">
+<p>Variables enable you to relate static names and types with dynamic values that are present only when a program is executed.</p>
+</div>
+<div class="paragraph">
+<p>You can declare variable names, and if necessary the data type, using the <code>let</code> keyword. For example, you can use the following notation to set the variable <code>x</code> to the natural number 1:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">let x : Nat = 1;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the compiler can infer that the expression 1 has type <code>Nat</code>, and that <code>x</code> has the same type. Therefore, you can use the following annotation without changing the meaning of the program:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">let x = 1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_primitive_values"><a class="anchor" href="#_primitive_values"></a>Primitive values</h3>
+<div class="paragraph">
+<p>Motoko supports the following primitive types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Booleans (true, false)</p>
+</li>
+<li>
+<p>Integers (…​,-2, -1, 0, 1, 2, …​)</p>
+</li>
+<li>
+<p>Natural numbers (0, 1, 2, …​)</p>
+</li>
+<li>
+<p>Words (fixed-width numbers)</p>
+</li>
+<li>
+<p>Characters (Unicode code points)</p>
+</li>
+<li>
+<p>Text values (strings of Unicode characters)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Integers and natural numbers do not silently over- or under-flow.
+Instead, they use representations that grow to accommodate any finite number. There are also fixed-width integers and natural numbers (in 8-, 16-, 32-, and 64-bit) types that trap on arithmetic over- and under-flow. The fixed-width integers are signed. The fixed-width natural numbers are unsigned.</p>
+</div>
+<div class="paragraph">
+<p>Word values have fixed width. Arithmetic for Word types is performed using modulo 2**N where N is the width of the word type in bits.</p>
+</div>
+<div class="paragraph">
+<p>Motoko does not allow unchecked, uncaught overflows.</p>
+</div>
+<div class="paragraph">
+<p>All primitive types are shareable so that they can be sent and received across remote function calls.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_non_primitive_values"><a class="anchor" href="#_non_primitive_values"></a>Non-primitive values</h3>
+<div class="paragraph">
+<p>Building on the primitive values and types above, the language permits user-defined types, and each of the following non-primitive value forms and associated types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tuples, including the unit value (the &#8220;empty tuple&#8221;).</p>
+</li>
+<li>
+<p>Arrays, in both immutable and mutable forms.</p>
+</li>
+<li>
+<p>Objects, with named, unordered fields and methods.</p>
+</li>
+<li>
+<p>Variants, with named constructors and optional payload values.</p>
+</li>
+<li>
+<p>Function values, including shareable functions that can be called remotely.</p>
+</li>
+<li>
+<p>Async values, otherwise known as <strong>futures</strong> or <strong>promises</strong>, that can be synchronized with using <code>await</code>.</p>
+</li>
+<li>
+<p>Optional values, that can either be <code>null</code> or of the form <code>? v</code>, for a proper value <code>v</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note that if your function is returning an optional value of type <code>T</code>, then the function&#8217;s return type should be of the form '? T':
+prefixing a type with question mark (?) adds the <code>null</code> value.
+For example, you would use the following syntax to indicate that the return value of the type identified by <code>?Phone</code> is optional (for example, the return value can be <code>null</code> as well as a proper phone number):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">public query func lookup(name: Name): async <strong>?Phone</strong> {
+        return A.find<Name, Phone>(book, name, nameEq);
+    };</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_functions"><a class="anchor" href="#_functions"></a>Functions</h3>
+<div class="paragraph">
+<p>First-class functions support multiple arguments and returns and can be polymorphic.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>T -&gt; U</code></p>
+</li>
+<li>
+<p><code>(T, U) -&gt; (V, W)</code></p>
+</li>
+<li>
+<p><code>(x : T, y : U) -&gt; V</code></p>
+</li>
+<li>
+<p><code>&lt;A, B&gt;(x : T, y : U) -&gt; (V, W)</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Functions can be defined as <code>public</code> or <code>private</code>, <code>shared</code>, or locally-scoped.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_objects_and_actors"><a class="anchor" href="#_objects_and_actors"></a>Objects and actors</h3>
+<div class="paragraph">
+<p>Objects are structural record types with fields that can be mutable or immutable.
+Objects with immutable fields are shareable.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{var x : Int; color : Color}
+{x : Int; color: Color}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Actors are restricted objects with the following characteristics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>State must be isolated.</p>
+</li>
+<li>
+<p>Public methods are implicitly <code>shared</code>.</p>
+</li>
+<li>
+<p>All interactions are asynchronous.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Actor objects are marked as <code>actor</code> with syntax similar to the
+following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>actor {
+  private var c = 0;
+  public func inc() { c += 1 };
+  public func get() : async Int { c }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The fields of an actor are functions that return either:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An empty unit return type <code>()</code> which is similar to a <code>void</code> return value.</p>
+</li>
+<li>
+<p>An <code>async</code> return type, which is essentially a <code>promise</code> to return a future value.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_arrays"><a class="anchor" href="#_arrays"></a>Arrays</h3>
+<div class="paragraph">
+<p>You can define immutable or mutable arrays.
+The assignment syntax you use is the same for both immutable and mutable arrays, but you cannot change immutable arrays after allocation.</p>
+</div>
+<div class="paragraph">
+<p>The following is an example of a simple, immutable array that holds three natural numbers, and has the type <code>[Nat]</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">let test_array : [Nat] = [1, 2, 3] ;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In general, an immutable array uses square brackets around the type of the array’s elements, which must share a single common type.
+Because immutable arrays cannot be modified,immutable arrays are safe to send and share.</p>
+</div>
+<div class="paragraph">
+<p>Unlike immutable arrays, each mutable array in Motoko introduces a private actor state which can be used locally but cannot be used in cases where immutable arrays are expected.
+Mutable arrays cannot be shared or sent in messages.
+For more information about working with arrays, see the <em>Motoko Language Reference</em>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tuples"><a class="anchor" href="#_tuples"></a>Tuples</h3>
+<div class="paragraph">
+<p>A tuple is a data structure that contains a sequence of elements.
+The number of element in the sequence is fixed, but the elements can consist of different data types.
+Tuples are often used when you want to have a data structure for an object with specific properties, but you don&#8217;t want to create a separate type for it.</p>
+</div>
+<div class="paragraph">
+<p>The following example defines a tuple for a three-dimensional point using integers to specify locations to represent the point on the x-axis, y-axis, and z-axis and a color.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  type Point3D = (Int, Int, Int, Color);
+  let origin = (0, 0, 0, Color.Red);
+  let (x, y, z, _) = origin;
+
+  func isOrigin(p : Point3D) : Bool {
+    switch p {
+      case (0, 0, 0, _) true; // pattern match
+      case _ false;
+    }
+  }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conditional_and_switching"><a class="anchor" href="#_conditional_and_switching"></a>Conditional and switching</h3>
+<div class="paragraph">
+<p>Motoko supports all the common constructs for expressing conditions and switching between cases.</p>
+</div>
+<div class="paragraph">
+<p>For example, you can write <code>if</code> and <code>if else</code> conditions with syntax similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">if &lt;exp&gt;
+  ...</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">if &lt;exp&gt;
+  ...
+else &lt;exp&gt;
+  ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use <code>switch</code> and <code>case</code> syntax similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">switch &lt;exp&gt; {
+  case 1
+    ...;
+  case 2
+    ...;
+  case 3
+    ...}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_while_loops_and_iteration"><a class="anchor" href="#_while_loops_and_iteration"></a>While, Loops, and iteration</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>while (p()) ...</code></p>
+</li>
+<li>
+<p><code>loop ...</code></p>
+</li>
+<li>
+<p><code>loop ... while (p())</code></p>
+</li>
+<li>
+<p><code>for (x in f()) ...</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_label_break_and_continue"><a class="anchor" href="#_label_break_and_continue"></a>Label, break, and continue</h3>
+<div class="paragraph">
+<p>Labels help ensure control flow is structured and can be used with the <code>break</code> and <code>continue</code> keywords.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>label l exp</code></p>
+</li>
+<li>
+<p><code>break l</code> (more generally, <code>break l exp</code>)</p>
+</li>
+<li>
+<p><code>continue l</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_identifiers"><a class="anchor" href="#_identifiers"></a>Identifiers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Identifiers are alphanumeric.
+They must start with an uppercase or lowercase letter and can include a combination of uppercase or lowercase letters, numbers, and underscores.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reserved_keywords"><a class="anchor" href="#_reserved_keywords"></a>Reserved keywords</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following keywords are reserved for specific purposes and cannot be used as identifiers or for any other purpose in Motoko code:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">This keyword</th>
+<th class="tableblock halign-left valign-top">Is reserved for this purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">actor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declare actor identifiers, actor objects and actor classes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">and</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean conjunction (short-circuiting).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">async</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declare an asynchronous function or create a future.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assert</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assert a Boolean property (trapping when false).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">await</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Await the result of an asynchronous computation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">break</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exit from a labelled expression or loop (possibly with a value).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">case</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Case of a preceding <code>switch</code> expression, consisting of a pattern and expression.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">catch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Failure branch of a preceding <code>try</code> expression.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Class declaration (actor, object and module classes).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Continue with the next iteration of <code>loop</code> or <code>while</code> or <code>for</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conditional debug expressions, excluded from <code>release</code> code.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">debug_show</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display a debug message.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">else</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">False branch of a conditional expression.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean literal value <strong>false</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Iterate over the items of an iterator.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">func</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declare a name function or anonymous function value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">if</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch on a Boolean value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ignore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Discard the value of an expression.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">import</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Import a source file or other resource as a named module.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicate the domain of <code>for</code> loop.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declare a module identifier or module expression.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Negate a Boolean value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The literal value of type <code>Null</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declare an object identifier or object expression.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">or</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean disjunction (short-circuiting).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">label</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Label an expression for early exit via <code>break</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">let</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bind an identifier (or pattern) to a value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">loop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enter a loop (possibly with a guarded exit).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">private</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restrict the visibility of a declaration to the enclosing
+actor, object, module or class.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">public</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Publish a declaration as member(s) of the enclosing
+actor, object, module or class.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A modifier on shared functions that return results without modifying state.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">return</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exit from a function or async block (possibly with a value).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shared</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declare a function that can be called remotely.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">switch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conditional pattern matching, defined by cases.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">throw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exit from an expression with an error.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Boolean value returned as the result of a comparison.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">try</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declare a scoped error handler.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declare a type abbreviation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify a (mutable) variable, field or array that can be updated.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">while</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enter a guarded loop.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</article>
+<aside class="toc sidebar">
+  
+  <div class="toc-menu"></div>
+</aside></div>
+</main></div>
+<footer class="footer">
+  <div class="footer-container">
+    <a href="http://www.dfinity.org"><img class="footer-logo" src="../../_/img/logo.svg"></a>
+    <nav class="footer-nav">
+      <div class="col1">
+        <h5 class="footer-header">Developers</h5>
+        <a class="footer-link" href="http://www.dfinity.org/faq">
+          FAQ
+        </a>
+        <a class="footer-link" href="#">
+          Developers
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/data-centers">
+          Data Centers
+        </a>
+        <a class="footer-link" href="https://support.dfinity.org">
+          Support
+        </a>
+      </div>
+
+      <div class="col2">
+        <h5 class="footer-header">Team</h5>
+        <a class="footer-link" href="http://www.dfinity.org/foundation">
+          Foundation
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/foundation#events">
+          Events
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/careers">
+          Careers
+        </a>
+      </div>
+
+
+      <div class="col3">
+        <h5 class="footer-header">Media</h5>
+        <a class="footer-link" href="http://www.dfinity.org/media">
+          Featured Videos
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/media#featured-stories">
+          Featured Stories
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/newsletter">
+          Newsletter
+        </a>
+      </div>
+
+      <div class="social-icons">
+
+        <a class="social-icon-link" target="blank" href="https://github.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 0C5.3625 0 0 5.3625 0 12C0 17.2875 3.45 21.7875 8.2125 23.4C8.8125 23.5125 9.0375 23.1375 9.0375 22.8375C9.0375 22.5375 9.0375 21.7875 9.0375 20.8125C5.7 21.525 4.9875 19.2 4.9875 19.2C4.425 17.8125 3.6375 17.4375 3.6375 17.4375C2.55 16.6875 3.7125 16.725 3.7125 16.725C4.9125 16.8 5.55 17.9625 5.55 17.9625C6.6375 19.8 8.3625 19.275 9.0375 18.975C9.15 18.1875 9.45 17.6625 9.7875 17.3625C7.125 17.0625 4.3125 16.0125 4.3125 11.4375C4.3125 10.125 4.7625 9.075 5.55 8.2125C5.4375 7.9125 5.025 6.675 5.6625 5.025C5.6625 5.025 6.675 4.6875 8.9625 6.2625C9.9375 6 10.95 5.85 11.9625 5.85C12.975 5.85 14.025 6 14.9625 6.2625C17.25 4.725 18.2625 5.025 18.2625 5.025C18.9 6.675 18.4875 7.9125 18.375 8.2125C19.1625 9.0375 19.6125 10.125 19.6125 11.4375C19.6125 16.05 16.8 17.0625 14.1375 17.3625C14.55 17.7375 14.9625 18.45 14.9625 19.575C14.9625 21.1875 14.9625 22.4625 14.9625 22.875C14.9625 23.2125 15.1875 23.5875 15.7875 23.4375C20.55 21.7875 24 17.2875 24 12C24 5.3625 18.6375 0 12 0Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+        <a class="social-icon-link" target="blank" href="https://medium.com/dfinity-network-blog">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M22.3125 1H1.6875C1.50516 1 1.3303 1.07243 1.20136 1.20136C1.07243 1.3303 1 1.50516 1 1.6875L1 22.3125C1 22.4948 1.07243 22.6697 1.20136 22.7986C1.3303 22.9276 1.50516 23 1.6875 23H22.3125C22.4948 23 22.6697 22.9276 22.7986 22.7986C22.9276 22.6697 23 22.4948 23 22.3125V1.6875C23 1.50516 22.9276 1.3303 22.7986 1.20136C22.6697 1.07243 22.4948 1 22.3125 1V1ZM19.2768 6.21228L18.0971 7.34356C18.0471 7.38153 18.0085 7.43245 17.9854 7.4908C17.9623 7.54916 17.9557 7.61272 17.9661 7.67459V15.9875C17.9557 16.0494 17.9623 16.1129 17.9854 16.1713C18.0085 16.2296 18.0471 16.2806 18.0971 16.3185L19.2493 17.4498V17.698H13.4534V17.4498L14.6469 16.2903C14.7641 16.1731 14.7641 16.1388 14.7641 15.9593V9.24072L11.4455 17.6698H10.9987L7.13319 9.24072V14.8899C7.11729 15.0071 7.12828 15.1264 7.16533 15.2387C7.20237 15.351 7.2645 15.4535 7.347 15.5382L8.89937 17.4213V17.6695H4.49731V17.4213L6.04969 15.5382C6.13152 15.4534 6.19226 15.3505 6.22701 15.2379C6.26177 15.1253 6.26956 15.0061 6.24975 14.8899V8.35866C6.25855 8.26945 6.24627 8.17943 6.21391 8.09584C6.18155 8.01225 6.13001 7.93743 6.06344 7.87741L4.68362 6.21503V5.96684H8.96847L12.2805 13.2303L15.1924 5.96684H19.2768V6.21228Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+        <a class="social-icon-link" target="blank" href="https://twitter.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23 5.33654C22.175 5.67308 21.3156 5.94231 20.4219 6.04327C21.35 5.50481 22.0719 4.62981 22.4156 3.58654C21.5562 4.09135 20.5938 4.46154 19.5625 4.66346C18.7031 3.78846 17.5344 3.25 16.2281 3.25C13.7187 3.25 11.725 5.23558 11.725 7.65865C11.725 7.99519 11.7594 8.33173 11.8281 8.66827C8.08125 8.5 4.74688 6.71635 2.54688 4.05769C2.16875 4.69712 1.92813 5.47115 1.92813 6.27885C1.92813 7.82692 2.71875 9.17308 3.92188 9.94712C3.16562 9.91346 2.47812 9.71154 1.89375 9.40865C1.89375 9.44231 1.89375 9.44231 1.89375 9.47596C1.89375 11.6298 3.44063 13.4135 5.50313 13.8173C5.125 13.9183 4.7125 13.9856 4.3 13.9856C4.025 13.9856 3.71562 13.9519 3.44062 13.9183C4.025 15.6683 5.675 16.9471 7.66875 16.9808C6.12187 18.1587 4.1625 18.8654 2.06562 18.8654C1.6875 18.8654 1.34375 18.8317 1 18.7981C2.99375 20.0096 5.36563 20.75 7.90938 20.75C16.2281 20.75 20.7656 14.0192 20.7656 8.16346C20.7656 7.96154 20.7656 7.79327 20.7656 7.59135C21.625 6.98558 22.3813 6.21154 23 5.33654Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://forum.dfinity.org/">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12.0932 1C6.0727 1 1 5.83706 1 11.8085C1 12 1.00488 23 1.00488 23L12.0933 22.9901C18.1188 22.9901 23 17.9666 23 11.9951C23 6.02373 18.1188 1 12.0932 1ZM12 18.2857C11.0473 18.2857 10.1388 18.0745 9.32853 17.6916L5.34597 18.6786L6.47047 14.9956C5.98926 14.1067 5.71423 13.0853 5.71423 12C5.71423 8.52815 8.52811 5.71428 12 5.71428C15.4719 5.71428 18.2857 8.52815 18.2857 12C18.2857 15.472 15.4719 18.2857 12 18.2857Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://www.linkedin.com/company/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M1 4.35878C1 3.01688 2.03589 2 3.61924 2C5.20139 2 6.17406 3.01448 6.20507 4.35519C6.20507 5.67205 5.20139 6.71456 3.58942 6.71456H3.55841C2.00666 6.71456 1 5.67562 1 4.35878ZM17.5581 8.28158C15.1017 8.28158 13.5625 9.61217 13.278 10.5449V8.41225H8.46122C8.52324 9.54475 8.46122 21.9995 8.46122 21.9995H13.278V14.647C13.278 14.5987 13.2778 14.5505 13.2775 14.5025C13.2756 14.1436 13.2736 13.7952 13.383 13.5365C13.714 12.7194 14.4255 11.8719 15.7046 11.8719C17.3775 11.8719 18.1378 13.128 18.1378 14.9685V21.9995H23V14.4448C23 10.236 20.6056 8.28158 17.5581 8.28158ZM1.55371 8.41275H5.84157V22H1.55371V8.41275Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://youtube.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23.775 7.6375C23.775 7.6375 23.55 5.9875 22.8375 5.2375C21.9375 4.3 20.8875 4.2625 20.4375 4.225C17.025 4 12 4 12 4C12 4 6.975 4 3.6 4.225C3.1125 4.2625 2.1 4.3 1.2 5.2375C0.4875 5.95 0.2625 7.6375 0.2625 7.6375C0.2625 7.6375 0 9.5875 0 11.5375V13.375C0 15.325 0.225 17.275 0.225 17.275C0.225 17.275 0.45 18.925 1.1625 19.675C2.0625 20.6125 3.2625 20.6125 3.825 20.6875C5.7375 20.875 12 20.9125 12 20.9125C12 20.9125 17.025 20.9125 20.4 20.65C20.8875 20.6125 21.9 20.575 22.8 19.6375C23.5125 18.925 23.7375 17.2375 23.7375 17.2375C23.7375 17.2375 24 15.2875 24 13.3375V11.5C24 9.5875 23.775 7.6375 23.775 7.6375ZM9.525 15.55V8.8L16.0125 12.175L9.525 15.55Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+      </div>
+    </nav>
+
+    <div class="legal-container">
+      <span class="legal" id="year">
+        © 2020 DFINITY
+      </span>
+      <a class="legal footer-link" href="http://www.dfinity.org/terms-of-use">
+        Terms of Use
+      </a>
+      <a class="legal footer-link" href="http://www.dfinity.org/cookie-policy">
+        Cookie Policy
+      </a>
+      <a class="legal footer-link" href="http://www.dfinity.org/privacy-policy">
+        Privacy Policy
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+  var today = new Date();
+  var year = today.getFullYear();
+  document.getElementById("year").innerHTML = `© ${year} DFINITY`;
+</script><script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+    apiKey: 'b93d56cc4b00b0afbcdaacab04dcf25b',
+    indexName: 'dfinity_sdk',
+    inputSelector: '.search-input',
+    debug: false // Set debug to true if you want to inspect the dropdown
+  });
+</script>
+
+<!-- Start of dfinity Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=53121947-c10a-484c-b99b-f89a9fb6f63e"> </script>
+<!-- End of dfinity Zendesk Widget script -->
+
+  </body>
+</html>

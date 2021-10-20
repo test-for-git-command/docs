@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Network nervous system dapp quick start :: Dfinity ドキュメント</title>
+    <link rel="canonical" href="https://localhost/docs/token-holders/nns-app-quickstart.html">
+    <meta name="description" content="How to create and manage staked ICP utility tokens.">
+    <meta name="keywords" content="Internet Computer,neurons,blockchain,governance,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software,smart contract,canister,developer onboarding">
+    <meta name="generator" content="Antora 2.3.4">
+<link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:title" content="Internet Computer | Documentation" />
+<meta property="og:description" content="Documentation for the internet computer." />
+<meta property="og:image" content="../../_/img/share.jpg" />
+<meta property="og:image:url" content="../../_/img/share.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DFINITYDev" />
+<meta name="twitter:image" content="../../_/img/logo-RGB.png" />
+<meta name="twitter:image:alt" content="DFINITY Logo" />
+    <!-- Appzi: Capture Insightful Feedback -->
+    <script async src="https://w.appzi.io/w.js?token=Zrf92"></script>
+    <!-- End Appzi -->
+
+    <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<script>
+  function switchToLightMode(persist) {
+    document.querySelector("body").classList.remove("dark-mode");
+    if (persist) {
+      localStorage.setItem("theme-preference", "light");
+    }
+  }
+  function switchToDarkMode(persist) {
+    document.querySelector("body").classList.add("dark-mode");
+    if (persist) {
+      localStorage.setItem("theme-preference", "dark");
+    }
+  }
+
+  var themePreference = localStorage.getItem("theme-preference");
+
+  if (themePreference == "dark") {
+    switchToDarkMode(false);
+  } else if (themePreference == "light") {
+    switchToLightMode(false);
+  } else {
+    // dark mode by default
+    switchToDarkMode(false);
+
+    // uncomment to enable setting the defult by user preference
+    // try {
+    //   if (
+    //     window.matchMedia &&
+    //     window.matchMedia("(prefers-color-scheme: dark)").matches
+    //   ) {
+    //     switchToDarkMode(false);
+    //   }
+    // } catch {}
+  }
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="logo-container" href="/docs/introduction/welcome.html">
+        <img class="header-logo" src="../../_/img/logo.svg">
+        <img class="header-logo dark" src="../../_/img/logo-dark.svg">
+        <h1 class="header-title">Dfinity ドキュメント</h1>
+      </a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+          <a class="navbar-item" target="blank" href="https://dfinity.org/">DFINITY.org</a>
+          <a class="navbar-item" target="blank" href="https://forum.dfinity.org/">Forum</a>
+          <!--<a class="navbar-item" target="blank" href="mailto:support@dfinity.org?subject=Feedback - SDK Developer Center">Email us</a>-->
+          <a class="navbar-item" target="blank" href="https://support.dfinity.org/">Support</a>          
+          <a class="navbar-item" target="blank" href="https://www.twitter.com/dfinitydev">
+            <img class="light-only" src="../../_/img/social/twitter-icon.svg">
+            <img class="dark-only" src="../../_/img/social/twitter-icon-dark.svg">
+          </a>
+      </div>
+    <div class="nav-items-wrapper">
+      <button class="to-light-mode dark-only" aria-label="switch to light mode" onclick="switchToLightMode(true)"></button>
+      <button class="to-dark-mode light-only" aria-label="switch to dark mode" onclick="switchToDarkMode(true)"></button>
+      <div class="search-container">
+  <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M11.8654 12.5892C10.8213 13.4695 9.47259 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.47209 13.4699 10.8204 12.5901 11.8643L17.3625 16.6367L16.6377 17.3615L11.8654 12.5892ZM12.9333 8C12.9333 10.7246 10.7246 12.9333 8 12.9333C5.2754 12.9333 3.06667 10.7246 3.06667 8C3.06667 5.2754 5.2754 3.06667 8 3.06667C10.7246 3.06667 12.9333 5.2754 12.9333 8Z"
+      fill="black" />
+  </svg>
+
+
+  <input class="search-input" placeholder="Search" type="search" />
+</div>      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      </div>
+      
+    <div class="gradient-decoration"></div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="docs" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title">Docs</h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../introduction/welcome.html"><strong>Introduction</strong></a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-first-timers">For: First-Timers</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-developers">For: Developers</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-protocol-enthusiasts">For: Protocol Enthusiasts</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstart/quickstart-intro.html">Quick Start</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/newcomers.html">For Newcomers</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/local-quickstart.html">Local Development</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/network-quickstart.html">Network Deployment</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Docs</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introducing the SDK</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/install-upgrade-remove.html">Install, upgrade, or remove software</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.3-rn.html">0.8.3</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.2-rn.html">0.8.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.1-rn.html">0.8.1</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.0-rn.html">0.8.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.7-rn.html">0.7.7</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.2-rn.html">0.7.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.1-rn.html">0.7.1</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.0-rn.html">0.7.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.26-rn.html">0.6.26</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.25-rn.html">0.6.25</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.24-rn.html">0.6.24</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.23-rn.html">0.6.23</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.22-rn.html">0.6.22</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.21-rn.html">0.6.21</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.20-rn.html">0.6.20</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introducing DFX</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/cli-reference.html">DFX commands</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/cli-reference/dfx-envars.html">DFX environment variables</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/glossary.html">Glossary</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Building on the Internet Computer</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Learn how to:</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/sdk-guide.html">Develop smart contracts on the IC</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/design-apps.html">Design apps</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/customize-projects.html">Manage projects</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/working-with-canisters.html">Manage canisters</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/default-wallet.html">Use the default cycles wallet</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/explore-templates.html">Explore the default project</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/define-an-actor.html">Query using an actor</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/hello-location.html">Pass text arguments</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/counter-tutorial.html">Increment a natural number</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/calculator.html">Use integers in calculator functions</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/phonebook.html">Import library modules</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/multiple-actors.html">Use multiple actors</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/intercanister-calls.html">Make inter-canister calls</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/access-control.html">Add access control with identities</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/simple-cycles.html">Accept cycles from a wallet</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/reproducible-builds.html">Build canisters reproducibly</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/troubleshooting.html">Troubleshoot issues</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Explore our languages</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/work-with-languages.html">Develop using different languages</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#language-guide:motoko.adoc">Motoko</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#base-libraries:stdlib-intro.adoc">Motoko Base Library</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Motoko Guide</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:about-this-guide.adoc">About the language guide</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:motoko-introduction.adoc">Introduction</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:basic-concepts.adoc">Basic concepts and terms</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:mutable-state.adoc">Mutable state</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:local-objects-classes.adoc">Local objects and classes</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:actors-async.adoc">Actors and async data</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:errors.adoc">Error handling</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:pattern-matching.adoc">Pattern matching</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:sharing.adoc">Sharing data and behavior</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:modules-and-imports.adoc">Modules and imports</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:control-flow.adoc">Imperative control flow</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:structural-equality.adoc">Structural equality</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:actor-classes.adoc">Actor classes</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:caller-id.adoc">Principals and caller identification</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:cycles.adoc">Managing cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:upgrades.adoc">Stable variables and upgrade methods</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:language-manual.adoc">Language quick reference</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:compiler-ref.adoc">Compiler reference</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:motoko-grammar.adoc">Motoko grammar</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:style.adoc">Motoko style guidelines</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#rust-guide:rust-intro.adoc">Rust</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#rust-guide:rust-quickstart.adoc">Hello, World! Quick Start</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#rust-guide:rust-counter.adoc">Simple counter tutorial</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#rust-guide:multiply-dependency.adoc">Basic dependency tutorial</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#rust-guide:rust-profile.adoc">Profile tutorial</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#rust-guide:rust-optimize.adoc">Optimize a Rust program</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#candid-guide:candid-intro.adoc">Candid</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#candid-guide:candid-concepts.adoc">What is Candid?</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="#candid-guide:candid-howto.adoc">How to</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#candid-guide:candid-ref.adoc">Reference</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#candid-guide:candid-types.adoc">Supported types</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text"><a href="https://github.com/dfinity/candid" target="_blank" rel="noopener">Candid specification</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text"><a href="https://docs.rs/candid" target="_blank" rel="noopener">Candid Rust crate</a></span>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introducing the Internet Identity</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#ic-identity-guide:what-is-ic-identity.adoc">What is Internet Identity</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#ic-identity-guide:auth-how-to.adoc">How to use the Internet Identity</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#ic-identity-guide:hello-guide.adoc">Windows Hello Guide</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Frontend development</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/webpack-config.html">Add frontend assets</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/custom-frontend.html">Customize the front-end</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">Add a stylesheet</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Protocol Docs</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developers-guide/concepts/concepts-intro.html">Concepts</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/what-is-IC.html">What is the {IC}</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#interface-spec:index.adoc">Internet Computer Interface Specification</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/nodes-subnets.html">Nodes and sub-networks</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/data-centers.html">Decentralized data centers</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/canisters-code.html">Canisters and code</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/tokens-cycles.html">Tokens and cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/governance.html">Neurons and governance</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">General Docs</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of self-custody</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="custody-options-intro.html">Choosing self-custody for digital assets</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="self-custody-quickstart.html">Self-custody quick start</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of ledger</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integration/ledger-quick-start.html">Ledger quick start</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of the NNS App</span>
+    
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="nns-app-quickstart.html">NNS App quick start</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Additional Resources</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer videos</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=oxEr8UzGeBo&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=11&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Internet Identity</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=4eSceDOS-Ms&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=21&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Motoko</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=GzkRsbqPaA0&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Building a multiplayer game for the Internet Computer</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=b_nc6yx5_DQ&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=7&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Deploying static sites to the Internet Computer</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=2miweY9-vZc&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=6&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Zero to fullstack: web apps on the Internet Computer </a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Protocol videos</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://dfinity.org/technicals/" target="_blank" rel="noopener">Technical library</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer tooling</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../download.html">DFINITY Canister SDK</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cdk-rs" target="_blank" rel="noopener">Rust CDK</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/kritzcreek/vessel" target="_blank" rel="noopener">Vessel Package Manager</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko" target="_blank" rel="noopener">Motoko VS Code Extension</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/agent-js" target="_blank" rel="noopener">Agent JS</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/sudograph/sudograph" target="_blank" rel="noopener">Sudograph</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cycles-wallet" target="_blank" rel="noopener">Cycles Wallet</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/quill" target="_blank" rel="noopener">Quill</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Examples</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Awesome DFINITY</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cancan" target="_blank" rel="noopener">CanCan</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Mini Motoko examples</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Community created resources</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://ic.rocks/" target="_blank" rel="noopener">ic.rocks (Block explorer)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://plugwallet.ooo/" target="_blank" rel="noopener">Plug (Browser-based wallet extension)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://fleek.co/" target="_blank" rel="noopener">Fleek (Netlify for the open web)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="http://faucet.dfinity.org/" target="_blank" rel="noopener">Cycles Faucet</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developers-guide/computation-and-storage-costs.html">Computation and Storage Costs</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Community</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://discord.gg/cA7y6ezyE2" target="_blank" rel="noopener">Developer Discord</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://forum.dfinity.org/" target="_blank" rel="noopener">Developer Forum</a></span>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Developer Center</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Developer Center</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle">Table of contents</button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Developer Center</a></li>
+    <li>General Docs</li>
+    <li>Overview of the NNS App</li>
+    <li><a href="nns-app-quickstart.html">NNS App quick start</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/hoosan/docs/edit/main/modules/token-holders/pages/nns-app-quickstart.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  </div>
+<div class="main-content">
+<article class="doc">
+<h1 class="page">Network nervous system dapp quick start</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>All changes to the configuration and behavior of the Internet Computer are controlled by an algorithmic governance system called the Network Nervous System (NNS).
+The NNS controls all aspects of the Internet Computer blockchain configuration and is responsible for performing many network management operations. For example, the Network Nervous System (NNS) is responsible for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgrading the protocol and guest operating system software used by the nodes that provide computing capacity to the network.</p>
+</li>
+<li>
+<p>Inducting new node operators and machines into the network.</p>
+</li>
+<li>
+<p>Creating new subnets to increase network capacity.</p>
+</li>
+<li>
+<p>Splitting subnets to balance network load.</p>
+</li>
+<li>
+<p>Configuring parameters that control how much must be paid by users for compute capacity.</p>
+</li>
+<li>
+<p>Monitoring canister activity and node performance for
+malicious behavior and statistical deviations.</p>
+</li>
+<li>
+<p>De-activating malicious software or under-performing nodes to protect the network.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The requests for changes and updates to the network are submitted to the NNS in the form of <strong>proposals</strong>.
+The NNS decides to adopt or reject proposals based on voting activity by neuron holders.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_are_neurons"><a class="anchor" href="#_what_are_neurons"></a>What are neurons?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For network participants to be able to vote on proposals, they need to lock up a stake of ICP utility tokens for a given period of time to create a representative called a <strong>neuron</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Because neurons represent a stake of ICP utility tokens, they also represent an identity with a <strong>ledger canister account</strong> and a principal that controls the ledger account.</p>
+</div>
+<div class="paragraph">
+<p>Neurons provide the stability required for responsible governance of the Internet Computer by ensuring that the ICP utility tokens they represent cannot be exchanged for a specific period of time referred to as the <strong>lock-up</strong> period.</p>
+</div>
+<div class="paragraph">
+<p>The following diagram provides a simplified view of the workflow for creating a neuron and the relationship between the neuron and ledger canisters.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/create-dissolve-neuron-api.svg" alt="create dissolve neuron api"></span></p>
+</div>
+<div class="sect2">
+<h3 id="_governance_and_voting_rewards"><a class="anchor" href="#_governance_and_voting_rewards"></a>Governance and voting rewards</h3>
+<div class="paragraph">
+<p>When a person or organization has ICP utility tokens locked up in a neuron, the neuron holder can propose and vote on governance issues.
+To encourage participation, neuron holders are also rewarded for voting in proportion to the number of ICP utility tokens they have locked up and the length of the lock-up period up to a maximum of eight years.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_unlocking_the_stake_held_by_a_neuron"><a class="anchor" href="#_unlocking_the_stake_held_by_a_neuron"></a>Unlocking the stake held by a neuron</h3>
+<div class="paragraph">
+<p>After network participants create a neuron, the locked balance of ICP utility tokens can only be unlocked by fully <strong>dissolving</strong> the neuron.
+In its <strong>locked</strong> state, the neuron has a fixed non-zero <strong>dissolve delay</strong> equivalent to the lock-up period.
+For example, assume you have a stake of 100 ICP utility tokens locked up for a period of five years.
+After successfully created the neuron with these settings, your dissolve delay is five years.</p>
+</div>
+<div class="paragraph">
+<p>Based on the dissolve delay that decreases as time progresses, a <strong>dissolve timer</strong> determines how long it will take to completely dissolve a neuron.</p>
+</div>
+<div class="paragraph">
+<p>When the dissolve timer reaches zero, the neuron owner—the ICP utility token holder who created the neuron, or an authenticated custodian, can dissolve the neuron and unlock the balance of ICP utility tokens.</p>
+</div>
+<div class="paragraph">
+<p>The dissolved neuron ceases to exist and the stake of ICP utility tokens that the neuron represented is released to the appropriate ledger canister account.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_connect_to_the_internet_computer"><a class="anchor" href="#_connect_to_the_internet_computer"></a>Connect to the Internet Computer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To connect to the Internet Computer using the Network Nervous System (NNS) dapp:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a browser and navigate to the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</li>
+<li>
+<p>Click <strong>Login</strong> to connect to <a href="https://identity.ic0.app">Internet Identity</a>.</p>
+<div class="paragraph">
+<p>If you haven&#8217;t previously registered, you can click <strong>Register with Internet Identity</strong> to register.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We strongly recommend you add multiple devices and authentication methods to your Internet Identity. For example, register multiple physical devices like your computer and phone with a security key and using the authentication options that those devices—and browsers running on them—support.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information about creating an Internet Identity, see <a href="../ic-identity-guide/auth-how-to.html">How to use Internet Identity</a>.</p>
+</div>
+<div class="paragraph">
+<p>After you have registered, you can click <strong>Login</strong> to authenticate using your anchor and the authentication method—for example, a security key or fingerprint—you have registered.</p>
+</div>
+</li>
+<li>
+<p>Click <strong>Proceed</strong> to access to the Network Nervous System (NNS) dapp.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_an_account"><a class="anchor" href="#_add_an_account"></a>Add an account</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Logging on using an Internet Identity creates a Main account for you in the Internet Computer ledger.
+If your ICP utility tokens are associated with your developer identity; that is, the identity created by the {sdk-short-name} <code>dfx</code> command-line interface. Your Main account displays 0.00 for your ICP utility token balance.
+For example:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/nns-app-main.png" alt="nns app main"></span></p>
+</div>
+<div class="paragraph">
+<p>Before transferring any tokens, you can create one or more linked subaccounts or attach a hardware wallet to your account.</p>
+</div>
+<div class="paragraph">
+<p>To add an account for managing ICP utility tokens:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a browser and navigate to the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</li>
+<li>
+<p>Click <strong>Login</strong> to connect using your Internet Identity.</p>
+</li>
+<li>
+<p>Verify your identification number, then click <strong>Login</strong> to authenticate using the device and authentication method you have registered.</p>
+</li>
+<li>
+<p>Click <strong>Proceed</strong> to access to the Network Nervous System (NNS) dapp.</p>
+</li>
+<li>
+<p>On the default ICP tab, click <strong>Add Account</strong>.</p>
+</li>
+<li>
+<p>Select the type of account to add.</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>New Linked Account</strong> creates a new subaccount linked to your Main account address in the ledger.</p>
+</li>
+<li>
+<p><strong>Attach Hardware Wallet</strong> adds a hardware wallet to your main account address in the ledger.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Click <strong>New Linked Account</strong>, type an Account Name, then click <strong>Create</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/new-linked-account.png" alt="new linked account"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_transfer_icp_utility_tokens_between_accounts"><a class="anchor" href="#_transfer_icp_utility_tokens_between_accounts"></a>Transfer ICP utility tokens between accounts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you have selected self-custody for holding your ICP utility tokens and the tokens are associated with your developer identity instead of your registered Internet Identity, you need to transfer ICP utility tokens to your accounts if you want to manage them using the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</div>
+<div class="paragraph">
+<p>To transfer ICP utility tokens controlled by your developer identity:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a terminal shell on your local computer.</p>
+</li>
+<li>
+<p>Check that you are using an identity with control over the ledger account by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx identity whoami</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In most cases, you should see that you are currently using your <code>default</code> developer identity.
+For example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>default</pre>
+</div>
+</div>
+</li>
+<li>
+<p>View the textual representation of the principal for your current identity by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx identity get-principal</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command displays output similar to the following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check the current balance in the ledger account associated with your identity by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx ledger --network ic balance</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Transfer ICP utility tokens to your Main account or a linked subaccount you create by running a command similar to the following:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx ledger --network ic transfer &lt;destination-account-id&gt; --icp &lt;ICP-amount&gt; --memo &lt;numeric-memo&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example, assume you have the following accounts:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/accounts.png" alt="accounts"></span></p>
+</div>
+<div class="paragraph">
+<p>If you want to transfer one ICP utility token to the <code>Main</code> account, you can run the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>dfx ledger --network ic transfer dd81336dbfef5c5870e84b48405c7b229c07ad999fdcacb85b9b9850bd60766f --memo 12345 --icp 1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you also want to transfer one ICP utility token to the <code>pubs</code> account, you can run the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>dfx ledger --network ic transfer 183a04888eb20e73766f082bae01587830bd3cd912544f63fda515e9d77a96dc --icp 1 --memo 12346</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example illustrates how to transfer ICP utility tokens to using a whole number with the <code>--icp</code> command-line option.</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>You can also specify fractional units of ICP utility tokens—called <strong>e8s</strong>—using the <code>--e8s</code> option, either on its own or in conjunction with the <code>--icp</code> option.</p>
+</li>
+<li>
+<p>Alternatively, you can use the <code>--amount</code> to  specify the number of ICP utility tokens to transfer with fractional units up to 8 decimal places, for example, as <code>5.00000025</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The destination address can be an address in the ledger canister running on the Internet Computer network, an account you have added using the <a href="https://nns.ic0.app">Network Nervous System dapp</a>, or the address for a wallet you have on an exchange.</p>
+</div>
+<div class="paragraph">
+<p>If you transfer the ICP utility tokens to an account in the <a href="https://nns.ic0.app">Network Nervous System dapp</a>, you might need to refresh the browser to see the transaction reflected.</p>
+</div>
+<div class="paragraph">
+<p>For more information about using the <code>dfx ledger</code> command-line options, see <a href="../developers-guide/cli-reference/dfx-ledger.html">dfx ledger</a>.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stake-icp"><a class="anchor" href="#stake-icp"></a>Stake ICP utility tokens in a neuron</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After you transfer ICP utility tokens to the Network Nervous System dapp, you can use the Network Nervous System dapp to create and manage neurons, vote on proposals, and create canisters on the Internet Computer.</p>
+</div>
+<div class="paragraph">
+<p>Neurons are required to participate in governance and earn rewards.
+To create a neuron, you must lock up some number of ICP utility tokens for a period of time. The minimum stake required to create a neuron is one ICP utility token.
+You can configure the period of time the stake is locked from six months up to a maximum of eight years.</p>
+</div>
+<div class="paragraph">
+<p>To stake ICP utility tokens:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a browser and navigate to the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</li>
+<li>
+<p>Click <strong>Login</strong> to connect using your Internet Identity.</p>
+</li>
+<li>
+<p>Verify your identification number, then click <strong>Login</strong> to authenticate using the device and authentication method you have registered.</p>
+</li>
+<li>
+<p>Click <strong>Proceed</strong> to access to the Network Nervous System (NNS) dapp.</p>
+</li>
+<li>
+<p>Click <strong>Neurons</strong>, then click <strong>Stake Neuron</strong>.</p>
+</li>
+<li>
+<p>Type the number of ICP utility tokens to stake, then click <strong>Create</strong>.</p>
+</li>
+<li>
+<p>Set the dissolve delay for the neuron to control the length of time the stake is locked, then click <strong>Update Delay</strong>.</p>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/dissolve-delay.png" alt="dissolve delay"></span></p>
+</div>
+</li>
+<li>
+<p>Click <strong>Yes, I&#8217;m sure</strong> to confirm the lock up period, then close the window to review the newly-created neuron properties.</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/neuron-properties.png" alt="neuron properties"></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_what_you_can_do_after_creating_a_neuron"><a class="anchor" href="#_what_you_can_do_after_creating_a_neuron"></a>What you can do after creating a neuron</h3>
+<div class="paragraph">
+<p>After you have locked the stake and created a neuron, you can:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Start the dissolve delay timer by clicking <strong>Start Unlock</strong>.</p>
+</li>
+<li>
+<p>Increase the dissolve delay period by clicking <strong>Increase Dissolve Delay</strong>.</p>
+</li>
+<li>
+<p>Stop the dissolve delay after starting the unlock countdown by clicking <strong>Lockup</strong>.</p>
+</li>
+<li>
+<p>Increase the number of ICP utility tokens you have staked.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_starting_and_stopping_the_dissolve_delay"><a class="anchor" href="#_starting_and_stopping_the_dissolve_delay"></a>Starting and stopping the dissolve delay</h3>
+<div class="paragraph">
+<p>Creating a new neuron does not automatically start the dissolve delay timer.
+You must explicitly start the timer countdown by clicking <strong>Start Unlock</strong>.</p>
+</div>
+<div class="paragraph">
+<p>For example, if you set a dissolve delay of one year and want to immediately begin the countdown, you should click <strong>Start Unlock</strong> as part of the process of creating the neuron.
+If you change your mind and want to stop a current countdown in progress, you can click <strong>Lockup</strong>,
+After you click <strong>Lockup</strong> to stop the dissolve delay, you can click <strong>Start Unlock</strong> to resume the countdown without changing the existing dissolve delay period.
+If you want to continue a countdown already in progress but extend the lock up period, you can click <strong>Increase Dissolve Delay</strong> then select a longer dissolve delay.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_icp_utility_tokens_to_an_existing_neuron"><a class="anchor" href="#_adding_icp_utility_tokens_to_an_existing_neuron"></a>Adding ICP utility tokens to an existing neuron</h3>
+<div class="paragraph">
+<p>After you create a neuron, you can increase the number of ICP utility tokens you have staked in that neuron to increase your voting power and rewards.
+For example, if you initially stake a small number of ICP utility tokens, then decide to purchase additional tokens, you have the option to create a new neuron or "top-up" your existing neuron.</p>
+</div>
+<div class="paragraph">
+<p>To increase the stake in an existing neuron:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Follow the steps in <a href="#stake-icp">Stake ICP utility tokens in a neuron</a> to stake the original neuron using the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</li>
+<li>
+<p>Look up the transaction in the Internet Computer Association <a href="https://dashboard.internetcomputer.org/transactions">transaction dashboard</a> to get the neuron address.</p>
+<div class="paragraph">
+<p>You can use the account identifier for your main ICP ledger account to search for your transactions.</p>
+</div>
+</li>
+<li>
+<p>Return to the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp, then click <strong>New Transaction</strong>.</p>
+</li>
+<li>
+<p>Paste the neuron address from the transaction dashboard into the <strong>Destination</strong> address field, then click <strong>Continue</strong>.</p>
+</li>
+<li>
+<p>Type the amount of ICP utility tokens you want to add to the specified neuron, then click <strong>Continue</strong>.</p>
+</li>
+<li>
+<p>Verify the transaction details, then click <strong>Confirm and Send</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/confirm-top-up.png" alt="confirm top up"></span></p>
+</div>
+</li>
+<li>
+<p>Verify the completed transaction, then click <strong>Close</strong>.</p>
+</li>
+<li>
+<p>Click the <strong>Neurons</strong> tab to see the increased stake.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_following_rules"><a class="anchor" href="#_configure_following_rules"></a>Configure following rules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Active participation in governance is an important factor in the long-term health of the Internet Computer.
+Voting on proposals is also an important factor in calculating the rewards you receive in return for locking up ICP utility tokens in neurons.</p>
+</div>
+<div class="paragraph">
+<p>However, voting directly on every proposal submitted to the NNS presents several challenges.
+For example, proposals might be submitted and require a vote when you are unavailable or propose changes that you lack the expertise to evaluate.
+To address these challenges, you can configure neurons to vote automatically to adopt or reject proposals by following the votes of a group of neurons.</p>
+</div>
+<div class="paragraph">
+<p>To maximize your rewards, you should vote on as many proposals as possible by following the active neuron holders who have interests aligned with your own. For example, you might follow the Internet Computer Association (ICA) on some topics such <strong>SubnetManagement</strong> and other neuron holders on topics such as <strong>Governance</strong>.</p>
+</div>
+<div class="paragraph">
+<p>To configure how you follow other neuron holders:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a browser and navigate to the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</li>
+<li>
+<p>Click <strong>Login</strong> to connect using your Internet Identity.</p>
+</li>
+<li>
+<p>Verify your identification number, then click <strong>Login</strong> to authenticate using the device and authentication method you have registered.</p>
+</li>
+<li>
+<p>Click <strong>Proceed</strong> to access to the Network Nervous System (NNS) dapp.</p>
+</li>
+<li>
+<p>Click <strong>Neurons</strong>, then click the link for a specific neuron identifier to display its properties.</p>
+</li>
+<li>
+<p>Click <strong>Edit Followees</strong>.</p>
+</li>
+<li>
+<p>Choose a proposal topic.</p>
+<div class="paragraph">
+<p>For example, expand the Governance topic, then click <strong>Enter Followee</strong>.</p>
+</div>
+</li>
+<li>
+<p>Select a neuron holder to follow, then click <strong>Follow</strong>.</p>
+<div class="paragraph">
+<p>For example, click <strong>Follow</strong> for the Internet Computer Association.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/follow-ica.png" alt="follow ica"></span></p>
+</div>
+<div class="paragraph">
+<p>The neuron holder is added to you Currently Following list.</p>
+</div>
+</li>
+<li>
+<p>Repeat for each topic where you want your neuron&#8217;s votes to automatically follow the votes of one or more other neuron holders.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_disburse_dissolved_neurons_into_an_account"><a class="anchor" href="#_disburse_dissolved_neurons_into_an_account"></a>Disburse dissolved neurons into an account</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When the dissolve delay timer for a neuron reaches zero, you can disburse the neuron’s stake and transfer its locked ICP utility token balance to the ledger account you specify.
+After you take this step, the neuron identifier and its ledger history are permanently removed from the governance canister.</p>
+</div>
+<div class="paragraph">
+<p>To disburse a neuron and return its ICP utility tokens:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a browser and navigate to the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</li>
+<li>
+<p>Click <strong>Login</strong> to connect using your Internet Identity.</p>
+</li>
+<li>
+<p>Verify your identification number, then click <strong>Login</strong> to authenticate using the device and authentication method you have registered.</p>
+</li>
+<li>
+<p>Click <strong>Proceed</strong> to access to the Network Nervous System (NNS) dapp.</p>
+</li>
+<li>
+<p>Click <strong>Neurons</strong>, then click Unlocked neuron that has reach the ended of its dissolve delay period.</p>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/unlocked-neuron.png" alt="unlocked neuron"></span></p>
+</div>
+</li>
+<li>
+<p>Click <strong>Disburse</strong>.</p>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/disburse.png" alt="disburse"></span></p>
+</div>
+</li>
+<li>
+<p>Type an address or select an account to receive the ICP utility tokens.</p>
+<div class="paragraph">
+<p>For example, you might select the <code>dev-projects</code> linked account:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/select-account.png" alt="select account"></span></p>
+</div>
+</li>
+<li>
+<p>Verify the transaction information, then click <strong>Confirm and Send</strong>.</p>
+<div class="paragraph">
+<p>For example, check that the Destination address matches the intended address of the <code>dev-projects</code> linked account:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/confirm-send.png" alt="confirm send"></span></p>
+</div>
+</li>
+<li>
+<p>Verify the completed transaction, then click <strong>Close</strong>.</p>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/confirmation.png" alt="confirmation"></span></p>
+</div>
+<div class="paragraph">
+<p>If you transferred the ICP utility tokens to one of your accounts in the Internet Computer ledger canister, you can click the ICP tab and see your new balance reflected.
+For example:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/updated-icp.png" alt="updated icp"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spawn_new_neurons"><a class="anchor" href="#_spawn_new_neurons"></a>Spawn new neurons</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As you vote on proposals—either directly or by following the votes of other neurons—the maturity associated with your neuron increases, which in turn increases the rewards you earn for participating in governance.
+When the maturity for a locked stake reaches a minimum threshold of one ICP, you can spawn a new neuron.
+The spawn operation creates a new neuron that locks a new balance of ICP on the ledger.</p>
+</div>
+<div class="paragraph">
+<p>For example, if you have a neuron that contains 100 ICP utility tokens and it has a maturity of 10 percent, you can spawn a new neuron that contains approximately 10 new ICP tokens. For the neuron with 100 ICP tokens to reach the minimum threshold for spawning, its maturity would need to be greater than one percent.</p>
+</div>
+<div class="paragraph">
+<p>After you spawn a new neuron from an existing neuron, the maturity for the existing neuron falls to zero.</p>
+</div>
+<div class="paragraph">
+<p>To spawn new neurons from an existing neuron:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a browser and navigate to the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</li>
+<li>
+<p>Click <strong>Login</strong> to connect using your Internet Identity.</p>
+</li>
+<li>
+<p>Verify your identification number, then click <strong>Login</strong> to authenticate using the device and authentication method you have registered.</p>
+</li>
+<li>
+<p>Click <strong>Proceed</strong> to access to the Network Nervous System (NNS) dapp.</p>
+</li>
+<li>
+<p>Click <strong>Neurons</strong>, then click the neuron that has reached the minimum maturity required to spawn a new neuron.</p>
+</li>
+<li>
+<p>Click <strong>Spawn Neuron</strong>.</p>
+<div class="paragraph">
+<p>Keep in mind that the dissolve delay for a newly-spawned neurons is one day, giving you the option to collect value from the ICP utility tokens by unlocking them or to increase the dissolve delay to collect additional rewards.</p>
+</div>
+<div class="paragraph">
+<p>For more information about maturity and spawning new neurons, see the following articles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182">Earn Substantial Voting Rewards by Staking in the Network Nervous System</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8">Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11">Getting Started on the Internet Computer’s Network Nervous System App &amp; Wallet</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vote_on_proposals"><a class="anchor" href="#_vote_on_proposals"></a>Vote on proposals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can choose the proposal types and proposal topics that you see and vote on—either directly or by following other neuron stakeholders—using filters in the Network Nervous System dapp.
+For example, if you want to review and vote on all proposals that involve network participants such as data center identities and node operators, but aren&#8217;t interested in viewing proposals related to the current market value of ICP, as measured by an International Monetary Fund (IMF) Special Drawing Right (SDR), you can select the <strong>ParticipantManagement</strong> topic filter and deselect the <strong>ExchangeRate</strong> topic filter.</p>
+</div>
+<div class="paragraph">
+<p>To manually vote on proposals:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a browser and navigate to the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</li>
+<li>
+<p>Click <strong>Login</strong> to connect using your Internet Identity.</p>
+</li>
+<li>
+<p>Verify your identification number, then click <strong>Login</strong> to authenticate using the device and authentication method you have registered.</p>
+</li>
+<li>
+<p>Click <strong>Proceed</strong> to access to the Network Nervous System (NNS) dapp.</p>
+</li>
+<li>
+<p>Click <strong>Voting</strong>.</p>
+<div class="paragraph">
+<p>You can click any of the proposals listed to view information about the proposal, including a brief description of the proposal, a link for viewing additional information about the proposal, the number of votes that were cast to adopt or reject the proposal, and the votes cast by your neurons.</p>
+</div>
+</li>
+<li>
+<p>Use the Topics, Reward Status, and Proposal Status filters to control the list of proposals displayed.</p>
+<div class="paragraph">
+<p>For example, open the Topics list to see if there are any proposal topics that you want to include in the proposal list that are not currently displayed and open the Proposal Status to verify that you are viewing all open proposals.</p>
+</div>
+</li>
+<li>
+<p>Click any Open proposal to see its details and the voting power for the neurons associated with your identity.</p>
+</li>
+<li>
+<p>Select the neuron identifiers with voting power that you want to use to cast your vote.</p>
+</li>
+<li>
+<p>Click <strong>Adopt</strong> or <strong>Reject</strong> to cast your vote.</p>
+<div class="paragraph">
+<p>For more information about voting and voting rewards, see the following articles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182">Earn Substantial Voting Rewards by Staking in the Network Nervous System</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8">Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11">Getting Started on the Internet Computer’s Network Nervous System App &amp; Wallet</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_submit_a_proposal"><a class="anchor" href="#_submit_a_proposal"></a>Submit a proposal</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Currently, you can only submit proposals to the network nervous system by using the {sdk-short-name} command-line interface (<code>dfx</code>) using calls to the <code>governance</code> canister.</p>
+</div>
+<div class="paragraph">
+<p>A separate command-line tool (<code>icx-nns</code>) for working with the <code>governance</code> canister is in development and this functionality will also be available in the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp soon.</p>
+</div>
+<div class="paragraph">
+<p>If you want to start submitting proposals right away, however, you can access a preliminary version of the <code>icx-nns</code> command-line tool by downloading a release from the <a href="https://github.com/dfinity/icx-nns/releases">icx-nns</a> repository.
+For information about how to download the <code>icx-nns</code> command-line tool and how to use it to submit proposals, see <a href="https://www.internetcomputer.org/governance/submit-proposal">How to submit proposals to the Network Nervous System</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_a_canister_with_cycles"><a class="anchor" href="#_deploy_a_canister_with_cycles"></a>Deploy a canister with cycles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You must have <strong>cycles</strong> available to create and manage <a href="../developers-guide/glossary.html#g-canister">canisters</a>, which are similar to smart contracts.
+The <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp provides a convenient way for you to create and manage canisters by enabling you to convert ICP utility tokens into cycles and attach cycles to specific canister identifiers.</p>
+</div>
+<div class="paragraph">
+<p>To create a new canister:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a browser and navigate to the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</li>
+<li>
+<p>Click <strong>Login</strong> to connect using your Internet Identity.</p>
+</li>
+<li>
+<p>Verify your identification number, then click <strong>Login</strong> to authenticate using the device and authentication method you have registered.</p>
+</li>
+<li>
+<p>Click <strong>Proceed</strong> to access to the Network Nervous System (NNS) dapp.</p>
+</li>
+<li>
+<p>Click <strong>Canisters</strong>, then click <strong>Create or Link Canister</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Create New Canister</strong> to create a new cycles wallet canister.</p>
+<div class="paragraph">
+<p>If you already have a cycles wallet canister, you can click <strong>Link Canister to Account</strong> to link an existing canister identifier to your account in the <a href="https://nns.ic0.app">Network Nervous System (NNS)</a> dapp.</p>
+</div>
+</li>
+<li>
+<p>Select one of your accounts that holds ICP utility tokens as the source account.</p>
+<div class="paragraph">
+<p>For example, if you have both a <strong>Main</strong> account and a <strong>Dev-Projects</strong> account, you might select <strong>Dev-Projects</strong> account if that account holds the ICP utility tokens that you want converted into cycles.</p>
+</div>
+</li>
+<li>
+<p>Click <strong>Amount</strong> and type the number of ICP utility tokens or e8s that you want to convert into cycles, then click <strong>Review Cycles Purchase</strong>.</p>
+<div class="paragraph">
+<p>The amount you specify must convert to a value greater than the 2T (two trillion) cycles minimum required to create a new canister identifier.
+For example:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/convert-to-cycles.png" alt="convert to cycles"></span></p>
+</div>
+</li>
+<li>
+<p>Review the ICP utility tokens to cycles details, then click <strong>Confirm</strong> to continue.</p>
+<div class="paragraph">
+<p>After you click Confirm, you can review:
+- the new canister identifier
+- the number of cycles available for the canister to use
+- the controlling principal that currently has full management rights for the new canister</p>
+</div>
+<div class="paragraph">
+<p>+
+To change the principal used as the controller of the canister, click <strong>Change Controllers</strong>.</p>
+</div>
+<div class="paragraph">
+<p>+
+To add cycles to the canister, click <strong>Add Cycles</strong>.</p>
+</div>
+</li>
+<li>
+<p>Return to the <strong>Canisters</strong> tab to see the canisters you have created.</p>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/canister-list.png" alt="canister list"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar">
+  
+  <div class="toc-menu"></div>
+</aside></div>
+</main></div>
+<footer class="footer">
+  <div class="footer-container">
+    <a href="http://www.dfinity.org"><img class="footer-logo" src="../../_/img/logo.svg"></a>
+    <nav class="footer-nav">
+      <div class="col1">
+        <h5 class="footer-header">Developers</h5>
+        <a class="footer-link" href="http://www.dfinity.org/faq">
+          FAQ
+        </a>
+        <a class="footer-link" href="#">
+          Developers
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/data-centers">
+          Data Centers
+        </a>
+        <a class="footer-link" href="https://support.dfinity.org">
+          Support
+        </a>
+      </div>
+
+      <div class="col2">
+        <h5 class="footer-header">Team</h5>
+        <a class="footer-link" href="http://www.dfinity.org/foundation">
+          Foundation
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/foundation#events">
+          Events
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/careers">
+          Careers
+        </a>
+      </div>
+
+
+      <div class="col3">
+        <h5 class="footer-header">Media</h5>
+        <a class="footer-link" href="http://www.dfinity.org/media">
+          Featured Videos
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/media#featured-stories">
+          Featured Stories
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/newsletter">
+          Newsletter
+        </a>
+      </div>
+
+      <div class="social-icons">
+
+        <a class="social-icon-link" target="blank" href="https://github.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 0C5.3625 0 0 5.3625 0 12C0 17.2875 3.45 21.7875 8.2125 23.4C8.8125 23.5125 9.0375 23.1375 9.0375 22.8375C9.0375 22.5375 9.0375 21.7875 9.0375 20.8125C5.7 21.525 4.9875 19.2 4.9875 19.2C4.425 17.8125 3.6375 17.4375 3.6375 17.4375C2.55 16.6875 3.7125 16.725 3.7125 16.725C4.9125 16.8 5.55 17.9625 5.55 17.9625C6.6375 19.8 8.3625 19.275 9.0375 18.975C9.15 18.1875 9.45 17.6625 9.7875 17.3625C7.125 17.0625 4.3125 16.0125 4.3125 11.4375C4.3125 10.125 4.7625 9.075 5.55 8.2125C5.4375 7.9125 5.025 6.675 5.6625 5.025C5.6625 5.025 6.675 4.6875 8.9625 6.2625C9.9375 6 10.95 5.85 11.9625 5.85C12.975 5.85 14.025 6 14.9625 6.2625C17.25 4.725 18.2625 5.025 18.2625 5.025C18.9 6.675 18.4875 7.9125 18.375 8.2125C19.1625 9.0375 19.6125 10.125 19.6125 11.4375C19.6125 16.05 16.8 17.0625 14.1375 17.3625C14.55 17.7375 14.9625 18.45 14.9625 19.575C14.9625 21.1875 14.9625 22.4625 14.9625 22.875C14.9625 23.2125 15.1875 23.5875 15.7875 23.4375C20.55 21.7875 24 17.2875 24 12C24 5.3625 18.6375 0 12 0Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+        <a class="social-icon-link" target="blank" href="https://medium.com/dfinity-network-blog">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M22.3125 1H1.6875C1.50516 1 1.3303 1.07243 1.20136 1.20136C1.07243 1.3303 1 1.50516 1 1.6875L1 22.3125C1 22.4948 1.07243 22.6697 1.20136 22.7986C1.3303 22.9276 1.50516 23 1.6875 23H22.3125C22.4948 23 22.6697 22.9276 22.7986 22.7986C22.9276 22.6697 23 22.4948 23 22.3125V1.6875C23 1.50516 22.9276 1.3303 22.7986 1.20136C22.6697 1.07243 22.4948 1 22.3125 1V1ZM19.2768 6.21228L18.0971 7.34356C18.0471 7.38153 18.0085 7.43245 17.9854 7.4908C17.9623 7.54916 17.9557 7.61272 17.9661 7.67459V15.9875C17.9557 16.0494 17.9623 16.1129 17.9854 16.1713C18.0085 16.2296 18.0471 16.2806 18.0971 16.3185L19.2493 17.4498V17.698H13.4534V17.4498L14.6469 16.2903C14.7641 16.1731 14.7641 16.1388 14.7641 15.9593V9.24072L11.4455 17.6698H10.9987L7.13319 9.24072V14.8899C7.11729 15.0071 7.12828 15.1264 7.16533 15.2387C7.20237 15.351 7.2645 15.4535 7.347 15.5382L8.89937 17.4213V17.6695H4.49731V17.4213L6.04969 15.5382C6.13152 15.4534 6.19226 15.3505 6.22701 15.2379C6.26177 15.1253 6.26956 15.0061 6.24975 14.8899V8.35866C6.25855 8.26945 6.24627 8.17943 6.21391 8.09584C6.18155 8.01225 6.13001 7.93743 6.06344 7.87741L4.68362 6.21503V5.96684H8.96847L12.2805 13.2303L15.1924 5.96684H19.2768V6.21228Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+        <a class="social-icon-link" target="blank" href="https://twitter.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23 5.33654C22.175 5.67308 21.3156 5.94231 20.4219 6.04327C21.35 5.50481 22.0719 4.62981 22.4156 3.58654C21.5562 4.09135 20.5938 4.46154 19.5625 4.66346C18.7031 3.78846 17.5344 3.25 16.2281 3.25C13.7187 3.25 11.725 5.23558 11.725 7.65865C11.725 7.99519 11.7594 8.33173 11.8281 8.66827C8.08125 8.5 4.74688 6.71635 2.54688 4.05769C2.16875 4.69712 1.92813 5.47115 1.92813 6.27885C1.92813 7.82692 2.71875 9.17308 3.92188 9.94712C3.16562 9.91346 2.47812 9.71154 1.89375 9.40865C1.89375 9.44231 1.89375 9.44231 1.89375 9.47596C1.89375 11.6298 3.44063 13.4135 5.50313 13.8173C5.125 13.9183 4.7125 13.9856 4.3 13.9856C4.025 13.9856 3.71562 13.9519 3.44062 13.9183C4.025 15.6683 5.675 16.9471 7.66875 16.9808C6.12187 18.1587 4.1625 18.8654 2.06562 18.8654C1.6875 18.8654 1.34375 18.8317 1 18.7981C2.99375 20.0096 5.36563 20.75 7.90938 20.75C16.2281 20.75 20.7656 14.0192 20.7656 8.16346C20.7656 7.96154 20.7656 7.79327 20.7656 7.59135C21.625 6.98558 22.3813 6.21154 23 5.33654Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://forum.dfinity.org/">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12.0932 1C6.0727 1 1 5.83706 1 11.8085C1 12 1.00488 23 1.00488 23L12.0933 22.9901C18.1188 22.9901 23 17.9666 23 11.9951C23 6.02373 18.1188 1 12.0932 1ZM12 18.2857C11.0473 18.2857 10.1388 18.0745 9.32853 17.6916L5.34597 18.6786L6.47047 14.9956C5.98926 14.1067 5.71423 13.0853 5.71423 12C5.71423 8.52815 8.52811 5.71428 12 5.71428C15.4719 5.71428 18.2857 8.52815 18.2857 12C18.2857 15.472 15.4719 18.2857 12 18.2857Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://www.linkedin.com/company/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M1 4.35878C1 3.01688 2.03589 2 3.61924 2C5.20139 2 6.17406 3.01448 6.20507 4.35519C6.20507 5.67205 5.20139 6.71456 3.58942 6.71456H3.55841C2.00666 6.71456 1 5.67562 1 4.35878ZM17.5581 8.28158C15.1017 8.28158 13.5625 9.61217 13.278 10.5449V8.41225H8.46122C8.52324 9.54475 8.46122 21.9995 8.46122 21.9995H13.278V14.647C13.278 14.5987 13.2778 14.5505 13.2775 14.5025C13.2756 14.1436 13.2736 13.7952 13.383 13.5365C13.714 12.7194 14.4255 11.8719 15.7046 11.8719C17.3775 11.8719 18.1378 13.128 18.1378 14.9685V21.9995H23V14.4448C23 10.236 20.6056 8.28158 17.5581 8.28158ZM1.55371 8.41275H5.84157V22H1.55371V8.41275Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://youtube.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23.775 7.6375C23.775 7.6375 23.55 5.9875 22.8375 5.2375C21.9375 4.3 20.8875 4.2625 20.4375 4.225C17.025 4 12 4 12 4C12 4 6.975 4 3.6 4.225C3.1125 4.2625 2.1 4.3 1.2 5.2375C0.4875 5.95 0.2625 7.6375 0.2625 7.6375C0.2625 7.6375 0 9.5875 0 11.5375V13.375C0 15.325 0.225 17.275 0.225 17.275C0.225 17.275 0.45 18.925 1.1625 19.675C2.0625 20.6125 3.2625 20.6125 3.825 20.6875C5.7375 20.875 12 20.9125 12 20.9125C12 20.9125 17.025 20.9125 20.4 20.65C20.8875 20.6125 21.9 20.575 22.8 19.6375C23.5125 18.925 23.7375 17.2375 23.7375 17.2375C23.7375 17.2375 24 15.2875 24 13.3375V11.5C24 9.5875 23.775 7.6375 23.775 7.6375ZM9.525 15.55V8.8L16.0125 12.175L9.525 15.55Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+      </div>
+    </nav>
+
+    <div class="legal-container">
+      <span class="legal" id="year">
+        © 2020 DFINITY
+      </span>
+      <a class="legal footer-link" href="http://www.dfinity.org/terms-of-use">
+        Terms of Use
+      </a>
+      <a class="legal footer-link" href="http://www.dfinity.org/cookie-policy">
+        Cookie Policy
+      </a>
+      <a class="legal footer-link" href="http://www.dfinity.org/privacy-policy">
+        Privacy Policy
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+  var today = new Date();
+  var year = today.getFullYear();
+  document.getElementById("year").innerHTML = `© ${year} DFINITY`;
+</script><script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+    apiKey: 'b93d56cc4b00b0afbcdaacab04dcf25b',
+    indexName: 'dfinity_sdk',
+    inputSelector: '.search-input',
+    debug: false // Set debug to true if you want to inspect the dropdown
+  });
+</script>
+
+<!-- Start of dfinity Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=53121947-c10a-484c-b99b-f89a9fb6f63e"> </script>
+<!-- End of dfinity Zendesk Widget script -->
+
+  </body>
+</html>
