@@ -1240,35 +1240,33 @@ For example, you might run the following command:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="candid-ui"><a class="anchor" href="#candid-ui"></a>Test functions in a browser</h2>
+<h2 id="candid-ui"><a class="anchor" href="#candid-ui"></a>ブラウザー上での関数のテスト</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common language for specifying the signature of a canister smart contract.
-Candid provides a unified way for you to interact with canister smart contracts that are written in different languages or accessed using different tools.
-For example, Candid provides a consistent view of a service whether the underlying program is native Rust, JavaScript, or Motoko.
-Candid also enables different tools—such as the <code>dfx</code> command-line interface and the Network Nervous System dapp—to share a common description for a service.</p>
+<p>キャニスター・インターフェース記述言語（Candid または IDL と呼ばれることが多い）は、canister スマートコントラクトの署名を指定するための共通言語を提供します。Candid は、異なる言語で書かれていたり、異なるツールでアクセスされる canister スマートコントラクトを扱うための統一された方法を提供します。
+例えば、Candid は、基礎となるプログラムが Rust、JavaScript、Motoko のいずれであっても、一貫した表示となります。また、Candid は、dfx コマンドラインインターフェイスや Network Nervous System Dapp などの異なるツールが、サービスに対する共通の記述を共有できるようにします。</p>
 </div>
 <div class="paragraph">
-<p>Based on the type signature of the actor, Candid also provides a web interface that allows you to call canister functions for testing and debugging.</p>
+<p>Actor の型注釈に基づいて、Candid はテストやデバッグのために canister の関数を呼び出すことができる Web インターフェースも提供しています。</p>
 </div>
 <div class="paragraph">
-<p>After you have deployed your project in the local canister execution environment using the <code>dfx deploy</code> or <code>dfx canister install</code> command, you can access the Candid web interface endpoint in a browser.
-This web interface—the Candid UI—exposes the service description in a form, enabling you to quickly view and test functions and experiment with entering different data types without writing any front-end code.</p>
+<p><code>dfx deploy</code> または <code>dfx canister install</code> コマンドを使用してプロジェクトをローカルの canister 実行環境にデプロイした後、ブラウザで Candid インターフェイスのエンドポイントにアクセスできます。
+この Web インターフェイス（Candid UI）は、サービスの説明を決められた形式で表現しており、フロントエンドのコードを書くことなく、関数をすばやく表示してテストしたり、さまざまなデータタイプを入力して実験したりすることができます。</p>
 </div>
 <div class="paragraph">
-<p>To use the Candid web interface to test canister functions:</p>
+<p>Candid の Web インターフェースを使って canister の関数をテストするには、以下のようにします:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Find the Candid UI canister identifier associated with the current project using the <code>dfx canister id __Candid_UI</code> command.</p>
+<p>現在のプロジェクトに関連する Candid UI の canister の識別子を、<code>dfx canister id __Candid_UI</code> コマンドを使って見つけます。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister id __Candid_UI</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays the canister identifier for the Candid UI with output similar to the following:</p>
+<p>このコマンドは、Candid UIの canister 識別子を以下のような出力で表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1277,10 +1275,10 @@ This web interface—the Candid UI—exposes the service description in a form, 
 </div>
 </li>
 <li>
-<p>Copy the Candid UI canister identifier so that it is available in the clipboard.</p>
+<p>Candid UI の canister 識別子をクリップボードで使用できるようにコピーします。</p>
 </li>
 <li>
-<p>If you&#8217;ve stopped the local canister execution environment, restart it locally by running the following command:</p>
+<p>ローカルの canister 実行環境を停止した場合は、以下のコマンドを実行してローカルで再起動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start --background</code></pre>
@@ -1288,15 +1286,15 @@ This web interface—the Candid UI—exposes the service description in a form, 
 </div>
 </li>
 <li>
-<p>Open a browser and navigate to the address and port number specified in the <code>dfx.json</code> configuration file.</p>
+<p>ブラウザを開き、設定ファイルである <code>dfx.json</code> で指定されたアドレスとポート番号に移動します。</p>
 <div class="paragraph">
-<p>By default, the local canister execution environment binds to the <code>127.0.0.1:8000</code> address and port number.</p>
+<p>デフォルトでは、ローカルの canister 実行環境は、<code>127.0.0.1:8000</code> のアドレスとポート番号にバインドされます。</p>
 </div>
 </li>
 <li>
-<p>Add the required <code>canisterId</code> parameter and the Candid UI canister identifier returned by the <code>dfx canister id __Candid_UI</code> command to the URL.</p>
+<p>必要な <code>canisterId</code> パラメータと、<code>dfx canister id __Candid_UI</code> コマンドで返される Candid UI の canister 識別子を URL に追加します。</p>
 <div class="paragraph">
-<p>For example, the full URL should look similar to the following but with the <code>CANDID-UI-CANISTER-IDENTIFIER</code> that was returned by the <code>dfx canister id __Candid_UI</code> command:</p>
+<p>例えば、完全な URL は以下のようになりますが、<code>CANDID-UI-CANISTER-IDENTIFIER</code> は <code>dfx canister id __Candid_UI</code> コマンドで返された値になります。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1304,7 +1302,7 @@ This web interface—the Candid UI—exposes the service description in a form, 
 </div>
 </div>
 <div class="paragraph">
-<p>For instance, with the example canister identifier for the Candid UI as shown above, this could look as follows:</p>
+<p>例えば、上記の Candid UI の canister 識別子の例では、以下のようになります。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1312,15 +1310,15 @@ This web interface—the Candid UI—exposes the service description in a form, 
 </div>
 </div>
 <div class="paragraph">
-<p>The browser then displays a form for you to specify a canister identifier or choose a Candid description (<code>.did</code>) file.
-Note that this field refers to the canister identifier of the canister you would like to interact with (as opposed to the canister identifier for the Candid UI that we used in the last step).</p>
+<p>ブラウザには、canister の識別子を指定するか、Candid の説明（ <code>.did</code> ）ファイルを選択するためのフォームが表示されます。
+このフィールドは、対話したい canister の識別子を参照することに注意してください（最後のステップで使用した Candid UI の canister 識別子とは異なります）。</p>
 </div>
 </li>
 <li>
-<p>Specify the canister identifier of the canister you would like to test in the <strong>Provide a canister ID</strong> field, then click <strong>Go</strong> to display the service description.</p>
+<p>テストしたい canister の識別子を「 <strong>Provide a canister ID</strong> 」フィールドに指定し、「 <strong>Go</strong> 」をクリックしてサービスの説明を表示します。</p>
 <div class="paragraph">
-<p>If you aren’t sure which canister identifier to use, you can run the <code>dfx canister id</code> command to look up the identifier for a specific canister name.
-For instance, to get the canister identifier for a canister named <code>my_counter</code>, you would use:</p>
+<p>使用する canister の識別子がわからない場合は、<code>dfx canister id</code> コマンドを実行して、特定の canister 名の識別子を調べることができます。
+例えば、<code>my_counter</code> という名前の canister の識別子を得るには、次のようにします:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1329,19 +1327,20 @@ For instance, to get the canister identifier for a canister named <code>my_count
 </div>
 </li>
 <li>
-<p>Review the list of function calls and types defined in the dapp.</p>
+<p>Dappで定義されている関数の呼び出しと型のリストを確認します。</p>
 </li>
 <li>
-<p>Type a value of the appropriate type for a function or click <strong>Random</strong> to generate a value, then click <strong>Call</strong> or <strong>Query</strong> to see the result.</p>
+<p>関数に合った型の値を入力するか、「 <strong>Random</strong> 」をクリックして値を生成し、「 <strong>Call</strong> 」または「 <strong>Query</strong> 」をクリックして結果を確認します。</p>
 <div class="paragraph">
-<p>Note that depending on the data type, the Candid interface might display additional configuration settings for testing functions.
-For example, if a function takes an array, you might need to specify the number of items in the array before entering values.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="../_images/candid-calc.png" alt="Calculator functions"></span></p>
+<p>なお、データ型によっては、Candid インターフェースに、関数をテストするための追加の設定が表示される場合があります。
+例えば、関数が配列を取る場合は、値を入力する前に配列のアイテム数を指定する必要があるかもしれません。</p>
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>+
+<span class="image"><img src="../_images/candid-calc.png" alt="Calculator functions"></span></p>
 </div>
 </div>
 </div>
