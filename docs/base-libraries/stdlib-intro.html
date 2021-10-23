@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Using Motoko base modules :: Dfinity 日本語ドキュメント</title>
+    <title>Motoko 基本ライブラリの使用 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/base-libraries/stdlib-intro.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -830,23 +830,23 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Using Motoko base modules</h1>
+<h1 class="page">Motoko 基本ライブラリの使用</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The design of Motoko strives to minimize built-in types and operations.
-Instead of built-in types, Motoko provides a base library of modules to handle many kinds of common operations and make the language feel complete.
-This base library is still evolving with modules that support core features and all of the base library APIs are subject to change over time to varying degrees.
-You should note, in particular, that the size and number of modules and functions included in the base library is likely to increase dramatically and updates to the base library modules might introduce breaking changes that require you to update your programs to remain compatible.</p>
+<p>Motoko の設計においては、組み込みの型や操作を最小限にするように努めています。
+組み込み型を用いる代わりに、Motoko では多くの種類の一般的な操作を処理するモジュールの基本ライブラリを提供し、言語の完成度を高めています。
+この基本ライブラリは、コアな機能をサポートするモジュールとともに現在も進化しており、基本ライブラリのすべてのAPIは、程度の差こそあれ、時間の経過とともに変更される可能性があります。
+特に、基本ライブラリに含まれるモジュールや機能の規模や数は飛躍的に増加する可能性があり、基本ライブラリのモジュールの更新により、互換性を維持するためにプログラムを更新しなければならないような破壊的な変更が生じる可能性があることに注意する必要があります。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_importing_from_the_base_library"><a class="anchor" href="#_importing_from_the_base_library"></a>Importing from the base library</h2>
+<h2 id="_基本ライブラリからのインポート"><a class="anchor" href="#_基本ライブラリからのインポート"></a>基本ライブラリからのインポート</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To import from the base library, use the <code>import</code> keyword followed by a local module name and a URL where the <code>import</code> declaration can find the module you want to import.
-For example:</p>
+<p>基本ライブラリからインポートするには、<code>import</code> キーワードに続いて、ローカルモジュール名と、インポートしたいモジュールを見つけるための URL を指定します。
+例えば、以下のようになります:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -855,9 +855,9 @@ Debug.print("hello world");</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This example illustrates how to import Motoko code—indicated by using the <code>mo:</code> prefix—using the <code>base/</code> base library path and the module name <code>Debug</code>.
-You can also import Motoko code and other modules using relative paths.
-For example, if you have created a Motoko program named <code>types.mo</code> in the same folder as your main program, you could include it with an import declaration like this:</p>
+<p>この例では、<code>mo:</code> プレフィックスで示される Motoko コードを、<code>base/</code> で示される基本ライブラリパスとモジュール名 <code>Debug</code> を使ってインポートする方法を示しています。
+また、相対パスを使って Motoko コードや他のモジュールをインポートすることもできます。
+例えば、メインのプログラムと同じフォルダに <code>types.mo</code> という名前の Motoko プログラムを作成した場合、次のような import 宣言でインクルードすることができます:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -867,14 +867,14 @@ For example, if you have created a Motoko program named <code>types.mo</code> in
 </div>
 </div>
 <div class="sect1">
-<h2 id="_viewing_the_base_library_modules"><a class="anchor" href="#_viewing_the_base_library_modules"></a>Viewing the base library modules</h2>
+<h2 id="_基本ライブラリのモジュールを見るには"><a class="anchor" href="#_基本ライブラリのモジュールを見るには"></a>基本ライブラリのモジュールを見るには</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can find source code and documentation for Motoko base modules in the <a href="https://github.com/dfinity/motoko-base">motoko-base</a> open source repository.
-There are instructions in the repository for generating a local copy of the current documentation for the Motoko base library.</p>
+<p>Motoko 基本ライブラリのソースコードとドキュメントは、オープンソースのリポジトリである <a href="https://github.com/dfinity/motoko-base">motoko-base</a> でご覧いただけます。
+リポジトリには、Motoko 基本ライブラリの現在のドキュメントのローカルコピーを生成するための手順が示されています。</p>
 </div>
 <div class="paragraph">
-<p>You can also search for documentation by using Search in any page of the Developer Center.</p>
+<p>また、Developer Center のどのページでも「検索」を使ってドキュメントを検索することができます。</p>
 </div>
 </div>
 </div>
