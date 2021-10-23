@@ -839,6 +839,73 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="install-latest"><a class="anchor" href="#install-latest"></a>ターミナルから直接最新版をインストールする</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ターミナルシェルからダウンロードしてインストールする場合、以下のような手順となります:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>ローカルコンピューターでターミナルシェルを開きます。</p>
+<div class="paragraph">
+<p>例えば、macOSの場合、「アプリケーション」フォルダーを開き、「ユーティリティ」を開いて「<strong>Terminal</strong>」をダブルクリックします。</p>
+</div>
+</li>
+<li>
+<p>`curl`コマンドを実行して、SDKパッケージをダウンロードし、インストールします:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="install-version"><a class="anchor" href="#install-version"></a>ターミナルから特定のバージョンをインストールする</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以前のバージョンと比較してテストときするなど、特定のバージョンをインストールしたい場合は、バージョン名を含めたインストールコマンドを実行します。</p>
+</div>
+<div class="paragraph">
+<p>以下のようにして、ターミナルシェルから特定のバージョンをダウンロードしてインストールすることができます:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>ローカルコンピューターでターミナルシェルを開きます。</p>
+</li>
+<li>
+<p>環境変数である <code>DFX_VERSION</code> に、<code>curl</code> コマンドのプレフィックスとしてインストールしたい DFINITY Canister SDK パッケージのバージョンを設定します。</p>
+<div class="paragraph">
+<p>例えば、バージョン0.8.3をインストールするには、以下のコマンドを実行します:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">DFX_VERSION=0.8.3 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+環境変数 DFX_VERSION を使用して、まだ一般に公開されていないバージョンの DFINITY Canister SDK をインストールしている場合は、変更点の概要についてこの <a href="http-middleware.html">記事</a>を参照してください。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="install-latest"><a class="anchor" href="#install-latest"></a>Install the latest directly from a terminal</h2>
 <div class="sectionbody">
 <div class="paragraph">
