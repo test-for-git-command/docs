@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Glossary :: Dfinity 日本語ドキュメント</title>
+    <title>用語集 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/developers-guide/glossary.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -250,7 +250,7 @@
     
   </li>
   <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="glossary.html">Glossary</a>
+    <a class="nav-link" href="glossary.html">用語集</a>
     
   </li>
 </ul>
@@ -822,28 +822,31 @@
     <li>Developer Docs</li>
     <li>Getting Started</li>
     <li>Introducing DFX</li>
-    <li><a href="glossary.html">Glossary</a></li>
+    <li><a href="glossary.html">用語集</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/developers-guide/pages/glossary.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Glossary</h1>
+<h1 class="page">用語集</h1>
 <div id="g-actor" class="dlist">
 <dl>
 <dt class="hdlist1">actor</dt>
 <dd>
-<p>An actor is a special kind of object in modern programming languages that processes messages in an isolated state, enabling them to be handled remotely and asynchronously.</p>
+<p>Actor とは、モダンプログラミング言語における特殊な種類のオブジェクトで、メッセージ（actor 間の関数呼び出しのやり取り）を隔離されたステートとして処理し、リモートで非同期に処理することを可能にします。</p>
 </dd>
 </dl>
 </div>
 <div id="g-canister" class="dlist">
 <dl>
-<dt class="hdlist1">Canister smart contract</dt>
+<dt class="hdlist1">Canister スマートコントラクト</dt>
 <dd>
-<p>Canister smart contracts, sometimes also simply called canisters, are an extended form of smart contracts. They are revolutionary because they can be run in parallel deterministically. This is enabled by relying on the actor model and deterministic message passing. A canister smart contract has a universally-unique identifier and an owner that defines the boundaries of a specific dapp.
-A canister encapsulates all of the programming logic, public entry methods, the interface description for the provided message types, and state information for the dapp it describes.</p>
+<p>Canister スマートコントラクト（あるいは、単に canister と呼ばれることもあります）は、スマートコントラクトを拡張したものです。
+Canister スマートコントラクトが画期的なのは、決定論的に並列実行できるからです。
+これは、actor モデルと決定論的メッセージパッシングによって可能になります。
+Canister のスマートコントラクトは、普遍的にユニークな識別子と、特定の Dapp の境界を定義する owner を持っています。
+Canister は、プログラムのロジック、公開された関数の呼び出し方法、メッセージの型に対するインターフェース記述、および caster によって表される Dapp のステート情報のすべてをカプセル化します。</p>
 </dd>
 </dl>
 </div>
@@ -851,8 +854,12 @@ A canister encapsulates all of the programming logic, public entry methods, the 
 <dl>
 <dt class="hdlist1">principal</dt>
 <dd>
-<p>A principal is an entity that can be authenticated by the Internet Computer blockchain. Principals that interact with the Internet Computer blockchain often do so via an identity. For example, the first time you use the DFINITY Canister SDK, the <code>dfx</code> command-line tool creates a <code>default</code> developer identity for you with a public/private key pair in a PEM file. This developer identity determines a <strong>principal</strong>. There is a textual representation of the principal which is often referred to as your <strong>principal identifier</strong>.
-Note that the developer identity can also be used to derive an <strong>account identifier</strong>—similar to a Bitcoin or Ethereum address—to hold ICP tokens on the identity&#8217;s behalf in the ledger canister.</p>
+<p>Principal とは、Internet Computer ブロックチェーンによって認証可能なエンティティです。
+Internet Computer ブロックチェーンとやりとりする principal は、多くの場合、identity を介して行います。
+例えば、DFINITY Canister SDK を初めて使用するとき、<code>dfx</code> というコマンドラインツールは、PEM ファイル内の公開鍵と秘密鍵のペアを使って、<code>デフォルトの</code> 開発者 identity を生成します。（訳者注：<code>default</code> という名前のディレクトリが生成され、その中に PEM ファイルが生成されます。）
+この開発者 identity が、<strong>principal</strong> を決定づけます。
+Principal にはテキスト表現があり、これはしばしば <strong> principal 識別子</strong>と呼ばれます。
+開発者 identity は、ICP トークンを identity に代わって ledger に保持するための<strong>アカウント識別子</strong>（BitcoinやEthereumのアドレスに似ています）を導くためにも使用できます。</p>
 </dd>
 </dl>
 </div>
@@ -860,9 +867,9 @@ Note that the developer identity can also be used to derive an <strong>account i
 <dl>
 <dt class="hdlist1">controller</dt>
 <dd>
-<p>A controller is a principal that has special rights to manage the canister smart contract it controls.
-For example, only a controlling principal can be used to install, upgrade, or delete the canister under its control.
-You can specify the controller principal using the textual representation of a principal—often referred to as the principal identifier—associated with a user or with a canister.</p>
+<p>Controller とは、canister スマートコントラクトを管理する特別な権利を持つ principal のことです。
+たとえば、controller である principal のみが、その制御下にある canister のインストール、アップグレード、または削除を行うことができます。
+Controller は、ユーザーまたは canister に関連付けられた principal のテキスト表現（principal 識別子）を用いて指定することができます。</p>
 </dd>
 </dl>
 </div>
@@ -870,18 +877,18 @@ You can specify the controller principal using the textual representation of a p
 <dl>
 <dt class="hdlist1">ledger</dt>
 <dd>
-<p>The Internet Computer blockchain records all transactions involving ICP tokens in a specialized management canister smart contract, called the <strong>ledger canister</strong>.
-The ledger canister implements a smart contract that maintains <strong>accounts</strong> and <strong>balances</strong> and keeps a history of the <strong>transactions</strong> that affect accounts and balances. The transactions are recorded to track the following specific events:</p>
+<p>Internet Computer ブロックチェーンは、ICP トークンを含むすべての取引を、<strong>ledger canister</strong> と呼ばれる専用の管理 canister スマートコントラクトに記録します。
+Ledger canister は、<strong>アカウント</strong>と<strong>残高</strong>を管理し、アカウントと残高に影響を与える <strong>トランザクション</strong> の履歴を残すスマートコントラクトを実装しています。トランザクションは、以下の特定のイベントを追跡するために記録されます:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Mint ICP tokens</strong> for accounts.</p>
+<p>アカウントに対して <strong>ICPトークンをミント</strong> する。</p>
 </li>
 <li>
-<p><strong>Transfer ICP tokens</strong> from one account to another.</p>
+<p>あるアカウントから別のアカウントに <strong>ICP トークン</strong>を転送する。</p>
 </li>
 <li>
-<p><strong>Burn ICP tokens</strong> to eliminate them from existence.</p>
+<p><strong>ICP トークンをバーン</strong>して消滅させる。</p>
 </li>
 </ul>
 </div>
@@ -892,7 +899,9 @@ The ledger canister implements a smart contract that maintains <strong>accounts<
 <dl>
 <dt class="hdlist1">wallet</dt>
 <dd>
-<p>A wallet is a specialized dapp (implemented as a canister smart contract) that allows to store and manage cycles. Cycles are used to pay for computation and resource consumption on the Internet Computer blockchain. Cycles can be obtained by conversion from the Internet Computer blockchain&#8217;s native utility token ICP.</p>
+<p>Wallet とは、cycle を保管・管理するための専用の Dapp で、canister スマートコントラクトとして実装されています。
+Cycle は Internet Computer ブロックチェーンでの計算やリソース消費の支払いに使用されます。
+Cycle は Internet Computer ブロックチェーンのネイティブユーティリティートークンである ICP から変換することで入手できます。</p>
 </dd>
 </dl>
 </div>
@@ -900,7 +909,7 @@ The ledger canister implements a smart contract that maintains <strong>accounts<
 <dl>
 <dt class="hdlist1">node</dt>
 <dd>
-<p>A physical or virtual machine that hosts all the hardware, replica software, and configuration settings required to participate in the Internet Computer blockchain.</p>
+<p>Internet Computer ブロックチェーンに参加するために必要なすべてのハードウェア、replica ソフトウェア、および構成設定をホストする物理的または仮想的なマシンです。</p>
 </dd>
 </dl>
 </div>
@@ -908,7 +917,7 @@ The ledger canister implements a smart contract that maintains <strong>accounts<
 <dl>
 <dt class="hdlist1">replica</dt>
 <dd>
-<p>In the context of the Internet Computer blockchain, a replica refers to the Internet Computer protocol processes running on a node.</p>
+<p>Internet Computer ブロックチェーンの文脈では、replica とは node 上で実行されている Internet Computer プロトコルのプロセスを指します。</p>
 </dd>
 </dl>
 </div>
@@ -916,9 +925,9 @@ The ledger canister implements a smart contract that maintains <strong>accounts<
 <dl>
 <dt class="hdlist1">WebAssembly</dt>
 <dd>
-<p><a href="https://webassembly.org/">WebAssembly</a> (<code>Wasm</code>) is a low-level computer instruction format.
-Because WebAssembly defines a portable, open-standard, binary format that abstracts cleanly over most modern computer hardware, it is broadly supported for programs that run on the internet.
-Dapps written in Motoko are compiled to WebAssembly code for execution on the Internet Computer blockchain.</p>
+<p><a href="https://webassembly.org/">WebAssembly</a> (<code>Wasm</code>) は、低レベルのコンピュータ命令フォーマットです。
+WebAssemblyは、ほとんどのモダンなコンピュータハードウェアをきれいに抽象化した、ポータブルでオープンスタンダードなバイナリフォーマットを定義しているため、インターネット上で実行するプログラムに広くサポートされています。
+Motoko で書かれた Dapps は、Internet Computer ブロックチェーン上で実行するために WebAssembly コードにコンパイルされます。</p>
 </dd>
 </dl>
 </div>
