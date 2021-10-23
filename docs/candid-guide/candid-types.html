@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Supported types :: Dfinity 日本語ドキュメント</title>
+    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/candid-guide/candid-types.html">
+    <meta name="generator" content="Antora 2.3.4">
+<link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:title" content="Internet Computer | Documentation" />
+<meta property="og:description" content="Documentation for the internet computer." />
+<meta property="og:image" content="../../_/img/share.jpg" />
+<meta property="og:image:url" content="../../_/img/share.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DFINITYDev" />
+<meta name="twitter:image" content="../../_/img/logo-RGB.png" />
+<meta name="twitter:image:alt" content="DFINITY Logo" />
+    <!-- Appzi: Capture Insightful Feedback -->
+    <script async src="https://w.appzi.io/w.js?token=Zrf92"></script>
+    <!-- End Appzi -->
+
+    <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<script>
+  function switchToLightMode(persist) {
+    document.querySelector("body").classList.remove("dark-mode");
+    if (persist) {
+      localStorage.setItem("theme-preference", "light");
+    }
+  }
+  function switchToDarkMode(persist) {
+    document.querySelector("body").classList.add("dark-mode");
+    if (persist) {
+      localStorage.setItem("theme-preference", "dark");
+    }
+  }
+
+  var themePreference = localStorage.getItem("theme-preference");
+
+  if (themePreference == "dark") {
+    switchToDarkMode(false);
+  } else if (themePreference == "light") {
+    switchToLightMode(false);
+  } else {
+    // dark mode by default
+    switchToDarkMode(false);
+
+    // uncomment to enable setting the defult by user preference
+    // try {
+    //   if (
+    //     window.matchMedia &&
+    //     window.matchMedia("(prefers-color-scheme: dark)").matches
+    //   ) {
+    //     switchToDarkMode(false);
+    //   }
+    // } catch {}
+  }
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="logo-container" href="/docs/introduction/welcome.html">
+        <img class="header-logo" src="../../_/img/logo.svg">
+        <img class="header-logo dark" src="../../_/img/logo-dark.svg">
+        <h1 class="header-title">Dfinity 日本語ドキュメント</h1>
+      </a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+          <a class="navbar-item" target="blank" href="https://dfinity.org/">DFINITY.org</a>
+          <a class="navbar-item" target="blank" href="https://forum.dfinity.org/">Forum</a>
+          <!--<a class="navbar-item" target="blank" href="mailto:support@dfinity.org?subject=Feedback - SDK Developer Center">Email us</a>-->
+          <a class="navbar-item" target="blank" href="https://support.dfinity.org/">Support</a>          
+          <a class="navbar-item" target="blank" href="https://www.twitter.com/dfinitydev">
+            <img class="light-only" src="../../_/img/social/twitter-icon.svg">
+            <img class="dark-only" src="../../_/img/social/twitter-icon-dark.svg">
+          </a>
+      </div>
+    <div class="nav-items-wrapper">
+      <button class="to-light-mode dark-only" aria-label="switch to light mode" onclick="switchToLightMode(true)"></button>
+      <button class="to-dark-mode light-only" aria-label="switch to dark mode" onclick="switchToDarkMode(true)"></button>
+      <div class="search-container">
+  <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M11.8654 12.5892C10.8213 13.4695 9.47259 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.47209 13.4699 10.8204 12.5901 11.8643L17.3625 16.6367L16.6377 17.3615L11.8654 12.5892ZM12.9333 8C12.9333 10.7246 10.7246 12.9333 8 12.9333C5.2754 12.9333 3.06667 10.7246 3.06667 8C3.06667 5.2754 5.2754 3.06667 8 3.06667C10.7246 3.06667 12.9333 5.2754 12.9333 8Z"
+      fill="black" />
+  </svg>
+
+
+  <input class="search-input" placeholder="Search" type="search" />
+</div>      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      </div>
+      
+    <div class="gradient-decoration"></div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="docs" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title">Docs</h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../introduction/welcome.html"><strong>はじめに</strong></a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-first-timers">はじめての方へ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-developers">開発者の方へ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-protocol-enthusiasts">プロトコル愛好家の方へ</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstart/quickstart-intro.html">Quick Start</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/newcomers.html">For Newcomers</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/local-quickstart.html">Local Development</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/network-quickstart.html">Network Deployment</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Docs</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introducing the SDK</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/install-upgrade-remove.html">ソフトウェアのインストール・アップグレード・削除</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.3-rn.html">0.8.3</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.2-rn.html">0.8.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.1-rn.html">0.8.1</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.0-rn.html">0.8.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.7-rn.html">0.7.7</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.2-rn.html">0.7.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.1-rn.html">0.7.1</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.0-rn.html">0.7.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.26-rn.html">0.6.26</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.25-rn.html">0.6.25</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.24-rn.html">0.6.24</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.23-rn.html">0.6.23</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.22-rn.html">0.6.22</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.21-rn.html">0.6.21</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.20-rn.html">0.6.20</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introducing DFX</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/cli-reference.html">DFX commands</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/cli-reference/dfx-envars.html">DFX environment variables</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/glossary.html">用語集</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Building on the Internet Computer</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Learn how to:</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/sdk-guide.html">Develop smart contracts on the IC</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/design-apps.html">Design apps</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/customize-projects.html">Manage projects</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/working-with-canisters.html">Manage canisters</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/default-wallet.html">Use the default cycles wallet</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/explore-templates.html">Explore the default project</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/define-an-actor.html">Query using an actor</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/hello-location.html">Pass text arguments</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/counter-tutorial.html">Increment a natural number</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/calculator.html">Use integers in calculator functions</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/phonebook.html">Import library modules</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/multiple-actors.html">Use multiple actors</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/intercanister-calls.html">Make inter-canister calls</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/access-control.html">Add access control with identities</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/simple-cycles.html">Accept cycles from a wallet</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/reproducible-builds.html">Build canisters reproducibly</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/troubleshooting.html">Troubleshoot issues</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Explore our languages</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/work-with-languages.html">Develop using different languages</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../language-guide/motoko.html">Motoko</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../base-libraries/stdlib-intro.html">Motoko Base Library</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Motoko Guide</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/about-this-guide.html">About the language guide</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/motoko-introduction.html">Introduction</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/basic-concepts.html">Basic concepts and terms</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/mutable-state.html">Mutable state</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/local-objects-classes.html">Local objects and classes</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/actors-async.html">Actors and async data</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/errors.html">Error handling</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/pattern-matching.html">Pattern matching</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/sharing.html">Sharing data and behavior</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/modules-and-imports.html">Modules and imports</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/control-flow.html">Imperative control flow</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/structural-equality.html">Structural equality</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/actor-classes.html">Actor classes</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/caller-id.html">Principals and caller identification</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/cycles.html">Managing cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/upgrades.html">Stable variables and upgrade methods</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/language-manual.html">Language quick reference</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/compiler-ref.html">Compiler reference</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/motoko-grammar.html">Motoko grammar</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/style.html">Motoko style guidelines</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rust-guide/rust-intro.html">Rust</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../rust-guide/rust-quickstart.html">Hello, World! Quick Start</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../rust-guide/rust-counter.html">Simple counter tutorial</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../rust-guide/multiply-dependency.html">Basic dependency tutorial</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../rust-guide/rust-profile.html">Profile tutorial</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../rust-guide/rust-optimize.html">Optimize a Rust program</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="candid-intro.html">Candid</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="candid-concepts.html">What is Candid?</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="candid-howto.html">How to</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="candid-ref.html">Reference</a>
+    
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="6">
+    <a class="nav-link" href="candid-types.html">Supported types</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text"><a href="https://github.com/dfinity/candid" target="_blank" rel="noopener">Candid specification</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text"><a href="https://docs.rs/candid" target="_blank" rel="noopener">Candid Rust crate</a></span>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introducing the Internet Identity</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ic-identity-guide/what-is-ic-identity.html">What is Internet Identity</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ic-identity-guide/auth-how-to.html">How to use the Internet Identity</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ic-identity-guide/hello-guide.html">Windows Hello Guide</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Frontend development</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/webpack-config.html">Add frontend assets</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/custom-frontend.html">Customize the front-end</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">Add a stylesheet</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Protocol Docs</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developers-guide/concepts/concepts-intro.html">概念</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/what-is-IC.html">Internet Computer とは</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#interface-spec:index.adoc">Internet Computer Interface Specification</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/nodes-subnets.html">Nodes and sub-networks</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/data-centers.html">Decentralized data centers</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/canisters-code.html">Canisters and code</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/tokens-cycles.html">トークンと cycle</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/governance.html">Neurons and governance</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">General Docs</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of self-custody</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../token-holders/custody-options-intro.html">Choosing self-custody for digital assets</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../token-holders/self-custody-quickstart.html">Self-custody quick start</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of ledger</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integration/ledger-quick-start.html">Ledger quick start</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of the NNS App</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../token-holders/nns-app-quickstart.html">NNS App quick start</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Additional Resources</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer videos</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=oxEr8UzGeBo&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=11&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Internet Identity</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=4eSceDOS-Ms&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=21&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Motoko</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=GzkRsbqPaA0&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Building a multiplayer game for the Internet Computer</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=b_nc6yx5_DQ&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=7&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Deploying static sites to the Internet Computer</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=2miweY9-vZc&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=6&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Zero to fullstack: web apps on the Internet Computer </a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Protocol videos</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://dfinity.org/technicals/" target="_blank" rel="noopener">Technical library</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer tooling</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../download.html">DFINITY Canister SDK</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cdk-rs" target="_blank" rel="noopener">Rust CDK</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/kritzcreek/vessel" target="_blank" rel="noopener">Vessel Package Manager</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko" target="_blank" rel="noopener">Motoko VS Code Extension</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/agent-js" target="_blank" rel="noopener">Agent JS</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/sudograph/sudograph" target="_blank" rel="noopener">Sudograph</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cycles-wallet" target="_blank" rel="noopener">Cycles Wallet</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/quill" target="_blank" rel="noopener">Quill</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Examples</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Awesome DFINITY</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cancan" target="_blank" rel="noopener">CanCan</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Mini Motoko examples</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Community created resources</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://ic.rocks/" target="_blank" rel="noopener">ic.rocks (Block explorer)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://plugwallet.ooo/" target="_blank" rel="noopener">Plug (Browser-based wallet extension)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://fleek.co/" target="_blank" rel="noopener">Fleek (Netlify for the open web)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="http://faucet.dfinity.org/" target="_blank" rel="noopener">Cycles Faucet</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developers-guide/computation-and-storage-costs.html">Computation and Storage Costs</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Community</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://discord.gg/cA7y6ezyE2" target="_blank" rel="noopener">Developer Discord</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://forum.dfinity.org/" target="_blank" rel="noopener">Developer Forum</a></span>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Developer Center</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Developer Center</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle">Table of contents</button>
+  <a href="../introduction/welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Developer Center</a></li>
+    <li>Developer Docs</li>
+    <li>Building on the Internet Computer</li>
+    <li>Explore our languages</li>
+    <li><a href="candid-intro.html">Candid</a></li>
+    <li><a href="candid-ref.html">Reference</a></li>
+    <li><a href="candid-types.html">Supported types</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/candid/edit/master/docs/modules/candid-guide/pages/candid-types.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  </div>
+<div class="main-content">
+<article class="doc">
+<h1 class="page">Supported types</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section lists all the types supported by Candid.
+For each type, the reference includes the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type syntax and the syntax for the textual representation of the type.</p>
+</li>
+<li>
+<p>Upgrade rules for each type are given in terms of the possible <em>subtypes</em> and <em>supertypes</em> of a type.</p>
+</li>
+<li>
+<p>Corresponding types in Rust, Motoko and Javascript.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Subtypes are the types you can change your method <em>results</em> to.
+Supertypes are the types that you can change your method <em>arguments</em> to.</p>
+</div>
+<div class="paragraph">
+<p>You should note that this reference only lists the specific subtypes and supertypes that are relevant for each type.
+It does not repeat common information about subtypes and supertypes that can apply to any type.
+For example, the reference does not list <code>empty</code> as a subtype because it can be a subtype of any other type.
+Similarly, the types <code>reserved</code> and <code>opt t</code> are not listed as supertypes of specific types because they are supertypes of any type.
+For details about the subtyping rules for the <code>empty</code>, <code>reserved</code>, and <code>opt t</code> types, see the following sections:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#type-opt"><code>opt t</code></a></p>
+</li>
+<li>
+<p><a href="#type-reserved"><code>reserved</code></a></p>
+</li>
+<li>
+<p><a href="#type-empty"><code>empty</code></a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-text"><a class="anchor" href="#type-text"></a>Type text</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>text</code> type is used for human readable text. More precisely, its values are sequences of unicode code points (excluding surrogate parts).</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>text</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">""
+"Hello"
+"Escaped characters: \n \r \t \\ \" \'"
+"Unicode escapes: \u{2603} is ☃ and \u{221E} is ∞"
+"Raw bytes (must be utf8): \E2\98\83 is also ☃"</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>Text</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>String</code> or <code>&amp;str</code></p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>"String"</code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-blob"><a class="anchor" href="#type-blob"></a>Type blob</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>blob</code> type can be used for binary data, that is, sequences of bytes.
+Interfaces written using the <code>blob</code> type are interchangeable with interfaces that are written using <code>vec nat8</code>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>blob</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<p><code>blob &lt;text&gt;</code></p>
+<div class="paragraph">
+<p>where <code>&lt;text&gt;</code> represents a text literal with all characters representing their utf8 encoding, and arbitrary byte sequences (<code>"\CA\FF\FE"</code>).</p>
+</div>
+<div class="paragraph">
+<p>For more information about text types, see <a href="#type-text">Text</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Subtypes</dt>
+<dd>
+<p><code>vec nat8</code>, and all subtypes of <code>vec nat8</code>.</p>
+</dd>
+<dt class="hdlist1">Supertypes</dt>
+<dd>
+<p><code>vec nat8</code>, and all supertypes of <code>vec nat8</code>.</p>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>Blob</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>Vec&lt;u8&gt;</code> or <code>&amp;[u8]</code></p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>[ 1, 2, 3, 4, ... ]</code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-nat"><a class="anchor" href="#type-nat"></a>Type nat</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>nat</code> type contains all natural (non-negative) numbers.
+It is unbounded, and can represent arbitrary large numbers.
+The on-wire encoding is LEB128, so small numbers are still efficiently represented.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>nat</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">1234
+1_000_000
+0xDEAD_BEEF</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Supertypes</dt>
+<dd>
+<p><code>int</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>Nat</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>candid::Nat</code> or <code>u128</code></p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>new BigNumber("10000")</code> from <code>bignumber.js</code> npm package</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-int"><a class="anchor" href="#type-int"></a>Type int</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>int</code> type contains all whole numbers.
+It is unbounded and can represent arbitrary small or large numbers.
+The on-wire encoding is SLEB128, so small numbers are still efficiently represented.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>int</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">1234
+-1234
++1234
+1_000_000
+-1_000_000
++1_000_000
+0xDEAD_BEEF
+-0xDEAD_BEEF
++0xDEAD_BEEF</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Subtypes</dt>
+<dd>
+<p><code>nat</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>Int</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>candid::Int</code> or <code>i128</code></p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>new BigNumber("-10000")</code> from <code>bignumber.js</code> npm package</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-intN"><a class="anchor" href="#type-intN"></a>Type natN and intN</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The types <code>nat8</code>, <code>nat16</code>, <code>nat32</code>, <code>nat64</code>, <code>int8</code>, <code>int16</code>, <code>int32</code> and <code>int64</code> represent numbers with a representation of that many bits, and can be used in more “low-level” interfaces.</p>
+</div>
+<div class="paragraph">
+<p>The range of <code>natN</code> is <code>{0 &#8230;&#8203; 2^N-1}</code>, and the range of <code>intN</code> is <code>-2^(N-1) &#8230;&#8203; 2^(N-1)-1</code>.</p>
+</div>
+<div class="paragraph">
+<p>The on-wire representation is exactly that many bits long. So for small values, <code>nat</code> is more space-efficient than <code>nat64</code>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>nat8</code>, <code>nat16</code>, <code>nat32</code>, <code>nat64</code>, <code>int8</code>, <code>int16</code>, <code>int32</code> or <code>int64</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<p>Same as <code>nat</code> for <code>nat8</code>, <code>nat16</code>, <code>nat32</code>, and <code>nat64</code>.</p>
+<div class="paragraph">
+<p>Same as <code>int</code> for <code>int8</code>, <code>int16</code>, <code>int32</code> and <code>int64</code>.</p>
+</div>
+<div class="paragraph">
+<p>We can use type annotation to distinguish different integer types.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">100 : nat8
+-100 : int8
+(42 : nat64)</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>natN</code> translates by default to <code>NatN</code>, but can also correspond to <code>WordN</code> when required.</p>
+<div class="paragraph">
+<p><code>intN</code> translate to <code>IntN</code>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p>Signed and unsigned integers of corresponding size.</p>
+<table class="tableblock frame-all grid-all" style="width: 30%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Length</th>
+<th class="tableblock halign-left valign-top">Signed</th>
+<th class="tableblock halign-left valign-top">Unsigned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8-bit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16-bit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32-bit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u32</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64-bit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u64</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p>8-bit, 16-bit and 32-bit translate to the number type.</p>
+<div class="paragraph">
+<p><code>int64</code> and <code>nat64</code> translate to the <code>BigNumber</code> object in <code>bignumber.js</code>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-floatN"><a class="anchor" href="#type-floatN"></a>Type float32 and float64</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The types <code>float32</code> and <code>float64</code> represent IEEE 754 floating point numbers in single precision (32 bit) and double precision (64 bit).</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>float32</code>, <code>float64</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<p>The same syntax as <code>int</code>, plus floating point literals as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">1245.678
++1245.678
+-1_000_000.000_001
+34e10
+34E+10
+34e-10
+0xDEAD.BEEF
+0xDEAD.BEEFP-10
+0xDEAD.BEEFp+10</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>float64</code> corresponds to <code>Float</code>.</p>
+<div class="paragraph">
+<p><code>float32</code> does <em>not</em> currently have a representation in Motoko. Candid interfaces using <code>float32</code> cannot be served from or used from Motoko programs.</p>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>f32</code>, <code>f64</code></p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p>float number</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-bool"><a class="anchor" href="#type-bool"></a>Type bool</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>bool</code> type is a logical data type that can have only the values <code>true</code> or <code>false</code>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>bool</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<p><code>true</code>, <code>false</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>Bool</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>bool</code></p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>true</code>, <code>false</code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-null"><a class="anchor" href="#type-null"></a>Type null</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>null</code> type is the type of the value <code>null</code>, thus a subtype of all the <code>opt t</code> types. It is also the idiomatic choice when using <a href="#type-variant">variants</a> to model enumerations.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>null</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<p><code>null</code></p>
+</dd>
+<dt class="hdlist1">Supertypes</dt>
+<dd>
+<p>All <code>opt t</code> types.</p>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>Null</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>()</code></p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>null</code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-vec"><a class="anchor" href="#type-vec"></a>Type vec t</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>vec</code> type represents vectors (sequences, lists, arrays).
+A value of type <code>vec t</code> contains a sequence of zero or more values of type <code>t</code>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>vec bool</code>, <code>vec nat8</code>, <code>vec vec text</code>, and so on.</p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">vec {}
+vec { "john@doe.com"; "john.doe@example.com" };</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Subtypes</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Whenever <code>t</code> is a subtype of <code>t'</code>, then <code>vec t</code> is a subtype of <code>vec t'</code>.</p>
+</li>
+<li>
+<p><code>blob</code> is a subtype of <code>vec nat8</code>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Supertypes</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Whenever <code>t</code> is a supertype of <code>t'</code>, then <code>vec t</code> is a supertype of <code>vec t'</code>.</p>
+</li>
+<li>
+<p><code>blob</code> is a supertype of <code>vec nat8</code>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>[T]</code>, where the Motoko type <code>T</code> corresponds to <code>t</code>.</p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>Vec&lt;T&gt;</code> or <code>&amp;[T]</code>, where the Rust type <code>T</code> corresponds to <code>t</code>.</p>
+<div class="paragraph">
+<p><code>vec t</code> can translate to <code>BTreeSet</code> or <code>HashSet</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>vec record { KeyType; ValueType }</code> can translate to <code>BTreeMap</code> or <code>HashMap</code>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>Array</code>, e.g. <code>[ "text", "text2", &#8230;&#8203; ]</code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-opt"><a class="anchor" href="#type-opt"></a>Type opt t</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>opt t</code> type contains all the values of type <code>t</code>, plus the special <code>null</code> value.
+It is used to express that some value is optional, meaning that data might be present as some value of type <code>t</code>, or might be absent as the value <code>null</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>opt</code> type can be nested (for example, <code>opt opt text</code>), and the values <code>null</code> and <code>opt null</code> are distinct values.</p>
+</div>
+<div class="paragraph">
+<p>The <code>opt</code> type plays a crucial role in the evolution of Candid interfaces, and has special subtyping rules as described below.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>opt bool</code>, <code>opt nat8</code>, <code>opt opt text</code>, and so on.</p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">null
+opt true
+opt 8
+opt null
+opt opt "test"</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Subtypes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The canonical rules for subtyping with <code>opt</code> are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Whenever <code>t</code> is a subtype of <code>t'</code>, then <code>opt t</code> is a subtype of <code>opt t'</code>.</p>
+</li>
+<li>
+<p><code>null</code> is a subtype of <code>opt t'</code>.</p>
+</li>
+<li>
+<p><code>t</code> is a subtype of <code>opt t</code> (unless <code>t</code> itself is <code>null</code>, <code>opt …</code> or <code>reserved</code>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition, for technical reasons related to upgrading and higher-order services, <em>every</em> type is a subtype of <code>opt t</code>, yielding <code>null</code> if the types do not match. Users are advised, however, to not directly make use of that rule.</p>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Supertypes</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Whenever <code>t</code> is a supertype of <code>t'</code>, then <code>opt t</code> is a supertype of <code>opt t'</code>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>?T</code>, where the Motoko type <code>T</code> corresponds to <code>t</code>.</p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>Option&lt;T&gt;</code>, where the Rust type <code>T</code> corresponds to <code>t</code>.</p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>null</code> translates to <code>[]</code>.</p>
+<div class="paragraph">
+<p><code>opt 8</code> translates to <code>[8]</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>opt opt "test"</code> translates to <code>[["test"]]</code>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-record"><a class="anchor" href="#type-record"></a>Type record { n : t, … }</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <code>record</code> type is a collection of labeled values. For example, the following code gives the name <code>address</code> to the type of records that have the textual fields <code>street</code>, <code>city</code> and <code>country</code> and a numerical field of <code>zip_code</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">type address = record {
+  street : text;
+  city : text;
+  zip_code : nat;
+  country : text;
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The order of fields in the record type declaration does not matter.
+Each field can have a different type (unlike vectors).
+The label of a record field can also be a 32-bit natural number, as in this example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">type address2 = record {
+  288167939 : text;
+  1103114667 : text;
+  220614283 : nat;
+  492419670 : text;
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In fact, textual labels are treated as their <em>field hash</em>, and incidentally, <code>address</code> and <code>address2</code> are—to Candid—the same types.</p>
+</div>
+<div class="paragraph">
+<p>If you omit the label, Candid automatically assigns sequentially-increasing labels. This behavior leads to the following shortened syntax, which is typically used to represent pairs and tuples. The type <code>record { text; text; opt bool }</code> is equivalent to <code>record { 0 : text;  1: text;  2: opt bool }</code></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">record {}
+record { first_name : text; second_name : text }
+record { "name with spaces" : nat; "unicode, too: ☃" : bool }
+record { text; text; opt bool }</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">record {}
+record { first_name = "John"; second_name = "Doe" }
+record { "name with spaces" = 42; "unicode, too: ☃" = true }
+record { "a"; "tuple"; null }</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Subtypes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Subtypes of a record are record types that have additional fields (of any type), where some field’s types are changed to subtypes, or where optional fields are removed. It is, however, bad practice to remove optional fields in method results. You can change a field&#8217;s type to <code>opt empty</code> to indicate that this field is no longer used.</p>
+</div>
+<div class="paragraph">
+<p>For example, if you have a function returning a record of of the following type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">record {
+  first_name : text; middle_name : opt text; second_name : text; score : int
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>you can evolve that to a function returning a record of the following type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">record {
+  first_name : text; middle_name : opt empty; second_name : text; score : nat; country : text
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where we have deprecated the <code>middle_name</code> field, change the type of <code>score</code> and added the <code>country</code> field.</p>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Supertypes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Supertypes of a record are record types with some fields removed, some fields’ types changed to supertypes, or with optional fields added.</p>
+</div>
+<div class="paragraph">
+<p>The latter is what allows you to extend your argument records with additional fields. Clients using the old interface will not include the field in their record, which will decode, when expected in the upgraded service, as <code>null</code>.</p>
+</div>
+<div class="paragraph">
+<p>For example, if you have a function expecting a record of type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">record { first_name : text; second_name : text; score : nat }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>you can evolve that to a function expecting a record of type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">record { first_name : text; score: int; country : opt text }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p>If the record type looks like it could refer to a tuple (that is, consecutive labels starting at 0), a Motoko tuple type (for example <code>(T1, T2, T3)</code>) is used. Else, a Motoko record <code>({ first_name  :Text, second_name : Text })</code> is used.</p>
+<div class="paragraph">
+<p>If the field name is a reserved name in Motoko, an undescore is appended. So <code>record { if : bool }</code> corresponds to <code>{ if_ : Bool  }</code>.</p>
+</div>
+<div class="paragraph">
+<p>If (even then) the field name is not a valid Motoko identifier, the <em>field</em> hash is used instead: <code>record { ☃ : bool }</code> corresponds to <code>{ <em>11272781</em> : Boolean }</code>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p>User defined <code>struct</code> with <code>#[derive(CandidType, Deserialize)]</code> trait.</p>
+<div class="paragraph">
+<p>You can use the <code>#[serde(rename = "DifferentFieldName")]</code> attribute to rename field names.</p>
+</div>
+<div class="paragraph">
+<p>If the record type is a tuple, it can be translated to a tuple type such as <code>(T1, T2, T3)</code>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p>If the record type is a tuple, the value is translated to an array, for example, <code>["Candid", 42]</code>.</p>
+<div class="paragraph">
+<p>Else it translates to a record object. For example, <code>{ "first name": "Candid", age: 42 }</code>.</p>
+</div>
+<div class="paragraph">
+<p>If the field name is a hash, we use <code>_hash_</code> as the field name, for example, <code>{ _1_: 42, "1": "test" }</code>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-variant"><a class="anchor" href="#type-variant"></a>Type variant { n : t, … }</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <code>variant</code> type represents a value that is from exactly one of the given cases, or <em>tags</em>. So a value of the type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">type shape = variant {
+  dot : null;
+  circle : float64;
+  rectangle : record { width : float64; height : float64 };
+  "💬" : text;
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>is either a dot, or a circle (with a radius), or a rectangle (with dimensions), or a speech bubble (with some text). The speech bubble illustrates use of a unicode label name (💬).</p>
+</div>
+<div class="paragraph">
+<p>The tags in variants are, just like the labels in records, actually numbers, and string tags refer to their hash value.</p>
+</div>
+<div class="paragraph">
+<p>Often, some or all of the the tags do not carry data. It is idiomatic to then use the <code>null</code> type, as in the <code>dot</code> above. In fact, Candid encourages this by allowing you to omit the <code>: null</code> type annotation in variants, so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">type season = variant { spring; summer; fall; winter }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>is equivalent to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">type season = variant {
+  spring : null; summer: null; fall: null; winter : null
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and used to represent enumerations.</p>
+</div>
+<div class="paragraph">
+<p>The type <code>variant {}</code> is legal, but has no values. If that is the intention, the <a href="#type-empty"><code>empty</code> type</a> may be more appropriate.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">variant {}
+variant { ok : nat; error : text }
+variant { "name with spaces" : nat; "unicode, too: ☃" : bool }
+variant { spring; summer; fall; winter }</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">variant { ok = 42 }
+variant { "unicode, too: ☃" = true }
+variant { fall }</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Subtypes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Subtypes of a variant type are variant types with some tags removed, and the type of some tags themselves changed to a subtype.</p>
+</div>
+<div class="paragraph">
+<p>If you want to be able to <em>add</em> new tags in variants in a method result, you can do so if the variant is itself wrapped in <code>opt …</code>. This requires planning ahead! When you design an interface, instead of writing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">service {
+  get_member_status (member_id : nat) -&gt; (variant {active; expired});
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>it is better to use this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">service {
+  get_member_status (member_id : nat) -&gt; (opt variant {active; expired});
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This way, if you later need to add a <code>honorary</code> membership status, you can expand the list of statuses. Old clients will receive unknown fields as <code>null</code>.</p>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Supertypes</dt>
+<dd>
+<p>Supertypes of a variant types are variants with additional tags, and maybe the type of some tags changed to a supertype.</p>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Variant types are represented as Motoko variant types, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">type Shape = {
+  #dot : ();
+  #circle : Float;
+  #rectangle : { width : Float; height : Float };
+  #_2669435721_ : Text;
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that if the type of a tag is <code>null</code>, this corresponds to <code>()</code> in Motoko, to preserve the mapping between the respective idiomatic ways to model enumerations as variants.</p>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p>User defined <code>enum</code> with <code>#[derive(CandidType, Deserialize)]</code> trait.</p>
+<div class="paragraph">
+<p>You can use the <code>#[serde(rename = "DifferentFieldName")]</code> attribute to rename field names.</p>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p>A record object with a single entry. For example, <code>{ dot: null }</code>.</p>
+<div class="paragraph">
+<p>If the field name is a hash, we use <code>_hash_</code> as the field name, for example, <code>{ _2669435721_: "test" }</code>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-func"><a class="anchor" href="#type-func"></a>Type func (…) &#8594; (…)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Candid is designed to support higher-order use cases, where a service may receive or provide references to other services or their methods, for example, as callbacks.
+The <code>func</code> type is central to this: It indicates the function’s <em>signature</em> (argument and results types, annotations), and values of this type are references to functions with that signature.</p>
+</div>
+<div class="paragraph">
+<p>The supported annotations are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>query</code> indicates that the referenced function is a query method, meaning it does not alter the state of its canister, and that it can be invoked using the cheaper “query call” mechanism.</p>
+</li>
+<li>
+<p><code>oneway</code> indicates that this function returns no response, intended for fire-and-forget scenarios.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information about parameter naming, see <a href="candid-concepts.html#service-naming">Naming arguments and results</a>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">func () -&gt; ()
+func (text) -&gt; (text)
+func (dividend : nat, divisor : nat) -&gt; (div : nat, mod : nat);
+func () -&gt; (int) query
+func (func (int) -&gt; ()) -&gt; ()</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<p>Currently, only public methods of services, which are identified by their principal, are supported:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">func "w7x7r-cok77-xa".hello
+func "w7x7r-cok77-xa"."☃"
+func "aaaaa-aa".create_canister</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Subtypes</dt>
+<dd>
+<p>The following modifications to a function type change it to a subtype as discussed in the rules for <a href="candid-concepts.html#upgrades">Service upgrades</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The result type list may be extended.</p>
+</li>
+<li>
+<p>The parameter type list may be shortened.</p>
+</li>
+<li>
+<p>The parameter type list may be extended with optional arguments (type <code>opt …</code>).</p>
+</li>
+<li>
+<p>Existing parameter types may be changed to to a <em>supertype</em> ! In other words, the function type is <em>contravariant</em> in the argument type.</p>
+</li>
+<li>
+<p>Existing result types may be changed to a subtype.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Supertypes</dt>
+<dd>
+<p>The following modifications to a function type change it to a supertype:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The result type list may be shortened.</p>
+</li>
+<li>
+<p>The result type list may be extended with optional arguments (type <code>opt …</code>).</p>
+</li>
+<li>
+<p>The parameter type list may be extended.</p>
+</li>
+<li>
+<p>Existing parameter types may be changed to to a <em>subtype</em> ! In other words, the function type is <em>contravariant</em> in the argument type.</p>
+</li>
+<li>
+<p>Existing result types may be changed to a supertype.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Candid function types correspond to <code>shared</code> Motoko functions, with the result type wrapped in <code>async</code> (unless they are annotated with <code>oneway</code>, then the result type is simply <code>()</code>).  Arguments resp. results become tuples, unless there is exactly one, in which case it is used directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">type F0 = func () -&gt; ();
+type F1 = func (text) -&gt; (text);
+type F2 = func (text, bool) -&gt; () oneway;
+type F3 = func (text) -&gt; () oneway;
+type F4 = func () -&gt; (text) query;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>corresponds in Motoko to</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Motoko hljs" data-lang="Motoko">type F0 = shared () -&gt; async ();
+type F1 = shared Text -&gt; async Text;
+type F2 = shared (Text, Bool) -&gt; ();
+type F3 = shared (text) -&gt; ();
+type F4 = shared query () -&gt; async Text;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>candid::IDLValue::Func(Principal, String)</code>, see <a href="https://docs.rs/candid/0.6.15/candid/parser/value/enum.IDLValue.html">IDLValue</a>.</p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>[Principal.fromText("aaaaa-aa"), "create_canister"]</code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-service"><a class="anchor" href="#type-service"></a>Type service {…}</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Services may want to pass around references to not just individual functions (using the <a href="#type-func"><code>func</code> type</a>), but references to whole services. In this case, Candid types can be used to declare the complete interface of such a service.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="candid-concepts.html#candid-service-descriptions">Candid service descriptions</a> for more details on the syntax of a service type.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">service {
+  add : (nat) -&gt; ();
+  subtract : (nat) -&gt; ();
+  get : () -&gt; (int) query;
+  subscribe : (func (int) -&gt; ()) -&gt; ();
+}</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">service "w7x7r-cok77-xa"
+service "zwigo-aiaaa-aaaaa-qaa3a-cai"
+service "aaaaa-aa"</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Subtypes</dt>
+<dd>
+<p>The subtypes of a service type are those service types that possibly have additional methods, and where the type of an existing method is changed to a subtype.</p>
+<div class="paragraph">
+<p>This is exactly the same principle as discussed for upgrade rules in <a href="candid-concepts.html#upgrades">Service upgrades</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Supertypes</dt>
+<dd>
+<p>The supertypes of a service type are those service types that may have some methods removed, and the type of existing methods are changed to a supertype.</p>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Service types in Candid correspond directly to <code>actor</code> types in Motoko:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">actor {
+  add : shared Nat -&gt; async ()
+  subtract : shared Nat -&gt; async ();
+  get : shared query () -&gt; async Int;
+  subscribe : shared (shared Int -&gt; async ()) -&gt; async ();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>candid::IDLValue::Service(Principal)</code>, see <a href="https://docs.rs/candid/0.6.15/candid/parser/value/enum.IDLValue.html">IDLValue</a>.</p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>Principal.fromText("aaaaa-aa")</code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-principal"><a class="anchor" href="#type-principal"></a>Type principal</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Internet Computer uses <em>principals</em> as the common scheme to identify canisters, users, and other entities.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>principal</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">principal "w7x7r-cok77-xa"
+principal "zwigo-aiaaa-aaaaa-qaa3a-cai"
+principal "aaaaa-aa"</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>Principal</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>candid::Principal</code> or <code>ic_types::Principal</code></p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p><code>Principal.fromText("aaaaa-aa")</code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-reserved"><a class="anchor" href="#type-reserved"></a>Type reserved</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>reserved</code> type is a type with one (uninformative) value <code>reserved</code>, and is the supertype of all other types.</p>
+</div>
+<div class="paragraph">
+<p>The <code>reserved</code> type can be used to remove method arguments. Consider a method with the following signature:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">service {
+  foo : (first_name : text, middle_name : text, last_name : text) -&gt; ()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and assume you no longer care about the <code>middle_name</code>. Although Candid will not prevent you from changing the signature to this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">service {
+  foo : (first_name : text, last_name : text) -&gt; ()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>it would be disastrous: If a client talks to you using the old interface, you will silently ignore the <code>last_name</code> and take the <code>middle_name</code> as the <code>last_name</code>. Remember that method parameter names are just convention, and method arguments are identified by their position.</p>
+</div>
+<div class="paragraph">
+<p>Instead, you can use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">service {
+  foo : (first_name : text, middle_name : reserved, last_name : text) -&gt; ()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to indicate that <code>foo</code> used to take a second argument, but you no longer care about that.</p>
+</div>
+<div class="paragraph">
+<p>You can avoid this pitfall by adopting the pattern any function that is anticipated to have changing arguments, or whose arguments can only be distinguished by position, not type, is declared to take a single record.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">service {
+  foo : (record { first_name : text; middle_name : text; last_name : text}) -&gt; ()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, changing the signature to this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">service {
+  foo : (record { first_name : text; last_name : text}) -&gt; ()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>does the right thing, and you don’t even need to keep a record of the removed argument around.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In general, it is not recommended to remove arguments from methods. Usually, it is preferable to introduce a new method that omits the argument.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>reserved</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<p><code>reserved</code></p>
+</dd>
+<dt class="hdlist1">Subtypes</dt>
+<dd>
+<p>All types</p>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>Any</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>candid::Reserved</code></p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p>Any value</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="type-empty"><a class="anchor" href="#type-empty"></a>Type empty</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>empty</code> type is the type without values, and is the subtype of any other type.</p>
+</div>
+<div class="paragraph">
+<p>Practical use cases for the <code>empty</code> type are relatively rare.
+It could be used to mark a method as “never returns successfully”.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">service : {
+  always_fails () -&gt; (empty)
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type syntax</dt>
+<dd>
+<p><code>empty</code></p>
+</dd>
+<dt class="hdlist1">Textual syntax</dt>
+<dd>
+<p>None, as this type has no values</p>
+</dd>
+<dt class="hdlist1">Supertypes</dt>
+<dd>
+<p>All types</p>
+</dd>
+<dt class="hdlist1">Corresponding Motoko type</dt>
+<dd>
+<p><code>None</code></p>
+</dd>
+<dt class="hdlist1">Corresponding Rust type</dt>
+<dd>
+<p><code>candid::Empty</code></p>
+</dd>
+<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dd>
+<p>None, as this type has no values</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar">
+  
+  <div class="toc-menu"></div>
+</aside></div>
+</main></div>
+<footer class="footer">
+  <div class="footer-container">
+    <a href="http://www.dfinity.org"><img class="footer-logo" src="../../_/img/logo.svg"></a>
+    <nav class="footer-nav">
+      <div class="col1">
+        <h5 class="footer-header">Developers</h5>
+        <a class="footer-link" href="http://www.dfinity.org/faq">
+          FAQ
+        </a>
+        <a class="footer-link" href="#">
+          Developers
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/data-centers">
+          Data Centers
+        </a>
+        <a class="footer-link" href="https://support.dfinity.org">
+          Support
+        </a>
+      </div>
+
+      <div class="col2">
+        <h5 class="footer-header">Team</h5>
+        <a class="footer-link" href="http://www.dfinity.org/foundation">
+          Foundation
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/foundation#events">
+          Events
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/careers">
+          Careers
+        </a>
+      </div>
+
+
+      <div class="col3">
+        <h5 class="footer-header">Media</h5>
+        <a class="footer-link" href="http://www.dfinity.org/media">
+          Featured Videos
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/media#featured-stories">
+          Featured Stories
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/newsletter">
+          Newsletter
+        </a>
+      </div>
+
+      <div class="social-icons">
+
+        <a class="social-icon-link" target="blank" href="https://github.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 0C5.3625 0 0 5.3625 0 12C0 17.2875 3.45 21.7875 8.2125 23.4C8.8125 23.5125 9.0375 23.1375 9.0375 22.8375C9.0375 22.5375 9.0375 21.7875 9.0375 20.8125C5.7 21.525 4.9875 19.2 4.9875 19.2C4.425 17.8125 3.6375 17.4375 3.6375 17.4375C2.55 16.6875 3.7125 16.725 3.7125 16.725C4.9125 16.8 5.55 17.9625 5.55 17.9625C6.6375 19.8 8.3625 19.275 9.0375 18.975C9.15 18.1875 9.45 17.6625 9.7875 17.3625C7.125 17.0625 4.3125 16.0125 4.3125 11.4375C4.3125 10.125 4.7625 9.075 5.55 8.2125C5.4375 7.9125 5.025 6.675 5.6625 5.025C5.6625 5.025 6.675 4.6875 8.9625 6.2625C9.9375 6 10.95 5.85 11.9625 5.85C12.975 5.85 14.025 6 14.9625 6.2625C17.25 4.725 18.2625 5.025 18.2625 5.025C18.9 6.675 18.4875 7.9125 18.375 8.2125C19.1625 9.0375 19.6125 10.125 19.6125 11.4375C19.6125 16.05 16.8 17.0625 14.1375 17.3625C14.55 17.7375 14.9625 18.45 14.9625 19.575C14.9625 21.1875 14.9625 22.4625 14.9625 22.875C14.9625 23.2125 15.1875 23.5875 15.7875 23.4375C20.55 21.7875 24 17.2875 24 12C24 5.3625 18.6375 0 12 0Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+        <a class="social-icon-link" target="blank" href="https://medium.com/dfinity-network-blog">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M22.3125 1H1.6875C1.50516 1 1.3303 1.07243 1.20136 1.20136C1.07243 1.3303 1 1.50516 1 1.6875L1 22.3125C1 22.4948 1.07243 22.6697 1.20136 22.7986C1.3303 22.9276 1.50516 23 1.6875 23H22.3125C22.4948 23 22.6697 22.9276 22.7986 22.7986C22.9276 22.6697 23 22.4948 23 22.3125V1.6875C23 1.50516 22.9276 1.3303 22.7986 1.20136C22.6697 1.07243 22.4948 1 22.3125 1V1ZM19.2768 6.21228L18.0971 7.34356C18.0471 7.38153 18.0085 7.43245 17.9854 7.4908C17.9623 7.54916 17.9557 7.61272 17.9661 7.67459V15.9875C17.9557 16.0494 17.9623 16.1129 17.9854 16.1713C18.0085 16.2296 18.0471 16.2806 18.0971 16.3185L19.2493 17.4498V17.698H13.4534V17.4498L14.6469 16.2903C14.7641 16.1731 14.7641 16.1388 14.7641 15.9593V9.24072L11.4455 17.6698H10.9987L7.13319 9.24072V14.8899C7.11729 15.0071 7.12828 15.1264 7.16533 15.2387C7.20237 15.351 7.2645 15.4535 7.347 15.5382L8.89937 17.4213V17.6695H4.49731V17.4213L6.04969 15.5382C6.13152 15.4534 6.19226 15.3505 6.22701 15.2379C6.26177 15.1253 6.26956 15.0061 6.24975 14.8899V8.35866C6.25855 8.26945 6.24627 8.17943 6.21391 8.09584C6.18155 8.01225 6.13001 7.93743 6.06344 7.87741L4.68362 6.21503V5.96684H8.96847L12.2805 13.2303L15.1924 5.96684H19.2768V6.21228Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+        <a class="social-icon-link" target="blank" href="https://twitter.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23 5.33654C22.175 5.67308 21.3156 5.94231 20.4219 6.04327C21.35 5.50481 22.0719 4.62981 22.4156 3.58654C21.5562 4.09135 20.5938 4.46154 19.5625 4.66346C18.7031 3.78846 17.5344 3.25 16.2281 3.25C13.7187 3.25 11.725 5.23558 11.725 7.65865C11.725 7.99519 11.7594 8.33173 11.8281 8.66827C8.08125 8.5 4.74688 6.71635 2.54688 4.05769C2.16875 4.69712 1.92813 5.47115 1.92813 6.27885C1.92813 7.82692 2.71875 9.17308 3.92188 9.94712C3.16562 9.91346 2.47812 9.71154 1.89375 9.40865C1.89375 9.44231 1.89375 9.44231 1.89375 9.47596C1.89375 11.6298 3.44063 13.4135 5.50313 13.8173C5.125 13.9183 4.7125 13.9856 4.3 13.9856C4.025 13.9856 3.71562 13.9519 3.44062 13.9183C4.025 15.6683 5.675 16.9471 7.66875 16.9808C6.12187 18.1587 4.1625 18.8654 2.06562 18.8654C1.6875 18.8654 1.34375 18.8317 1 18.7981C2.99375 20.0096 5.36563 20.75 7.90938 20.75C16.2281 20.75 20.7656 14.0192 20.7656 8.16346C20.7656 7.96154 20.7656 7.79327 20.7656 7.59135C21.625 6.98558 22.3813 6.21154 23 5.33654Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://forum.dfinity.org/">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12.0932 1C6.0727 1 1 5.83706 1 11.8085C1 12 1.00488 23 1.00488 23L12.0933 22.9901C18.1188 22.9901 23 17.9666 23 11.9951C23 6.02373 18.1188 1 12.0932 1ZM12 18.2857C11.0473 18.2857 10.1388 18.0745 9.32853 17.6916L5.34597 18.6786L6.47047 14.9956C5.98926 14.1067 5.71423 13.0853 5.71423 12C5.71423 8.52815 8.52811 5.71428 12 5.71428C15.4719 5.71428 18.2857 8.52815 18.2857 12C18.2857 15.472 15.4719 18.2857 12 18.2857Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://www.linkedin.com/company/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M1 4.35878C1 3.01688 2.03589 2 3.61924 2C5.20139 2 6.17406 3.01448 6.20507 4.35519C6.20507 5.67205 5.20139 6.71456 3.58942 6.71456H3.55841C2.00666 6.71456 1 5.67562 1 4.35878ZM17.5581 8.28158C15.1017 8.28158 13.5625 9.61217 13.278 10.5449V8.41225H8.46122C8.52324 9.54475 8.46122 21.9995 8.46122 21.9995H13.278V14.647C13.278 14.5987 13.2778 14.5505 13.2775 14.5025C13.2756 14.1436 13.2736 13.7952 13.383 13.5365C13.714 12.7194 14.4255 11.8719 15.7046 11.8719C17.3775 11.8719 18.1378 13.128 18.1378 14.9685V21.9995H23V14.4448C23 10.236 20.6056 8.28158 17.5581 8.28158ZM1.55371 8.41275H5.84157V22H1.55371V8.41275Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://youtube.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23.775 7.6375C23.775 7.6375 23.55 5.9875 22.8375 5.2375C21.9375 4.3 20.8875 4.2625 20.4375 4.225C17.025 4 12 4 12 4C12 4 6.975 4 3.6 4.225C3.1125 4.2625 2.1 4.3 1.2 5.2375C0.4875 5.95 0.2625 7.6375 0.2625 7.6375C0.2625 7.6375 0 9.5875 0 11.5375V13.375C0 15.325 0.225 17.275 0.225 17.275C0.225 17.275 0.45 18.925 1.1625 19.675C2.0625 20.6125 3.2625 20.6125 3.825 20.6875C5.7375 20.875 12 20.9125 12 20.9125C12 20.9125 17.025 20.9125 20.4 20.65C20.8875 20.6125 21.9 20.575 22.8 19.6375C23.5125 18.925 23.7375 17.2375 23.7375 17.2375C23.7375 17.2375 24 15.2875 24 13.3375V11.5C24 9.5875 23.775 7.6375 23.775 7.6375ZM9.525 15.55V8.8L16.0125 12.175L9.525 15.55Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+      </div>
+    </nav>
+
+    <div class="legal-container">
+      <span class="legal" id="year">
+        © 2020 DFINITY
+      </span>
+      <a class="legal footer-link" href="http://www.dfinity.org/terms-of-use">
+        Terms of Use
+      </a>
+      <a class="legal footer-link" href="http://www.dfinity.org/cookie-policy">
+        Cookie Policy
+      </a>
+      <a class="legal footer-link" href="http://www.dfinity.org/privacy-policy">
+        Privacy Policy
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+  var today = new Date();
+  var year = today.getFullYear();
+  document.getElementById("year").innerHTML = `© ${year} DFINITY`;
+</script><script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+    apiKey: 'b93d56cc4b00b0afbcdaacab04dcf25b',
+    indexName: 'dfinity_sdk',
+    inputSelector: '.search-input',
+    debug: false // Set debug to true if you want to inspect the dropdown
+  });
+</script>
+
+<!-- Start of dfinity Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=53121947-c10a-484c-b99b-f89a9fb6f63e"> </script>
+<!-- End of dfinity Zendesk Widget script -->
+
+  </body>
+</html>
