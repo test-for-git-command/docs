@@ -886,7 +886,7 @@ For example, you can now send cycles from your cycles wallet to a specific canis
 <p>A new <code>--no-artificial-delay</code> option enables you to reduce the time it takes for the local Internet Computer to start.</p>
 <div class="paragraph">
 <p>This change adds the <code>--no-artificial-delay</code> flag to <code>dfx start</code> and <code>dfx replica</code> commands.
-By default, the local Internet Computer replica that is installed with the {sdk-short-name} has an artificial consensus delay to simulate the delay users might see in a networked environment.
+By default, the local Internet Computer replica that is installed with the DFINITY Canister SDK has an artificial consensus delay to simulate the delay users might see in a networked environment.
 With this new flag, you can skip the built-in delay when you start the local Internet Computer by running either the <code>dfx start --no-artificial-delay</code> or <code>dfx replica --no-artificial-delay</code> command.</p>
 </div>
 <div class="paragraph">
@@ -909,15 +909,15 @@ With this new flag, you can skip the built-in delay when you start the local Int
 <h2 id="_breaking_change"><a class="anchor" href="#_breaking_change"></a>Breaking change</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The {sdk-short-name} version 0.7.1 introduces a change to the default principal used when you run <code>dfx canister call</code> commands.
-Depending on the version of the {sdk-short-name} that you were previously using, this change might require changes to your program code or to the way you call methods in deployed canisters.</p>
+<p>The DFINITY Canister SDK version 0.7.1 introduces a change to the default principal used when you run <code>dfx canister call</code> commands.
+Depending on the version of the DFINITY Canister SDK that you were previously using, this change might require changes to your program code or to the way you call methods in deployed canisters.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>The cycles wallet canister identifier is not longer used as the message caller by default.</p>
 <div class="paragraph">
-<p>In some previous versions of the {sdk-short-name}, the <code>dfx canister call</code> command would use the cycles wallet canister identifier as the message caller to perform queries and update calls by default.</p>
+<p>In some previous versions of the DFINITY Canister SDK, the <code>dfx canister call</code> command would use the cycles wallet canister identifier as the message caller to perform queries and update calls by default.</p>
 </div>
 <div class="paragraph">
 <p>The <code>--no-wallet</code> command-line option was introduced to allow you to bypass the cycles wallet canister identifier and perform query and update calls using the currently-selected identity.</p>
