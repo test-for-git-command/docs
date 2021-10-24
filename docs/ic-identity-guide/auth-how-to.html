@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>How to use Internet Identity :: Dfinity 日本語ドキュメント</title>
+    <title>Internet Identity の使い方 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/ic-identity-guide/auth-how-to.html">
     <meta name="keywords" content="Internet Computer,blockchain,protocol,replica,subnet,data center,canister,developer">
     <meta name="generator" content="Antora 2.3.4">
@@ -514,7 +514,7 @@
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Introducing the Internet Identity</span>
+    <span class="nav-text">Internet Identity の紹介</span>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
@@ -522,7 +522,7 @@
     
   </li>
   <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="auth-how-to.html">How to use the Internet Identity</a>
+    <a class="nav-link" href="auth-how-to.html">Internet Identity の使い方</a>
     
   </li>
   <li class="nav-item" data-depth="4">
@@ -585,7 +585,7 @@
     
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../developers-guide/concepts/tokens-cycles.html">トークンと cycle</a>
+    <a class="nav-link" href="../developers-guide/concepts/tokens-cycles.html">トークンと Cycle</a>
     
   </li>
   <li class="nav-item" data-depth="3">
@@ -822,31 +822,31 @@
     <li><a href="../index.html">Developer Center</a></li>
     <li>Developer Docs</li>
     <li>Building on the Internet Computer</li>
-    <li>Introducing the Internet Identity</li>
-    <li><a href="auth-how-to.html">How to use the Internet Identity</a></li>
+    <li>Internet Identity の紹介</li>
+    <li><a href="auth-how-to.html">Internet Identity の使い方</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/internet-identity/edit/main/docs/modules/ic-identity-guide/pages/auth-how-to.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">How to use Internet Identity</h1>
+<h1 class="page">Internet Identity の使い方</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you would like to learn what Internet Identity is, see
-<a href="https://sdk.dfinity.org/docs/ic-identity-guide/what-is-ic-identity.html">What is Internet Identity?</a></p>
+<p>Internet Identity とは何か、ということから学びたい方は <a href="what-is-ic-identity.html">Internet Identity とは？</a>をご覧ください。</p>
 </div>
 <div class="paragraph">
-<p>All currently supported authentication methods follow the <em>WebAuthn</em> standard. The following restrictions apply, however:</p>
+<p>現在サポートされているすべての認証方法は、<em>WebAuthn</em> 規格に準拠しています。ただし、以下のような制限があります:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>On OS X, authentication using Safari is coupled to your browser profile. If you want to authenticate to a dapp in a different browser, or if you use multiple Safari browser profiles, you have to add the combination of your authentication method and the new browser as a new device. See: <a href="#_add_a_device"><code>Add a device</code></a>. Note that on iOS, in contrast to OS X, authentication works across browsers.</p>
+<p>OS Xでは、Safari を使った認証は、ブラウザのプロファイルとリンクしています。別のブラウザで Dapp を認証したい場合や、複数の Safari ブラウザのプロファイルを使用している場合は、認証方法と新しいブラウザの組み合わせを、新しいデバイスとして追加する必要があります。詳しくは <a href="#デバイスの追加"><code>デバイスの追加</code></a> をご覧ください。
+なお、OS Xとは異なり、iOSでは、認証はブラウザ間で横断的に機能します。</p>
 </li>
 <li>
-<p>On OS X and iOS, clearing Safari&#8217;s browser history leads to the user&#8217;s registered WebAuthn keys being deleted from the secure enclave, and authentication with these keys is no longer possible.</p>
+<p>OS Xおよび iOS では、Safari のブラウザ履歴を消去すると、ユーザーが登録した WebAuthn キーが Secure Enclave から削除され、これらのキーを使った認証ができなくなります。</p>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -854,46 +854,46 @@
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-We highly recommend to set up recovery mechanisms so you won&#8217;t be locked out of any dapps that require the associated identity. How a recovery mechanism can be set up is described below.
+Identity を必要とする Dapps からロックアウトされないように、リカバリー手段を設定することを強くお勧めします。リカバリー手段の設定方法はこのページの下の方でご説明します。
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Firefox does not currently accept OS X with any device authentication method other than a security key.</p>
+<p>Firefox は現在、セキュリティキー以外のデバイス認証方法が OS X ではサポートされていません。</p>
 </li>
 <li>
-<p>Windows Hello authentication is supported in Chrome, Edge, and Firefox.</p>
+<p>Windows Hello 認証は、Chrome、Edge、Firefox でサポートされています。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_an_identity_anchor"><a class="anchor" href="#_create_an_identity_anchor"></a>Create an Identity Anchor</h2>
+<h2 id="_identity_anchor_の作成"><a class="anchor" href="#_identity_anchor_の作成"></a>Identity Anchor の作成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can securely access dapps that run on the Internet Computer and use Internet Identity for authentication, provided you have created an Identity Anchor and added one or more devices to it. Based on the Identity Anchor you provide to Internet Identity for authentication, it will create a different pseudonym for each dapp that you access for you. You can create as many sets of pseudonyms as you want by creating new Identity Anchors.</p>
+<p>Identity Anchor を作成し、そこに 1 つ以上のデバイスを追加していれば、ユーザーの認証方法として Internet Identity を使用している Internet Computer の Dapps に安全にアクセスすることができます。認証のために Internet Identity に提供した Identity Anchor に基づいて、Internet Identity はアクセスする各 Dapp に対して異なる偽名を作成します。新しい Identity Anchor を作成することで、必要な数の偽名を作成することができます。</p>
 </div>
 <div class="paragraph">
-<p>When you access a dapp, you are directed to Internet Identity and asked to enter an Identity Anchor to authenticate. If you do not have an Identity Anchor, you need to first create one:</p>
+<p>Dapp にアクセスすると、Internet Identity に誘導され、Identity Anchor を入力して認証するよう求められます。Identity Anchor を持っていない場合は、以下の手順で Identity Anchor を作成する必要があります:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Click <strong>Create a new Internet Identity Anchor</strong>.</p>
+<p>"<strong>Create a new Internet Identity Anchor</strong>" をクリックします.</p>
 </li>
 <li>
-<p>Enter a name for the authentication method you would like to use to create an Identity Anchor. For example: iPhone, or YubiKey.</p>
+<p>Identity Anchor の作成に使用する認証方法の名前を入力します。例：iPhone、YubiKey など。</p>
 </li>
 <li>
-<p>Create the Identity Anchor using your device as an authentication method.</p>
+<p>認証方法としてデバイスを使用して Identity Anchor を作成します。</p>
 <div class="paragraph">
-<p>Choose to create the Identity Anchor using either a dedicated security key, or with an authentication method of the device you are using, if that option is available.</p>
+<p>専用のセキュリティキーを使用するか、使用しているデバイスの認証方法を使用するかのどちらの方法で Identity Anchor を作成するかを選択します（画面上に選択肢が出た場合）。</p>
 </div>
 <div class="paragraph">
-<p>For example, if your device has biometrics enabled to unlock it, you might see the option to use those as your authentication method. You can also use the password that unlocks your computer or a pin that unlocks your phone, depending on the device you’re using.</p>
+<p>例えば、デバイスのロック解除に生体認証が有効になっている場合、認証方法としてそれらを使用するオプションが表示されることがあります。また、お使いのデバイスによっては、コンピュータのロックを解除するパスワードや、携帯電話のロックを解除する PIN 番号を使用することもできます。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -902,37 +902,40 @@ We highly recommend to set up recovery mechanisms so you won&#8217;t be locked o
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a best practice, use at least one dedicated security key per Identity Anchor. You can then add other authentication methods, such as your phone, your computer, or a second security key you actively use. Store the first key in a safe place for the event that you are unable to to use your preferred device. When you use a dedicated security key, you can authenticate to any dapp running on the Internet Computer using any browser, with any device that recognizes it.
+ベストプラクティスとして、Identity Anchor ごとに少なくとも1つの専用のセキュリティキーを使用してください。
+その後、電話やコンピュータなどの他の認証方法や、自分がよく使う第 2 のセキュリティキーを追加することができます。
+第 1 のセキュリティキーは、使用するデバイスを使用できない場合に備えて、安全な場所に保管してください。
+専用のセキュリティキーを使用すると、Internet Computer 上で動作している任意の Dapp に対して、任意のブラウザを使用して、それを認識する任意のデバイスで認証を行うことができます。
  <br>
-If you do not have a security key, you can alternatively also generate a key from a seed phrase and add that key as recovery mechanism (see last step below).
+セキュリティキーをお持ちでない場合は、シードフレーズからキーを生成し、そのキーをリカバリーメカニズムとして追加することもできます（下記の最後のステップを参照してください）。
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Authenticate the device.</p>
+<p>デバイスを認証してください。</p>
 <div class="paragraph">
-<p>Authenticate using the method you selected when prompted.</p>
+<p>画面が表示されたら、選択した方法で認証してください。</p>
 </div>
 </li>
 <li>
-<p>Click <strong>Confirm</strong>.</p>
+<p>"<strong>Confirm</strong>" をクリックしてください。</p>
 <div class="paragraph">
-<p>Your Identity Anchor is not created until you perform this step.</p>
+<p>この手順を実行するまでは、Identity Anchor は作成されません。</p>
 </div>
 <div class="paragraph">
-<p>At this point, depending on the device you are using, you might be asked to either use your device authentication method, or to use your security key. If you are registering for the first time, choose to use the device authentication.</p>
+<p>ここで、お使いの機器によっては、「端末認証」または「セキュリティキー」のいずれかを選択する画面が表示されます。初めて登録する場合は、「端末認証」を選択してください。</p>
 </div>
 </li>
 <li>
-<p>Record your Identity Anchor.</p>
+<p>Identity Anchor を記録してください。</p>
 <div class="paragraph">
-<p>When your device has been added, you’ll receive an Identity Anchor.</p>
+<p>デバイスの追加が完了すると、Identity Anchor が表示されます。</p>
 </div>
 <div class="paragraph">
-<p>Your Identity Anchor is represented by a unique number. It is not a secret and you should store it in multiple places so you don&#8217;t lose it.
-Your browser will remember your Identity Anchor, but you will need it when you authenticate on a different computer, change your browser profile, or if you clear your browser state.</p>
+<p>Identity Anchor は、固有の番号で表されます。これは秘匿すべき番号ではありませんので、紛失しないように複数の場所に保管してください。
+ブラウザは Identity Anchor を記憶していますが、別のコンピュータで認証を行う場合や、ブラウザのプロファイルを変更する場合、またはブラウザの状態をクリアする場合に必要になります。</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -941,29 +944,34 @@ Your browser will remember your Identity Anchor, but you will need it when you a
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-If you forget your Identity Anchor and are logged out of all devices, you will no longer be able to authenticate with Internet Identity, unless you have set up account recovery using a seed phrase in the next step. So don&#8217;t lose your Identity Anchor!
+Identity Anchor を忘れ、すべてのデバイスからログアウトした場合、シードフレーズを使用してアカウントのリカバリーを設定していない限り、Internet Identity での認証ができなくなります。
+Identity Anchor を紛失しないようにしてください。
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Click <strong>Continue</strong>.</p>
+<p>"<strong>Continue</strong>" をクリックしてください。</p>
 </li>
 <li>
-<p>Add a recovery mechanism to an Identity Anchor</p>
+<p>Identity Anchor へのリカバリ設定を行います。</p>
 <div class="paragraph">
-<p>In addition to adding multiple devices and using security keys, you can set up account recovery at the prompt by clicking <strong>Add a recovery mechanism to an Identity Anchor</strong>.</p>
+<p>複数のデバイスの追加やセキュリティキーの使用に加えて、"<strong>Add a recovery mechanism to an Identity Anchor</strong>" をクリックすると、画面上でアカウントのリカバリーを設定することができます。</p>
 </div>
 <div class="paragraph">
-<p>On the next screen, you can select one of the following options:</p>
+<p>次の画面では、以下のいずれかのオプションを選択できます:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Seed Phrase</strong></p>
+<p><strong>シードフレーズ</strong></p>
 <div class="paragraph">
-<p>Select this option to generate a cryptographically-secure seed phrase that you can use to recover an Identity Anchor. Make sure you store this phrase somewhere safe and it is known only to you, as anyone who knows the seed phrase will be able to take full control of this Identity Anchor. <strong>Note that the first string in your seed phrase is the Identity Anchor</strong>. You will need this number to begin the recovery process.</p>
+<p>このオプションを選択すると、Identity Anchor を復元するために使用できる、暗号的に安全なシードフレーズを生成することができます。
+このフレーズは安全な場所に保管し、自分だけが知っているようにしてください。
+シードフレーズを知っている人は、この Identity Anchor を完全に制御することができます。
+<strong>シードフレーズの最初の文字列が Identity Anchor</strong> であることに注意してください。
+復旧作業を開始するには、この番号が必要です。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -972,22 +980,25 @@ If you forget your Identity Anchor and are logged out of all devices, you will n
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You must click the <strong>copy</strong> button and then <strong>continue</strong> or the seed phrase will not be registered.
+"<strong>Copy</strong>" ボタンをクリックしてから "<strong>Continue</strong>" ボタンをクリックしないと、シードフレーズが登録されません。
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p><strong>Security Key</strong></p>
+<p><strong>セキュリティキー</strong></p>
 <div class="paragraph">
-<p>Use a dedicated security key to recover an Identity Anchor in the event that you lose access to your authorized devices. This key must be different from the ones you actively use to authenticate to Internet Identity using the given Identity Anchor. Keep this key somewhere safe and ensure it is available only to you. As above, anyone in possession of this security key will be able to take full control of your Identity Anchor. You will need to know the Identity Anchor to begin recovery.</p>
+<p>認可されたデバイスへのアクセスができなくなった場合、Identity Anchor をリカバリするために専用のセキュリティキーを使用します。このキーは、指定された Identity Anchor を使用して Internet Identity を認証する際に頻繁に使用するキーとは異なるものでなければなりません。
+このキーは安全な場所に保管し、自分だけが利用できるようにしてください。
+上記のとおり、このセキュリティキーを持っている人は、自分の Identity Anchor を完全に制御することができます。
+リカバリーを開始するには、Identity Anchor を知っている必要があります。</p>
 </div>
 </li>
 <li>
-<p><strong>Set recovery later</strong></p>
+<p><strong>リカバリーを後で設定する</strong></p>
 <div class="paragraph">
-<p>You can skip adding an account recovery mechanism and choose to set it up later from the Internet Identity landing page.</p>
+<p>アカウントのリカバリーメカニズムの設定を省略し、Internet Identity のトップページから後で設定することを選択できます。</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -996,7 +1007,7 @@ You must click the <strong>copy</strong> button and then <strong>continue</stron
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-However, we highly recommend setting up a recovery mechanism so you don&#8217;t lose access to this account.
+アカウントへのアクセスを失わないように、リカバリーメカニズムを設定することを強くお勧めします。
 </td>
 </tr>
 </table>
@@ -1006,10 +1017,10 @@ However, we highly recommend setting up a recovery mechanism so you don&#8217;t 
 </div>
 </li>
 <li>
-<p>Click <strong>Continue</strong></p>
+<p>"<strong>Continue</strong>" をクリックしてください。</p>
 <div class="paragraph">
-<p>On the next screen, you will see your Identity Anchor and your registered authentication methods.
-From here, you can add and remove authentication methods, and set up additional account recovery methods.</p>
+<p>次の画面では、Identity Anchor と登録されている認証方法が表示されます。
+認証方法の追加や削除、アカウントのリカバリー方法の追加設定を行うことができます。</p>
 </div>
 </li>
 </ol>
@@ -1017,10 +1028,11 @@ From here, you can add and remove authentication methods, and set up additional 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_add_a_device"><a class="anchor" href="#_add_a_device"></a>Add a device</h2>
+<h2 id="_デバイスの追加"><a class="anchor" href="#_デバイスの追加"></a>デバイスの追加</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The workflow for adding a device can vary depending on what devices you’ve already added to an Identity Anchor. For example, if you first authorized your computer to create the Identity Anchor, and you’d like to add your phone as a second authentication method, you must be able to authenticate your phone on the authorized computer. You must always be able to authorize the device you want to add by using a device that is already authorized.</p>
+<p>デバイスを追加するためのワークフローは、Identity Anchor に既に追加したデバイスに依存します。例えば、もしあなたが Identity Anchor を作成するためにコンピュータを最初に認証し、その後携帯電話を新たな認証方法として追加したい場合、認証済みのコンピュータ上で携帯電話を認証する必要があります。
+すでに認証されているデバイスを使用し、追加したいデバイスを常に認証できるようにする必要があります。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1029,35 +1041,35 @@ From here, you can add and remove authentication methods, and set up additional 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you start the add device flow on a Windows device that supports Windows Hello authentication, the browser first asks you to add Windows Hello as the new authentication method. If you have registered the device with Windows Hello already and would like to add e.g. a security key instead, you need to cancel the Windows Hello prompt. Then the browser lets you choose a different authentication method, such as a security key.
+Windows Hello 認証をサポートしている Windows デバイス上でデバイスの追加を開始すると、ブラウザは最初に新しい認証方法として Windows Hello を追加するように求めます。Windows Hello 認証をサポートしている Windows デバイス上で新たなデバイスの追加を開始すると、ブラウザは最初に新しい認証方法として Windows Hello を追加するように求めます。すでに Windows Hello でデバイスを登録していて、代わりにセキュリティキーなどを追加したい場合は、Windows Hello の操作画面をキャンセルする必要があります。その後、セキュリティキーなどの別の認証方法をブラウザで選択することができます。
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>If you are adding a new device, such as a new security key, or a new browser profile using a computer or phone that has already been added as an authentication method, you can do this easily and directly from within Internet Identity Management.</p>
+<p>セキュリティキーなどの新しいデバイスを追加する場合や、すでに認証方法となっているコンピュータや携帯電話を使って新しいブラウザのプロファイルを追加する場合は、Internet Identity Management から直接、簡単に行うことができます。</p>
 </div>
 <div class="paragraph">
-<p>Other workflows can be more complex. For example, to add your phone&#8217;s unlock methods as an additional authentication method using your authenticated computer, proceed as follows:</p>
+<p>その他のワークフローはより複雑になります。例えば、認証済みのコンピューターを使って携帯電話のアンロック方法を認証方法として追加するには、以下のような手順となります:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the Internet Identity web page in your phone’s browser.</p>
+<p>Internet Identity のページを携帯電話のブラウザから開きます。</p>
 </li>
 <li>
-<p>Click <strong>Already have an anchor but using a new device?</strong></p>
+<p>"<strong>Already have an anchor but using a new device?</strong>" をクリックします。</p>
 </li>
 <li>
-<p>Enter the Identity Anchor you&#8217;d like to use and and click <strong>Continue</strong>.</p>
+<p>使用したい Identity Anchor を入力し、"<strong>Continue</strong>" をクリックします。</p>
 </li>
 <li>
-<p>Click <strong>GET STARTED</strong>, or <strong>Continue</strong>, depending on the phone you are using.</p>
+<p>使用している携帯電話によって "<strong>GET STARTED</strong>" か "<strong>Continue</strong>" のどちらかが表示されますのでクリックします。</p>
 </li>
 <li>
-<p>Select <strong>Use this device with screen lock</strong>.</p>
+<p>"<strong>Use this device with screen lock</strong>" を選択します。</p>
 <div class="paragraph">
-<p>You will be asked to unlock the device.</p>
+<p>デバイスをアンロックするように促されます。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1066,25 +1078,25 @@ If you start the add device flow on a Windows device that supports Windows Hello
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To use the screen lock option, you have to have screen lock activated on your phone.
+画面ロックを認証方法として使用する場合、携帯電話側でスクリーンロックを有効化しておく必要があります。
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Authorize your phone.</p>
+<p>携帯電話を認証します。</p>
 <div class="paragraph">
-<p>After you’ve unlocked your phone, you will be provided with a URL and a QR code. You must use the URL or QR code in a browser in the computer that has already been authorized. For example, you can copy the URL and email it to yourself, then paste it into a browser on the computer.</p>
+<p>ロックを解除すると、URL と QR コードが表示されます。URLやQRコードは、すでに認証されているパソコンのブラウザで使用する必要があります。例えば、URL をコピーしてメールで自分のパソコンに送り、ブラウザに貼り付けるといった手順を踏んでください。</p>
 </div>
 </li>
 <li>
-<p>In the browser on the computer that has already been authorized, open the above link, enter your Identity Anchor, click <strong>Authenticate</strong> and authenticate using an existing authentication method.</p>
+<p>コンピュータのブラウザで上記のリンクを開き、Identity Anchor を入力して、<strong>Authenticate</strong> をクリックし、既に登録されている認証方法を使って認証してください。</p>
 </li>
 <li>
-<p>Link your phone to your identity.</p>
+<p>携帯電話と Identity をリンクさせます。</p>
 <div class="paragraph">
-<p>If you’re sure that the link you pasted in the browser came from you, click <strong>Yes, add new device</strong>.</p>
+<p>先ほどブラウザに貼り付けた URL が確実に自分のものであることを確認して、"<strong>Yes, add new device</strong>" をクリックします。</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1093,16 +1105,16 @@ To use the screen lock option, you have to have screen lock activated on your ph
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Never add authentication methods with links that were given to you or that you are not sure you can trust. If you add an attacker&#8217;s device, they will be able to take over this Identity Anchor.
+誰かから教えられたリンクや、信頼できるか不明なリンクで認証方法を追加することは、絶対に行わないでください。攻撃者のデバイスを追加してしまうと、この Identity Anchor が乗っ取られてしまいます。
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Give the device profile a name and click <strong>Add Device</strong>.</p>
+<p>デバイスの名前を入力し、"<strong>Add Device</strong>" をクリックします。</p>
 <div class="paragraph">
-<p>Your phone will be redirected to the login page, and you can now use it with your Identity Anchor to authenticate.</p>
+<p>携帯電話の画面はログインページにリダイレクトし、Identity Anchor を認証に使用することができるようになります。</p>
 </div>
 </li>
 </ol>
@@ -1114,7 +1126,7 @@ Never add authentication methods with links that were given to you or that you a
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-You should add as many devices as possible to prevent you from losing access to dapps in case you lose a device. Again, the best way to deal with accidental loss is to set up a recovery method. Also, make sure to keep all added authentication methods safe and do not lose them, as a single authentication method gives access to the Identity Anchor.
+デバイスを紛失して Dapps へのアクセスができなくなるのを防止するために、できるだけ多くのデバイスを追加しておくべきです。繰り返しになりますが、過ってデバイスを紛失した場合に備え、リカバリー方法を設定することが最善の方法です。また、追加した複数の認証方法のうちの１つの方法で Identity Anchor へのアクセスが可能になるため、追加した認証方法はすべて保管し、紛失しないようにしてください。
 </td>
 </tr>
 </table>
@@ -1126,7 +1138,7 @@ You should add as many devices as possible to prevent you from losing access to 
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-If you lose a device, remove it from the authentication methods immediately and make sure that all added authentication methods are in your control, as an attacker may have added more methods in the meanwhile. Also, consider the Identity Anchor compromised starting from the time the device was lost until it was removed from the authentication methods.
+デバイスを紛失した場合は、攻撃者が認証方法を追加した可能性を考え、すぐにそのデバイスを認証方法から削除し、すべての認証方法が自分の管理下にあることを確認してください。また、デバイスを紛失してからそのデバイスを認証方法から外すまでの間、Identity Anchor が危険な状態であるということを認識してください。
 </td>
 </tr>
 </table>
@@ -1134,16 +1146,16 @@ If you lose a device, remove it from the authentication methods immediately and 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_recover_a_lost_identity"><a class="anchor" href="#_recover_a_lost_identity"></a>Recover a lost identity</h2>
+<h2 id="_紛失した_identity_の復旧"><a class="anchor" href="#_紛失した_identity_の復旧"></a>紛失した Identity の復旧</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When you create an Identity Anchor, you will be prompted to copy a cryptographically-secure seed phrase or to add a dedicated security key as recovery mechanism.</p>
+<p>Identity Anchor を作成する際には、暗号的に安全なシードフレーズをコピーするか、リカバリー方法として専用のセキュリティキーを追加するように画面上で促されます。</p>
 </div>
 <div class="paragraph">
-<p>You can choose to do this at any time, but note that if you lose an Identity Anchor or if you no longer have access to authorized devices, you will need the seed phrase or the recovery security key to recover the Identity Anchor. Without one of these, you will be locked out of any dapps that require the associated identity.</p>
+<p>これらの作業はいつ行っても良いですが、Identity Anchor を紛失した場合や、認証済みのデバイスにアクセスできなくなった場合には、Identity Anchor を復元するためのシードフレーズかセキュリティキーが必要になりますのでご注意ください。これらがないと、関連する Identity を必要とするすべての Dapps からロックアウトされてしまいます。</p>
 </div>
 <div class="paragraph">
-<p>If you have set up a recovery phrase or recovery security key for an Identity Anchor, you can regain access to it by clicking <strong>Lost access and want to recover?</strong> from the Internet Identity landing page.</p>
+<p>Identity Anchor にリカバリーフレーズやセキュリティキーを設定していれば、Internet Identity のトップページで "<strong>Lost access and want to recover?</strong>" をクリックすることで、そのアンカーへのアクセスを復旧することができます。</p>
 </div>
 </div>
 </div>
