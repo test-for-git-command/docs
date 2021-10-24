@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Introduction to working with Rust :: Dfinity 日本語ドキュメント</title>
+    <title>Rust を使うには :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/rust-guide/rust-intro.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -829,14 +829,14 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Introduction to working with Rust</h1>
+<h1 class="page">Rust を使うには</h1>
 <div class="paragraph">
-<p>Rust is a powerful and type sound modern programming language with an active developer community.
-Because Rust compiles to WebAssembly, it offers a rich development environment for writing dapps to run on the Internet Computer.
-To help pave the way for writing dapps in Rust that can be deployed on the Internet Computer, DFINITY provides some tools to simplify the process.</p>
+<p>Rust は、強力で型安全なモダンプログラミング言語で、活発な開発者コミュニティを有しています。
+Rust は WebAssembly にコンパイルされるため、Internet Computer 上で動作する Dapps を開発するための豊富な開発環境を提供しています。
+Internet Computer 向けの Rust での Dapps 作成を支援するために、DFINITY は開発プロセスを簡略化するツールをいくつか提供しています。</p>
 </div>
 <div class="paragraph">
-<p>Collectively, these tools are referred to as the DFINITY Canister Development Kit (CDK) for Rust and consist of the following main libraries:</p>
+<p>このツールを総称して DFINITY Canister Development Kit (CDK) for Rust と呼びます。これは、以下の主要ライブラリで構成されています:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -845,39 +845,39 @@ To help pave the way for writing dapps in Rust that can be deployed on the Inter
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Package</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">パッケージ名</th>
+<th class="tableblock halign-left valign-top">概要</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-types</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>ic-types</code> crate defines the types used to communicate with the decentralized Internet Computer, and when building dapps to be deployed as canister smart contracts on the Internet Computer.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-types</code> クレートは、分散型の Internet Computer と通信する際や、Internet Computer 上で Canister スマートコントラクトとしてデプロイされる Dapps を構築する際に使用される型定義を行います。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-agent</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>ic-agent</code> library enables direct communication with the Internet Computer.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-agent</code> ライブラリは、Internet Computer とのダイレクトなコミュニケーションを可能にします。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-utils</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>ic-utils</code> library provides utilities for managing calls and dapps deployed as canister smart contracts.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-utils</code> ライブラリは、Canister スマートコントラクトとしてデプロイされた関数の呼び出しや Dapps を管理するためのユーティリティです。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-cdk</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>ic-cdk</code> provides the core methods that enable Rust programs to interact with the Internet Computer system API. This library serves as the runtime core of the Rust CDK.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-cdk</code> は、Rust プログラムが Internet Computer システムの API と対話可能なコアメソッドを提供します。Rust CDKのランタイムコアとして機能します。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-cdk-macros</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>ic-cdk-macros</code> library defines the procedural macros that facilitate building operation endpoints and APIs. This library includes macros for <code>update</code>, <code>query</code>, <code>import</code> and other important operations.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-cdk-macros</code> ライブラリは、操作用のエンドポイントや API の構築を容易にする、手続き的マクロを定義します。このライブラリは、<code>update</code>, <code>query</code>、<code>import</code> やその他の重要な操作のためのマクロを含みます。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-cdk-optimizer</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>ic-cdk-optimizer</code> is a helper library used to reduce the size of WebAssembly modules.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ic-cdk-optimizer</code> は、WebAssembly モジュールのサイズを小さくするためのヘルパーライブラリです。</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>The following diagram provides a simplified view of the Rust Canister Development Kit (CDK) building blocks from the lowest to highest level of abstraction.</p>
+<p>下のダイアグラムは、Rust Canister Development Kit (CDK) の構成ブロックを抽象度の低いものから高いものへと簡略化して図示したものです。</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/Rust-building-blocks.svg" alt="Rust building blocks"></span></p>
