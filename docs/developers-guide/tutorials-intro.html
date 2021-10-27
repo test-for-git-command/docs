@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Tutorials :: Dfinity 日本語ドキュメント</title>
+    <title>チュートリアル :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/developers-guide/tutorials-intro.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -819,19 +819,19 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Developer Center</a></li>
-    <li><a href="tutorials-intro.html">Tutorials</a></li>
+    <li><a href="tutorials-intro.html">チュートリアル</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/developers-guide/pages/tutorials-intro.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Tutorials</h1>
+<h1 class="page">チュートリアル</h1>
 <div class="paragraph">
-<p>The <a href="../quickstart/quickstart-intro.html">Quick start</a> provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.</p>
+<p><a href="../quickstart/quickstart-intro.html">クイックスタート</a> では、プロジェクトディレクトリやサンプルコードの中身を探索せずに、新しいプロジェクトを作成しデプロイするための基本的なワークフローを簡単に紹介しました。</p>
 </div>
 <div class="paragraph">
-<p>Next, we’ll explore writing a few simple programs to give you hands-on experience creating programs that run on the Internet Computer プラットフォーム.</p>
+<p>次に、Internet Computer プラットフォーム 上で動作するプログラムの作成を実践的に体験するために、いくつかの単純なプログラムを書いていきましょう。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -840,62 +840,59 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Most of these tutorials illustrate how to write dapps using the Motoko programming language.
-For additional examples of dapps written in other languages, see the DFINITY <a href="https://github.com/dfinity/examples">examples</a> repository.
+ほとんどのチュートリアルでは、 Motoko プログラミング言語を使って Dapps の書き方を説明しています。別の言語で記述された Dapps の例は、 DFINITY  <a href="https://github.com/dfinity/examples">examples</a> レポジトリを確認してください。
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The following tutorials introduce the basics for writing dapps that run on the Internet Computer プラットフォーム:</p>
+<p>以下に続くチュートリアルでは、 Internet Computer プラットフォーム 上で動作する Dapps の書き方の基礎を紹介しています。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="tutorials/explore-templates.html">Explore the default project</a> takes a closer look at the work flow for creating projects by exploring the default files and folders that are added to your workspace when you create a new project.</p>
+<p><a href="tutorials/explore-templates.html">デフォルトプロジェクトを探索する</a> では、新しくプロジェクトを作るときに、初めからワークスペースに追加されているファイルやフォルダを調査することで、プロジェクトを制作する一連の流れを詳しく見ていきます。</p>
 </li>
 <li>
-<p><a href="tutorials/define-an-actor.html">Query using an actor</a> highlights how to replace the typical <code>print</code> function usually defined in a "Hello, World!" canister by defining an actor (object) with a <code>hello</code> function.</p>
+<p><a href="tutorials/define-an-actor.html">Actor を使って処理を要求する</a> では、 "Hello, World!" Canister で頻繁に定義している典型的な <code>print</code> 関数を <code>hello</code> 関数を備えた Actor （オブジェクト）で置き換える方法に焦点を当てています。</p>
 </li>
 <li>
-<p><a href="tutorials/hello-location.html">Pass text arguments</a> introduces different ways you can pass arguments to a function using the command-line in a terminal shell.</p>
+<p><a href="tutorials/hello-location.html">文字列の引数を渡す</a> では、ターミナルのコマンドラインで使う関数に引数を渡す複数の方法を紹介します。</p>
 </li>
 <li>
-<p><a href="tutorials/counter-tutorial.html">Increment a natural number</a> guides you through the process of writing a dapp that creates an actor with functions to increment and return the value of a counter.</p>
+<p><a href="tutorials/counter-tutorial.html">インクリメントする</a> では、インクリメントをしてカウンターの値を返す関数を持つ Actor を作成する Dapps を書くプロセスを一通り紹介します。</p>
 </li>
 <li>
-<p><a href="tutorials/calculator.html">Use integers in calculator functions</a> shows you how to write a simple calculator dapp for more practice working with Motoko and to learn more about how you can customize your project environment.</p>
+<p><a href="tutorials/calculator.html">関数での計算で整数を使う</a> では、 Motoko での実践的で単純な計算を行う Dapp の書き方とプロジェクト環境のカスタマイズ方法の学び方を示します。</p>
 </li>
 <li>
-<p><a href="tutorials/phonebook.html">Import library modules</a> illustrates how to import and use a few basic Motoko base library functions for working with key-value pairs in a list.</p>
+<p><a href="tutorials/phonebook.html">ライブラリのモジュールを導入する</a> では、連想配列で動作する基礎的な Motoko ライブラリの関数の導入と利用の方法を示します。</p>
 </li>
 <li>
-<p><a href="tutorials/multiple-actors.html">Use multiple actors</a> describes how to include multiple unrelated actors in a single project to illustrate how you can compile multiple canisters for the same project.</p>
+<p><a href="tutorials/multiple-actors.html">多様な Actors を使用する</a> では、同じプロジェクトで複数の Canisters をコンパイルする方法を示すために、複数の関連しない Actors を単一のプロジェクトに含める方法を説明します。</p>
 </li>
 <li>
-<p><a href="tutorials/custom-frontend.html">Customize the front-end</a> illustrates using a simple React framework to create a new front-end for the default sample canister and guides you through some basic modifications to customize the interface displayed.
-If you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.</p>
+<p><a href="tutorials/custom-frontend.html">フロントエンドをカスタマイズする</a> では、デフォルトのサンプル Canister のフロントエンドを、単純な React フレームワークで作成する方法を説明します。もし既に CSS, HTML, JavaScript, React, または別のフレームワークを使ったユーザーインターフェースの組み立て方を知っているのであれば、このチュートリアルを飛ばしてしまって構いません。</p>
 </li>
 <li>
-<p><a href="tutorials/my-contacts.html">Add a stylesheet</a> illustrates how to add a stylesheet when you use React to create a new front-end for your project.
-If you already know how to add stylesheets to React, you can skip this tutorial.</p>
+<p><a href="tutorials/my-contacts.html">スタイルシートを追加する</a> では、 React を使用してプロジェクトのフロントエンドを作成するときのスタイルシートを導入する方法を説明します。もし既に React へのスタイルシートの導入の仕方を知っているのであれば、このチュートリアルを飛ばしてしまって構いません。</p>
 </li>
 <li>
-<p><a href="tutorials/intercanister-calls.html">Make inter-canister calls</a> illustrates how to make simple calls to functions defined in one canister from another canister in the same project.</p>
+<p><a href="tutorials/intercanister-calls.html">内部の Canister をコールする</a> では、同じプロジェクトの別の Canister からもう一つの Canister の関数を呼び出す単純な方法を説明します。</p>
 </li>
 <li>
-<p><a href="tutorials/scalability-cancan.html">Create scalable apps</a> describes using multiple canisters to create applications that scale.</p>
+<p><a href="tutorials/scalability-cancan.html">拡張性のあるアプリケーションを作成する</a> では、拡張できるアプリケーションを作成する複数の Canisters の使い方を説明します。</p>
 </li>
 <li>
-<p><a href="tutorials/access-control.html">Add access control with identities</a> describes how to create and switch between multiple user identities.</p>
+<p><a href="tutorials/access-control.html"> ID を用いてアクセス権限を与える</a> では、複数のユーザー ID を作成して切り替える方法を説明します。</p>
 </li>
 <li>
-<p><a href="tutorials/simple-cycles.html">Accept cycles from a wallet</a> illustrates how to accept cycles sent from the default wallet canister.</p>
+<p><a href="tutorials/simple-cycles.html">ウォレットから Cycles を受け取る</a> では、デフォルトのウォレットの Canister から送られる Cycles を受け取る方法を説明します。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Additional tutorials covering more advanced dapps and more detailed examples of how to use the basic building blocks are available in the <a href="https://github.com/dfinity/examples">examples</a> repository and <a href="../language-guide/motoko.html"><em>Motoko Programming Language Guide</em></a>.</p>
+<p>さらに発展的な Dapps や基礎的なブロック作成を使用する詳細な例を網羅している追加のチュートリアルが、 <a href="https://github.com/dfinity/examples">examples</a> レポジトリと <a href="../language-guide/motoko.html"><em>Motoko プログラミング言語ガイド</em></a> で利用可能です。</p>
 </div>
 </article>
 <aside class="toc sidebar">
