@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Incrementing a counter :: Dfinity 日本語ドキュメント</title>
+    <title>カウンターのインクリメント :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/rust-guide/rust-counter.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -830,137 +830,117 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Incrementing a counter</h1>
-<div id="toc" class="toc">
-<div id="toctitle">TUTORIAL - SIMPLE PERSISTENCE</div>
-<ul class="sectlevel1">
-<li><a href="#before-you-begin">Before you begin</a></li>
-<li><a href="#_create_a_new_project">Create a new project</a></li>
-<li><a href="#_modify_the_default_configuration">Modify the default configuration</a>
-<ul class="sectlevel2">
-<li><a href="#_edit_the_default_canister_settings">Edit the default canister settings</a></li>
-<li><a href="#_add_a_cargo_toml_file_to_the_project">Add a Cargo.toml file to the project</a></li>
-<li><a href="#_add_rust_files_to_the_source_directory">Add Rust files to the source directory</a></li>
-<li><a href="#_replace_the_default_dapp">Replace the default dapp</a></li>
-</ul>
-</li>
-<li><a href="#_add_an_interface_description_file">Add an interface description file</a></li>
-<li><a href="#_start_the_local_canister_execution_environment">Start the local canister execution environment</a></li>
-<li><a href="#_register_build_and_deploy_your_project">Register, build, and deploy your project</a></li>
-<li><a href="#_call_functions_and_test_the_dapp">Call functions and test the dapp</a></li>
-<li><a href="#_stop_the_local_canister_execution_environment">Stop the local canister execution environment</a></li>
-</ul>
-</div>
+<h1 class="page">カウンターのインクリメント</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this tutorial, you are going to write a dapp that provides a few basic functions to increment a counter and illustrates the persistence of a value.</p>
+<p>このチュートリアルでは、いくつかの簡単な関数によってカウンターの値をインクリメントする Dapp を作り、値の永続性について説明します。</p>
 </div>
 <div class="paragraph">
-<p>For this tutorial, the dapp declares a <code>COUNTER</code> as a mutable variable to contain a natural number that represents the current value of the counter.
-This dapp supports the following functions:</p>
+<p>この Dapp は、カウンターの値（自然数）を格納する可変型変数として、 <code>COUNTER</code> を宣言しています。
+ここで以下の関数を考えます：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>increment</code> function updates the current value, incrementing by 1 with no return value.</p>
+<p><code>increment</code> : 現在の値を更新する関数です。値を１ずつ増加させ、戻り値はありません。</p>
 </li>
 <li>
-<p>The <code>get</code> function is a simple query that returns the current value of the counter.</p>
+<p><code>get</code> : カウンターの現在の値を返すシンプルなクエリ関数です。</p>
 </li>
 <li>
-<p>The <code>set</code> function updates the current value to the numeric value you specify as an argument.</p>
+<p><code>set</code> : 引数で指定した数値にカウンターの値を更新する関数です。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister smart contract.
-By calling the function to increment a value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.</p>
+<p>このチュートリアルでは、Canister スマートコントラクトにデプロイされた Canister の関数を呼び出して、カウンターの値をインクリメントする簡単な例を示します。
+値を増加させる関数を複数回呼び出すことで、呼び出しの間に変数の値が変わらないこと（値の永続性）を確認できます。</p>
 </div>
 <div class="paragraph">
-<p>Like the other sample dapps, this tutorial demonstrates a simple, but realistic, workflow in which you perform the following steps:</p>
+<p>他のサンプル Dapps と同じように、このチュートリアルはシンプルでありながら現実的なワークフローのデモンストレーションとなっています:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Create a new project.</p>
+<p>新しいプロジェクトを作成します。</p>
 </li>
 <li>
-<p>Write a dapp that compiles into a WebAssembly module.</p>
+<p>WebAssembly モジュールにコンパイルされる Dapp を書きます。</p>
 </li>
 <li>
-<p>Deploy the canister on the local canister execution environment.</p>
+<p>ローカル Canister 実行環境 に Canister をデプロイします。</p>
 </li>
 <li>
-<p>Invoke the canister smart contract methods to increment then read the value of a counter.</p>
+<p>Canister スマートコントラクトのメソッドを呼び出して、カウンターの値をインクリメントしたり読んだりします。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="before-you-begin"><a class="anchor" href="#before-you-begin"></a>Before you begin</h2>
+<h2 id="before-you-begin"><a class="anchor" href="#before-you-begin"></a>はじめる前に</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you start your project, verify the following:</p>
+<p>プロジェクトをはじめる前に、以下を確認します:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You have an internet connection and access to a shell terminal on your local macOS or Linux computer.</p>
+<p>インターネットに接続しており、ローカルの macOS または Linux コンピュータでターミナルにアクセスできること。</p>
 </li>
 <li>
-<p>You have downloaded and installed the Rust programming language and Cargo as described in the <a href="https://doc.rust-lang.org/book/ch01-01-installation.html">Rust installation instructions</a> for your operating system.</p>
+<p><a href="https://doc.rust-lang.org/book/ch01-01-installation.html">Rust のインストール方法</a> にあるように、Rust プログラミング言語と Cargo が OS にダウンロードされ、インストールされていること。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The Rust tool chain must be at version 1.46.0, or later.</p>
+<p>Rust のバージョンは 1.46.0 より新しい必要があります。</p>
 </div>
 </li>
 <li>
-<p>You have downloaded and installed the DFINITY Canister Software Development Kit (SDK) package as described in <a href="../quickstart/local-quickstart.html#download-and-install">Download and install</a>.</p>
+<p><a href="../quickstart/local-quickstart.html#download-and-install">ダウンロードとインストール</a>の説明に従って、DFINITY Canister Software Development Kit (SDK) パッケージのダウンロードとインストールが済んでいること。</p>
 </li>
 <li>
-<p>You have <code>cmake</code> installed. For example, use Homebrew with the following command:</p>
+<p><code>cmake</code> のインストールが済んでいること。例えば、macOS では Homebrew を使って以下のコマンドを実行します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">brew install cmake</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For instructions on how to install Homebrew, see the <a href="https://docs.brew.sh/Installation">Homebrew Documentation</a>.</p>
+<p>Homebrew をインストールする方法については、<a href="https://docs.brew.sh/Installation">Homebrew のドキュメント</a>を参照してください。</p>
 </div>
 </li>
 <li>
-<p>You have stopped any local canister execution environment processes running on your computer.</p>
+<p>コンピュータ上の ローカル Canister 実行環境 プロセスが停止していること。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If you aren’t sure how to open a new terminal shell on your local computer, run commands in a terminal, or how to check for and install packages, see <a href="../quickstart/newcomers.html">Preliminary steps for newcomers</a>.
-If you are comfortable meeting the prerequisites without instructions, continue to <a href="#_create_a_new_project">Create a new project</a>.</p>
+<p>ローカルコンピュータ上で新たなターミナルを開く方法や、ターミナルでコマンドを実行する方法や、インストールパッケージを確認する方法がわからない場合には、<a href="../quickstart/newcomers.html">初めての人のための準備</a>を参照してください。
+既に必要な前提条件を満たしている場合には、<a href="#create-a-new-project">新しいプロジェクトの作成</a> へと進んでください。</p>
 </div>
 <div class="paragraph">
-<p>This tutorial takes approximately 20 minutes to complete.</p>
+<p>このチュートリアルは、完走に約 20 分かかります。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_a_new_project"><a class="anchor" href="#_create_a_new_project"></a>Create a new project</h2>
+<h2 id="create-a-new-project"><a class="anchor" href="#create-a-new-project"></a>新しいプロジェクトの作成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a new project directory for this tutorial:</p>
+<p>新しいプロジェクトを作る手順は以下になります:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal shell on your local computer, if you don’t already have one open.</p>
+<p>ローカル PC でターミナルを開きます。</p>
 </li>
 <li>
-<p>Create a new project by running the following command:</p>
+<p>以下のコマンドを実行し、<code>rust_counter</code> という名前の新しいプロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new rust_counter</code></pre>
@@ -968,7 +948,7 @@ If you are comfortable meeting the prerequisites without instructions, continue 
 </div>
 </li>
 <li>
-<p>Change to your project directory by running the following command:</p>
+<p>以下のコマンドで、プロジェクトディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd rust_counter</code></pre>
@@ -980,53 +960,54 @@ If you are comfortable meeting the prerequisites without instructions, continue 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_default_configuration"><a class="anchor" href="#_modify_the_default_configuration"></a>Modify the default configuration</h2>
+<h2 id="_デフォルト設定の変更"><a class="anchor" href="#_デフォルト設定の変更"></a>デフォルト設定の変更</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the <a href="rust-quickstart.html">Hello, World! Rust CDK Quick Start</a>, you saw that creating a new project adds several template files to your project directory much like when you create a new Rust package using the <code>cargo new</code> command.
-You need to modify these default files and add some Rust-specific files to your project before you can build canister smart contracts that run on the Internet Computer.</p>
+<p><a href="rust-quickstart.html">Hello World! Rust CDK クイックスタート</a>では、（ちょうど <code>cargo new</code> で Rust の新しいパッケージを作るのと同じように）<code>dfx new</code> コマンドで新しいプロジェクトを作るとプロジェクトディレクトリにいくつかのテンプレートファイルが生成されることを学びました。
+Internet Computer 上で動作する Canister スマートコントラクトを構築する前に、いくつか Rust 固有のファイルをプロジェクトに追加する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To modify the default configuration for a Motoko project, you&#8217;ll need to complete the following steps:</p>
+<p>Motoko プロジェクトのデフォルト設定を変更するには、以下の手順を踏みます。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#_edit_the_default_canister_settings">Edit the default canister settings</a></p>
+<p><a href="#edit-the-default-canister-settings">Canister の初期設定の変更</a></p>
 </li>
 <li>
-<p><a href="#_add_a_cargo_toml_file_to_the_project">Add a Cargo.toml file to the project</a></p>
+<p><a href="#add-a-cargotoml-file-to-the-project">Cargo.toml ファイルの追加</a></p>
 </li>
 <li>
-<p><a href="#_add_rust_files_to_the_source_directory">Add Rust files to the source directory</a></p>
+<p><a href="#add-Rust-files-to-the-source-directory">src ディレクトリへの Rust ファイルの追加</a></p>
 </li>
 <li>
-<p><a href="#_replace_the_default_dapp">Replace the default dapp</a></p>
+<p><a href="#replace-the-default-dapp">デフォルト Dapp の置き換え</a></p>
 </li>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_edit_the_default_canister_settings"><a class="anchor" href="#_edit_the_default_canister_settings"></a>Edit the default canister settings</h3>
+<h3 id="edit-the-default-canister-settings"><a class="anchor" href="#edit-the-default-canister-settings"></a>Canister の初期設定の変更</h3>
 <div class="paragraph">
-<p>One of the template files included in your project directory is a default <code>dfx.json</code> configuration file.
-This file contains settings required to build a project for the Internet Computer much like the <code>Cargo.toml</code> file provides build and package management configuration details for Rust programs.
-You need to modify the default settings in the <code>dfx.json</code> configuration file to build Rust dapps that run on the Internet Computer as canister smart contracts.</p>
+<p>プロジェクトディレクトリに含まれるテンプレートファイルの一つに、<code>dfx.json</code> 設定ファイルがあります。
+このファイルには Internet Computer で動かすプロジェクトをビルドするために必要な設定が含まれています。
+これは <code>Cargo.toml</code> ファイルが Rust プログラムのビルドやパッケージ管理の設定を含んでいるのと同じです。
+Canister スマートコントラクトとして Rust の Dapps をビルドするには、<code>dfx.json</code> のデフォルト設定を変更する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To modify the <code>dfx.json</code> configuration file:</p>
+<p><code>dfx.json</code> を変更するには、以下のようにします:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Open the <code>dfx.json</code> configuration file in a text editor.</p>
+<p>テキストエディタで <code>dfx.json</code> を開きます。</p>
 </li>
 <li>
-<p>Replace the <code>canisters.rust_counter</code> settings with settings for building a canister using the <code>cargo build</code> command.</p>
+<p><code>canisters.rust_counter</code> の設定を、<code>cargo build</code> コマンドを使って Canister をビルドする設定に置き換えます。</p>
 <div class="paragraph">
-<p>For example, under the <code>rust_counter</code> key, replace the <code>main</code> and <code>type</code> settings with settings like these:</p>
+<p>例えば、<code>rust_counter</code> キーの下で、<code>main</code> と <code>type</code> を以下のように設定します:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1040,15 +1021,13 @@ You need to modify the default settings in the <code>dfx.json</code> configurati
 </div>
 </li>
 <li>
-<p>Remove all of the <code>rust_counter_assets</code> configuration settings from the file.</p>
+<p><code>rust_counter_assets</code> の設定をすべて削除します。</p>
 <div class="paragraph">
-<p>The sample dapp for this tutorial doesn&#8217;t use any front-end assets, so you can remove those settings from the configuration file.</p>
+<p>このチュートリアルの Dapp では、フロントエンドの <code>asset</code> を使用していないので、設定ファイルからこれらの設定を削除することができます。
+また、このチュートリアルでは <code>defaults</code> と <code>dfx</code> のキーも削除することができます。</p>
 </div>
-</li>
-<li>
-<p>Remove the <code>defaults</code> and <code>dfx</code> version settings because this tutorial doesn&#8217;t use these settings.</p>
 <div class="paragraph">
-<p>For example, the configuration file looks like this after you modify the settings:</p>
+<p>これらの不要な設定を削除した後の設定ファイルは次のようになります:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1073,36 +1052,33 @@ You need to modify the default settings in the <code>dfx.json</code> configurati
 </div>
 </li>
 <li>
-<p>Save your change and close the <code>dfx.json</code> file to continue.</p>
+<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_a_cargo_toml_file_to_the_project"><a class="anchor" href="#_add_a_cargo_toml_file_to_the_project"></a>Add a Cargo.toml file to the project</h3>
+<h3 id="add-a-cargotoml-file-to-the-project"><a class="anchor" href="#add-a-cargotoml-file-to-the-project"></a>Cargo.toml ファイルの追加</h3>
 <div class="paragraph">
-<p>Because we are creating this new Rust project for the Internet Computer using the DFINITY Canister SDK, you need to manually create some Rust-specific files in specific locations within the project directory.
-Let&#8217;s start by creating the <code>Cargo.toml</code> configuration file that describes the packages in our project.</p>
+<p>Internet Computer で動かすために DFINITY Canister SDK を使って新しい Rust プロジェクトを作っているので、プロジェクトディレクトリ内の特定の場所に Rust 固有のファイルを手動で作成する必要があります。
+まず、プロジェクトのパッケージ情報を書くための <code>Cargo.toml</code> ファイルを作成しましょう。</p>
 </div>
 <div class="paragraph">
-<p>To add a <code>Cargo.toml</code> configuration file for the project:</p>
+<p>プロジェクトに <code>Cargo.toml</code> ファイルを追加するには、以下のようにします：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Create a new file in the current directory named <code>Cargo.toml</code>.</p>
+<p>カレントディレクトリに <code>Cargo.toml</code> という名前のファイルを作成します。</p>
 </li>
 <li>
-<p>Open the <code>Cargo.toml</code> in a text editor.</p>
+<p>エキストエディタで <code>Cargo.toml</code> を開きます。</p>
 </li>
 <li>
-<p>Use the <code>[workspace]</code> key to specify the source file directory for your dapp.</p>
-<div class="paragraph">
-<p>For example:</p>
-</div>
+<p><code>[workspace]</code> キーを使って Dapp のソースファイルのディレクトリを指定します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[workspace]
@@ -1113,42 +1089,43 @@ members = [
 </div>
 </li>
 <li>
-<p>Save your changes and close the file to continue.</p>
+<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_rust_files_to_the_source_directory"><a class="anchor" href="#_add_rust_files_to_the_source_directory"></a>Add Rust files to the source directory</h3>
+<h3 id="add-Rust-files-to-the-source-directory"><a class="anchor" href="#add-Rust-files-to-the-source-directory"></a>src ディレクトリへの Rust ファイルの追加</h3>
 <div class="paragraph">
-<p>Creating a new project creates a default <code>src/rust_counter</code> directory with a template <code>main.mo</code>. We&#8217;ll replace this default dapp with a Rust library <code>lib.rs</code> package and <code>Cargo.toml</code> files.</p>
+<p>新しいプロジェクトを作成すると、<code>src/rust_counter</code> ディレクトリが作成され、テンプレートとして <code>main.mo</code> が作成されます。
+このデフォルトの Dapp を、Rust の <code>lib.rs</code> パッケージと <code>Cargo.toml</code> ファイルで置き換えていきます。</p>
 </div>
 <div class="paragraph">
-<p>To prepare the source directory with Rust files:</p>
+<p><code>src</code> ディレクトリに Rust ファイルを用意するのは、以下の手順となります:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are in the root directory for your project, if needed.</p>
+<p>自分がルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Create a new cargo package using a library template by running the following command:</p>
+<p>以下のコマンドを実行して、ライブラリテンプレートを使用した新しい Cargo パッケージを作成します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cargo init --lib src/rust_counter</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command creates a <code>src/rust_counter/src</code> directory with a library (<code>lib.rs</code>) package and a <code>Cargo.toml</code> file in the <code>src/rust_counter</code> directory.</p>
+<p>このコマンドは <code>src/rust_counter/src</code> ディレクトリに、ライブラリ(<code>lib.rs</code>)パッケージと、<code>Cargo.toml</code> ファイルを作成します。</p>
 </div>
 </li>
 <li>
-<p>Open the <code>src/rust_counter/Cargo.toml</code> file in a text editor.</p>
+<p><code>src/rust_counter/Cargo.toml</code> ファイルをテキストエディタで開きます。</p>
 <div class="paragraph">
-<p>You use this file to configure the details used to build the Rust package.</p>
+<p>このファイルを使って、Rust パッケージのビルドに関する詳細を設定します。</p>
 </div>
 <div class="paragraph">
-<p>At a minimum, you need to configure the following sections with basic information about the package name, the crate type, and the version of the DFINITY Rust CDK libraries to use.</p>
+<p>最小限の構成として、パッケージ名・クレートタイプ・使用する DFINITY Rust CDK ライブラリのバージョンなどの基本情報を設定する必要があります:</p>
 </div>
 <div class="openblock">
 <div class="content">
@@ -1169,7 +1146,7 @@ members = [
 </div>
 </li>
 <li>
-<p>Delete the existing <code>[dependencies]</code> section and replace it with the following:</p>
+<p>既存の <code>[dependencies]</code> セクションを削除して、以下のように置き換えます:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[lib]
@@ -1187,33 +1164,33 @@ ic-cdk-macros = "0.3"</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When you deploy the app later in the tutorial, you might get an error message that the dependency version is wrong. If there is a newer version of the DFINITY Rust CDK, update the dependencies in the <code>src/rust_counter/Cargo.toml</code> file to match the latest version.
+このあとのチュートリアルでアプリを実際にデプロイする際に、パッケージの依存関係が間違っているというエラーメッセージが表示されることがあります。もし新しいバージョンの DFINITY Rust CDK がある場合は、<code>src/rust_counter/Cargo.toml</code> ファイルの依存関係を最新バージョンに合わせて更新してください。
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Save your changes and close the file to continue.</p>
+<p>変更を保存してファイルを閉じ、次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_replace_the_default_dapp"><a class="anchor" href="#_replace_the_default_dapp"></a>Replace the default dapp</h3>
+<h3 id="replace-the-default-dapp"><a class="anchor" href="#replace-the-default-dapp"></a>デフォルトの Dapp を置き換え</h3>
 <div class="paragraph">
-<p>Now that you have the files in place for your Rust dapp, we can replace the template <code>main.mo</code> dapp with the Rust dapp we want to deploy on the Internet Computer.</p>
+<p>これで Rust Dapp 用のファイルが揃ったので、<code>main.mo</code> Dapp を Rust Dapp に置き換えていきます。</p>
 </div>
 <div class="paragraph">
-<p>To replace the default dapp:</p>
+<p>既存の Dapp を置き換えるには以下のようにします：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>自分がルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Delete the template <code>src/rust_counter/main.mo</code> file by running the following command:</p>
+<p><code>src/rust_hello/main.mo</code> ファイルを以下のコマンドによって削除します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rm src/rust_counter/main.mo</code></pre>
@@ -1221,13 +1198,13 @@ When you deploy the app later in the tutorial, you might get an error message th
 </div>
 </li>
 <li>
-<p>Open the template <code>src/rust_counter/src/lib.rs</code> file in a text editor and delete the existing content.</p>
+<p><code>src/rust_hello/src/lib.rs</code> ファイルをテキストエディタで開き、既存の内容を削除します。</p>
 <div class="paragraph">
-<p>The next step is to write a Rust dapp that declares the <code>COUNTER</code> variable and implements the <code>increment</code>, <code>get</code>, and <code>set</code> functions.</p>
+<p>次に、<code>COUNTER</code> 変数の定義と <code>increment</code> ・ <code>get</code> ・ <code>set</code> の３つの関数の実装を行っていきます。</p>
 </div>
 </li>
 <li>
-<p>Copy and paste the following sample code into the <code>lib.rs</code> file:</p>
+<p>下のサンプルコードを <code>lib.rs</code> にコピー＆ペーストしてください。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">use ic_cdk_macros::*;
@@ -1264,7 +1241,7 @@ fn set(input: candid::Nat) -&gt; () {
 </div>
 </li>
 <li>
-<p>Save your changes and close the <code>counter.rs</code> file to continue.</p>
+<p>変更を保存してファイルを閉じ、次に進みます。</p>
 </li>
 </ol>
 </div>
@@ -1272,31 +1249,31 @@ fn set(input: candid::Nat) -&gt; () {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_add_an_interface_description_file"><a class="anchor" href="#_add_an_interface_description_file"></a>Add an interface description file</h2>
+<h2 id="_インターフェイス記述ファイルの追加"><a class="anchor" href="#_インターフェイス記述ファイルの追加"></a>インターフェイス記述ファイルの追加</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Candid is an interface description language (IDL) for interacting with canisters running on the Internet Computer.
-Candid files provide a language-independent description of a canister&#8217;s interfaces including the names, parameters, and result formats and data types for each function a canister defines.</p>
+<p>Candid は、Internet Computer で動作する Canister と対話するためのインターフェース記述言語（IDL）です。
+Candid ファイルは、Canister が定義する各関数の名前・引数・返し値のフォーマットやデータ型など、Canister のインターフェースを言語に依存しないように記述したものです。</p>
 </div>
 <div class="paragraph">
-<p>By adding Candid files to your project, you can ensure that data is properly converted from its definition in Rust to run safely on the Internet Computer.</p>
+<p>Candid ファイルをプロジェクトに追加することで、Rust で定義されたデータが Internet Computer 上で安全に実行されるために適切に変換されることを保証します。</p>
 </div>
 <div class="paragraph">
-<p>To see details about the Candid interface description language syntax, see the <a href="../candid-guide/candid-intro.html"><em>Candid Guide</em></a> or the <a href="https://docs.rs/candid/">Candid crate documentation</a>.</p>
+<p>Candid インターフェース記述言語の構文の詳細は <a href="../candid-guide/candid-intro.html"><em>Candid ガイド</em></a>か <a href="https://docs.rs/candid/">Candid クレートのドキュメント</a>をご覧ください。</p>
 </div>
 <div class="paragraph">
-<p>To add a Candid file for this tutorial:</p>
+<p>Candid ファイルを追加するには、以下のようにします:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Create a new file named <code>counter.did</code> in the <code>src/rust_counter/src</code> directory.</p>
+<p><code>src/rust_counter/src/</code> ディレクトリに、<code>counter.did</code> という名前でファイルを作成します。</p>
 </li>
 <li>
-<p>Open the <code>src/rust_counter/src/counter.did</code> file in a text editor, then copy and paste the following <code>service</code> definition for the <code>increment</code>, <code>get</code>, and <code>set</code> functions:</p>
+<p><code>src/rust_counter/src/counter.did</code> ファイルをテキストエディタで開き、 <code>increment</code> ・ <code>get</code> ・ <code>set</code> 関数のために以下の <code>service</code> の定義をコピー＆ペーストして書き込んでください。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-did hljs" data-lang="did">service : {
@@ -1308,36 +1285,36 @@ Candid files provide a language-independent description of a canister&#8217;s in
 </div>
 </li>
 <li>
-<p>Save your changes and close the <code>counter.did</code> file to continue.</p>
+<p>変更を保存して <code>counter.did</code> ファイルを閉じ、次に進んでください。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_start_the_local_canister_execution_environment"><a class="anchor" href="#_start_the_local_canister_execution_environment"></a>Start the local canister execution environment</h2>
+<h2 id="start-the-local-network"><a class="anchor" href="#start-the-local-network"></a>ローカル Canister 実行環境 を立ち上げる</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you can build the <code>rust_counter</code> project, you need to connect to the local canister execution environment running in your development environment or the decentralized Internet Computer mainnet.</p>
+<p><code>rust_counter</code> プロジェクトをビルドする前に、ローカル Canister 実行環境 か、Internet Computer メインネットに接続する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To start the local canister execution environment:</p>
+<p>ローカル Canister 実行環境 を立ち上げるには、以下のようにします:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Start the local canister execution environment on your computer in the background by running the following command:</p>
+<p>ローカル Canister 実行環境 をバックグラウンドで立ち上げるために、以下のコマンドを実行します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start --background</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Depending on your platform and local security settings, you might see a warning displayed.
-If you are prompted to allow or deny incoming network connections, click <strong>Allow</strong>.</p>
+<p>プラットフォームやローカルのセキュリティ設定によっては、警告が表示される場合があります。
+ネットワーク接続を許可するかどうかの確認画面が表示された場合は、<strong>Allow</strong> をクリックします。</p>
 </div>
 </li>
 </ol>
@@ -1345,28 +1322,28 @@ If you are prompted to allow or deny incoming network connections, click <strong
 </div>
 </div>
 <div class="sect1">
-<h2 id="_register_build_and_deploy_your_project"><a class="anchor" href="#_register_build_and_deploy_your_project"></a>Register, build, and deploy your project</h2>
+<h2 id="register-ids"><a class="anchor" href="#register-ids"></a>プロジェクトの登録・ビルド・デプロイ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you connect to the local canister execution environment running in your development environment, you can register, build, and deploy your project locally.</p>
+<p>開発環境で立ち上がっている ローカル Canister 実行環境 に接続した後に、プロジェクトの登録・ビルド・デプロイをローカル環境で行うことができます。</p>
 </div>
 <div class="paragraph">
-<p>To register, build, and deploy:</p>
+<p>登録・ビルド・デプロイを行うためには、以下のようにします:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in root directory for your project directory, if needed.</p>
+<p>プロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Register, build, and deploy the canisters specified in the <code>dfx.json</code> file by running the following command:</p>
+<p><code>dfx.json</code> に指定されている Canister を以下のコマンドで、登録・ビルド・デプロイします:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx deploy</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>dfx deploy</code> command output displays information about each of the operations it performs similar to the following excerpt:</p>
+<p><code>dfx deploy</code> コマンドを実行すると、以下のような実行結果に関しての情報が表示されます。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1399,39 +1376,38 @@ Deployed canisters.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_call_functions_and_test_the_dapp"><a class="anchor" href="#_call_functions_and_test_the_dapp"></a>Call functions and test the dapp</h2>
+<h2 id="_dapp_のテスト"><a class="anchor" href="#_dapp_のテスト"></a>Dapp のテスト</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After successfully deploying the canister, you can test the canister by invoking the functions it provides.
-For this tutorial:</p>
+<p>ローカルでデプロイした Dapp を、以下の内容をテストします:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Call the <code>get</code> function to query the value of the counter.</p>
+<p><code>get</code> 関数を呼び、カウンターの値をクエリする。</p>
 </li>
 <li>
-<p>Call the <code>increment</code> function to increment the counter each time it is called.</p>
+<p><code>increment</code> 関数を呼び、呼ぶたびにカウンターの値をインクリメントする。</p>
 </li>
 <li>
-<p>Call the <code>set</code> function to pass an argument to update the counter to an arbitrary value you specify.</p>
+<p><code>set</code> 関数を呼び、引数として与えた任意の値でカウンターの値をアップデートする。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>To test the dapp:</p>
+<p>Dapp のテストのために、以下を実行します:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Call the <code>get</code> function to read the current value of the <code>COUNTER</code> variable by running the following command:</p>
+<p>以下のコマンドで <code>get</code> 関数を呼び、<code>COUNTER</code> 変数の現在の値を取得します；</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call rust_counter get</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command returns the current value of the <code>COUNTER</code> variable as zero:</p>
+<p>このコマンドは、<code>COUNTER</code> 変数の現在の値である０を返します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1440,25 +1416,25 @@ For this tutorial:</p>
 </div>
 </li>
 <li>
-<p>Call the <code>increment</code> function to increment the value of the <code>COUNTER</code> variable by one:</p>
+<p><code>increment</code> 関数を呼び、<code>COUNTER</code> 変数の値を１つずつインクリメントします：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call rust_counter increment</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command increments the value of the variable—changing its state—but does not return the result.</p>
+<p>このコマンドは変数の値（ステート）をインクリメントしますが、返し値はありません：</p>
 </div>
 </li>
 <li>
-<p>Rerun the command to call the <code>get</code> function to see the current value of the <code>COUNTER</code> variable:</p>
+<p><code>get</code> 関数を呼ぶコマンドを再度実行し、<code>COUNTER</code> 変数の現在の値を確認します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call rust_counter get</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command returns the updated value of the <code>COUNTER</code> variable as one:</p>
+<p>このコマンドは、更新された <code>COUNTER</code> 変数の値である１を返します：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1467,9 +1443,9 @@ For this tutorial:</p>
 </div>
 </li>
 <li>
-<p>Run additional commands to experiment with call the functions and using different values.</p>
+<p>追加のコマンドを実行して、別の値を使った関数の呼び出しを試してみましょう。</p>
 <div class="paragraph">
-<p>For example, try commands similar to the following to set and return the counter value:</p>
+<p>例えば、以下のようなコマンドを実行して、カウンターの値のセットや取得を試してみましょう：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1478,7 +1454,7 @@ dfx canister call rust_counter get</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Returns the current value of 987.</p>
+<p>このコマンドは、現在の値である 987 を返します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1487,7 +1463,7 @@ dfx canister call rust_counter get</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Returns the incremented value of 988.</p>
+<p>このコマンドは、インクリメントされた値である 988 を返します。</p>
 </div>
 </li>
 </ol>
@@ -1495,21 +1471,18 @@ dfx canister call rust_counter get</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_stop_the_local_canister_execution_environment"><a class="anchor" href="#_stop_the_local_canister_execution_environment"></a>Stop the local canister execution environment</h2>
+<h2 id="_ローカル_canister_実行環境_を止める"><a class="anchor" href="#_ローカル_canister_実行環境_を止める"></a>ローカル Canister 実行環境 を止める</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you finish experimenting with your dapp, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</p>
-</div>
-<div class="paragraph">
-<p>To stop the local canister execution environment:</p>
+<p>アプリケーションのテストをした後は、ローカル Canister 実行環境 がバックグラウンドで稼働し続けないように、以下の手順で停止します：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the terminal that displays network operations, press Control-C to interrupt the local canister execution environment process.</p>
+<p>ネットワークの稼働状況が表示されている端末で、Control-C を押して ローカル Canister 実行環境 を止めてください。</p>
 </li>
 <li>
-<p>Stop the local canister execution environment by running the following command:</p>
+<p>以下のコマンドを用いて ローカル Canister 実行環境 を停止してください：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>
