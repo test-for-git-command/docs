@@ -832,9 +832,9 @@
 <h1 class="page">用語集</h1>
 <div id="g-actor" class="dlist">
 <dl>
-<dt class="hdlist1">actor</dt>
+<dt class="hdlist1">Actor</dt>
 <dd>
-<p>Actor とは、モダンプログラミング言語における特殊な種類のオブジェクトで、メッセージ（actor 間の関数呼び出しのやり取り）を隔離されたステートとして処理し、リモートで非同期に処理することを可能にします。</p>
+<p>Actor とは、モダンプログラミング言語における特殊な種類のオブジェクトで、メッセージ（Actor 間の関数呼び出しのやり取り）を隔離されたステートとして処理し、リモートで非同期に処理することを可能にします。</p>
 </dd>
 </dl>
 </div>
@@ -842,43 +842,43 @@
 <dl>
 <dt class="hdlist1">Canister スマートコントラクト</dt>
 <dd>
-<p>Canister スマートコントラクト（あるいは、単に canister と呼ばれることもあります）は、スマートコントラクトを拡張したものです。
+<p>Canister スマートコントラクト（あるいは、単に Canister と呼ばれることもあります）は、スマートコントラクトを拡張したものです。
 Canister スマートコントラクトが画期的なのは、決定論的に並列実行できるからです。
-これは、actor モデルと決定論的メッセージパッシングによって可能になります。
-Canister のスマートコントラクトは、普遍的にユニークな識別子と、特定の Dapp の境界を定義する owner を持っています。
-Canister は、プログラムのロジック、公開された関数の呼び出し方法、メッセージの型に対するインターフェース記述、および caster によって表される Dapp のステート情報のすべてをカプセル化します。</p>
+これは、Actor モデルと決定論的メッセージパッシングによって可能になります。
+Canister のスマートコントラクトは、普遍的にユニークな識別子と、特定の Dapp の境界を定義する Owner を持っています。
+Canister は、プログラムのロジック、公開された関数の呼び出し方法、メッセージの型に対するインターフェース記述、および Canister によって表される Dapp のステート情報のすべてをカプセル化します。</p>
 </dd>
 </dl>
 </div>
 <div id="g-principal" class="dlist">
 <dl>
-<dt class="hdlist1">principal</dt>
+<dt class="hdlist1">プリンシパル</dt>
 <dd>
-<p>Principal とは、Internet Computer ブロックチェーンによって認証可能なエンティティです。
-Internet Computer ブロックチェーンとやりとりする principal は、多くの場合、identity を介して行います。
-例えば、DFINITY Canister SDK を初めて使用するとき、<code>dfx</code> というコマンドラインツールは、PEM ファイル内の公開鍵と秘密鍵のペアを使って、<code>デフォルトの</code> 開発者 identity を生成します。（訳者注：<code>default</code> という名前のディレクトリが生成され、その中に PEM ファイルが生成されます。）
-この開発者 identity が、<strong>principal</strong> を決定づけます。
-Principal にはテキスト表現があり、これはしばしば <strong> principal 識別子</strong>と呼ばれます。
-開発者 identity は、ICP トークンを identity に代わって ledger に保持するための<strong>アカウント識別子</strong>（BitcoinやEthereumのアドレスに似ています）を導くためにも使用できます。</p>
+<p>プリンシパルとは、Internet Computer ブロックチェーンによって認証可能なエンティティです。
+Internet Computer ブロックチェーンとやりとりするプリンシパルは、多くの場合、ID を介して行います。
+例えば、DFINITY Canister SDK を初めて使用するとき、<code>dfx</code> というコマンドラインツールは、PEM ファイル内の公開鍵と秘密鍵のペアを使って、<code>デフォルトの</code> 開発者 ID を生成します。（訳者注：<code>default</code> という名前のディレクトリが生成され、その中に PEM ファイルが生成されます。）
+この開発者 ID が、<strong>プリンシパル</strong>を決定づけます。
+プリンシパルにはテキスト表現があり、これはしばしば <strong>プリンシパル ID </strong>と呼ばれます。
+開発者 ID は、ICP トークンを ID に代わって Ledger に保持するための<strong>アカウント ID </strong>（BitcoinやEthereumのアドレスに似ています）を導くためにも使用できます。</p>
 </dd>
 </dl>
 </div>
 <div id="g-controller" class="dlist">
 <dl>
-<dt class="hdlist1">controller</dt>
+<dt class="hdlist1">コントローラ</dt>
 <dd>
-<p>Controller とは、canister スマートコントラクトを管理する特別な権利を持つ principal のことです。
-たとえば、controller である principal のみが、その制御下にある canister のインストール、アップグレード、または削除を行うことができます。
-Controller は、ユーザーまたは canister に関連付けられた principal のテキスト表現（principal 識別子）を用いて指定することができます。</p>
+<p>コントローラとは、Canister スマートコントラクトを管理する特別な権利を持つプリンシパルのことです。
+たとえば、コントローラであるプリンシパルのみが、その制御下にある Canister のインストール、アップグレード、または削除を行うことができます。
+コントローラは、ユーザーまたは Canister に関連付けられたプリンシパルのテキスト表現（プリンシパル ID）を用いて指定することができます。</p>
 </dd>
 </dl>
 </div>
 <div id="g-ledger" class="dlist">
 <dl>
-<dt class="hdlist1">ledger</dt>
+<dt class="hdlist1">Ledger</dt>
 <dd>
-<p>Internet Computer ブロックチェーンは、ICP トークンを含むすべての取引を、<strong>ledger canister</strong> と呼ばれる専用の管理 canister スマートコントラクトに記録します。
-Ledger canister は、<strong>アカウント</strong>と<strong>残高</strong>を管理し、アカウントと残高に影響を与える <strong>トランザクション</strong> の履歴を残すスマートコントラクトを実装しています。トランザクションは、以下の特定のイベントを追跡するために記録されます:</p>
+<p>Internet Computer ブロックチェーンは、ICP トークンを含むすべての取引を、<strong>Ledger Canister</strong> と呼ばれる専用の管理 Canister スマートコントラクトに記録します。
+Ledger Canister は、<strong>アカウント</strong>と<strong>残高</strong>を管理し、アカウントと残高に影響を与える <strong>トランザクション</strong> の履歴を残すスマートコントラクトを実装しています。トランザクションは、以下の特定のイベントを追跡するために記録されます:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -897,9 +897,9 @@ Ledger canister は、<strong>アカウント</strong>と<strong>残高</strong>
 </div>
 <div id="g-wallet" class="dlist">
 <dl>
-<dt class="hdlist1">wallet</dt>
+<dt class="hdlist1">Wallet</dt>
 <dd>
-<p>Wallet とは、cycle を保管・管理するための専用の Dapp で、canister スマートコントラクトとして実装されています。
+<p>Wallet とは、Cycle を保管・管理するための専用の Dapp で、Canister スマートコントラクトとして実装されています。
 Cycle は Internet Computer ブロックチェーンでの計算やリソース消費の支払いに使用されます。
 Cycle は Internet Computer ブロックチェーンのネイティブユーティリティートークンである ICP から変換することで入手できます。</p>
 </dd>
@@ -907,17 +907,17 @@ Cycle は Internet Computer ブロックチェーンのネイティブユーテ�
 </div>
 <div id="g-node" class="dlist">
 <dl>
-<dt class="hdlist1">node</dt>
+<dt class="hdlist1">ノード</dt>
 <dd>
-<p>Internet Computer ブロックチェーンに参加するために必要なすべてのハードウェア、replica ソフトウェア、および構成設定をホストする物理的または仮想的なマシンです。</p>
+<p>Internet Computer ブロックチェーンに参加するために必要なすべてのハードウェア、レプリカソフトウェア、および構成設定をホストする物理的または仮想的なマシンです。</p>
 </dd>
 </dl>
 </div>
 <div id="g-replica" class="dlist">
 <dl>
-<dt class="hdlist1">replica</dt>
+<dt class="hdlist1">レプリカ</dt>
 <dd>
-<p>Internet Computer ブロックチェーンの文脈では、replica とは node 上で実行されている Internet Computer プロトコルのプロセスを指します。</p>
+<p>Internet Computer ブロックチェーンの文脈では、レプリカとはノード上で実行されている Internet Computer プロトコルのプロセスを指します。</p>
 </dd>
 </dl>
 </div>
