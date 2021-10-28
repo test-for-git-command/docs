@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Adding and searching simple records :: Dfinity 日本語ドキュメント</title>
+    <title>シンプルなレコードの追加と検索 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/rust-guide/rust-profile.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -458,19 +458,19 @@
     
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="rust-counter.html">Simple counter tutorial</a>
+    <a class="nav-link" href="rust-counter.html">シンプルなカウンターのチュートリアル</a>
     
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="multiply-dependency.html">Basic dependency tutorial</a>
+    <a class="nav-link" href="multiply-dependency.html">基本的な依存関係のチュートリアル</a>
     
   </li>
   <li class="nav-item is-current-page" data-depth="5">
-    <a class="nav-link" href="rust-profile.html">Profile tutorial</a>
+    <a class="nav-link" href="rust-profile.html">プロフィールのチュートリアル</a>
     
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="rust-optimize.html">Optimize a Rust program</a>
+    <a class="nav-link" href="rust-optimize.html">Rust プログラムの最適化</a>
     
   </li>
 </ul>
@@ -823,113 +823,123 @@
     <li>Building on the Internet Computer</li>
     <li>Explore our languages</li>
     <li><a href="rust-intro.html">Rust</a></li>
-    <li><a href="rust-profile.html">Profile tutorial</a></li>
+    <li><a href="rust-profile.html">プロフィールのチュートリアル</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/cdk-rs/edit/main/docs/modules/rust-guide/pages/rust-profile.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Adding and searching simple records</h1>
+<h1 class="page">シンプルなレコードの追加と検索</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this tutorial, you are going to write a dapp that provides a few basic functions to add and retrieve simple profile records that consist of a name, description, and an array of keywords.</p>
+<p>このチュートリアルでは、名前・説明・キーワードの配列で構成される、シンプルなプロフィールレコードを追加・取得するためのいくつかの基本的な関数を有する Dapp を書きます。</p>
 </div>
 <div class="paragraph">
-<p>This program supports the following functions:</p>
+<p>このプログラムは、以下の関数を有します：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>update</code> function enables you to add a profile that consists of a <code>name</code>, a <code>description</code>, and <code>keywords</code>.</p>
+<p><code>update</code> 関数は、<code>name</code>、<code>description</code>、<code>keywords</code> からなるプロフィールを追加することができます。</p>
 </li>
 <li>
-<p>The <code>getSelf</code> function returns the profile for the principal associated with the function caller.</p>
+<p><code>getSelf</code> 関数は、関数の呼び出し元に関連づけられたプリンシパルのプロフィールを返します。</p>
 </li>
 <li>
-<p>The <code>get</code> function performs a simple query to return the profile matching the <code>name</code> value passed to it.
-For this function, the name specified must match the <code>name</code> field exactly to return the record.</p>
+<p><code>get</code> 関数は、渡された <code>name</code> の値にマッチするプロフィールを返す単純なクエリ関数です。
+この関数では、指定された名前が <code>name</code> フィールドと完全に一致する必要があります。</p>
 </li>
 <li>
-<p>The <code>search</code> function performs a more complex query to return the profile matching all or part of the text specified in any profile field. For example, the <code>search</code> function can return a profile containing a specific keyword or that matches only part of a name or description.</p>
+<p><code>search</code> 関数は、より複雑なクエリを実行して、任意のフィールドで指定されたテキストのすべてまたは一部に一致するプロフィールを返します。例えば、特定のキーワードを含むプロフィールや、名前や説明の一部のみにマッチするプロフィールを返すことができます。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This tutorial provides a simple example of how you can use the Rust CDK interfaces and macros to simplify writing dapps in Rust for the Internet Computer.</p>
+<p>このチュートリアルでは、Rust CDK のインターフェースとマクロを使用して、Rust で Internet Computer 用の Dapps を簡単に書けるようにするための簡単な例を紹介しています。</p>
 </div>
 <div class="paragraph">
-<p>This tutorial demonstrates:
-* How to represent slightly more complex data—in the form of a profile as a <code>record</code> and an <code>array</code> of keywords—using the Candid interface description language.
-* How to write a simple search function with partial string matching.
-* How profiles are associated with a specific principal.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_before_you_begin"><a class="anchor" href="#_before_you_begin"></a>Before you begin</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Before you start your project, verify the following:</p>
+<p>このチュートリアルでは以下を説明します：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You have an internet connection and access to a shell terminal on your local macOS or Linux computer.</p>
+<p>Candid インターフェース記述言語を使った、少し複雑なデータ（<code>record</code> とキーワードの <code>array</code>）の表現の仕方。</p>
 </li>
 <li>
-<p>You have downloaded and installed the Rust programming language and Cargo as described in the <a href="https://doc.rust-lang.org/book/ch01-01-installation.html">Rust installation instructions</a> for your operating system.</p>
+<p>部分一致する文字列を照合するシンプルな検索機能の書き方。</p>
+</li>
+<li>
+<p>特定のプリンシパルとプロフィールの関連付け方。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_はじめる前に"><a class="anchor" href="#_はじめる前に"></a>はじめる前に</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>プロジェクトをはじめる前に、以下をご確認ください:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>インターネットに接続しており、ローカルの macOS または Linux コンピュータでターミナルにアクセスできること。</p>
+</li>
+<li>
+<p><a href="https://doc.rust-lang.org/book/ch01-01-installation.html">Rust のインストール方法</a> にあるように、Rust プログラミング言語と Cargo が OS にダウンロードされ、インストールされていること。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The Rust tool chain must be at version 1.46.0, or later.</p>
+<p>Rust のバージョンは 1.46.0 より新しい必要があります。</p>
 </div>
 </li>
 <li>
-<p>You have downloaded and installed the DFINITY Canister Software Development Kit (SDK) package as described in <a href="../../quickstart/quickstart.html#download-and-install">Download and install</a>.</p>
+<p><a href="../quickstart/local-quickstart.html#download-and-install">ダウンロードとインストール</a>の説明に従って、DFINITY Canister Software Development Kit (SDK) パッケージのダウンロードとインストールが済んでいること。</p>
 </li>
 <li>
-<p>You have <code>cmake</code> installed. For example, use Homebrew with the following command:</p>
+<p><code>cmake</code> のインストールが済んでいること。例えば、macOS では Homebrew を使って以下のコマンドを実行します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">brew install cmake</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For instructions on how to install Homebrew, see the <a href="https://docs.brew.sh/Installation">Homebrew Documentation</a>.</p>
+<p>Homebrew をインストールする方法については、<a href="https://docs.brew.sh/Installation">Homebrew のドキュメント</a>を参照してください。</p>
 </div>
 </li>
 <li>
-<p>You have stopped any local execution environment processes running on your computer.</p>
+<p>コンピュータ上の ローカル実行環境 プロセスが停止していること。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If you aren’t sure how to open a new terminal shell on your local computer, run commands in a terminal, or how to check for and install packages, see <a href="../quickstart/newcomers.html">Preliminary steps for newcomers</a>.
-If you are comfortable meeting the prerequisites without instructions, continue to <a href="#_create_a_new_project">Create a new project</a>.</p>
+<p>ローカルコンピュータ上で新たなターミナルを開く方法や、ターミナルでコマンドを実行する方法や、インストールパッケージを確認する方法がわからない場合には、<a href="../quickstart/newcomers.html">初めての人のための準備</a>を参照してください。
+既に必要な前提条件を満たしている場合には、<a href="#create-a-new-project">新しいプロジェクトの作成</a> へと進んでください。</p>
 </div>
 <div class="paragraph">
-<p>This tutorial takes approximately 20 minutes to complete.</p>
+<p>このチュートリアルは、完走に約 20 分かかります。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_a_new_project"><a class="anchor" href="#_create_a_new_project"></a>Create a new project</h2>
+<h2 id="create-a-new-project"><a class="anchor" href="#create-a-new-project"></a>新しいプロジェクトの作成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a new project directory for this tutorial:</p>
+<p>新しいプロジェクトを作る手順は以下になります:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal shell on your local computer, if you don’t already have one open.</p>
+<p>ローカル PC でターミナルを開きます。</p>
 </li>
 <li>
-<p>Create a new project by running the following command:</p>
+<p>以下のコマンドを実行して新しいプロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new rust_profile</code></pre>
@@ -937,7 +947,7 @@ If you are comfortable meeting the prerequisites without instructions, continue 
 </div>
 </li>
 <li>
-<p>Change to your project directory by running the following command:</p>
+<p>以下のコマンドで、プロジェクトディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd rust_profile</code></pre>
@@ -949,53 +959,54 @@ If you are comfortable meeting the prerequisites without instructions, continue 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_default_configuration"><a class="anchor" href="#_modify_the_default_configuration"></a>Modify the default configuration</h2>
+<h2 id="_デフォルト設定の変更"><a class="anchor" href="#_デフォルト設定の変更"></a>デフォルト設定の変更</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the <a href="rust-quickstart.html">Hello, World! Rust CDK Quick Start</a>, you saw that creating a new project adds several template files to your project directory much like when you create a new Rust package using the <code>cargo new</code> command.
-You need to modify these default files and add some Rust-specific files to your project before you can build canister smart contracts that run on the Internet Computer.</p>
+<p><a href="rust-quickstart.html">Hello World! Rust CDK クイックスタート</a>では、（ちょうど <code>cargo new</code> で Rust の新しいパッケージを作るのと同じように）<code>dfx new</code> コマンドで新しいプロジェクトを作るとプロジェクトディレクトリにいくつかのテンプレートファイルが生成されることを学びました。
+Internet Computer 上で動作する Canister スマートコントラクトを構築する前に、いくつか Rust 固有のファイルをプロジェクトに追加する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To modify the default configuration for a Motoko project, you&#8217;ll need to complete the following steps:</p>
+<p>Motoko プロジェクトのデフォルト設定を変更するには、以下の手順を踏みます。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#_edit_the_default_canister_settings">Edit the default canister settings</a></p>
+<p><a href="#edit-the-default-canister-settings">Canister の初期設定の変更</a></p>
 </li>
 <li>
-<p><a href="#_add_a_cargo_toml_file_to_the_project">Add a Cargo.toml file to the project</a></p>
+<p><a href="#add-a-cargotoml-file-to-the-project">Cargo.toml ファイルの追加</a></p>
 </li>
 <li>
-<p><a href="#_add_rust_files_to_the_source_directory">Add Rust files to the source directory</a></p>
+<p><a href="#add-Rust-files-to-the-source-directory">src ディレクトリへの Rust ファイルの追加</a></p>
 </li>
 <li>
-<p><a href="#Replace the default program">[Replace the default program]</a></p>
+<p><a href="#replace-the-default-dapp">デフォルト Dapp の置き換え</a></p>
 </li>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_edit_the_default_canister_settings"><a class="anchor" href="#_edit_the_default_canister_settings"></a>Edit the default canister settings</h3>
+<h3 id="edit-the-default-canister-settings"><a class="anchor" href="#edit-the-default-canister-settings"></a>Canister の初期設定の変更</h3>
 <div class="paragraph">
-<p>One of the template files included in your project directory is a default <code>dfx.json</code> configuration file.
-This file contains settings required to build a project for the Internet Computer much like the <code>Cargo.toml</code> file provides build and package management configuration details for Rust programs.
-You need to modify the default settings in the <code>dfx.json</code> configuration file to build Rust programs that run on the Internet Computer as canister smart contracts.</p>
+<p>プロジェクトディレクトリに含まれるテンプレートファイルの一つに、<code>dfx.json</code> 設定ファイルがあります。
+このファイルには Internet Computer で動かすプロジェクトをビルドするために必要な設定が含まれています。
+これは <code>Cargo.toml</code> ファイルが Rust プログラムのビルドやパッケージ管理の設定を含んでいるのと同じです。
+Canister スマートコントラクトとして Rust の Dapps をビルドするには、<code>dfx.json</code> のデフォルト設定を変更する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To modify the default <code>dfx.json</code> configuration file:</p>
+<p><code>dfx.json</code> を変更するには、以下のようにします:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Open the <code>dfx.json</code> configuration file in a text editor.</p>
+<p>テキストエディタで <code>dfx.json</code> を開きます。</p>
 </li>
 <li>
-<p>Replace the <code>canisters.rust_profile</code> settings with settings for building a canister using the <code>cargo build</code> command.</p>
+<p><code>canisters.rust_profile</code> の設定を、<code>cargo build</code> コマンドを使って Canister をビルドする設定に置き換えます。</p>
 <div class="paragraph">
-<p>For example, under the <code>rust_profile</code> key, replace the <code>main</code> and <code>type</code> settings with settings like these:</p>
+<p>例えば、<code>rust_profile</code> キーの下で、<code>main</code> と <code>type</code> を以下のように設定します:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1008,15 +1019,13 @@ You need to modify the default settings in the <code>dfx.json</code> configurati
 </div>
 </li>
 <li>
-<p>Remove all of the <code>rust_profile_assets</code> configuration settings from the file.</p>
+<p><code>rust_profile_assets</code> の設定をすべて削除します。</p>
 <div class="paragraph">
-<p>The sample dapp for this tutorial doesn&#8217;t use any front-end assets, so you can remove those settings from the configuration file.</p>
+<p>このチュートリアルの Dapp では、フロントエンドの <code>asset</code> を使用していないので、設定ファイルからこれらの設定を削除することができます。
+また、このチュートリアルでは <code>defaults</code> と <code>dfx</code> のキーも削除することができます。</p>
 </div>
-</li>
-<li>
-<p>Remove the <code>defaults</code> and <code>dfx</code> version settings.</p>
 <div class="paragraph">
-<p>For example, the configuration file looks like this after you modify the settings:</p>
+<p>これらの不要な設定を削除した後の設定ファイルは次のようになります:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1041,33 +1050,33 @@ You need to modify the default settings in the <code>dfx.json</code> configurati
 </div>
 </li>
 <li>
-<p>Save your change and close the <code>dfx.json</code> file to continue.</p>
+<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_a_cargo_toml_file_to_the_project"><a class="anchor" href="#_add_a_cargo_toml_file_to_the_project"></a>Add a Cargo.toml file to the project</h3>
+<h3 id="add-a-cargotoml-file-to-the-project"><a class="anchor" href="#add-a-cargotoml-file-to-the-project"></a>Cargo.toml ファイルの追加</h3>
 <div class="paragraph">
-<p>Because we are creating this new Rust project for the Internet Computer using the DFINITY Canister SDK, you need to manually create some Rust-specific files in specific locations within the project directory.
-Let&#8217;s start by creating the <code>Cargo.toml</code> configuration file that describes the packages in our project.</p>
+<p>Internet Computer で動かすために DFINITY Canister SDK を使って新しい Rust プロジェクトを作っているので、プロジェクトディレクトリ内の特定の場所に Rust 固有のファイルを手動で作成する必要があります。
+まず、プロジェクトのパッケージ情報を書くための <code>Cargo.toml</code> ファイルを作成しましょう。</p>
 </div>
 <div class="paragraph">
-<p>To add a <code>Cargo.toml</code> configuration file for the project:</p>
+<p>プロジェクトに <code>Cargo.toml</code> ファイルを追加するには、以下のようにします：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Create a new file in the current directory named <code>Cargo.toml</code>.</p>
+<p>カレントディレクトリに <code>Cargo.toml</code> という名前のファイルを作成します。</p>
 </li>
 <li>
-<p>Open the <code>Cargo.toml</code> in a text editor.</p>
+<p>テキストエディタで <code>Cargo.toml</code> を開きます。</p>
 </li>
 <li>
-<p>Use the <code>[workspace]</code> key to specify the source file directory for your program.</p>
+<p><code>[workspace]</code> キーを使って Dapp のソースファイルのディレクトリを指定します:</p>
 <div class="paragraph">
 <p>For example:</p>
 </div>
@@ -1081,40 +1090,41 @@ members = [
 </div>
 </li>
 <li>
-<p>Save your changes and close the file to continue.</p>
+<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_rust_files_to_the_source_directory"><a class="anchor" href="#_add_rust_files_to_the_source_directory"></a>Add Rust files to the source directory</h3>
+<h3 id="add-Rust-files-to-the-source-directory"><a class="anchor" href="#add-Rust-files-to-the-source-directory"></a>src ディレクトリへの Rust ファイルの追加</h3>
 <div class="paragraph">
-<p>Creating a new project creates a default <code>src/rust_profile</code> directory with a template <code>main.mo</code>. We&#8217;ll replace this default dapp with a Rust library <code>lib.rs</code> package and <code>Cargo.toml</code> files.</p>
+<p>新しいプロジェクトを作成すると、<code>src/rust_profile</code> ディレクトリが作成され、テンプレートとして <code>main.mo</code> が作成されます。
+このデフォルトの Dapp を、Rust の <code>lib.rs</code> パッケージと <code>Cargo.toml</code> ファイルで置き換えていきます。</p>
 </div>
 <div class="paragraph">
-<p>To prepare the source directory with Rust files:</p>
+<p><code>src</code> ディレクトリに Rust ファイルを用意するのは、以下の手順となります:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are in the root directory for your project, if needed.</p>
+<p>自分がルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Create a new cargo package using a library template by running the following command:</p>
+<p>以下のコマンドを実行して、ライブラリテンプレートを使用した新しい Cargo パッケージを作成します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cargo init --lib src/rust_profile</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command creates a <code>src/rust_profile/src</code> directory with a library (<code>lib.rs</code>) package and a <code>Cargo.toml</code> file in the <code>src/rust_profile</code> directory.</p>
+<p>このコマンドは <code>src/rust_profile/src</code> ディレクトリに、ライブラリ(<code>lib.rs</code>)パッケージと、<code>Cargo.toml</code> ファイルを作成します。</p>
 </div>
 </li>
 <li>
-<p>Open the <code>src/rust_profile/Cargo.toml</code> file in a text editor.</p>
+<p><code>src/rust_counter/Cargo.toml</code> ファイルをテキストエディタで開きます。</p>
 <div class="paragraph">
-<p>You use this file to configure the details used to build the Rust package.
-At a minimum, you need to configure the following sections with basic information about the package name, the crate type, and the version of the DFINITY Rust CDK libraries to use.</p>
+<p>このファイルを使って、Rust パッケージのビルドに関する詳細を設定します。
+最小限の構成として、パッケージ名・クレートタイプ・使用する DFINITY Rust CDK ライブラリのバージョンなどの基本情報を設定する必要があります:</p>
 </div>
 <div class="openblock">
 <div class="content">
@@ -1132,7 +1142,7 @@ At a minimum, you need to configure the following sections with basic informatio
 </div>
 </li>
 <li>
-<p>Delete the existing <code>[dependencies]</code> section and replace it with the following:</p>
+<p>既存の <code>[dependencies]</code> セクションを削除して、以下のように置き換えます:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[lib]
@@ -1151,33 +1161,33 @@ serde = "1.0.111"</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When you deploy the dapp later in the tutorial, you might get an error message that the dependency version is wrong. If there is a newer version of the DFINITY Rust CDK, update the dependencies in the <code>src/rust_profile/Cargo.toml</code> file to match the latest version.
+このあとのチュートリアルでアプリを実際にデプロイする際に、パッケージの依存関係が間違っているというエラーメッセージが表示されることがあります。もし新しいバージョンの DFINITY Rust CDK がある場合は、<code>src/rust_profile/Cargo.toml</code> ファイルの依存関係を最新バージョンに合わせて更新してください。
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Save your changes and close the file to continue.</p>
+<p>変更を保存してファイルを閉じ、次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_replace_the_default_dapp"><a class="anchor" href="#_replace_the_default_dapp"></a>Replace the default dapp</h3>
+<h3 id="replace-the-default-dapp"><a class="anchor" href="#replace-the-default-dapp"></a>デフォルトの Dapp を置き換え</h3>
 <div class="paragraph">
-<p>Now that you have the files in place for your Rust dapp, we can replace the template <code>main.mo</code> program with the Rust dapp we want to deploy on the Internet Computer.</p>
+<p>これで Rust Dapp 用のファイルが揃ったので、<code>main.mo</code> Dapp を Rust Dapp に置き換えていきます。</p>
 </div>
 <div class="paragraph">
-<p>To replace the default program:</p>
+<p>既存の Dapp を置き換えるには以下のようにします：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>自分がルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Delete the template <code>src/rust_profile/main.mo</code> file by running the following command:</p>
+<p><code>src/rust_profile/main.mo</code> ファイルを以下のコマンドによって削除します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rm src/rust_profile/main.mo</code></pre>
@@ -1185,13 +1195,13 @@ When you deploy the dapp later in the tutorial, you might get an error message t
 </div>
 </li>
 <li>
-<p>Open the template <code>src/rust_profile/src/lib.rs</code> file in a text editor and delete the existing content.</p>
+<p><code>src/rust_profile/src/lib.rs</code> ファイルをテキストエディタで開き、既存の内容を削除します。</p>
 <div class="paragraph">
-<p>The next step is to add a Rust program that implements the <code>getSelf</code>, <code>update</code>, <code>get</code>, and <code>search</code> functions.</p>
+<p>次に、<code>getSelf</code>、<code>update</code>、<code>get</code>、<code>search</code> 関数を Rust プログラムで実装していきます。</p>
 </div>
 </li>
 <li>
-<p>Copy and paste the following sample code into the <code>profile.rs</code> file:</p>
+<p>下のサンプルコードを <code>profile.rs</code> にコピー＆ペーストしてください。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">use ic_cdk::export::{candid::{CandidType, Deserialize}, Principal};
@@ -1264,7 +1274,7 @@ fn search(text: String) -&gt; Option&lt;&amp;'static Profile&gt; {
 </div>
 </li>
 <li>
-<p>Save your changes and close the file to continue.</p>
+<p>変更を保存してファイルを閉じ、次に進みます。</p>
 </li>
 </ol>
 </div>
@@ -1272,34 +1282,34 @@ fn search(text: String) -&gt; Option&lt;&amp;'static Profile&gt; {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_add_an_interface_description_file"><a class="anchor" href="#_add_an_interface_description_file"></a>Add an interface description file</h2>
+<h2 id="_インターフェイス記述ファイルの追加"><a class="anchor" href="#_インターフェイス記述ファイルの追加"></a>インターフェイス記述ファイルの追加</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Candid is an interface description language (IDL) for interacting with canister smart contracts running on the Internet Computer.
-Candid files provide a language-independent description of a canister smart contract&#8217;s interfaces including the names, parameters, and result formats and data types for each function a canister defines.</p>
+<p>Candid は、Internet Computer で動作する Canister と対話するためのインターフェース記述言語（IDL）です。
+Candid ファイルは、Canister が定義する各関数の名前・引数・返し値のフォーマットやデータ型など、Canister のインターフェースを言語に依存しないように記述したものです。</p>
 </div>
 <div class="paragraph">
-<p>By adding Candid files to your project, you can ensure that data is properly converted from its definition in Rust to run safely on the Internet Computer.</p>
+<p>Candid ファイルをプロジェクトに追加することで、Rust で定義されたデータが Internet Computer 上で安全に実行されるために適切に変換されることを保証します。</p>
 </div>
 <div class="paragraph">
-<p>To see details about the Candid interface description language syntax, see the <a href="../candid-guide/candid-intro.html"><em>Candid Guide</em></a> or the <a href="https://docs.rs/candid/">Candid crate documentation</a>.</p>
+<p>Candid インターフェース記述言語の構文の詳細は <a href="../candid-guide/candid-intro.html"><em>Candid ガイド</em></a>か <a href="https://docs.rs/candid/">Candid クレートのドキュメント</a>をご覧ください。</p>
 </div>
 <div class="paragraph">
-<p>To add a Candid file for this tutorial:</p>
+<p>Candid ファイルを追加するには、以下のようにします:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Create a new file named <code>profile.did</code> in the <code>src/rust_profile/src</code> directory.</p>
+<p><code>src/rust_profile/src/</code> ディレクトリに、<code>profile.did</code> という名前でファイルを作成します。</p>
 </li>
 <li>
-<p>Open the `src/rust_profile/src/profile.did`file in a text editor.</p>
+<p><code>src/rust_profile/src/profile.did</code> ファイルをテキストエディタで開いてください。</p>
 </li>
 <li>
-<p>Copy and paste the following <code>type</code> declaration and <code>service</code> definition for the <code>getSelf</code>, <code>update</code>, <code>get</code>, and <code>search</code> functions:</p>
+<p><code>getSelf</code>、<code>update</code>、<code>get</code>、<code>search</code> 関数のために以下の <code>service</code> の定義をコピー＆ペーストして書き込んでください：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-did hljs" data-lang="did">type Profile_2 = record {
@@ -1319,36 +1329,36 @@ service : {
 </div>
 </li>
 <li>
-<p>Save your changes and close the <code>profile.did</code> file to continue.</p>
+<p>変更を保存して <code>profile.did</code> ファイルを閉じ、次に進んでください。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_start_the_local_execution_environment"><a class="anchor" href="#_start_the_local_execution_environment"></a>Start the local execution environment</h2>
+<h2 id="start-the-local-network"><a class="anchor" href="#start-the-local-network"></a>ローカル実行環境 を立ち上げる</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you can build the <code>rust_profile</code> project, you need to connect to the local execution environment running in your development environment or the decentralized Internet Computer mainnet.</p>
+<p><code>rust_profile</code> プロジェクトをビルドする前に、ローカル実行環境 か、Internet Computer メインネットに接続する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To start local execution environment:</p>
+<p>ローカル実行環境 を立ち上げるには、以下のようにします:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Start the local execution environment on your computer in the background by running the following command:</p>
+<p>ローカル実行環境 をバックグラウンドで立ち上げるために、以下のコマンドを実行します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start --background --clean</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Depending on your platform and local security settings, you might see a warning displayed.
-If you are prompted to allow or deny incoming network connections, click <strong>Allow</strong>.</p>
+<p>プラットフォームやローカルのセキュリティ設定によっては、警告が表示される場合があります。
+ネットワーク接続を許可するかどうかの確認画面が表示された場合は、<strong>Allow</strong> をクリックします。</p>
 </div>
 </li>
 </ol>
@@ -1356,28 +1366,28 @@ If you are prompted to allow or deny incoming network connections, click <strong
 </div>
 </div>
 <div class="sect1">
-<h2 id="_register_build_and_deploy_your_project"><a class="anchor" href="#_register_build_and_deploy_your_project"></a>Register, build, and deploy your project</h2>
+<h2 id="register-ids"><a class="anchor" href="#register-ids"></a>プロジェクトの登録・ビルド・デプロイ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you connect to the local execution environment running in your development environment, you can register, build, and deploy your project locally.</p>
+<p>開発環境で立ち上がっている ローカル実行環境 に接続した後に、プロジェクトの登録・ビルド・デプロイをローカル環境で行うことができます。</p>
 </div>
 <div class="paragraph">
-<p>To register, build, and deploy:</p>
+<p>登録・ビルド・デプロイを行うためには、以下のようにします:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in root directory for your project directory, if needed.</p>
+<p>プロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Register, build, and deploy the canisters specified in the <code>dfx.json</code> file by running the following command:</p>
+<p><code>dfx.json</code> に指定されている Canister を以下のコマンドで、登録・ビルド・デプロイします:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx deploy</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>dfx deploy</code> command output displays information about each of the operations it performs similar to the following excerpt:</p>
+<p><code>dfx deploy</code> コマンドを実行すると、以下のような実行結果に関しての情報が表示されます。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1404,34 +1414,34 @@ Deployed canisters.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_call_functions_on_the_deployed_canister"><a class="anchor" href="#_call_functions_on_the_deployed_canister"></a>Call functions on the deployed canister</h2>
+<h2 id="_デプロイした_canister_の関数を呼ぶ"><a class="anchor" href="#_デプロイした_canister_の関数を呼ぶ"></a>デプロイした Canister の関数を呼ぶ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After successfully deploying the canister, you can test the canister by calling the functions it provides.</p>
+<p>Canister のデプロイが成功すると、Canister の関数を呼ぶことでテストできるようになります。</p>
 </div>
 <div class="paragraph">
-<p>For this tutorial:</p>
+<p>このチュートリアルでは、以下のようにします：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Call the <code>update</code> function to add a profile.</p>
+<p><code>update</code> 関数を呼び、プロフィールを追加する。</p>
 </li>
 <li>
-<p>Call the <code>getSelf</code> function to display the profile for the principal identity.</p>
+<p><code>getSelf</code> 関数を呼び、プリンシパル ID のプロフィールを表示する。</p>
 </li>
 <li>
-<p>Call the <code>search</code> function to look up the profile using a keyword.</p>
+<p><code>search</code> 関数を呼び、キーワードを使ってプロフィールを検索する。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>To test the deployed canister:</p>
+<p>デプロイした Canister をテストするために：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Call the <code>update</code> function to create a profile record by running the following command:</p>
+<p><code>update</code> 関数を呼び、プロフィールレコードを作成するには以下のコマンドを実行します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call rust_profile update '(record {name = "Luxi"; description = "mountain dog"; keywords = vec {"scars"; "toast"}})'</code></pre>
@@ -1439,15 +1449,15 @@ Deployed canisters.</pre>
 </div>
 </li>
 <li>
-<p>Call the <code>getSelf</code> function to retrieve a profile record by running the following command:</p>
+<p><code>getSelf</code> 関数を呼び、プロフィールレコードを取得するには以下のコマンドを実行します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call rust_profile getSelf</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command returns the profile you used the <code>update</code> function to add.
-For example:</p>
+<p>このコマンドは、<code>update</code> 関数を使って追加したプロフィールを返します。
+例えば、以下のようになります：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1460,8 +1470,8 @@ For example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>In its current form, the dapp only stores and returns one profile.
-If you run the following command to add a second profile using the <code>update</code> function, the command replaces the <code>Luxi</code> profile with the <code>Dupree</code> profile:</p>
+<p>いまのところ、この Dapp は１つのプロフィールを保存して返すだけです。
+次のコマンドを実行して、<code>update</code> 関数を使って２つ目のプロフィールを追加すると、<code>Luxi</code> のプロフィールが <code>Dupree</code> のプロフィールに置き換わります：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1469,18 +1479,18 @@ If you run the following command to add a second profile using the <code>update<
 </div>
 </div>
 <div class="paragraph">
-<p>You can use the <code>get</code>, <code>getSelf</code>, and <code>search</code> functions, but they will only return results for the <code>Dupree</code> profile.</p>
+<p><code>get</code>、<code>getSelf</code>、<code>search</code> 関数を使っても、<code>Dupree</code> のプロフィールが返ってくるだけです。</p>
 </div>
 </li>
 <li>
-<p>Run the following command to call the <code>search</code> function:</p>
+<p><code>search</code> 関数を以下のように実行してみましょう。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call rust_profile search '("black")';</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command finds the matching profile using the <code>description</code> and returns the profile:</p>
+<p>このコマンドは <code>description</code> との一致を見つけ、以下のプロフィールを返します：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1498,18 +1508,19 @@ If you run the following command to add a second profile using the <code>update<
 </div>
 </div>
 <div class="sect1">
-<h2 id="_adding_profiles_for_new_identities"><a class="anchor" href="#_adding_profiles_for_new_identities"></a>Adding profiles for new identities</h2>
+<h2 id="_新しい_id_に対するプロフィールの追加"><a class="anchor" href="#_新しい_id_に対するプロフィールの追加"></a>新しい ID に対するプロフィールの追加</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In its current form, the dapp only stores one profile—the one associated with the principal invoking the commands. To test that the <code>get</code>, <code>getSelf</code>, and <code>search</code> functions do what we want them to, we need to add some new identities that can have different profiles.</p>
+<p>いまのところ、この Dapp はコマンドを実行したプリンシパルに関連付けられた１つのプロフィールしか保存しません。
+関数 <code>get</code>, <code>getSelf</code>, <code>search</code> が思った通りに動作することをテストするために、異なるプロフィールを持つことができる新しい ID を追加する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To add identities for testing:</p>
+<p>テストのために ID を追加します：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a new user identity by running the following command:</p>
+<p>以下のコマンドで新しいユーザー ID を作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx identity new Miles</code></pre>
@@ -1523,7 +1534,7 @@ Created identity: "Miles".</pre>
 </div>
 </li>
 <li>
-<p>Call the <code>update</code> function to add a profile for the new identity.</p>
+<p><code>update</code> 関数を呼び、新しい ID に対応したプロフィールを追加します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx --identity Miles canister call rust_profile update '(record {name = "Miles"; description = "Great Dane"; keywords = vec {"Boston"; "mantle"; "three-legged"}})'</code></pre>
@@ -1531,14 +1542,14 @@ Created identity: "Miles".</pre>
 </div>
 </li>
 <li>
-<p>Call the <code>getSelf</code> function to view the profile associated with the <code>default</code> user identity.</p>
+<p><code>getSelf</code> 関数を呼び、<code>default</code> のユーザー ID に紐づけられたプロフィールを確認します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call rust_profile getSelf</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays the profile currently associated with the default identity, in this example, the Dupree profile:</p>
+<p>このコマンドはデフォルトの ID に現在紐づけられているプロフィールを表示ます。この例では、Dupree のプロフィールです：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1553,14 +1564,14 @@ Created identity: "Miles".</pre>
 </div>
 </li>
 <li>
-<p>Call the <code>getSelf</code> function using the <code>Miles</code> user identity by running the following command:</p>
+<p><code>Miles</code> のユーザー ID を使って <code>getSelf</code> 関数を呼ぶには以下のコマンドを実行します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx --identity Miles canister call rust_profile getSelf</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays the profile currently associated with the Miles identity, in this example:</p>
+<p>このコマンドは Miles の ID に現在紐づいているプロフィールを表示します。この例では、以下のようになります：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1575,9 +1586,9 @@ Created identity: "Miles".</pre>
 </div>
 </li>
 <li>
-<p>Call the <code>search</code> function using part of the description or a keyword to further test the whether the correct profile is returned.</p>
+<p>正しいプロフィールが返されるかどうかをテストするために、説明の一部やキーワードを使って <code>search</code> 関数を呼び出しましょう。</p>
 <div class="paragraph">
-<p>For example, to verify the <code>Miles</code> profile is returned, you might run the following command:</p>
+<p>例えば、<code>Miles</code> のプロフィールが返されることを検証するために、以下のコマンドを実行します：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1585,7 +1596,7 @@ Created identity: "Miles".</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command returns the <code>Miles</code> profile:</p>
+<p>このコマンドは <code>Miles</code> のプロフィールを返します：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1600,9 +1611,9 @@ Created identity: "Miles".</pre>
 </div>
 </li>
 <li>
-<p>Call the <code>search</code> function to further test the whether the correct profile is returned.</p>
+<p>正しいプロフィールが返されるかどうかをさらにテストするために、<code>search</code> 関数を呼びます。</p>
 <div class="paragraph">
-<p>For example, to verify the <code>Dupree</code> profile is returned, you might run the following command:</p>
+<p>例えば、<code>Dupree</code> のプロフィールが返されることを検証するために、以下のコマンドを実行します：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1610,7 +1621,7 @@ Created identity: "Miles".</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command returns the <code>Dupree</code> profile:</p>
+<p>このコマンドは <code>Dupree</code> のプロフィールを返します：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1629,29 +1640,27 @@ Created identity: "Miles".</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_extending_the_sample_dapp"><a class="anchor" href="#_extending_the_sample_dapp"></a>Extending the sample dapp</h2>
+<h2 id="_サンプル_dapp_の拡張"><a class="anchor" href="#_サンプル_dapp_の拡張"></a>サンプル Dapp の拡張</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This sample dapp only stores one profile for each unique user identity. If you were to extend this dapp by adding a second method for linking social connections to each users profile, you would be well on your way to recreating the LinkedUp sample application using Rust.</p>
+<p>このサンプル Dapp は、ユーザー ID ごとに１つのプロフィールを保存するだけです。
+もし各ユーザーのプロフィールにソーシャルコネクションへのリンクを追加するような拡張を行えば、LinkedUp サンプルアプリケーションを Rust で再現することができるでしょう。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_stop_the_local_execution_environment"><a class="anchor" href="#_stop_the_local_execution_environment"></a>Stop the local execution environment</h2>
+<h2 id="_ローカル実行環境_を止める"><a class="anchor" href="#_ローカル実行環境_を止める"></a>ローカル実行環境 を止める</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you finish experimenting with your program, you can stop the local execution environment so that it doesn’t continue running in the background.</p>
-</div>
-<div class="paragraph">
-<p>To stop the local execution environment:</p>
+<p>アプリケーションのテストをした後は、ローカル実行環境 がバックグラウンドで稼働し続けないように、以下の手順で停止します：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the terminal that displays network operations, press Control-C to interrupt the local execution environment process.</p>
+<p>ネットワークの稼働状況が表示されている端末で、Control-C を押して ローカル実行環境 のプロセスを止めてください。</p>
 </li>
 <li>
-<p>Stop the local execution environment by running the following command:</p>
+<p>以下のコマンドを用いて ローカル実行環境 を停止してください：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>

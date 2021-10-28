@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Optimize a Rust program :: Dfinity 日本語ドキュメント</title>
+    <title>Rust プログラムの最適化 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/rust-guide/rust-optimize.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -458,19 +458,19 @@
     
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="rust-counter.html">Simple counter tutorial</a>
+    <a class="nav-link" href="rust-counter.html">シンプルなカウンターのチュートリアル</a>
     
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="multiply-dependency.html">Basic dependency tutorial</a>
+    <a class="nav-link" href="multiply-dependency.html">基本的な依存関係のチュートリアル</a>
     
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="rust-profile.html">Profile tutorial</a>
+    <a class="nav-link" href="rust-profile.html">プロフィールのチュートリアル</a>
     
   </li>
   <li class="nav-item is-current-page" data-depth="5">
-    <a class="nav-link" href="rust-optimize.html">Optimize a Rust program</a>
+    <a class="nav-link" href="rust-optimize.html">Rust プログラムの最適化</a>
     
   </li>
 </ul>
@@ -823,88 +823,88 @@
     <li>Building on the Internet Computer</li>
     <li>Explore our languages</li>
     <li><a href="rust-intro.html">Rust</a></li>
-    <li><a href="rust-optimize.html">Optimize a Rust program</a></li>
+    <li><a href="rust-optimize.html">Rust プログラムの最適化</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/cdk-rs/edit/main/docs/modules/rust-guide/pages/rust-optimize.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Optimize a Rust program</h1>
+<h1 class="page">Rust プログラムの最適化</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Compiling Rust to WebAssembly often increases the file size significantly. The DFINITY Rust CDK includes a helper library—<code>ic-cdk-optimizer</code>—that you can use to reduce the size of Rust-based canister smart contracts before deploying them on the Internet Computer mainnet.</p>
+<p>Rust を WebAssembly にコンパイルするとファイルサイズが大幅に増加しがちです。DFINITY Rust CDK には <code>ic-cdk-optimizer</code> というヘルパーライブラリが含まれており、Rust ベースの Canister スマートコントラクトを Internet Computer メインネットにデプロイする前にサイズを小さくするのに使用できます。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="before-you-begin"><a class="anchor" href="#before-you-begin"></a>Before you begin</h2>
+<h2 id="before-you-begin"><a class="anchor" href="#before-you-begin"></a>はじめる前に</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you optimize your program, verify the following:</p>
+<p>プログラムの最適化を始める前に、以下を確認してください：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You have an internet connection and access to a shell terminal on your local macOS or Linux computer.</p>
+<p>インターネットに接続しており、ローカルの macOS または Linux コンピュータでターミナルにアクセスできること。</p>
 </li>
 <li>
-<p>You have downloaded and installed the Rust programming language and Cargo as described in the <a href="https://doc.rust-lang.org/book/ch01-01-installation.html">Rust installation instructions</a> for your operating system.</p>
+<p><a href="https://doc.rust-lang.org/book/ch01-01-installation.html">Rust のインストール方法</a> にあるように、Rust プログラミング言語と Cargo が OS にダウンロードされ、インストールされていること。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The Rust tool chain must be at version 1.46.0, or later.</p>
+<p>Rust のバージョンは 1.46.0 より新しい必要があります。</p>
 </div>
 </li>
 <li>
-<p>You have downloaded and installed the DFINITY Canister Software Development Kit (SDK) package as described in <a href="../../quickstart/quickstart.html#download-and-install">Download and install</a>.</p>
+<p><a href="../quickstart/local-quickstart.html#download-and-install">ダウンロードとインストール</a>の説明に従って、DFINITY Canister Software Development Kit (SDK) パッケージのダウンロードとインストールが済んでいること。</p>
 </li>
 <li>
-<p>You have <code>cmake</code> installed. For example, use Homebrew with the following command:</p>
+<p><code>cmake</code> のインストールが済んでいること。例えば、macOS では Homebrew を使って以下のコマンドを実行します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">brew install cmake</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For instructions on how to install Homebrew, see the <a href="https://docs.brew.sh/Installation">Homebrew Documentation</a>.</p>
+<p>Homebrew をインストールする方法については、<a href="https://docs.brew.sh/Installation">Homebrew のドキュメント</a>を参照してください。</p>
 </div>
 </li>
 <li>
-<p>You have successfully compiled your dapp to a WebAssembly module (WASM) and deployed it on the local canister excecution environment.</p>
+<p>Dapp を WebAssembly モジュール（WASM）にコンパイルし、ローカル Canister 実行環境 上にデプロイした経験があること。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_install_and_run_the_optimizer"><a class="anchor" href="#_install_and_run_the_optimizer"></a>Install and run the optimizer</h2>
+<h2 id="_最適化ツールのインストールと実行"><a class="anchor" href="#_最適化ツールのインストールと実行"></a>最適化ツールのインストールと実行</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To optimize a canister that resulted from compiling a Rust dapp:</p>
+<p>Rust の Dapp をコンパイルしてできた Canister を、以下の手順で最適化します：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in root directory for your project directory, if needed.</p>
+<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Install the <code>ic-cdk-optimizer</code> crate, if you have not previously installed it, by running the following command:</p>
+<p>過去に <code>ic-cdk-optimizer</code> クレートをインストールしていなければ、以下のコマンドでインストールします：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cargo install ic-cdk-optimizer</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This package optimizes your Rust code to reduce the size of the WebAssembly output to ensure your dapp can be uploaded to the Internet Computer mainnet as a canister.</p>
+<p>このパッケージは、Rust コードを最適化して WebAssembly の出力サイズを小さくし、Dapp が Internet Computer メインネットに Canister としてアップロードできるようにします。</p>
 </div>
 </li>
 <li>
-<p>Create a release directory within the <code>src</code> directory for your program by running a command similar to the following:</p>
+<p>以下のコマンドを実行して、<code>src</code> ディレクトリ内に release ディレクトリを作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir -p src/<em>rust-canister</em>/target/wasm32-unknown-unknown/release/</code></pre>
@@ -912,7 +912,7 @@
 </div>
 </li>
 <li>
-<p>Optimize the code within the <code>target</code> directory by running a command similar to the following:</p>
+<p>以下のコマンドを実行して、<code>target</code> ディレクトリ内のコードを最適化します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ic-cdk-optimizer target/wasm32-unknown-unknown/release/_rust_canister_.wasm -o target/wasm32-unknown-unknown/release/_rust_canister_-opt.wasm</code></pre>
