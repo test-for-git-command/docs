@@ -833,10 +833,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div id="quick-start-intro" class="paragraph">
-<p>この <em>クイックスタート</em> では Dfinity Canister SDK を初めてインストールする方が、スマートコントラクトを Internet Computer のブロックチェーンに展開するのではなく、 <strong>ローカルの実行環境</strong> に展開し、動作させることを想定しています。</p>
+<p>この <em>クイックスタート</em> では Dfinity Canister SDK を初めてインストールする方が、スマートコントラクトを Internet Computer のブロックチェーンにデプロイするのではなく、 <strong>ローカルの実行環境</strong> にデプロイし、動作させることを想定しています。</p>
 </div>
 <div class="paragraph">
-<p>まず最初に <code>greet</code> という関数を1つだけ持つシンプルな Hello Canister を構築し展開してみます。 <code>greet</code> 関数は1つの引数を受けとり、その結果を <strong>Hello,&#160;everyone!</strong> のように返します。コマンドラインでキャニスターを実行した場合はターミナルに、ブラウザで Canister にアクセスした場合は HTML で表示されます。</p>
+<p>まず最初に <code>greet</code> という関数を1つだけ持つシンプルな Hello Canister をビルドしデプロイしてみます。 <code>greet</code> 関数は1つの引数を受けとり、その結果を <strong>Hello,&#160;everyone!</strong> のように返します。コマンドラインで Canister を実行した場合はターミナルに、ブラウザで Canister にアクセスした場合は HTML で表示されます。</p>
 </div>
 </div>
 </div>
@@ -953,7 +953,7 @@
 <h2 id="create-a-new-project"><a class="anchor" href="#create-a-new-project"></a>新しいプロジェクトの作成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Internet Computer の Daaps 開発は<strong>プロジェクト</strong>として始めます。
+<p>Internet Computer の Dapps 開発は<strong>プロジェクト</strong>として始めます。
 プロジェクトはdfx コマンドで作成できます。</p>
 </div>
 <div class="paragraph">
@@ -998,7 +998,7 @@
 <h2 id="start-the-local-network"><a class="anchor" href="#start-the-local-network"></a>ローカル環境での開発を始める</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>最初のプロジェクトを構築する前に、Canister 実行環境に接続する必要があります。
+<p>最初のプロジェクトをビルドする前に、Canister 実行環境に接続する必要があります。
 ベスト・プラクティスとして、<strong>2つのターミナル</strong>を開いておいてください。これにより、1つのターミナルで Canister の動作を確認し、別のターミナルでプロジェクトを管理することができます。</p>
 </div>
 <div class="paragraph">
@@ -1038,13 +1038,13 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="register-ids"><a class="anchor" href="#register-ids"></a>アプリケーションの登録と構築、展開</h2>
+<h2 id="register-ids"><a class="anchor" href="#register-ids"></a>アプリケーションの登録とビルド、デプロイ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ローカルの Canister 実行環境に接続すると、アプリケーションの登録と構築、展開が可能になります。</p>
+<p>ローカルの Canister 実行環境に接続すると、アプリケーションの登録とビルド、デプロイが可能になります。</p>
 </div>
 <div class="paragraph">
-<p>最初のアプリケーションをローカル環境に展開するには</p>
+<p>最初のアプリケーションをローカル環境にデプロイするには</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1063,7 +1063,7 @@
 </div>
 </li>
 <li>
-<p>以下のコマンドで、あなたの最初のアプリケーションを登録、構築そして展開します。</p>
+<p>以下のコマンドで、あなたの最初のアプリケーションを登録、ビルドそしてデプロイします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx deploy</code></pre>
@@ -1109,7 +1109,7 @@ Deployed canisters.</pre>
 <p>別の名前でプロジェクトを作成した場合、 <code>hello</code> や <code>hello_assets</code> ではなく、プロジェクトの名前になります。</p>
 </div>
 <div class="paragraph">
-<p>また、最初の展開時には、 <code>dfx</code> は <code>default</code> アイデンティティと、<code>default</code> アイデンティティが管理するローカルの Cycle ウォレットを作成することに注意してください。
+<p>また、最初のデプロイ時には、 <code>dfx</code> は <code>default</code> アイデンティティと、<code>default</code> アイデンティティが管理するローカルの Cycle ウォレットを作成することに注意してください。
 Cycle ウォレットは特別なタイプの Canister で、<a href="../developers-guide/concepts/tokens-cycles.html">Cycle</a> を他の Canister に転送することができます。</p>
 </div>
 <div class="paragraph">
@@ -1169,7 +1169,7 @@ Cycle ウォレットは特別なタイプの Canister で、<a href="../develop
 <h2 id="quickstart-frontend"><a class="anchor" href="#quickstart-frontend"></a>フロントエンドアプリケーションのテスト</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>アプリケーションの展開とコマンドラインを使った動作テストが終わったので、Webブラウザを使ってフロントエンドにアクセスできるかどうかを確認してみましょう。</p>
+<p>アプリケーションのデプロイとコマンドラインを使った動作テストが終わったので、Webブラウザを使ってフロントエンドにアクセスできるかどうかを確認してみましょう。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1240,8 +1240,8 @@ Cycle ウォレットは特別なタイプの Canister で、<a href="../develop
 <h2 id="next-steps"><a class="anchor" href="#next-steps"></a>次のステップ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>このクイックスタートでは、独自のアプリケーションを開発するための基本的な流れを紹介するために、いくつかの重要なステップにのみ触れています。
-他のドキュメントには、Motoko の使い方や Internet Computer ブロックチェーン上で動作する アプリケーションの開発方法を学ぶための、より詳細な例やチュートリアルなどもあります。</p>
+<p>このクイックスタートでは、独自の Dapps を開発するための基本的な流れを紹介するために、いくつかの重要なステップにのみ触れています。
+他のドキュメントには、Motoko の使い方や Internet Computer ブロックチェーン上で動作する Dapps の開発方法を学ぶための、より詳細な例やチュートリアルなどもあります。</p>
 </div>
 <div class="paragraph">
 <p>次のステップに進むために以下も参考にしてください。</p>
@@ -1249,13 +1249,13 @@ Cycle ウォレットは特別なタイプの Canister で、<a href="../develop
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../developers-guide/tutorials-intro.html">Tutorials</a> ローカルの Canister 実行環境を使用して、シンプルなアプリケーションを構築するためのチュートリアルです。</p>
+<p><a href="../developers-guide/tutorials-intro.html">Tutorials</a> ローカルの Canister 実行環境を使用して、シンプルな Dapps を構築するためのチュートリアルです。</p>
 </li>
 <li>
-<p><a href="network-quickstart.html#convert-icp">Convert ICP tokens to cycles</a> Internet Computer ブロックチェーンへのアプリケーションの展開を可能にするために、ICPトークンをサイクルに変換します。</p>
+<p><a href="network-quickstart.html#convert-icp">Convert ICP tokens to cycles</a> Internet Computer ブロックチェーンへのアプリケーションのデプロイを可能にするために、ICPトークンを Cycle に変換します。</p>
 </li>
 <li>
-<p><a href="network-quickstart.html">On-chain deployment</a> サイクルを持っていて、Internet Computer ブロックチェーンのメインネットにアプリケーションを展開します。</p>
+<p><a href="network-quickstart.html">On-chain deployment</a> Cycle を所持し、Internet Computer ブロックチェーンのメインネットにアプリケーションをデプロイします。</p>
 </li>
 <li>
 <p><a href="../candid-guide/candid-concepts.html">What is Candid?</a> Candid インターフェース記述言語がどのようにサービスの相互運用性とコンポーザビリティを可能にするかを学びます。</p>
