@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Preliminary steps for newcomers :: Dfinity 日本語ドキュメント</title>
+    <title>初めての人のための予備知識 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/quickstart/newcomers.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -827,15 +827,15 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Preliminary steps for newcomers</h1>
+<h1 class="page">初めての人のための予備知識</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>If this is the first time you are installing developer tools on your computer, you might need to take a few extra steps to prepare your environment.</p>
+<p>初めて開発ツールをインストールする際には、環境を整えるためのいくつかの手順を踏む必要があります。</p>
 </div>
 <div class="paragraph">
-<p>However, there are often multiple ways to perform each of these tasks.
-If you need more help than provided here, see the documentation for the operating system you are using.</p>
+<p>ただし、これらの作業には何通りかの方法があります。
+ここに記載されていない情報については、使用しているオペレーティングシステムのマニュアルを参照してください。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -844,75 +844,75 @@ If you need more help than provided here, see the documentation for the operatin
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The instructions here assume that you are using a macOS computer.
-If you have a Linux development environment, the steps to follow depend on the specific Linux distribution and version you use.
+ここでの説明は、あなたが macOS コンピュータを使用していることを想定しています。
+Linux の開発環境をお持ちの方は、お使いの Linux ディストリビューションやバージョンによって、以下の手順が異なります。
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Before you install the DFINITY Canister SDK, you need to know:</p>
+<p>以下は DFINITY Canister SDK をインストールする前に、知っておくべきことです。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>How to open and run commands in a terminal</p>
+<p>ターミナルでコマンドを開き、実行する方法</p>
 </li>
 <li>
-<p>How to check for and install packages and dependencies</p>
+<p>パッケージと依存関係を確認し、インストールする方法</p>
 </li>
 <li>
-<p>How to create and navigate to new directories</p>
+<p>新しいディレクトリを作成し、そこに移動する方法</p>
 </li>
 <li>
-<p>How to view and update your PATH on the platform you use</p>
+<p>使用しているプラットフォームの PATH を確認して更新する方法</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The steps in this section describe how to prepare a basic development environment.</p>
+<p>このセクションでは、基本的な開発環境を準備する方法について説明します。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="open-terminal"><a class="anchor" href="#open-terminal"></a>Open a terminal</h2>
+<h2 id="open-terminal"><a class="anchor" href="#open-terminal"></a>ターミナルを開く</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You need to know how to open a terminal and navigate to directories to install the DFINITY Canister SDK and to start and stop the Internet Computer running locally when trying any of the <a href="../developers-guide/tutorials-intro.html">tutorials</a>.</p>
+<p><a href="../developers-guide/tutorials-intro.html">チュートリアル</a> を試す際には、ターミナルを開いてディレクトリに移動し、DFINITY Canister SDK をインストールしたり、ローカルで動作している Internet Computer を起動・停止する方法を知っておく必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To open the Terminal application on macOS:</p>
+<p>macOS でターミナルアプリケーションを開くには</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the Finder.</p>
+<p>Finder を開きます。</p>
 </li>
 <li>
-<p>Click <strong>Applications</strong>, open <strong>Utilities</strong>, then double-click <strong>Terminal</strong>.</p>
+<p>「<strong>アプリケーション</strong>」をクリックし、「<strong>ユーティリティ</strong>」を開いて、「<strong>ターミナル</strong>」をダブルクリックします。</p>
 <div class="paragraph">
-<p>Alternatively, you can press the <span class="keyseq"><kbd>&#8984;</kbd>+<kbd>spacebar</kbd></span> keyboard keys to open Search, then type <code>terminal</code>.</p>
+<p>または、<span class="keyseq"><kbd>&#8984;</kbd>+<kbd>spacebar</kbd></span> を押して「検索」を開き、「 <code>terminal</code> 」と入力します。</p>
 </div>
 <div class="paragraph">
-<p>The terminal is where you are going to execute command-line instructions.
-To execute a command, you type or copy and paste an instruction, then press <kbd>Return</kbd>.</p>
+<p>ターミナルは、コマンドを入力し実行する場所です。
+コマンドを実行するには、命令を入力するか、コピー＆ペーストしてから、<kbd>Return</kbd> を押します。</p>
 </div>
 </li>
 <li>
-<p>Check your current path by running the print working directory–<code>pwd</code>—command, then pressing <kbd>Return</kbd>.</p>
+<p><code>pwd</code> コマンドを実行し、<kbd>Return</kbd> を押して、現在の PATH を確認します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pwd</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command displays your current directory with a path like <code>/Users/&lt;your-user-name&gt;</code>.</p>
+<p>このコマンドは、 <code>/Users/&lt;ユーザー名&gt;</code> のように、現在いるディレクトリの PATH を表示します。</p>
 </div>
 <div class="paragraph">
-<p>After you open the Terminal application, you can open new terminal shell at any time by clicking <strong>Shell</strong>, then selecting <strong>New Window</strong> or <strong>New Tab</strong>.</p>
+<p>ターミナルを開いた後、 <strong>Shell</strong> をクリックし、<strong>New Window</strong> または <strong>New Tab</strong> を選択することで、いつでも新しいターミナルを開くことができます。</p>
 </div>
 <div class="paragraph">
-<p>By default, a new terminal shell always opens in your home directory with a path like <code>/Users/&lt;your-user-name&gt;</code>.</p>
+<p>デフォルトでは、新しいターミナルは常にホームディレクトリで開かれ、 PATH は  <code>/Users/&lt;ユーザー名&gt;</code> のようになります。</p>
 </div>
 </li>
 </ol>
@@ -920,14 +920,14 @@ To execute a command, you type or copy and paste an instruction, then press <kbd
 </div>
 </div>
 <div class="sect1">
-<h2 id="check-pkgs"><a class="anchor" href="#check-pkgs"></a>Check for packages</h2>
+<h2 id="check-pkgs"><a class="anchor" href="#check-pkgs"></a>パッケージの確認</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Homebrew application is a package manager for macOS that makes it easy to install and update packages—that is, external programs—that you need to have available in a local development environment.</p>
+<p>Homebrew アプリケーションは、macOS 用のパッケージマネージャで、ローカルの開発環境に必要なパッケージ（外部プログラム）のインストールやアップデートを簡単に行うことができます。</p>
 </div>
 <div class="paragraph">
-<p>The <code>node.js</code> package provides a JavaScript runtime environment and modules for front-end user interface development.
-The <code>node.js</code> package is not required to build programs, but you&#8217;ll probably need it if you want to add a graphical user interface to your program.</p>
+<p><code>node.js</code> パッケージは、フロントエンドユーザーインターフェース開発のための JavaScript ランタイム環境とモジュールを提供します。
+<code>node.js</code> パッケージは、プログラムをビルドする際には必要ありませんが、グラフィカル・ユーザー・インターフェースを使用する場合には、おそらく必要になるでしょう。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -936,26 +936,26 @@ The <code>node.js</code> package is not required to build programs, but you&#821
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If your development environment is Linux, you can use a package manager of your choice instead of Homebrew to install packages and manage dependencies.
+開発環境がLinuxの場合、パッケージのインストールや依存関係の管理に、Homebrew ではなく任意のパッケージマネージャーを使用することができます。
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To check and install packages:</p>
+<p>パッケージの確認とインストール:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check whether you have the Homebrew package manager installed by running the following command:</p>
+<p>Homebrew パッケージマネージャーがインストールされているかどうか、以下のコマンドで確認してください。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">brew --version</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If the command returns version information, continue to the next step.
-If Homebrew isn&#8217;t installed, copy and paste the following command in your terminal:</p>
+<p>バージョン情報が返ってきた場合は、次のステップに進みます。
+Homebrewが インストールされていない場合は、以下のコマンドをコピーしてターミナルに貼り付けます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -964,15 +964,15 @@ If Homebrew isn&#8217;t installed, copy and paste the following command in your 
 </div>
 </li>
 <li>
-<p>Check whether you have the <code>node.js</code> package manager installed by running the following command:</p>
+<p>以下のコマンドを実行して、<code>node.js</code> パッケージマネージャがインストールされているかどうかを確認します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">node --version</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If the command returns version information, continue to <a href="#working-folder">Create a working folder</a>.
-If <code>node.js</code> isn&#8217;t installed, copy and paste the following command in your terminal:</p>
+<p>バージョン情報が返ってきたら、そのまま <a href="#working-folder">作業フォルダの作成</a> に進みます。
+もし <code>node.js</code> がインストールされていない場合は、以下のコマンドをコピーしてターミナルに貼り付けます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -985,26 +985,26 @@ If <code>node.js</code> isn&#8217;t installed, copy and paste the following comm
 </div>
 </div>
 <div class="sect1">
-<h2 id="working-folder"><a class="anchor" href="#working-folder"></a>Create a working folder</h2>
+<h2 id="working-folder"><a class="anchor" href="#working-folder"></a>作業フォルダの作成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>By default, a new terminal shell always opens in your home directory with a path like <code>/Users/&lt;your-user-name&gt;</code>.
-To keep your workspace tidy, you can create a separate folder for your Internet Computer projects.</p>
+<p>通常、ターミナルはホームディレクトリである、<code>/Users/&lt;ユーザー名&gt;</code> のような PATH で開きます。
+ワークスペースを整頓するために、Internet Computer プロジェクト用に別のフォルダを作成してもよいでしょう。</p>
 </div>
 <div class="paragraph">
-<p>Creating a working folder for Internet Computer projects is optional, but can make it easier to find and navigate between projects.
-A separate folder is especially useful if you plan to experiment with any of the <a href="../developers-guide/tutorials-intro.html">tutorials</a> beyond the <a href="quickstart-intro.html">Quick start</a>.</p>
+<p>Internet Computer プロジェクト用作業フォルダの作成は任意ですが、作成するとプロジェクト間の検索や移動が容易になります。
+<a href="../developers-guide/tutorials-intro.html">チュートリアル</a> のうち、<a href="quickstart-intro.html">クイックスタート</a> 以外のものを試す場合に特に便利です。</p>
 </div>
 <div class="paragraph">
-<p>To create a new working folder:</p>
+<p>新しい作業フォルダを作成するには:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal shell on your local computer, if you don’t already have one open.</p>
+<p>ローカルコンピュータでターミナルを開きます（まだ開いていない場合）。</p>
 </li>
 <li>
-<p>Create a new folder called <code>ic-projects</code> in your home directory by running the following command:</p>
+<p>以下のコマンドを実行して、ホームディレクトリに  <code>ic-projects</code>  という名前の新しいフォルダを作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir ic-projects</code></pre>
@@ -1012,7 +1012,7 @@ A separate folder is especially useful if you plan to experiment with any of the
 </div>
 </li>
 <li>
-<p>Change to the new working folder by running the following command:</p>
+<p>以下のコマンドを実行して、新しい作業フォルダに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ic-projects</code></pre>
@@ -1024,33 +1024,32 @@ A separate folder is especially useful if you plan to experiment with any of the
 </div>
 </div>
 <div class="sect1">
-<h2 id="check-path"><a class="anchor" href="#check-path"></a>View directories in your PATH</h2>
+<h2 id="check-path"><a class="anchor" href="#check-path"></a>PATH 内のディレクトリの表示</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>PATH</code> environment variable is an important setting that your operating system uses to locate
-the set of directories where executable programs are located.
-Because every operating system has its own set of directories where it expects to find programs, you need to know how to view and update the PATH environment variable so that you can verify that the DFINITY Canister SDK command-line executable—<code>dfx</code>—is in one of the directories listed.</p>
+<p>環境変数 <code>PATH</code> は、オペレーティングシステムが、実行可能なプログラムの場所を特定するために使用される重要な設定です。
+すべてのオペレーティングシステムはプログラムを探すための独自のディレクトリリストを持っており、 DFINITY Canister SDK コマンドラインの実行ファイル - <code>dfx</code> - がリストのいずれかにあることを確認するため、PATH 環境変数の表示および変更の方法を知っておく必要があります。</p>
 </div>
 <div class="paragraph">
-<p>On macOS computers, the default location for the <code>dfx</code> executable is <code>/usr/local/bin</code> and this directory is typically included in the default set of paths.
-Therefore, updating the <code>PATH</code> variable is usually not necessary for computers running macOS.
-If you are using a Linux distribution, however, you should know how to do the following:</p>
+<p>macOS コンピュータでは、 <code>dfx</code> 実行ファイルのデフォルトの場所は <code>/usr/local/bin</code> で、このディレクトリは通常、デフォルトのリストに含まれています。
+そのため、macOSを使用しているコンピュータでは、通常、<code>PATH</code> 変数の更新は必要ありません。
+ただし、Linux ディストリビューションを使用している場合は、以下の方法を知っておきましょう。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Verify the location of the <code>dfx</code> executable.</p>
+<p><code>dfx</code> の実行ファイルの場所を確認する。</p>
 </li>
 <li>
-<p>View the set of directories in your current <code>PATH</code>.</p>
+<p>現在の <code>PATH</code> に含まれるディレクトリのセットを確認する。</p>
 </li>
 <li>
-<p>Update the <code>PATH</code> environment variable, if necessary.</p>
+<p>必要に応じて、環境変数 <code>PATH</code> を変更する。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>On most operating systems, you can run a command similar to the following to view the set of directories in your current <code>PATH</code>:</p>
+<p>ほとんどのオペレーティング・システムでは、以下のようなコマンドを実行して、現在の <code>PATH</code> に含まれるディレクトリのセットを確認することができます。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1058,7 +1057,7 @@ If you are using a Linux distribution, however, you should know how to do the fo
 </div>
 </div>
 <div class="paragraph">
-<p>To check the location of the <code>dfx</code> executable after you install the DFINITY Canister SDK, you might run a command similar to the following:</p>
+<p>DFINITY Canister SDK をインストールした後に、 <code>dfx</code> の実行ファイルの場所を確認するには、以下のコマンドを実行してください。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1066,16 +1065,16 @@ If you are using a Linux distribution, however, you should know how to do the fo
 </div>
 </div>
 <div class="paragraph">
-<p>If the <code>dfx</code> executable is not in one of the directories listed in your current <code>$PATH</code>, you need to move the executable or update the <code>PATH</code> setting.
-The specific steps for updating the <code>PATH</code> depend on your operating system, but, in many cases, you can run a command similar to the following and specifying the appropriate directory, such as <code>~/bin</code>:</p>
+<p>現在の <code>$PATH</code> にリストされているディレクトリのいずれにも <code>dfx</code> の実行ファイルがない場合は、実行ファイルを移動するか、<code>PATH</code> の設定を変更する必要があります。
+<code>PATH</code> を更新するための具体的な手順はお使いのオペレーティングシステムによって異なりますが、多くの場合、以下のようなコマンドを実行して、 <code>~/bin</code> などの適切なディレクトリを指定します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>export PATH=&lt;path-to-directory-for-dfx&gt;</pre>
+<pre>export PATH=&lt;dfx コマンドが配置されているディレクトリ&gt;</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now you&#8217;re ready to <a href="local-quickstart.html#download-and-install">install</a> the DFINITY Canister SDK and get coding!</p>
+<p>これで、DFINITY Canister SDK の <a href="local-quickstart.html#download-and-install">インストール</a> とコーディングを始める準備ができました!</p>
 </div>
 </div>
 </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>How to :: Dfinity 日本語ドキュメント</title>
+    <title>Candid の使い方 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/candid-guide/candid-howto.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -830,16 +830,18 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">How to</h1>
+<h1 class="page">Candid の使い方</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>As discussed in <a href="candid-concepts.html">What is Candid?</a>, Candid provides a language-agnostic way to interact with canister smart contracts.
-By using Candid, you can specify input argument values and display return values from canister methods regardless of whether you interact with the Internet Computer from a terminal using the <code>dfx</code> command-line interface, through a web browser, or from a program written in JavaScript, Motoko, Rust, or any other language.
-Now that you are familiar with what Candid is and how it works, this section provides instructions for how to use it in some common scenarios.</p>
+<p><a href="candid-concepts.html">Candid とは？</a>で説明したように、Candid は 言語によらず Canister スマートコントラクトと対話するための方法を提供します。</p>
 </div>
 <div class="paragraph">
-<p>As a concrete example, let&#8217;s assume there is a <code>counter</code> canister already deployed on the network with the following Candid interface:</p>
+<p>Candid を使用することで、<code>dfx</code> コマンドラインインターフェースを使用してターミナルから Internet Computer を扱う場合や、Web ブラウザや、JavaScript、Motoko、Rust などの言語で書かれたプログラムから扱う場合など、いかなる場面であっても、インプットとなる引数の値を指定したり、Canister のメソッドからの返し値を表示したりすることができます。
+Candid とは何か、どのように動くのかを理解していただいた上で、このセクションではいくつかのよくあるシナリオでの使い方を説明します。</p>
+</div>
+<div class="paragraph">
+<p>具体的な例として、以下のような Candid インターフェースを持つ <code>counter</code> Canister がネットワーク上にデプロイされているとします：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -849,28 +851,28 @@ Now that you are familiar with what Candid is and how it works, this section pro
 </div>
 </div>
 <div class="paragraph">
-<p>Now, let&#8217;s explore how to interact with this canister in different scenarios with the help of Candid.</p>
+<p>それでは、さまざまな場面での Canister の扱い方を探ってみましょう。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="idl-syntax"><a class="anchor" href="#idl-syntax"></a>Interact with a service in a terminal</h2>
+<h2 id="idl-syntax"><a class="anchor" href="#idl-syntax"></a>ターミナルで Service と対話する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>One of the most common ways you interact with canister smart contracts and the Internet Computer is by using the DFINITY Canister SDK <code>dfx</code> command-line interface.</p>
+<p>Canister スマートコントラクトや Internet Computer と対話する最も一般的な方法の1つは、DFINITY Canister SDK <code>dfx</code> コマンドラインインターフェースを使用することです。</p>
 </div>
 <div class="paragraph">
-<p>The <code>dfx</code> tool provides the <code>dfx canister call</code> command to call a specific deployed canister—essentially a smart contract that runs on the Internet Computer—and, if applicable, a method of the service provided by the smart contract.</p>
+<p><code>dfx</code> ツールは、特定のデプロイされた Canister（Internet Computer 上で動作するスマートコントラクト）と、スマートコントラクトが提供する Service のメソッド（利用可能な場合）を呼び出すための <code>dfx canister call</code> コマンドを有しています。</p>
 </div>
 <div class="paragraph">
-<p>When you run the <code>dfx canister call</code> command, you can pass arguments to a method by specifying them as <a href="candid-concepts.html#textual-values">Candid textual values</a>.</p>
+<p><code>dfx canister call</code> コマンドを実行すると、<a href="candid-concepts.html#textual-values">Candid のテキスト値</a>で見たように、メソッドに引数を渡すことができます。</p>
 </div>
 <div class="paragraph">
-<p>When you pass Candid textual values on the command-line, you can specify multiple argument values separated by commas (<code>,</code>) and wrapped inside parentheses.
-For example, specifying <code>(42, true)</code> represents two argument values, where the first argument is the number <code>42</code> and the second argument is a boolean value of <code>true</code>.</p>
+<p>Candid のテキスト値をコマンドラインで渡す場合、複数の引数値をカンマ（<code>,</code>）で区切り、括弧でくくって指定することができます。
+例えば、<code>(42, true)</code> と指定すると、2 つの引数値を表し、第 1 引数は数字の <code>42</code>、第 2 引数は真偽値の <code>true</code> となります。</p>
 </div>
 <div class="paragraph">
-<p>The following example illustrates using the <code>dfx canister call</code> command to call the <code>counter</code> canister service and pass arguments for the <code>inc</code> method:</p>
+<p>以下では、<code>dfx canister call</code> コマンドを使用して、<code>counter</code> Canister の Service を呼び出し、<code>inc</code> メソッドに引数を渡す例を示しています：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -879,7 +881,7 @@ For example, specifying <code>(42, true)</code> represents two argument values, 
 </div>
 </div>
 <div class="paragraph">
-<p>You can also omit the arguments and let <code>dfx</code> generate a random value that matches the method type. For example:</p>
+<p>また、引数を省略して <code>dfx</code> にメソッドの型に一致したランダムな値を生成させることもできます。例えば、以下のようになります：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -891,31 +893,32 @@ Unspecified argument, sending the following random argument:
 </div>
 </div>
 <div class="paragraph">
-<p>For more information about using <code>dfx</code> and the <code>dfx canister call</code> command, see <a href="../developers-guide/cli-reference.html">Command-line reference</a> and <a href="../developers-guide/cli-reference/dfx-canister.html">dfx canister</a> documentation.</p>
+<p><code>dfx</code> と <code>dfx canister call</code> コマンドの使い方については、<a href="../developers-guide/cli-reference.html">コマンドラインのリファレンス</a>と<a href="../developers-guide/cli-reference/dfx-canister.html">dfx canister</a>のドキュメントを参照してください。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="candid-ui"><a class="anchor" href="#candid-ui"></a>Interact with a service from a browser</h2>
+<h2 id="candid-ui"><a class="anchor" href="#candid-ui"></a>ブラウザで Service と対話する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Candid interface description language provides a common language for specifying the signature of a canister smart contract.
-Based on the type signature of the service offered by the smart contract, Candid provides a web interface—the Candid UI—that allows you to call canister functions for testing and debugging from a web browser without writing any front-end code.</p>
+<p>Candid のインターフェース記述言語は、Canister スマートコントラクトの署名を指定するための共通言語となります。
+スマートコントラクトから与えられる Service の型シグネチャに基づき、Candid は Web インターフェース（Candid UI）を提供しています。
+これにより、フロントエンドのコードを一切書かずに、Web ブラウザからテストやデバッグのために Canister の関数を呼び出すことができます。</p>
 </div>
 <div class="paragraph">
-<p>To use the Candid web interface to test the `counter `canister:</p>
+<p>Candid の Web インターフェースを使って、<code>counter</code> Canister をテストするには、以下のようにします：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Find the Candid UI canister identifier associated with the <code>counter</code> canister using the <code>dfx canister id __Candid_UI</code> command.</p>
+<p><code>dfx canister id __Candid_UI</code> コマンドを使用して、<code>counter</code> Canister に関連づけられた Candid UI Canister の ID を見つけます。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister id __Candid_UI</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays the canister identifier for the Candid UI with output similar to the following:</p>
+<p>このコマンドは、Candid UI の Canister ID を以下のように出力します：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -924,7 +927,7 @@ Based on the type signature of the service offered by the smart contract, Candid
 </div>
 </li>
 <li>
-<p>Start the canister execution environment locally by running the following command:</p>
+<p>以下のコマンドを実行し、Canister のローカル実行環境を起動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start --background</code></pre>
@@ -932,15 +935,15 @@ Based on the type signature of the service offered by the smart contract, Candid
 </div>
 </li>
 <li>
-<p>Open a browser and navigate to the address and port number specified in the <code>dfx.json</code> configuration file.</p>
+<p>ブラウザを開き、設定ファイルである <code>dfx.json</code> で指定されたアドレスとポート番号に移動します。</p>
 <div class="paragraph">
-<p>By default, the <code>local</code> canister execution environment binds to the <code>127.0.0.1:8000</code> address and port number.</p>
+<p>デフォルトでは、<code>local</code> Canisterの実行環境は、<code>127.0.0.1:8000</code> のアドレスとポート番号に固定されます。</p>
 </div>
 </li>
 <li>
-<p>Add the required <code>canisterId</code> parameter and the Candid UI canister identifier returned by the <code>dfx canister id</code> command.</p>
+<p><code>canisterId</code> の URL パラメータと、<code>dfx canister id</code> コマンドで返される Candid UI の Canister ID を追加しましょう。</p>
 <div class="paragraph">
-<p>For example, the full URL should look similar to the following but with the <code>CANDID-UI-CANISTER-IDENTIFIER</code> that was returned by the <code>dfx canister id</code> command:</p>
+<p>全体の URL は以下のようになります。ただし、<code>CANDID-UI-CANISTER-IDENTIFIER</code> を、<code>dfx canister id</code> コマンドで返された Canister ID に置き換えてください：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -948,16 +951,16 @@ Based on the type signature of the service offered by the smart contract, Candid
 </div>
 </div>
 <div class="paragraph">
-<p>The browser displays a form for you to specify a canister identifier or choose a Candid description (<code>.did</code>) file.</p>
+<p>ブラウザには、Canister ID や Candid のファイル（<code>.did</code>）を選択するためのフォームが表示されます。</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/candid-ui-select-id.png" alt="candid ui select id"></span></p>
 </div>
 <div class="paragraph">
-<p>If you aren&#8217;t sure which canister identifier to use, you can run the <code>dfx canister id</code> command to look up the identifier for a specific canister name.</p>
+<p>どの Canister ID を使うべきかわからない場合は、<code>dfx canister id</code> コマンドを実行して、特定の Canister 名の ID を調べることができます。</p>
 </div>
 <div class="paragraph">
-<p>For example, if you want to view the functions for the <code>counter</code> service description, you could look up the canister identifier by running the following command:</p>
+<p>例えば、<code>counter</code> Service の関数を見たい場合、次のコマンドを実行して、Canister ID を調べることができます：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -966,29 +969,29 @@ Based on the type signature of the service offered by the smart contract, Candid
 </div>
 </li>
 <li>
-<p>Specify a canister identifier or description file, then click <strong>Go</strong> to display the service description.</p>
+<p>Canister IDまたは記述ファイルを指定して <strong>Go</strong> をクリックすると、Service の記述が表示されます。</p>
 </li>
 <li>
-<p>Review the list of function calls and types defined in the program.</p>
+<p>プログラムで定義されている関数の呼び出しと型のリストを確認します。</p>
 </li>
 <li>
-<p>Type a value of the appropriate type for a function or click <strong>Random</strong> to generate a value, then click <strong>Call</strong> or <strong>Query</strong> to see the result.</p>
+<p>関数に適した型の値を入力するか、<strong>Random</strong> をクリックして値を生成し、<strong>Call</strong> または <strong>Query</strong> をクリックして結果を確認します。</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>For more information about the tool that creates a Web interface from the Candid interface of any canister, see the <a href="https://github.com/dfinity/candid/tree/master/tools/ui">Candid UI</a> repository.</p>
+<p>任意の Canister の Candid インターフェースから Web インターフェースを作成するツールについてさらに知りたい方は、<a href="https://github.com/dfinity/candid/tree/master/tools/ui">Candid UI</a>のリポジトリを参照してください。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_interact_with_a_service_from_a_motoko_canister"><a class="anchor" href="#_interact_with_a_service_from_a_motoko_canister"></a>Interact with a service from a Motoko canister</h2>
+<h2 id="_motoko_canister_で_service_と対話する"><a class="anchor" href="#_motoko_canister_で_service_と対話する"></a>Motoko Canister で Service と対話する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you are writing a canister smart contract in Motoko, the Motoko compiler automatically translates the signature of your canister’s top-level <code>actor</code> or <code>actor class</code> into a Candid description, and the <code>dfx build</code> command ensures that the service description is properly referenced where it needs to be.</p>
+<p>Canister のスマートコントラクトを Motoko で書いている場合、Motoko のコンパイラは Canister のトップレベルの <code>Actor</code> または <code>Actor クラス</code> のシグネチャを自動的にCandid 記述に変換し、<code>dfx build</code> コマンドは Service 記述が必要な場所で適切に参照されることを保証します。</p>
 </div>
 <div class="paragraph">
-<p>For example, if you want to write a <code>hello</code> canister that calls the <code>counter</code> canister in Motoko:</p>
+<p>例えば、Motoko で <code>counter</code> Canister を呼び出す <code>hello</code> Canister を書きたい場合は、以下のようにします：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1003,26 +1006,24 @@ actor {
 </div>
 </div>
 <div class="paragraph">
-<p>In this example, when the import dependency on the <code>counter</code> canister— the <code>import Counter "canister:Counter"</code> declaration—is processed by the <code>dfx build</code> command, the <code>dfx build</code> command ensures that the <code>counter</code> canister identifier and the Candid description are passed to the Motoko compiler correctly.
-The Motoko compiler then translates the Candid type into the appropriate native Motoko type. This translation enables you to call the <code>inc</code> method natively—as if it were a Motoko function—even if the <code>counter</code> canister is implemented in a different language and even if you do not have the source code for the imported canister.
-For additional information on the type mapping
-between Candid and Motoko, you can consult the <a href="candid-types.html">Supported types</a> reference section.</p>
+<p>この例では、<code>counter</code> Canister のインポート依存関係（<code>import Counter "canister:Counter"</code> 宣言）が <code>dfx build</code> コマンドによって処理されるとき、<code>dfx build</code> コマンドは、<code>counter</code> の Canister ID と Candid の記述が Motoko のコンパイラに正しく渡されることが保証されています。
+Motoko のコンパイラは Candid の型を適切な Motoko のネイティブ型に翻訳します。この翻訳により、<code>counter</code> Canister が別の言語で実装されていても、インポートされた Canister のソースコードを持っていなくても、<code>inc</code> メソッドをまるで Motoko の関数のように呼び出すことができます。
+Candid と Motoko の型の対応関係についての詳細は、リファレンスの <a href="candid-types.html">サポートされている型</a>を参照してください。</p>
 </div>
 <div class="paragraph">
-<p>The Motoko compiler and <code>dfx build</code> command also auto-generate the Candid description for the <code>hello</code> canister to allow
-other canisters or tools to interact with the <code>hello</code> canister seamlessly. The generated Candid description is located
-in your project build directory at <code>.dfx/local/canisters/hello/hello.did</code>.</p>
+<p>Motoko のコンパイラと <code>dfx build</code> コマンドでは、他の Canister やツールがシームレスに <code>hello</code> Canister とやりとりできるようにするため、<code>hello</code> Canister の Candid 記述も自動生成されます。
+生成された Candid 記述は、プロジェクトのビルドディレクトリの <code>.dfx/local/canisters/hello/hello.did</code> に置かれます。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_interact_with_a_service_from_a_rust_canister"><a class="anchor" href="#_interact_with_a_service_from_a_rust_canister"></a>Interact with a service from a Rust canister</h2>
+<h2 id="_rust_canister_で_service_と対話する"><a class="anchor" href="#_rust_canister_で_service_と対話する"></a>Rust Canister で Service と対話する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you write a canister in Rust, the <code>dfx build</code> command ensures that the service description is properly referenced where it needs to be. However, you need to write the Candid service description manually following the conventions described in the <a href="https://github.com/dfinity/candid/blob/master/spec/Candid.md#core-grammar">Candid specification</a>.</p>
+<p>Rust で Canister を書いた場合、<code>dfx build</code> コマンドにより、Service の記述が必要な場所で適切に参照されるようになります。ただし、Candid の Service 記述は、<a href="https://github.com/dfinity/candid/blob/master/spec/Candid.md#core-grammar">Candid 仕様</a>で説明されている規約に従い、自分で書く必要があります。</p>
 </div>
 <div class="paragraph">
-<p>For example, if you want to write a <code>hello</code> canister that calls the <code>counter</code> canister in Rust:</p>
+<p>例えば、Rust で <code>counter</code> Canister を呼び出す <code>hello</code> Canister を書きたいとします：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1039,14 +1040,15 @@ async fn greet() -&gt; String {
 </div>
 </div>
 <div class="paragraph">
-<p>When the import macro on the <code>counter</code> canister— the <code>#[import(canister = "counter")]</code> declaration—is processed by the <code>dfx build</code> command, the <code>dfx build</code> command ensures that the <code>counter</code> canister identifier and the Candid description are passed to the Rust CDK correctly.
-The Rust CDK then translates the Candid type into the appropriate native Rust type.
-This translation enables you to call the <code>inc</code> method natively—as if it were a Rust function—even if the <code>counter</code> canister is implemented in a different language and even if you do not have the source code for the imported canister.
-For additional information on the type mapping
-between Candid and Rust, you can consult the <a href="candid-types.html">Supported types</a> reference section.</p>
+<p><code>counter</code> Canister の import マクロである <code>#[import(canister = "counter")]</code> 宣言が <code>dfx build</code> コマンドによって処理されるとき、<code>dfx build</code> コマンドは <code>counter</code> の Canister ID と Candid 記述が Rust CDK に正しく渡されることを保証します。
+Rust CDK は次に Candid の型を適切なRustのネイティブ型に翻訳します。
+この翻訳により、<code>counter</code> Canister が異なる言語で実装されていても、インポートされた Canister のソースコードがなくても、<code>inc</code> メソッドをまるで Rust の関数のように呼び出すことができます。</p>
 </div>
 <div class="paragraph">
-<p>For other canister smart contracts and tools to interact with the <code>hello</code> canister, you need to manually create a <code>.did</code> file:</p>
+<p>Candid と Rust の型の対応関係についてさらに知りたい方は、リファレンスの <a href="candid-types.html">サポートされている型</a>を参照してください。</p>
+</div>
+<div class="paragraph">
+<p>他の Canister のスマートコントラクトやツールが <code>hello</code> Canister と対話するためには、<code>.did</code> ファイルを手動で作成する必要があります：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1056,22 +1058,21 @@ between Candid and Rust, you can consult the <a href="candid-types.html">Support
 </div>
 </div>
 <div class="paragraph">
-<p>There is also an experimental feature to generate a Candid service description automatically, see this <a href="https://github.com/dfinity/candid/blob/master/rust/candid/tests/types.rs#L99">test case</a> as an example.</p>
+<p>Candid の Service 記述ファイルを自動生成する実験的な機能もあります。例として、こちらの <a href="https://github.com/dfinity/candid/blob/master/rust/candid/tests/types.rs#L99">テストケース</a>をご覧ください。</p>
 </div>
 <div class="paragraph">
-<p>For additional information and libraries to help you create Candid services or canisters in Rust, see the documentation for the <a href="https://docs.rs/candid/">Candid crate</a>, <a href="https://github.com/dfinity/cdk-rs/tree/next/examples">Rust CDK examples</a> and the <a href="../rust-guide/rust-intro.html">Rust tutorials</a>.</p>
+<p>Rust で Candid Serivce や Canister を作成するための追加情報やライブラリについては、 <a href="https://docs.rs/candid/">Candid クレート</a>のドキュメントや、<a href="https://github.com/dfinity/cdk-rs/tree/next/examples">Rust CDK のサンプル</a>や、<a href="./rust-guide/rust-intro.html">Rust のチュートリアル</a>を参照してください。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_interact_with_a_service_from_javascript"><a class="anchor" href="#_interact_with_a_service_from_javascript"></a>Interact with a service from JavaScript</h2>
+<h2 id="_javascript_で_service_と対話する"><a class="anchor" href="#_javascript_で_service_と対話する"></a>JavaScript で Service と対話する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <a href="https://www.npmjs.com/package/@dfinity/agent">dfinity/agent npm package</a> includes support for
-importing canisters using Candid.</p>
+<p><a href="https://www.npmjs.com/package/@dfinity/agent">dfinity/agent npm パッケージ</a>は、Candid を使った Canister のインポート機能をサポートしています。</p>
 </div>
 <div class="paragraph">
-<p>For example, if you want to call the <code>counter</code> canister, you can write the following JavaScript program:</p>
+<p>例えば、<code>counter</code> Canister を呼び出したい場合は、以下のような JavaScript のプログラムを書きます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1084,19 +1085,16 @@ import BigNumber from 'bignumber.js';
 </div>
 </div>
 <div class="paragraph">
-<p>When the import dependency of counter canister is processed by the <code>dfx build</code> command and the <code>webpack</code> configuration, this processing ensures that the canister identifier and the Candid description are passed to the JavaScript program correctly. Behind the scenes, the Candid service description is
-translated into a JavaScript module, located at <code>.dfx/local/canister/counter/counter.did.js</code>, by <code>dfx build</code>. The <code>dfinity/agent</code> package then translates the Candid type into
-native JavaScript values and enables you to call the <code>inc</code> method natively—as if it were a JavaScript function—even if the <code>counter</code> canister is implemented in a
-different language and even if you do not have the source code for the imported canister. For additional information on the type mapping
-between Candid and JavaScript, you can consult the <a href="candid-types.html">Supported types</a> reference section.</p>
+<p>カウンター Canister のインポート依存性が <code>dfx build</code> コマンドと <code>webpack</code> 設定によって処理されるとき、この処理は Canister ID と Candid 記述が正しく JavaScript プログラムに渡されることを保証します。裏では、Candid Serivice 記述が <code>dfx build</code> によって JavaScript モジュールに変換され、<code>.dfx/local/canister/counter/counter.did.js</code> に置かれます。<code>dfinity/agent</code> パッケージは、Candid 型を JavaScript のネイティブな値に変換します。
+<code>counter</code> Canister が別の言語で実装されていても、また、Candid 型でなくても、まるで JavaScript の関数であるかのように、<code>inc</code> メソッドをネイティブに呼び出すことができます。Candid と JavaScript の型の対応関係について詳しく知りたい方は、リファレンスの <a href="candid-types.html">サポートされている型</a>を参照してください。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_a_new_candid_implementation"><a class="anchor" href="#_create_a_new_candid_implementation"></a>Create a new Candid implementation</h2>
+<h2 id="_新しい_candid_実装の作成"><a class="anchor" href="#_新しい_candid_実装の作成"></a>新しい Candid 実装の作成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In addition to the Candid implementations for Motoko, Rust, and JavaScript, there are community-supported Candid libraries for the following host languages:</p>
+<p>Motoko、Rust、JavaScript 用の Candid 実装に加えて、以下のホスト言語用の Candid ライブラリがコミュニティによってサポートされています。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1115,10 +1113,10 @@ between Candid and JavaScript, you can consult the <a href="candid-types.html">S
 </ul>
 </div>
 <div class="paragraph">
-<p>If you want to create a Candid implementation to support a language or tool for which an implementation is not currently available, you should consult the <a href="https://github.com/dfinity/candid/blob/master/spec/Candid.md">Candid specification</a>.</p>
+<p>Candid が現在利用できない言語やツールをサポートするために 新たな Candid の実装を作成したい場合は、 <a href="https://github.com/dfinity/candid/blob/master/spec/Candid.md">Candid の仕様</a>を参照してください。</p>
 </div>
 <div class="paragraph">
-<p>If you add a Candid implementation for a new language or tool, you can use the official <a href="https://github.com/dfinity/candid/tree/master/test">Candid test data</a> to test and verify that your implementation is compatible with Candid, even in slightly more obscure corner cases.</p>
+<p>新しい言語やツールのために Candid の実装を追加した場合、公式の <a href="https://github.com/dfinity/candid/tree/master/test">Candid テストデータ</a>を使って、その実装が Candid と互換性があるかどうかを、多少曖昧なコーナーケースであってもテストして検証することができます。</p>
 </div>
 </div>
 </div>

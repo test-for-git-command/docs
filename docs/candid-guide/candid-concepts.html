@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>What is Candid? :: Dfinity 日本語ドキュメント</title>
+    <title>Candid とは？ :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/candid-guide/candid-concepts.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -830,15 +830,16 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">What is Candid?</h1>
+<h1 class="page">Candid とは？</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Candid is an <em>interface description language</em>. Its primary purpose is to describe the public interface of a <strong>service</strong>, usually in the form of a program deployed as a <strong>canister smart contract</strong> that runs on the Internet Computer.
-One of the key benefits of Candid is that it is language-agnostic, and allows inter-operation between services and front-ends written in different programming languages, including Motoko, Rust, and JavaScript.</p>
+<p>Candid は <em>インターフェース記述言語</em> の一種です。
+Candid の主な目的は、<strong>Service</strong>（Internet Computer 上で動作する <strong>Canister スマートコントラクト</strong> としてデプロイされたプログラム）の、公開インターフェースを記述することです。
+Candid の大きな利点の一つは言語にとらわれないことであり、Motoko、Rust、JavaScript などの異なるプログラミング言語で書かれた Service やフロントエンドの相互運用を可能にしています。</p>
 </div>
 <div class="paragraph">
-<p>A typical interface description in Candid might look like this:</p>
+<p>Candid の典型的なインターフェースの記述は次のようなものです：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -851,108 +852,127 @@ One of the key benefits of Candid is that it is language-agnostic, and allows in
 </div>
 </div>
 <div class="paragraph">
-<p>In this example, the described service—<code>counter</code>—consists of the following public methods.
-- The <code>add</code> and <code>subtract</code> methods change the value of a counter.
-- The <code>get</code> method reads the current value of a counter.
-- The <code>subscribe</code> method can be used to invoke another function, for example, to invoke a notification callback method each time the counter value changes.</p>
-</div>
-<div class="paragraph">
-<p>As this example illustrates, every method has a sequence of argument and result types.
-A method can also include annotations—like the <code>query</code> notation shown in this example—that are specific to the Internet Computer.</p>
-</div>
-<div class="paragraph">
-<p>Given this simple interface description, it is possible for you to interact with this <code>counter</code> service directly from the command line or through a web-based front-end or programmatically from a Rust program or through another programming or scripting language.</p>
-</div>
-<div class="paragraph">
-<p>In addition to interoperability, Candid supports the evolution of service interfaces by precisely specifying the changes that can be made without breaking existing clients. For example, you can safely add new optional parameters to a service without losing compatibility for existing clients.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_why_create_a_new_idl"><a class="anchor" href="#_why_create_a_new_idl"></a>Why create a new IDL?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>At first glance, you might think that other technologies, such as JSON, XML, or Protobuf, would suffice.
-However, Candid provides a unique combination of features that are not found in these other technologies.
-The features that make Candid particularly well-suited for developing dapps for the Internet Computer include the following:</p>
+<p>この例では、<code>counter</code> という Service が、以下のパブリックメソッドから構成されていることを表しています。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Many languages like JSON, XML, and Protobuf only describe how to map individual values to bytes or characters. These data description languages do not describe services as a whole. These languages focus on the data types you want to transfer instead of the methods that make use of those data types.</p>
+<p>カウンターの値を変更する <code>add</code> と <code>subtract</code> メソッド。</p>
 </li>
 <li>
-<p>Candid implementations map the Candid value directly to types and values of the host language. With Candid, developers do not construct or deconstruct some abstract <code>Candid</code> value.</p>
+<p>カウンターの現在の値を返す <code>get</code> メソッド。</p>
 </li>
 <li>
-<p>Candid defines rules for how services and their interface can be upgraded in a sound and compositional way.</p>
+<p>別の関数を呼び出す <code>subscribe</code> メソッド。例えば、カウンターの値が変化するたびに通知用のコールバックメソッドを呼び出すことができます。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>上で示した例のように、すべてのメソッドには、引数と返し値の型があります。
+また、この例で示した <code>query</code> という表記のように、メソッドには Internet Computer 独自のアノテーションを含めることができます。</p>
+</div>
+<div class="paragraph">
+<p>このようなシンプルなインターフェースを採用しているため、コマンドラインや Web ベースのフロントエンドを通して直接、
+あるいは Rust プログラムや他のプログラミング言語やスクリプト言語からプログラム的に、<code>counter</code> サービスを操作することが可能です。</p>
+</div>
+<div class="paragraph">
+<p>相互運用性に加え、既存のクライアントを壊さずに変更できる部分を正確に指定することで、Candid はサービスのインターフェースのアップグレードをサポートします。
+例えば、既存のクライアントとの互換性を失うことなく、新しいオプションのパラメータを Service に安全に追加することができます。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_なぜ新しい_idl_を作ったか"><a class="anchor" href="#_なぜ新しい_idl_を作ったか"></a>なぜ新しい IDL を作ったか？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>一見、JSON や XML、Protobuf などの他の技術で十分だと思われるかもしれません。
+しかしながら、Candid はこれらの他の技術にはない、ユニークな機能を提供しています。
+Candid が Internet Computer での Dapps の開発に特に適している特徴は以下の通りです：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JSON、XML、Protobuf などの多くの言語は、個々の値をバイトや文字にマッピングする方法のみを記述しています。
+これらのデータ記述言語は、サービス全体を記述しているわけではありません。
+これらの言語は、そのデータ型を利用するメソッドではなく、転送したいデータの型に焦点を当てているのです。</p>
 </li>
 <li>
-<p>Candid is inherently a higher-order language. With Candid, you can pass more than plain data, including references to services and methods. Candid support for safe upgrades takes such higher-order use into account.</p>
+<p>Candid では、Candid の値をホスト言語の型や値に直接マッピングするように実装されています。
+Candid では、開発者は、抽象的な <code>Candid</code> の値を構築したり分解したりしません。</p>
 </li>
 <li>
-<p>Candid has built-in support for specific Internet Computer features, such as the <code>query</code> annotation.</p>
+<p>Candid は、Service とそのインターフェースを健全かつ合成的にアップグレードするためのルールを定義しています。</p>
+</li>
+<li>
+<p>Candid は本質的に高次の言語です。
+Candid では、Service やメソッドへの参照など、単なるデータ以上のものを渡すことができます。
+安全なアップグレードのための Candid のサポートは、そのような高次の使用が念頭にあります。</p>
+</li>
+<li>
+<p>Candid は、<code>query</code> アノテーションのような、Internet Computer 独自の機能をビルトインでサポートしています。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_candid_types_and_values"><a class="anchor" href="#_candid_types_and_values"></a>Candid types and values</h2>
+<h2 id="_candid_の型と値"><a class="anchor" href="#_candid_の型と値"></a>Candid の型と値</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Candid is a strongly typed system with a set of types that canonically cover most uses. It has:</p>
+<p>Candid は強力な型付けシステムで、以下で示すように、ほとんどの用途をカバーする型のセットがあります：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Unbounded integral number types (<code>nat</code>, <code>int</code>).</p>
+<p>Unbounded（制限なし）整数型 (<code>nat</code>, <code>int</code>).</p>
 </li>
 <li>
-<p>Bounded integral number (<code>nat8</code>,<code>nat16</code>, <code>nat32</code>, <code>nat64</code>, <code>int8</code>,<code>int16</code>, <code>int32</code>, <code>int64</code>).</p>
+<p>Bounded（制限付き）整数型 (<code>nat8</code>,<code>nat16</code>, <code>nat32</code>, <code>nat64</code>, <code>int8</code>,<code>int16</code>, <code>int32</code>, <code>int64</code>).</p>
 </li>
 <li>
-<p>Floating point types (<code>float32</code>, <code>float64</code>).</p>
+<p>浮動小数点型 (<code>float32</code>, <code>float64</code>).</p>
 </li>
 <li>
-<p>The Boolean type (<code>bool</code>).</p>
+<p>ブール型 (<code>bool</code>).</p>
 </li>
 <li>
-<p>Types for textual (<code>text</code>) and binary (<code>blob</code>) data.</p>
+<p>テキストデータ(<code>text</code>)とバイナリデータ(<code>blob</code>)の型</p>
 </li>
 <li>
-<p>Container types, including variants (<code>opt</code>, <code>vec</code>, <code>record</code>, <code>variant</code>).</p>
+<p>バリアントを含むコンテナ型 (<code>opt</code>, <code>vec</code>, <code>record</code>, <code>variant</code>).</p>
 </li>
 <li>
-<p>Reference types (<code>service</code>, <code>func</code>, <code>principal</code>).</p>
+<p>参照型 (<code>service</code>, <code>func</code>, <code>principal</code>).</p>
 </li>
 <li>
-<p>The special <code>null</code>, <code>reserved</code> and <code>empty</code> types.</p>
+<p><code>null</code>、<code>reserved</code>、<code>empty</code> の特殊な型。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>All types are described in detail in the <a href="candid-ref.html">Reference</a> section.</p>
+<p>全ての型について <a href="candid-ref.html">リファレンス</a>の章で詳細に記述されています。</p>
 </div>
 <div class="paragraph">
-<p>The philosophy behind this set of types is that they are sufficient to describe the <em>structure</em> of data, so that information can be encoded, passed around and decoded, but intentionally do not describe <em>semantic</em> constraints beyond what’s needed to describe the representation. For example, there&#8217;s no way to express that a number should be even, that a vector has a certain length, or that the elements of a vector are sorted.</p>
+<p>これらの型の背景にある哲学は、データの <em>構造</em> を記述するのに十分であり、情報をエンコードしたり、渡したり、デコードすることができる一方で、表現を記述するのに必要な以上の <em>セマンティクス</em> に関する制約を意図的に記述しないというものです。
+例えば、数が偶数であること、ベクトルが固定長であること、ベクトルの要素がソートされていることなどを表現する方法はありません。</p>
 </div>
 <div class="paragraph">
-<p>Candid supports this set of types to allow a natural mapping of data types based on reasonable, canonical choices suitable for each host language, whether you are writing your code in Motoko, Rust, JavaScript, or some other language.</p>
+<p>Candid がサポートする型によって、Motoko、Rust、JavaScript、その他の言語でコードを書いていても、それぞれのホスト言語に適した合理的な選択に基づき、データ型の自然なマッピングが可能になります。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="candid-service-descriptions"><a class="anchor" href="#candid-service-descriptions"></a>Candid service descriptions</h2>
+<h2 id="candid-service-descriptions"><a class="anchor" href="#candid-service-descriptions"></a>Candid Service の説明</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once you are familiar with the Candid types, you can use them to describe a service. A Candid service description file—a <code>.DID</code> file—can either be written by hand or generated from a service implementation.</p>
+<p>Candid の型に慣れてきたら、Candid を使って Service を記述することができます。
+Candid の Service 記述ファイル（<code>.DID</code> ファイル）は、自分で作成するか、Service の実装から自動生成するかのどちらでも構いません。</p>
 </div>
 <div class="paragraph">
-<p>Before you explore how to generate service descriptions for a specific host language, let&#8217;s take a closer look at the structure of a sample service description and its constituent parts.</p>
+<p>特定のホスト言語用の Service 記述ファイルを生成する方法を説明する前に、Service 記述ファイルの構造とその構成要素について例を挙げて詳しく見てみましょう。</p>
 </div>
 <div class="paragraph">
-<p>The simplest service description specifies a service with no public methods and would look like this:</p>
+<p>公開メソッドを持たない Service に対する最もシンプルな Service 記述ファイルは以下のようになります：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -960,7 +980,7 @@ The features that make Candid particularly well-suited for developing dapps for 
 </div>
 </div>
 <div class="paragraph">
-<p>This service is not very useful, so let&#8217;s add a simple <code>ping</code> method:</p>
+<p>この Service はあまり便利ではないので、<code>ping</code> という簡単なメソッドを追加しましょう：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -970,15 +990,16 @@ The features that make Candid particularly well-suited for developing dapps for 
 </div>
 </div>
 <div class="paragraph">
-<p>This example describes a service that supports a single public method called <code>ping</code>.
-Method names can be arbitrary strings, and you can quote them (<code>"method with spaces"</code>) if they are not plain identifiers.</p>
+<p>この例では，<code>ping</code> という単一の公開メソッドをサポートする Sercvice を記述しています。
+メソッド名は任意の文字列で構いませんが、平文でない場合は引用符で囲んでください（<code>"method with spaces"</code>）。</p>
 </div>
 <div class="paragraph">
-<p>Methods declare a <em>sequence</em> of arguments and result types. In the case of this <code>ping</code> method, no arguments are passed and no results are returned, so the empty sequence `() ` is used for both arguments and results.</p>
+<p>メソッドは、引数と返し値の型の <em>シーケンス</em> を宣言します。
+この <code>ping</code> メソッドの場合、引数はなく、返し値もないので、引数と返し値の両方に空のシーケンス <code>()</code> が使用されます。</p>
 </div>
 <div class="paragraph">
-<p>Now that you&#8217;ve seen the simplest case, let&#8217;s consider a slightly more complex service description.
-This service consists of two methods—<code>reverse</code> and <code>divMod</code>—and each method include a sequence of argument and result types:</p>
+<p>上の例はあまりにも単純なケースでしたので、もう少し複雑な <code>Service</code> の記述を考えてみましょう。
+この Service は、<code>reverse</code> と <code>divMod</code> という２つのメソッドで構成されており、それぞれ以下のような引数と返し値の型のシーケンスを持っています：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -989,24 +1010,22 @@ This service consists of two methods—<code>reverse</code> and <code>divMod</co
 </div>
 </div>
 <div class="paragraph">
-<p>The method <code>reverse</code> expects a single parameter of type <code>text</code> and returns one value of type <code>text</code>.</p>
-</div>
-<div class="paragraph">
-<p>The method <code>divMod</code> expects and returns two values, all of type <code>nat</code>.</p>
+<p><code>reverse</code> メソッドは、<code>text</code> 型の値を引数として１つ受け取り、<code>text</code> 型の値を１つ返します。
+<code>divMod</code> メソッドは、<code>nat</code> 型の２つの値を引数とし、返し値も同じく２つの <code>nat</code> 型の値となります。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="service-naming"><a class="anchor" href="#service-naming"></a>Naming arguments and results</h2>
+<h2 id="service-naming"><a class="anchor" href="#service-naming"></a>引数と返し値の命名</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the previous example, the signature for the <code>divMod</code> method includes names for the argument and result values.
-Naming the arguments or results for a method is purely for documentation purposes.
-The name you use does not change the method’s type or the values being passed.
-Instead, arguments and results are identified by their <em>position</em>, independent of the name.</p>
+<p>前述の例では、<code>divMod</code> メソッドのシグネチャに引数と返し値の名前が含まれています。
+メソッドの引数や返し値に名前を付ける目的はドキュメント化です。
+使用する名前は、メソッドの型や渡される値を変更するものではありません。
+その代わり、引数や返し値は名前とは関係なく、その <em>場所</em> によって識別されます。</p>
 </div>
 <div class="paragraph">
-<p>In particular, Candid does not prevent you from changing the type to:</p>
+<p>特に、Candid は以下のように型を変更したり：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1014,19 +1033,20 @@ Instead, arguments and results are identified by their <em>position</em>, indepe
 </div>
 </div>
 <div class="paragraph">
-<p>or passing the above <code>divMod</code> to a service expecting a method that returns <code>mod</code> first.</p>
+<p>最初に <code>mod</code> を返すメソッドを期待する Service に上記の <code>divMod</code> を渡すことを妨げません。</p>
 </div>
 <div class="paragraph">
-<p>This is thus very different from named <em>record</em> fields, which are semantically relevant.</p>
+<p>これは、意味論的に関連性を持つ <em>レコード</em> 型フィールドとは大きく異なります。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_reusing_complex_types"><a class="anchor" href="#_reusing_complex_types"></a>Reusing complex types</h2>
+<h2 id="_複雑な型の再利用"><a class="anchor" href="#_複雑な型の再利用"></a>複雑な型の再利用</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Often, multiple methods in a service may refer to the same complex type. In that case, the type can be named and reused multiple times.
-For example:</p>
+<p>しばしば、Service 内の複数のメソッドが同じ複合型を参照することがあります。
+その場合、その型に名前を付けて複数回再利用することができます。
+例えば、以下のようになります：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1043,16 +1063,18 @@ service address_book : {
 </div>
 </div>
 <div class="paragraph">
-<p>These type definitions merely abbreviate an <em>existing</em> type, they do not define a new type. It does not matter whether you use <code>address</code> in the function signature, or write out the records. Also, two abbreviations with different names but equivalent definitions, describe the same type and are interchangeable. In other words, Candid uses <em>structural</em> typing.</p>
+<p>これらの型定義は、<em>既存の</em> 型を単に省略しているだけで、新しい型を定義しているわけではありません。
+関数のシグネチャで <code>address</code> を使おうが、レコードを書き出そうが関係ありません。
+また、名前が異なっていても定義が同じである２つの略語は、同じ型を表しており交換可能です。言い換えれば、Candid は <em>構造的</em> 型付けを使用しています。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_specifying_a_query_method"><a class="anchor" href="#_specifying_a_query_method"></a>Specifying a query method</h2>
+<h2 id="_クエリメソッドの指定"><a class="anchor" href="#_クエリメソッドの指定"></a>クエリメソッドの指定</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the last example, you might have noticed the use of the <code>query</code> annotation for the <code>get_address</code> method.
-For example:</p>
+<p>全節の最後の例で、<code>get_address</code> メソッドに <code>query</code> アノテーションを使用していることにお気づきでしょうか。
+例えば、以下のような形です：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1063,83 +1085,91 @@ For example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This annotation indicates that the <code>get_address</code> method can be invoked as an Internet Computer <strong>query call</strong>.
-As discussed in <a href="developers-guide:concepts/canisters-code.html#query-update">Query and update methods</a>, a query provides an efficient way to retrieve information from a canister smart contract without going through consensus, so being able to identify a method as a query is one of the key benefits of using Candid to interact with the Internet Computer.</p>
+<p>このアノテーションは、<code>get_address</code> メソッドが Internet Computer の <strong>クエリコール</strong> として呼び出されることを示しています。</p>
+</div>
+<div class="paragraph">
+<p><a href="developers-guide:concepts/canisters-code.html#query-update">クエリメソッドとアップデートメソッド</a>で説明したように、クエリはコンセンサスを介さずに Canister スマートコントラクトから情報を取得するための効率的な方法ですので、メソッドをクエリとして識別できることは、Internet Computer とやり取りする際に Candid を用いる重要なメリットの１つです。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_encoding_and_decoding"><a class="anchor" href="#_encoding_and_decoding"></a>Encoding and decoding</h2>
+<h2 id="_エンコードとデコード"><a class="anchor" href="#_エンコードとデコード"></a>エンコードとデコード</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The point of Candid is to allow seamless invocation of service methods, passing arguments encoded to a binary format and transferred by an underlying transportation method (such as messages into or within the Internet Computer), and decoded on the other side.</p>
+<p>Candid のポイントは、バイナリ形式にエンコードされた引数を渡し、特定の伝達手段（Internet Computer へのメッセージや Internet Computer 内のメッセージなど）で転送し、相手側でデコードすることで、Service のメソッドをシームレスに呼び出せるようにすることです。</p>
 </div>
 <div class="paragraph">
-<p>As a Candid user, you do not have to worry about the details of this binary format.
-If you plan to <em>implement</em> Candid yourself (for example, to support a new host language), you can consult the <a href="https://github.com/dfinity/candid">Candid specification</a> for details.
-However, some aspects of the format are worth knowing:</p>
+<p>Candid を使えば、このバイナリ形式の詳細を気にする必要はありません。</p>
+</div>
+<div class="paragraph">
+<p>もしあなたが自分で Candid を <em>実装</em> しようと思っているなら（例えば、新しいホスト言語をサポートするためなど）、<a href="https://github.com/dfinity/candid">Candid の仕様</a>で詳細を参照してください。
+ただし、自分で実装しない場合であっても、Candid のフォーマットのいくつかの側面は知っておく価値があります。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The Candid binary format starts with <code>DIDL…</code> (or, in hex, <code>4449444c…</code>). If you see this in some low-level log output, you are very likely observing a Candid-encoded value.</p>
+<p>Candid のバイナリ形式は、<code>DIDL...</code> (16進数では、<code>4449444c...</code>) から始まります。
+もし、低レベルのログ出力でこれを見ることがあれば、それは Candid でエンコードされた値を見ている可能性が高いです。</p>
 </li>
 <li>
-<p>The Candid binary format always encodes <em>sequences</em> of values, because methods parameters and results are sequences of types.</p>
+<p>Candid のバイナリ形式は、メソッドの引数と返し値が型のシーケンスとなっているため、常に値の <em>シーケンス</em> をエンコードします。</p>
 </li>
 <li>
-<p>The binary format is quite compact. A <code>(vec nat64)</code> with 125 000 entries takes 1 000 007 bytes.</p>
+<p>バイナリ形式は非常にコンパクトです。125,000個の要素を持つ <code>(vec nat64)</code> は 1,000,007 バイトです。</p>
 </li>
 <li>
-<p>The binary is self-describing, and includes a (condensed) type description of type of the values therein. This allows the receiving side to detect if a message was sent at as a different, incompatible type.</p>
+<p>バイナリは自己記述式であり、含まれている値の（凝縮された）型に関する記述を含んでいます。
+これにより、メッセージが互換性のない型として送られてきたかどうかを、受信側が検出することができます。</p>
 </li>
 <li>
-<p>As long as the sender serializes the arguments as the type that the receiving side expects, deserialization will succeed.</p>
+<p>受信側が期待する型の通りに送信側が引数をシリアル化している限りにおいて、デシリアライズは成功します。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="upgrades"><a class="anchor" href="#upgrades"></a>Service upgrades</h2>
+<h2 id="upgrades"><a class="anchor" href="#upgrades"></a>Service のアップグレード</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Services evolve over time: They gain new methods, existing methods return more data, or expect additional arguments. Usually, developers want to do that without breaking existing clients.</p>
+<p>Service は時間とともに進化し、新しいメソッドが追加されたり、既存のメソッドがより多くのデータを返したり、追加の引数を要求したりします。
+通常、開発者は既存のクライアントを壊すことなくアップグレードを成功させたいのです。</p>
 </div>
 <div class="paragraph">
-<p>Candid supports such evolution by defining precise rules that indicate when the new service type will still be able to communicate with all other parties that are using the previous interface description. The underlying formalism is that of <em>subtyping</em>.</p>
+<p>Candid は、新しい Service の型が、これまでのインターフェース記述を使用している他のすべての Canister といつまで通信できるのかを示す明確なルールを定義することで、このようなアップグレードをサポートしています。
+このための基本となる形式は、<em>派生型</em> です。</p>
 </div>
 <div class="paragraph">
-<p>Services can safely evolve in the following ways:</p>
+<p>Service は次の場合に安全にアップグレードすることができます：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>New methods can be added.</p>
+<p>新しいメソッドを追加する場合には、安全にアップグレードされます。</p>
 </li>
 <li>
-<p>Existing methods can return additional values, that is, the sequence of result types can be extended. Old clients will simply ignore additional values.</p>
+<p>既存のメソッドは、追加の値を返すことができます。つまり、一連の返し値の型を拡張することができます。古いクライアントは、追加された値を単に無視します。</p>
 </li>
 <li>
-<p>Existing methods can shorten their parameter list. Old clients may still send the extra arguments, but they will be ignored.</p>
+<p>既存のメソッドは、その引数のリストを短くすることができます。古いクライアントは元のメソッドにあった引数を送ることができますが、それらは無視されます。</p>
 </li>
 <li>
-<p>Existing methods can extend their parameter list with optional arguments (type <code>opt …</code>). When reading messages from old clients, who do not pass that argument, a <code>null</code> value is assumed.</p>
+<p>既存のメソッドは、オプショナルの引数（<code>opt ...</code> 型）を用いることで引数のリストを拡張することができます。その引数を渡さない古いクライアントからのメッセージを読み込む際には、<code>null</code> 値として推定されます。</p>
 </li>
 <li>
-<p>Existing parameter types may be <em>changed</em>, but only to a <em>supertype</em> of the previous type.</p>
+<p>既存の引数の型は、以前の型の <em>基本型</em> に限り、<em>変更</em> することができます。</p>
 </li>
 <li>
-<p>Existing result types may be <em>changed</em>, but only to a <em>subtype</em> of the previous type.</p>
+<p>既存の返し値の型は、以前の型の <em>派生型</em> に限り、<em>変更</em> することができます。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For information about the supertypes and subtypes of a given type, see the corresponding <a href="#candid-ref.html">reference</a> section for that type.</p>
+<p>ある型の基本型と派生型に関する情報は、その型に対応する <a href="#candid-ref.html">リファレンス</a>セクションを参照してください。</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s look at a concrete example of how a service might evolve.
-Consider a service with the following API:</p>
+<p>Service をどのようにアップグレードしていくのか、具体的な例を見てみましょう。
+以下のような API を持つ Service を考えてみましょう：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1152,7 +1182,7 @@ Consider a service with the following API:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This service can evolve to the following interface:</p>
+<p>この Service は、以下のインターフェースにアップグレードすることができます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1169,21 +1199,21 @@ service counter : {
 </div>
 </div>
 <div class="sect1">
-<h2 id="textual-values"><a class="anchor" href="#textual-values"></a>Candid textual values</h2>
+<h2 id="textual-values"><a class="anchor" href="#textual-values"></a>Candid のテキスト値</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The main purpose of Candid is to connect programs written in some host language—Motoko, Rust, or JavaScript, for example—with the Internet Computer.
-In most cases, therefore, you do not have to deal with your program data as Candid values.
-Instead, you work with a host language like JavaScript using familiar JavaScript values then rely on Candid to transparently transport those values to a canister smart contract written in Rust or Motoko.
-The canister receiving the values treats them as native Rust or Motoko values.</p>
+<p>Candid の主な目的は、Motoko、Rust、JavaScript などのホスト言語で書かれたプログラムを Internet Computer に接続することです。
+そのため、ほとんどの場合、プログラムのデータを Candid の値として扱う必要はありません。
+その代わりに、慣れ親しんだ JavaScript のようなホスト言語を使って作業し、Rust や Motoko で書かれた Canister のスマートコントラクトに値を透過的に転送することを Candid に任せることができます。
+値を受け取った Canister は、その値を Rust や Motoko のネイティブな値として扱います。</p>
 </div>
 <div class="paragraph">
-<p>However, there are some cases—for example, when logging, debugging, or interacting with a service on the command-line—where it is useful to see the Candid values directly in a human-readable form.
-In these scenarios, you can use the <em>textual presentation</em> for Candid values.</p>
+<p>しかしながら、ログを取ったり、デバッグしたり、コマンドラインで Service を操作するときなど、Candid の値を人間が読める形で直接見ることができると便利な場合があります。
+このような場合には、Candid の値に <em>テキスト表現</em> を使用することができます。</p>
 </div>
 <div class="paragraph">
-<p>The syntax is similar to that for Candid types.
-For example, a typical textual presentation for a Candid value might look like this:</p>
+<p>シンタックスは Candid の型と似ています。
+例えば、Candid の値を表す典型的なテキスト表現は次のようなものです：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1205,7 +1235,8 @@ For example, a typical textual presentation for a Candid value might look like t
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The Candid <em>binary</em> format does not include the actual field names, merely numeric <em>hashes</em>. So pretty-printing such a value without knowledge of the expected type will not include the field names of records and variants. The above value might then be printed as follows:</p>
+<p>Candid の <em>binary</em> 形式には実際のフィールド名は含まれておらず、単に数値の <em>hash</em> が含まれてるだけです。
+そのため、求められている型を知らずに値をきれいに出力しても、レコードやバリアントのフィールド名は含まれません。上記の値は次のように表示されます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1224,13 +1255,15 @@ For example, a typical textual presentation for a Candid value might look like t
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generating_service_descriptions"><a class="anchor" href="#_generating_service_descriptions"></a>Generating service descriptions</h2>
+<h2 id="_service_記述ファイルの生成"><a class="anchor" href="#_service_記述ファイルの生成"></a>Service 記述ファイルの生成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the <a href="#candid-service-descriptions">section above</a>, you learned how to write a Candid service description from scratch. But often, that is not even needed! Depending on the language you use to implement your service, you can get the Candid service description generated from your code.</p>
+<p><a href="#candid-service-descriptions">前のセクションで</a>、Candid の Service 記述ファイルを自分で書く方法を学びました。
+しかし多くの場合、それは必要ですらありません！
+Service を実装する際に使用する言語によっては、コードから Candid Serivice の記述ファイルを生成することができます。</p>
 </div>
 <div class="paragraph">
-<p>For example, in Motoko, you can write a canister smart contract like this:</p>
+<p>例えば Motokoでは、Canister スマートコントラクトを以下のように書くことができます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1244,19 +1277,21 @@ For example, a typical textual presentation for a Candid value might look like t
 </div>
 </div>
 <div class="paragraph">
-<p>When you compile this program, the Motoko compiler automatically generates a Candid service description file with the interface shown above.</p>
+<p>このプログラムをコンパイルすると，Motoko コンパイラが上記のインターフェイスの Candid Service 記述ファイルを自動的に生成します。</p>
 </div>
 <div class="paragraph">
-<p>In other languages, like Rust or C, you can still develop your service using the types that are native to that language, for example, using native Rust types.
-After you develop a service in a language like Rust, however, there&#8217;s currently no way to automatically generate the service description in Candid.
-Therefore, if you write a program for a service in Rust or C, you need to write the Candid interface description manually following the conventions described in the <a href="https://github.com/dfinity/candid">Candid specification</a>.</p>
+<p>Rust や Cなどの他の言語でも、その言語のネイティブな型を使って Service を開発することができます。例えば、Rust のネイティブな型を使うことができます。
+しかし、Rust のような言語で Service を開発した後、Candid で Service 記述ファイルを自動的に生成する方法は今のところありません。</p>
 </div>
 <div class="paragraph">
-<p>For examples of how to write Candid service descriptions for Rust programs, see the <a href="https://github.com/dfinity/cdk-rs/tree/next/examples">Rust CDK examples</a> and the <a href="../rust-guide/rust-intro.html">Rust tutorials</a>.</p>
+<p>そのため、Rust や C で Service 用のプログラムを書く場合は、<a href="https://github.com/dfinity/candid">Candid の仕様</a>に記載されている規約に従って、Candid のインターフェース記述ファイルを手動で作成する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>Regardless of the host language you use, it is important to know the mapping between host language types and Candid types.
-In the <a href="candid-types.html">Supported types</a> reference section, you&#8217;ll find Candid type mapping described for Motoko, Rust, and JavaScript.</p>
+<p>Rust プログラムの Candid Service 記述ファイルの書き方の例については、<a href="https://github.com/dfinity/cdk-rs/tree/next/examples">Rust CDK の例</a>と<a href="../rust-guide/rust-intro.html">Rust のチュートリアル</a>を参照してください。</p>
+</div>
+<div class="paragraph">
+<p>使用するホスト言語に関わらず、ホスト言語の型と Candid の型の対応関係を知っておくことは重要です。
+リファレンスの<a href="candid-types.html">サポートされている型</a>の章では、Motoko、Rust、JavaScript の Candid 型との対応関係が説明されています。</p>
 </div>
 </div>
 </div>
