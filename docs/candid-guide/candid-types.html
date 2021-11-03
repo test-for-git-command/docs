@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Supported types :: Dfinity 日本語ドキュメント</title>
+    <title>サポートされている型 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/candid-guide/candid-types.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -831,36 +831,36 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Supported types</h1>
+<h1 class="page">サポートされている型</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section lists all the types supported by Candid.
-For each type, the reference includes the following information:</p>
+<p>この章では、Candid でサポートされているすべての型をリストアップしています。
+それぞれの型について、以下の情報が記載されています：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Type syntax and the syntax for the textual representation of the type.</p>
+<p>型の構文と、型のテキスト表現の構文。</p>
 </li>
 <li>
-<p>Upgrade rules for each type are given in terms of the possible <em>subtypes</em> and <em>supertypes</em> of a type.</p>
+<p>それぞれの型に対する Candid のアップグレードに関するルールは、型の <em>派生型（サブタイプ）</em> と <em>基本型（スーパータイプ）</em> によって決まります。</p>
 </li>
 <li>
-<p>Corresponding types in Rust, Motoko and Javascript.</p>
+<p>それぞれの型に対応する Rust、Motoko、Javascript の型。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Subtypes are the types you can change your method <em>results</em> to.
-Supertypes are the types that you can change your method <em>arguments</em> to.</p>
+<p>既存メソッドの <em>返り値</em> の型は以前の型の派生型に変更できます。
+既存メソッドの <em>引数</em> の型は以前の型の基本型に変更できます。</p>
 </div>
 <div class="paragraph">
-<p>You should note that this reference only lists the specific subtypes and supertypes that are relevant for each type.
-It does not repeat common information about subtypes and supertypes that can apply to any type.
-For example, the reference does not list <code>empty</code> as a subtype because it can be a subtype of any other type.
-Similarly, the types <code>reserved</code> and <code>opt t</code> are not listed as supertypes of specific types because they are supertypes of any type.
-For details about the subtyping rules for the <code>empty</code>, <code>reserved</code>, and <code>opt t</code> types, see the following sections:</p>
+<p>このリファレンスには、それぞれの型に関連する特定の派生型と基本型のみが記載されていることに注意してください。
+どの型にも適用可能な派生型や基本型は記載していません。
+たとえば、<code>empty</code> は他のどの型の派生型にもなりうるので、このリファレンスでは派生型として挙げていません。
+同様に、<code>reserved</code> と <code>opt t</code> 型 は、任意の型の基本型であるため、特定の型の基本型として挙げていません。
+<code>empty</code>、<code>reserved</code>、<code>opt t</code> 型の派生型化のルールに関する詳細については、以下の節を参照してください。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -878,18 +878,18 @@ For details about the subtyping rules for the <code>empty</code>, <code>reserved
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-text"><a class="anchor" href="#type-text"></a>Type text</h2>
+<h2 id="type-text"><a class="anchor" href="#type-text"></a>text 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>text</code> type is used for human readable text. More precisely, its values are sequences of unicode code points (excluding surrogate parts).</p>
+<p><code>text</code> 型は、人が読めるテキストが必要な場面で使われます。より正確には、unicode の符号位置のシーケンスです（サロゲート部分を除く）。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <p><code>text</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -901,15 +901,15 @@ For details about the subtyping rules for the <code>empty</code>, <code>reserved
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <p><code>Text</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p><code>String</code> or <code>&amp;str</code></p>
+<p><code>String</code> または <code>&amp;str</code></p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
 <p><code>"String"</code></p>
 </dd>
@@ -918,45 +918,45 @@ For details about the subtyping rules for the <code>empty</code>, <code>reserved
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-blob"><a class="anchor" href="#type-blob"></a>Type blob</h2>
+<h2 id="type-blob"><a class="anchor" href="#type-blob"></a>blob 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>blob</code> type can be used for binary data, that is, sequences of bytes.
-Interfaces written using the <code>blob</code> type are interchangeable with interfaces that are written using <code>vec nat8</code>.</p>
+<p><code>blob</code> 型は、バイナリデータ（バイトのシーケンス）に用いることができます。
+<code>blob</code> 型を用いて書かれたインターフェースは、<code>vec nat8</code> を用いて書かれたインターフェースと互換性があります。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <p><code>blob</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <p><code>blob &lt;text&gt;</code></p>
 <div class="paragraph">
-<p>where <code>&lt;text&gt;</code> represents a text literal with all characters representing their utf8 encoding, and arbitrary byte sequences (<code>"\CA\FF\FE"</code>).</p>
+<p>ここで、<code>&lt;text&gt;</code> は、すべての文字が UTF8 エンコーディングで表現された文字列リテラルと任意のバイトシーケンス(<code>"\CA\FF\FE"</code>)を表します。</p>
 </div>
 <div class="paragraph">
-<p>For more information about text types, see <a href="#type-text">Text</a>.</p>
+<p>Text 型に関して詳しく知りたい場合は、<a href="#type-text">Text 型</a>を参照してください。</p>
 </div>
 </dd>
-<dt class="hdlist1">Subtypes</dt>
+<dt class="hdlist1">派生型</dt>
 <dd>
-<p><code>vec nat8</code>, and all subtypes of <code>vec nat8</code>.</p>
+<p><code>vec nat8</code> および <code>vec nat8</code> の全ての派生型。</p>
 </dd>
-<dt class="hdlist1">Supertypes</dt>
+<dt class="hdlist1">基本型</dt>
 <dd>
-<p><code>vec nat8</code>, and all supertypes of <code>vec nat8</code>.</p>
+<p><code>vec nat8</code> および <code>vec nat8</code> の全ての基本型。</p>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <p><code>Blob</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p><code>Vec&lt;u8&gt;</code> or <code>&amp;[u8]</code></p>
+<p><code>Vec&lt;u8&gt;</code> または <code>&amp;[u8]</code></p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
 <p><code>[ 1, 2, 3, 4, ... ]</code></p>
 </dd>
@@ -965,20 +965,20 @@ Interfaces written using the <code>blob</code> type are interchangeable with int
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-nat"><a class="anchor" href="#type-nat"></a>Type nat</h2>
+<h2 id="type-nat"><a class="anchor" href="#type-nat"></a>nat 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>nat</code> type contains all natural (non-negative) numbers.
-It is unbounded, and can represent arbitrary large numbers.
-The on-wire encoding is LEB128, so small numbers are still efficiently represented.</p>
+<p><code>nat</code> 型は、すべての（非負の）自然数を含みます。
+値の大きさに制限はなく、任意の大きな数字を表すことができます。
+通信時のエンコーディングは LEB128 なので、小さな数字も効率よく表現できます。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <p><code>nat</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -988,41 +988,41 @@ The on-wire encoding is LEB128, so small numbers are still efficiently represent
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Supertypes</dt>
+<dt class="hdlist1">基本型</dt>
 <dd>
 <p><code>int</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <p><code>Nat</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p><code>candid::Nat</code> or <code>u128</code></p>
+<p><code>candid::Nat</code> または <code>u128</code></p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p><code>new BigNumber("10000")</code> from <code>bignumber.js</code> npm package</p>
+<p><code>bignumber.js</code> npm パッケージに含まれる <code>new BigNumber("10000")</code></p>
 </dd>
 </dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-int"><a class="anchor" href="#type-int"></a>Type int</h2>
+<h2 id="type-int"><a class="anchor" href="#type-int"></a>int 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>int</code> type contains all whole numbers.
-It is unbounded and can represent arbitrary small or large numbers.
-The on-wire encoding is SLEB128, so small numbers are still efficiently represented.</p>
+<p><code>int</code> 型はすべての整数を含みます。
+大きさに制限がなく、任意の大小の数値を表現することができます。
+通信時のエンコーディングは SLEB128 なので、小さな数字も効率的に表現できます。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <p><code>int</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1038,52 +1038,52 @@ The on-wire encoding is SLEB128, so small numbers are still efficiently represen
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Subtypes</dt>
+<dt class="hdlist1">派生型</dt>
 <dd>
 <p><code>nat</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <p><code>Int</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p><code>candid::Int</code> or <code>i128</code></p>
+<p><code>candid::Int</code> または <code>i128</code></p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p><code>new BigNumber("-10000")</code> from <code>bignumber.js</code> npm package</p>
+<p><code>bignumber.js</code> npm パッケージに含まれる <code>new BigNumber("-10000")</code></p>
 </dd>
 </dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-intN"><a class="anchor" href="#type-intN"></a>Type natN and intN</h2>
+<h2 id="type-intN"><a class="anchor" href="#type-intN"></a>natN 型と intN 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The types <code>nat8</code>, <code>nat16</code>, <code>nat32</code>, <code>nat64</code>, <code>int8</code>, <code>int16</code>, <code>int32</code> and <code>int64</code> represent numbers with a representation of that many bits, and can be used in more “low-level” interfaces.</p>
+<p><code>nat8</code>、<code>nat16</code>、<code>nat32</code>、<code>nat64</code>、<code>int8</code>、<code>int16</code>、<code>int32</code>、<code>int64</code> の型は、そのビット数の表現を持つ数値を表し、より低レベルなインターフェースで使用することができます。</p>
 </div>
 <div class="paragraph">
-<p>The range of <code>natN</code> is <code>{0 &#8230;&#8203; 2^N-1}</code>, and the range of <code>intN</code> is <code>-2^(N-1) &#8230;&#8203; 2^(N-1)-1</code>.</p>
+<p><code>natN</code> の範囲は <code>{0 &#8230;&#8203;. 2^N-1}</code> であり、<code>intN</code> の範囲は <code>-2^(N-1) &#8230;&#8203; 2^(N-1)-1</code> となります。</p>
 </div>
 <div class="paragraph">
-<p>The on-wire representation is exactly that many bits long. So for small values, <code>nat</code> is more space-efficient than <code>nat64</code>.</p>
+<p>通信時の表現は、ちょうどその長さのビット数になります。そのため、小さな値に対しては、<code>nat64</code> よりも <code>nat</code> の方が容量の効率が良いです。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
-<p><code>nat8</code>, <code>nat16</code>, <code>nat32</code>, <code>nat64</code>, <code>int8</code>, <code>int16</code>, <code>int32</code> or <code>int64</code></p>
+<p><code>nat8</code>, <code>nat16</code>, <code>nat32</code>, <code>nat64</code>, <code>int8</code>, <code>int16</code>, <code>int32</code> または <code>int64</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
-<p>Same as <code>nat</code> for <code>nat8</code>, <code>nat16</code>, <code>nat32</code>, and <code>nat64</code>.</p>
+<p><code>nat8</code>, <code>nat16</code>, <code>nat32</code>, <code>nat64</code> は <code>nat</code> と同じです。</p>
 <div class="paragraph">
-<p>Same as <code>int</code> for <code>int8</code>, <code>int16</code>, <code>int32</code> and <code>int64</code>.</p>
+<p><code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code> は <code>int</code> と同じです。</p>
 </div>
 <div class="paragraph">
-<p>We can use type annotation to distinguish different integer types.</p>
+<p>型アノテーションを使って、異なる整数型を区別することができます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1093,16 +1093,16 @@ The on-wire encoding is SLEB128, so small numbers are still efficiently represen
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
-<p><code>natN</code> translates by default to <code>NatN</code>, but can also correspond to <code>WordN</code> when required.</p>
+<p><code>natN</code> はデフォルトでは <code>NatN</code> に翻訳されますが、必要に応じて <code>WordN</code> にも翻訳されます。</p>
 <div class="paragraph">
-<p><code>intN</code> translate to <code>IntN</code>.</p>
+<p><code>intN</code> は <code>IntN</code> に翻訳されます。</p>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p>Signed and unsigned integers of corresponding size.</p>
+<p>同サイズの符号付き整数と符号なし整数に対応します。</p>
 <table class="tableblock frame-all grid-all" style="width: 30%;">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1111,9 +1111,9 @@ The on-wire encoding is SLEB128, so small numbers are still efficiently represen
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Length</th>
-<th class="tableblock halign-left valign-top">Signed</th>
-<th class="tableblock halign-left valign-top">Unsigned</th>
+<th class="tableblock halign-left valign-top">ビット長</th>
+<th class="tableblock halign-left valign-top">符号付き</th>
+<th class="tableblock halign-left valign-top">符号なし</th>
 </tr>
 </thead>
 <tbody>
@@ -1140,11 +1140,11 @@ The on-wire encoding is SLEB128, so small numbers are still efficiently represen
 </tbody>
 </table>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p>8-bit, 16-bit and 32-bit translate to the number type.</p>
+<p>8-bit, 16-bit, 32-bit は number 型に翻訳されます。</p>
 <div class="paragraph">
-<p><code>int64</code> and <code>nat64</code> translate to the <code>BigNumber</code> object in <code>bignumber.js</code>.</p>
+<p><code>int64</code> と <code>nat64</code> は <code>bignumber.js</code> の <code>BigNumber</code> オブジェクトに翻訳されます。</p>
 </div>
 </dd>
 </dl>
@@ -1152,20 +1152,20 @@ The on-wire encoding is SLEB128, so small numbers are still efficiently represen
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-floatN"><a class="anchor" href="#type-floatN"></a>Type float32 and float64</h2>
+<h2 id="type-floatN"><a class="anchor" href="#type-floatN"></a>float32 型と float64 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The types <code>float32</code> and <code>float64</code> represent IEEE 754 floating point numbers in single precision (32 bit) and double precision (64 bit).</p>
+<p><code>float32</code> 型および <code>float64</code> 型は，IEEE 754 の浮動小数点数を、単精度（32ビット）および倍精度（64ビット）で表したものです。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <p><code>float32</code>, <code>float64</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
-<p>The same syntax as <code>int</code>, plus floating point literals as follows:</p>
+<p><code>int</code> と同じ構文で、次のように浮動小数点リテラルが加わります：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">1245.678
@@ -1180,18 +1180,18 @@ The on-wire encoding is SLEB128, so small numbers are still efficiently represen
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
-<p><code>float64</code> corresponds to <code>Float</code>.</p>
+<p><code>float64</code> は <code>Float</code> に対応します。</p>
 <div class="paragraph">
-<p><code>float32</code> does <em>not</em> currently have a representation in Motoko. Candid interfaces using <code>float32</code> cannot be served from or used from Motoko programs.</p>
+<p><code>float32</code> は、現在、Motoko での表現はありません。<code>float32</code> を使った Candid インターフェースは、Motoko のプログラムからは生成できませんし、利用することもできません。</p>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
 <p><code>f32</code>, <code>f64</code></p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
 <p>float number</p>
 </dd>
@@ -1200,30 +1200,30 @@ The on-wire encoding is SLEB128, so small numbers are still efficiently represen
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-bool"><a class="anchor" href="#type-bool"></a>Type bool</h2>
+<h2 id="type-bool"><a class="anchor" href="#type-bool"></a>bool 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>bool</code> type is a logical data type that can have only the values <code>true</code> or <code>false</code>.</p>
+<p><code>bool</code> 型は論理値を示すデータ型で、<code>true</code> または <code>false</code> の値のみを持つことができます。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <p><code>bool</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <p><code>true</code>, <code>false</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <p><code>Bool</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
 <p><code>bool</code></p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
 <p><code>true</code>, <code>false</code></p>
 </dd>
@@ -1232,34 +1232,34 @@ The on-wire encoding is SLEB128, so small numbers are still efficiently represen
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-null"><a class="anchor" href="#type-null"></a>Type null</h2>
+<h2 id="type-null"><a class="anchor" href="#type-null"></a>null 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>null</code> type is the type of the value <code>null</code>, thus a subtype of all the <code>opt t</code> types. It is also the idiomatic choice when using <a href="#type-variant">variants</a> to model enumerations.</p>
+<p><code>null</code> 型は値 <code>null</code> の型であり、全ての <code>opt t</code> 型の派生型です。また、<a href="#type-variant">バリアント</a>を使用して列挙型をモデル化する際に慣例的に使用されます。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <p><code>null</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <p><code>null</code></p>
 </dd>
-<dt class="hdlist1">Supertypes</dt>
+<dt class="hdlist1">基本型</dt>
 <dd>
-<p>All <code>opt t</code> types.</p>
+<p>全ての <code>opt t</code> 型。</p>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <p><code>Null</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
 <p><code>()</code></p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
 <p><code>null</code></p>
 </dd>
@@ -1268,19 +1268,19 @@ The on-wire encoding is SLEB128, so small numbers are still efficiently represen
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-vec"><a class="anchor" href="#type-vec"></a>Type vec t</h2>
+<h2 id="type-vec"><a class="anchor" href="#type-vec"></a>vec t 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>vec</code> type represents vectors (sequences, lists, arrays).
-A value of type <code>vec t</code> contains a sequence of zero or more values of type <code>t</code>.</p>
+<p><code>vec</code> 型はベクター（シーケンス、リスト、配列）を表します。
+<code>vec t</code> 型の値は、<code>t</code> 型の 0 個以上の値のシーケンスを含みます。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
-<p><code>vec bool</code>, <code>vec nat8</code>, <code>vec vec text</code>, and so on.</p>
+<p><code>vec bool</code>, <code>vec nat8</code>, <code>vec vec text</code> など。</p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1289,74 +1289,74 @@ vec { "john@doe.com"; "john.doe@example.com" };</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Subtypes</dt>
+<dt class="hdlist1">派生型</dt>
 <dd>
 <div class="ulist">
 <ul>
 <li>
-<p>Whenever <code>t</code> is a subtype of <code>t'</code>, then <code>vec t</code> is a subtype of <code>vec t'</code>.</p>
+<p><code>t</code> が <code>t'</code> の派生型であるときはいつでも、<code>vec t</code> は <code>vec t'</code> の派生型です。</p>
 </li>
 <li>
-<p><code>blob</code> is a subtype of <code>vec nat8</code>.</p>
+<p><code>blob</code> は <code>vec nat8</code> の派生型です。</p>
 </li>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">Supertypes</dt>
+<dt class="hdlist1">基本型</dt>
 <dd>
 <div class="ulist">
 <ul>
 <li>
-<p>Whenever <code>t</code> is a supertype of <code>t'</code>, then <code>vec t</code> is a supertype of <code>vec t'</code>.</p>
+<p><code>t</code> が <code>t'</code> の基本型であるときはいつでも、<code>vec t</code> は <code>vec t'</code> の基本型です。</p>
 </li>
 <li>
-<p><code>blob</code> is a supertype of <code>vec nat8</code>.</p>
+<p><code>blob</code> は <code>vec nat8</code> の基本型です。</p>
 </li>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
-<p><code>[T]</code>, where the Motoko type <code>T</code> corresponds to <code>t</code>.</p>
+<p><code>[T]</code> となります。ここで、Motoko 型の <code>T</code> は <code>t</code> に対応しています。</p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p><code>Vec&lt;T&gt;</code> or <code>&amp;[T]</code>, where the Rust type <code>T</code> corresponds to <code>t</code>.</p>
+<p><code>Vec&lt;T&gt;</code> または <code>&amp;[T]</code> となります。ここで、Rust 型の <code>T</code> は <code>t</code> に対応しています。</p>
 <div class="paragraph">
-<p><code>vec t</code> can translate to <code>BTreeSet</code> or <code>HashSet</code>.</p>
+<p><code>vec t</code> は <code>BTreeSet</code> または <code>HashSet</code> に翻訳されます。</p>
 </div>
 <div class="paragraph">
-<p><code>vec record { KeyType; ValueType }</code> can translate to <code>BTreeMap</code> or <code>HashMap</code>.</p>
+<p><code>vec record { KeyType; ValueType }</code> は、<code>BTreeMap</code> または <code>HashMap</code> に翻訳されます。</p>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p><code>Array</code>, e.g. <code>[ "text", "text2", &#8230;&#8203; ]</code></p>
+<p><code>Array</code> 例えば <code>[ "text", "text2", &#8230;&#8203; ]</code></p>
 </dd>
 </dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-opt"><a class="anchor" href="#type-opt"></a>Type opt t</h2>
+<h2 id="type-opt"><a class="anchor" href="#type-opt"></a>opt t 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>opt t</code> type contains all the values of type <code>t</code>, plus the special <code>null</code> value.
-It is used to express that some value is optional, meaning that data might be present as some value of type <code>t</code>, or might be absent as the value <code>null</code>.</p>
+<p><code>opt t</code> 型は、<code>t</code> 型のすべての値と、特殊な値である <code>null</code> を含みます。
+これは、ある値が任意であることを表現するのに使われます。つまり、データは <code>t</code> 型の値として存在するかもしれないし、<code>null</code> という値として存在しないかもしれない、ということです。</p>
 </div>
 <div class="paragraph">
-<p>The <code>opt</code> type can be nested (for example, <code>opt opt text</code>), and the values <code>null</code> and <code>opt null</code> are distinct values.</p>
+<p><code>opt</code> 型は入れ子にすることができ（例：<code>opt opt text</code>）、値 <code>null</code> と <code>opt null</code> は別の値です。</p>
 </div>
 <div class="paragraph">
-<p>The <code>opt</code> type plays a crucial role in the evolution of Candid interfaces, and has special subtyping rules as described below.</p>
+<p><code>opt</code> 型は、Candid インターフェース のアップグレードにおいて重要な役割を果たしており、以下のような特別な派生型のルールを持っています。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
-<p><code>opt bool</code>, <code>opt nat8</code>, <code>opt opt text</code>, and so on.</p>
+<p><code>opt bool</code>, <code>opt nat8</code>, <code>opt opt text</code> など。</p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1368,58 +1368,58 @@ opt opt "test"</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Subtypes</dt>
+<dt class="hdlist1">派生型</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The canonical rules for subtyping with <code>opt</code> are:</p>
+<p><code>opt</code> を使った派生型の規範的なルールは次の通りです：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Whenever <code>t</code> is a subtype of <code>t'</code>, then <code>opt t</code> is a subtype of <code>opt t'</code>.</p>
+<p><code>t</code> が <code>t'</code> の派生型であるときはいつでも、<code>opt t</code> は <code>opt t'</code> の派生型です。</p>
 </li>
 <li>
-<p><code>null</code> is a subtype of <code>opt t'</code>.</p>
+<p><code>null</code> は <code>opt t'</code> の派生型です。</p>
 </li>
 <li>
-<p><code>t</code> is a subtype of <code>opt t</code> (unless <code>t</code> itself is <code>null</code>, <code>opt …</code> or <code>reserved</code>).</p>
+<p><code>t</code> は <code>opt t</code> の派生型です（<code>t</code> 自体が <code>null</code> でない限り、<code>opt &#8230;&#8203;</code> または <code>reserved</code> ）。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>In addition, for technical reasons related to upgrading and higher-order services, <em>every</em> type is a subtype of <code>opt t</code>, yielding <code>null</code> if the types do not match. Users are advised, however, to not directly make use of that rule.</p>
+<p>加えて、アップグレードや上位のサービスに関する技術的な理由から、 <em>every</em> 型は <code>opt t</code> の派生型であり、型が一致しない場合には <code>null</code> が生成されます。ただし、ユーザーはこのルールを直接利用しないようにしてください。</p>
 </div>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Supertypes</dt>
+<dt class="hdlist1">基本型</dt>
 <dd>
 <div class="ulist">
 <ul>
 <li>
-<p>Whenever <code>t</code> is a supertype of <code>t'</code>, then <code>opt t</code> is a supertype of <code>opt t'</code>.</p>
+<p><code>t</code> が <code>t'</code> の基本型であるとき、<code>opt t</code> は <code>opt t'</code> の基本型です。</p>
 </li>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
-<p><code>?T</code>, where the Motoko type <code>T</code> corresponds to <code>t</code>.</p>
+<p><code>?T</code> となります。ここで、Motoko 型の <code>T</code> が <code>t</code> に対応しています。</p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p><code>Option&lt;T&gt;</code>, where the Rust type <code>T</code> corresponds to <code>t</code>.</p>
+<p><code>Option&lt;T&gt;</code> となります。ここで、Rust 型の <code>T</code> が <code>t</code> に対応しています。</p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p><code>null</code> translates to <code>[]</code>.</p>
+<p><code>null</code> は <code>[]</code> に翻訳されます。</p>
 <div class="paragraph">
-<p><code>opt 8</code> translates to <code>[8]</code>.</p>
+<p><code>opt 8</code> は <code>[8]</code> に翻訳されます。</p>
 </div>
 <div class="paragraph">
-<p><code>opt opt "test"</code> translates to <code>[["test"]]</code>.</p>
+<p><code>opt opt "test"</code> は <code>[["test"]]</code> に翻訳されます。</p>
 </div>
 </dd>
 </dl>
@@ -1427,10 +1427,10 @@ opt opt "test"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-record"><a class="anchor" href="#type-record"></a>Type record { n : t, … }</h2>
+<h2 id="type-record"><a class="anchor" href="#type-record"></a>record { n : t, … } 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <code>record</code> type is a collection of labeled values. For example, the following code gives the name <code>address</code> to the type of records that have the textual fields <code>street</code>, <code>city</code> and <code>country</code> and a numerical field of <code>zip_code</code>.</p>
+<p><code>record</code> 型はラベル付けされた値の集まりです。例えば、以下のコードはテキストフィールドの <code>street</code>、<code>city</code>、<code>country</code> と数値フィールドの <code>zip_code</code> を持つ record の型に <code>address</code> という名前を与えています。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1443,9 +1443,9 @@ opt opt "test"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The order of fields in the record type declaration does not matter.
-Each field can have a different type (unlike vectors).
-The label of a record field can also be a 32-bit natural number, as in this example:</p>
+<p>record 型宣言のフィールドの順序は重要ではありません。
+各フィールドは異なる型を持つことができます（同じ型のみを持つことができる vector とは異なります）。
+record フィールドのラベルは、以下の例のように 32 ビットの自然数にすることもできます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1458,14 +1458,14 @@ The label of a record field can also be a 32-bit natural number, as in this exam
 </div>
 </div>
 <div class="paragraph">
-<p>In fact, textual labels are treated as their <em>field hash</em>, and incidentally, <code>address</code> and <code>address2</code> are—to Candid—the same types.</p>
+<p>実際のところテキストラベルはその <em>ハッシュ値</em> として扱われますし、さらに言えば <code>address</code> と <code>address2</code> は Candid にとって同じ型です。</p>
 </div>
 <div class="paragraph">
-<p>If you omit the label, Candid automatically assigns sequentially-increasing labels. This behavior leads to the following shortened syntax, which is typically used to represent pairs and tuples. The type <code>record { text; text; opt bool }</code> is equivalent to <code>record { 0 : text;  1: text;  2: opt bool }</code></p>
+<p>ラベルを省略すると、Candid は自動的に順次昇順のラベルを割り当てます。この挙動により，以下のような短縮された構文になり、通常ペアやタプルを表現するのに使われます。<code>record { text; text; opt bool }</code> は、<code>record { 0 : text; 1: text; 2: opt bool }</code> と同等です。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1476,7 +1476,7 @@ record { text; text; opt bool }</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1487,15 +1487,15 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Subtypes</dt>
+<dt class="hdlist1">派生型</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Subtypes of a record are record types that have additional fields (of any type), where some field’s types are changed to subtypes, or where optional fields are removed. It is, however, bad practice to remove optional fields in method results. You can change a field&#8217;s type to <code>opt empty</code> to indicate that this field is no longer used.</p>
+<p>record の派生型とは、（任意のタイプの）フィールドが追加されたり、フィールドの型が派生型に変更されたり、選択型のフィールドが削除されたりした record 型のことです。ただし、メソッドの返り値で選択型のフィールドを削除するのはバッドプラクティスです。フィールドの型を <code>opt empty</code> に変更することで、そのフィールドがもう使われていないことを示すことができます。</p>
 </div>
 <div class="paragraph">
-<p>For example, if you have a function returning a record of of the following type:</p>
+<p>例えば、次のような record を返す関数があったとします：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1505,7 +1505,7 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>you can evolve that to a function returning a record of the following type:</p>
+<p>上の record は、次のような record に更新することができます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1515,23 +1515,23 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>where we have deprecated the <code>middle_name</code> field, change the type of <code>score</code> and added the <code>country</code> field.</p>
+<p>ここでは、<code>middle_name</code> フィールドを非推奨とし、<code>score</code> の型を変更し、<code>country</code> フィールドを追加しています。</p>
 </div>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Supertypes</dt>
+<dt class="hdlist1">基本型</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Supertypes of a record are record types with some fields removed, some fields’ types changed to supertypes, or with optional fields added.</p>
+<p>record の基本型とは、一部のフィールドが削除された record 型、一部のフィールドのタイプが基本型に変更された record 型、または選択型のフィールドが追加された record 型のことです。</p>
 </div>
 <div class="paragraph">
-<p>The latter is what allows you to extend your argument records with additional fields. Clients using the old interface will not include the field in their record, which will decode, when expected in the upgraded service, as <code>null</code>.</p>
+<p>後者は、引数の record を追加フィールドで拡張することができるものです。古いインターフェースを使用しているクライアントは、 record にフィールドを含めることができず、アップグレードされたサービスで期待される <code>null</code> としてデコードされます。</p>
 </div>
 <div class="paragraph">
-<p>For example, if you have a function expecting a record of type:</p>
+<p>例えば、レコード 型を期待する関数があるとします。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1539,7 +1539,7 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>you can evolve that to a function expecting a record of type:</p>
+<p>以下の record を受け取る関数に更新することができます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1549,34 +1549,34 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
-<p>If the record type looks like it could refer to a tuple (that is, consecutive labels starting at 0), a Motoko tuple type (for example <code>(T1, T2, T3)</code>) is used. Else, a Motoko record <code>({ first_name  :Text, second_name : Text })</code> is used.</p>
+<p>record 型がタプル（例えば、0 から始まる連続したラベル）を参照している場合は、Motoko のタプル型（例えば <code>(T1, T2, T3)</code>）が使用されます。それ以外の場合は、Motoko の record <code>({ first_name :Text, second_name : Text })</code> が使用されます。</p>
 <div class="paragraph">
-<p>If the field name is a reserved name in Motoko, an undescore is appended. So <code>record { if : bool }</code> corresponds to <code>{ if_ : Bool  }</code>.</p>
+<p>フィールド名が Motoko の予約語の場合は、アンダースコア が付加されます。つまり、<code>record { if : bool }</code> は、<code>{ if_ : Bool }</code> となります。</p>
 </div>
 <div class="paragraph">
-<p>If (even then) the field name is not a valid Motoko identifier, the <em>field</em> hash is used instead: <code>record { ☃ : bool }</code> corresponds to <code>{ <em>11272781</em> : Boolean }</code>.</p>
+<p>フィールド名が Motoko の有効な識別子でない場合は、代わりに <em>フィールド</em> のハッシュが使われます。例えば、<code>record { ☃ : bool }</code> は <code>{ <em>11272781</em> : Boolean }</code> となります。</p>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p>User defined <code>struct</code> with <code>#[derive(CandidType, Deserialize)]</code> trait.</p>
+<p><code>derive(CandidType, Deserialize)]</code> というトレイトを持つ、ユーザ定義の <code>構造体</code> となります。</p>
 <div class="paragraph">
-<p>You can use the <code>#[serde(rename = "DifferentFieldName")]</code> attribute to rename field names.</p>
+<p>フィールド名を変更するには、<code>#[serde(rename = "DifferentFieldName")]</code> 属性を使用します。</p>
 </div>
 <div class="paragraph">
-<p>If the record type is a tuple, it can be translated to a tuple type such as <code>(T1, T2, T3)</code>.</p>
+<p>record 型がタプルの場合は、<code>(T1, T2, T3)</code> のようなタプル型に変換されます。</p>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p>If the record type is a tuple, the value is translated to an array, for example, <code>["Candid", 42]</code>.</p>
+<p>record 型がタプルの場合、配列に変換されます。例えば、<code>["Candid", 42]</code> のようになります。</p>
 <div class="paragraph">
-<p>Else it translates to a record object. For example, <code>{ "first name": "Candid", age: 42 }</code>.</p>
+<p>それ以外の場合は、record オブジェクトに翻訳されます。例えば、<code>{ "first name": "Candid", age: 42 }</code> のようになります.</p>
 </div>
 <div class="paragraph">
-<p>If the field name is a hash, we use <code>_hash_</code> as the field name, for example, <code>{ _1_: 42, "1": "test" }</code>.</p>
+<p>フィールド名がハッシュの場合は、フィールド名として <code>_hash_</code> を使用します。例えば、<code>{ _1_: 42, "1": "test" }</code> のようになります。</p>
 </div>
 </dd>
 </dl>
@@ -1584,10 +1584,10 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-variant"><a class="anchor" href="#type-variant"></a>Type variant { n : t, … }</h2>
+<h2 id="type-variant"><a class="anchor" href="#type-variant"></a>variant { n : t, … } 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <code>variant</code> type represents a value that is from exactly one of the given cases, or <em>tags</em>. So a value of the type:</p>
+<p><code>variant</code> 型は、定義された値の組み合わせ（あるいは <em>タグ</em>）のうちの 1 つの値を表します。つまり、以下の variant 型は、dot、circle（半径が与えられる）、rectangle（寸法が与えられる）、吹き出し（テキストが与えられる）のいずれかです。なお、吹き出しは、ユニコードのラベル(💬)の使用が可能であることを例示しています。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1600,13 +1600,10 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>is either a dot, or a circle (with a radius), or a rectangle (with dimensions), or a speech bubble (with some text). The speech bubble illustrates use of a unicode label name (💬).</p>
+<p><code>variant</code> 型のタグは、record 型のラベルと同様、実際には数字であり、文字列のタグはそのハッシュ値を指します。</p>
 </div>
 <div class="paragraph">
-<p>The tags in variants are, just like the labels in records, actually numbers, and string tags refer to their hash value.</p>
-</div>
-<div class="paragraph">
-<p>Often, some or all of the the tags do not carry data. It is idiomatic to then use the <code>null</code> type, as in the <code>dot</code> above. In fact, Candid encourages this by allowing you to omit the <code>: null</code> type annotation in variants, so:</p>
+<p>しばしば、タグの一部（または全部）がデータを持たないことがあります。このような場合、上記の <code>dot</code> のように、<code>null</code> 型を使用するのが慣例です。実際、Candid はこのような使い方を推奨しており、variant では <code>: null</code> 型のアノテーションを省略することができます。つまり、</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1614,7 +1611,7 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>is equivalent to:</p>
+<p>は以下と等価であり、</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1624,14 +1621,14 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>and used to represent enumerations.</p>
+<p>となります。これは列挙を表現するのに使われます。</p>
 </div>
 <div class="paragraph">
-<p>The type <code>variant {}</code> is legal, but has no values. If that is the intention, the <a href="#type-empty"><code>empty</code> type</a> may be more appropriate.</p>
+<p><code>variant {}</code> 型は構文上問題ありませんが、値を持っていません。値がないことを意図するのであれば、<a href="#type-empty"><code>empty</code> 型</a>の方が適切かもしれません。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1642,7 +1639,7 @@ variant { spring; summer; fall; winter }</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1652,15 +1649,15 @@ variant { fall }</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Subtypes</dt>
+<dt class="hdlist1">派生型</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Subtypes of a variant type are variant types with some tags removed, and the type of some tags themselves changed to a subtype.</p>
+<p>variant 型の派生型は、一部のタグを削除し、一部のタグの型を派生型に変更した variant 型です。</p>
 </div>
 <div class="paragraph">
-<p>If you want to be able to <em>add</em> new tags in variants in a method result, you can do so if the variant is itself wrapped in <code>opt …</code>. This requires planning ahead! When you design an interface, instead of writing:</p>
+<p>メソッドの返り値の variant に新しいタグを <em>追加</em> できるようにしたい場合、variant 自体が <code>opt &#8230;&#8203;</code> でラップされていれば可能です。これには事前の計画が必要です。インターフェースを設計する際には、次のように書く代わりに：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1670,7 +1667,7 @@ variant { fall }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>it is better to use this:</p>
+<p>以下のように書くのが良いでしょう：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1680,21 +1677,21 @@ variant { fall }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This way, if you later need to add a <code>honorary</code> membership status, you can expand the list of statuses. Old clients will receive unknown fields as <code>null</code>.</p>
+<p>このようにすることで、後に <code>名誉</code> 会員ステータスを追加する必要が生じた場合に、ステータスのリストを拡張することができます。古いクライアントは未知のフィールドを <code>null</code> として受け取ります。</p>
 </div>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Supertypes</dt>
+<dt class="hdlist1">基本型</dt>
 <dd>
-<p>Supertypes of a variant types are variants with additional tags, and maybe the type of some tags changed to a supertype.</p>
+<p>variant 型の基本型は、タグが追加された variant です。一部のタグの型が基本型に変更されている場合もあります。</p>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Variant types are represented as Motoko variant types, for example:</p>
+<p>variant 型は、以下のように Motoko の variant 型として表現されます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1707,23 +1704,23 @@ variant { fall }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that if the type of a tag is <code>null</code>, this corresponds to <code>()</code> in Motoko, to preserve the mapping between the respective idiomatic ways to model enumerations as variants.</p>
+<p>列挙型を variant としてモデル化する際、Candid と Motoko それぞれの慣例の対応付けを行う必要があるため、タグの型が <code>null</code> の場合は Motoko では <code>()</code> に対応することに注意してください。</p>
 </div>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p>User defined <code>enum</code> with <code>#[derive(CandidType, Deserialize)]</code> trait.</p>
+<p><code>#[derive(CandidType, Deserialize)]</code> トレイトを持つユーザー定義の <code>enum</code> となります。</p>
 <div class="paragraph">
-<p>You can use the <code>#[serde(rename = "DifferentFieldName")]</code> attribute to rename field names.</p>
+<p>フィールド名を変更するには、<code>#[serde(rename = "DifferentFieldName")]</code> 属性を使用することができます。</p>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p>A record object with a single entry. For example, <code>{ dot: null }</code>.</p>
+<p>1 つの要素を持つ record オブジェクトとなります。例えば、<code>{ dot: null }</code> のようになります。</p>
 <div class="paragraph">
-<p>If the field name is a hash, we use <code>_hash_</code> as the field name, for example, <code>{ _2669435721_: "test" }</code>.</p>
+<p>フィールド名がハッシュ値の場合には、フィールド名として <code>_hash_</code> を用います。例えば、<code>{ _2669435721_: "test" }</code> のようになります。</p>
 </div>
 </dd>
 </dl>
@@ -1731,31 +1728,31 @@ variant { fall }</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-func"><a class="anchor" href="#type-func"></a>Type func (…) &#8594; (…)</h2>
+<h2 id="type-func"><a class="anchor" href="#type-func"></a>func (…) &#8594; (…) 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Candid is designed to support higher-order use cases, where a service may receive or provide references to other services or their methods, for example, as callbacks.
-The <code>func</code> type is central to this: It indicates the function’s <em>signature</em> (argument and results types, annotations), and values of this type are references to functions with that signature.</p>
+<p>Candid は、上位のユースケースをサポートするように設計されており、あるサービスが他のサービスやそのメソッドへの参照を受け取ったり、提供したりすることができます（例：コールバック関数）。
+<code>func</code> 型はこの目的において中心的な役割を果たします。これは、関数の <em>シグネチャ</em> (引数や返り値の型、アノテーション)を示しており、この型の値は、そのシグネチャを持つ関数への参照となります。</p>
 </div>
 <div class="paragraph">
-<p>The supported annotations are:</p>
+<p>サポートされているアノテーションは以下の通りです：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>query</code> indicates that the referenced function is a query method, meaning it does not alter the state of its canister, and that it can be invoked using the cheaper “query call” mechanism.</p>
+<p><code>query</code> は、Canister のステートを変更せず、安価なクエリコールのメカニズムを使用して呼び出すことができることを意味しています。</p>
 </li>
 <li>
-<p><code>oneway</code> indicates that this function returns no response, intended for fire-and-forget scenarios.</p>
+<p><code>oneway</code> は、この関数が何のレスポンスも返さないことを示します。これは、Fire and Forget シナリオ（訳註：イベントハンドラなど、非同期呼び出しで関数を投げ放す場合）を想定しています。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For more information about parameter naming, see <a href="candid-concepts.html#service-naming">Naming arguments and results</a>.</p>
+<p>引数の命名について詳しく知りたい方は、<a href="candid-concepts.html#service-naming">引数と返り値の命名</a>を参照してください。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1767,9 +1764,9 @@ func (func (int) -&gt; ()) -&gt; ()</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
-<p>Currently, only public methods of services, which are identified by their principal, are supported:</p>
+<p>現在、プリンシパルによって識別されるサービスのパブリックメソッドのみサポートされています。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-candid hljs" data-lang="candid">func "w7x7r-cok77-xa".hello
@@ -1778,58 +1775,58 @@ func "aaaaa-aa".create_canister</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Subtypes</dt>
+<dt class="hdlist1">派生型</dt>
 <dd>
-<p>The following modifications to a function type change it to a subtype as discussed in the rules for <a href="candid-concepts.html#upgrades">Service upgrades</a>:</p>
+<p><a href="candid-concepts.html#upgrades">サービスのアップグレード</a>のルールで説明されているように、以下の修正は、ある func 型をその派生型に変更します：</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The result type list may be extended.</p>
+<p>返り値の型のリストを拡張することができます。</p>
 </li>
 <li>
-<p>The parameter type list may be shortened.</p>
+<p>引数の型のリストを短くすることができます。</p>
 </li>
 <li>
-<p>The parameter type list may be extended with optional arguments (type <code>opt …</code>).</p>
+<p>引数の型のリストを、オプションの引数（<code>opt &#8230;&#8203;</code> 型）で拡張することができます。</p>
 </li>
 <li>
-<p>Existing parameter types may be changed to to a <em>supertype</em> ! In other words, the function type is <em>contravariant</em> in the argument type.</p>
+<p>既存の引数の型を <em>基本型</em> に変更することができます。言い換えれば、関数の型は引数の型に <em>反変</em> であるということです。</p>
 </li>
 <li>
-<p>Existing result types may be changed to a subtype.</p>
+<p>既存の返り値の型を派生型に変更することができます。</p>
 </li>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">Supertypes</dt>
+<dt class="hdlist1">基本型</dt>
 <dd>
-<p>The following modifications to a function type change it to a supertype:</p>
+<p>以下の修正は、ある func 型をその基本型に変更します：</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The result type list may be shortened.</p>
+<p>返り値の型のリストを短くすることができます。</p>
 </li>
 <li>
-<p>The result type list may be extended with optional arguments (type <code>opt …</code>).</p>
+<p>返り値の型のリストはオプションの引数（<code>opt &#8230;&#8203;</code> 型）で拡張することができます。</p>
 </li>
 <li>
-<p>The parameter type list may be extended.</p>
+<p>引数の型のリストは拡張さすることができます。</p>
 </li>
 <li>
-<p>Existing parameter types may be changed to to a <em>subtype</em> ! In other words, the function type is <em>contravariant</em> in the argument type.</p>
+<p>既存の引数の型を <em>派生型</em> に変更することができます。言い換えれば、関数の型は引数の型に <em>反変</em> であるということです。</p>
 </li>
 <li>
-<p>Existing result types may be changed to a supertype.</p>
+<p>既存の返り値の型を基本型に変更することができます。</p>
 </li>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Candid function types correspond to <code>shared</code> Motoko functions, with the result type wrapped in <code>async</code> (unless they are annotated with <code>oneway</code>, then the result type is simply <code>()</code>).  Arguments resp. results become tuples, unless there is exactly one, in which case it is used directly:</p>
+<p>Candid の関数型は、Motoko の <code>shared</code> 関数型に対応しており、返り値の型は <code>async</code> でラップされています（<code>oneway</code> でアノテーションされていない限り、返り値の型は単に <code>()</code> となります）。引数と返り値はタプルになりますが、1 つだけ指定されている場合はタプルにならず、直接使用されます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1841,7 +1838,7 @@ type F4 = func () -&gt; (text) query;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>corresponds in Motoko to</p>
+<p>は、Motoko では以下に対応します：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1855,11 +1852,11 @@ type F4 = shared query () -&gt; async Text;</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p><code>candid::IDLValue::Func(Principal, String)</code>, see <a href="https://docs.rs/candid/0.6.15/candid/parser/value/enum.IDLValue.html">IDLValue</a>.</p>
+<p><code>candid::IDLValue::Func(Principal, String)</code> となります。詳しくは、 <a href="https://docs.rs/candid/0.6.15/candid/parser/value/enum.IDLValue.html">IDLValue</a> を参照ください。</p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
 <p><code>[Principal.fromText("aaaaa-aa"), "create_canister"]</code></p>
 </dd>
@@ -1868,17 +1865,17 @@ type F4 = shared query () -&gt; async Text;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-service"><a class="anchor" href="#type-service"></a>Type service {…}</h2>
+<h2 id="type-service"><a class="anchor" href="#type-service"></a>service {…} 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Services may want to pass around references to not just individual functions (using the <a href="#type-func"><code>func</code> type</a>), but references to whole services. In this case, Candid types can be used to declare the complete interface of such a service.</p>
+<p>サービスは、それぞれの関数（<a href="#type-func"><code>func</code> 型</a>を使用）だけでなく、サービス全体への参照を渡したい場合があります。このような場合には、Candid の型はサービスの（完全な）インターフェースを宣言するために使うことができます。</p>
 </div>
 <div class="paragraph">
-<p>See <a href="candid-concepts.html#candid-service-descriptions">Candid service descriptions</a> for more details on the syntax of a service type.</p>
+<p>service 型の構文に関する詳細は、<a href="candid-concepts.html#candid-service-descriptions">Candid Service の記述</a>を参照してください。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1891,7 +1888,7 @@ type F4 = shared query () -&gt; async Text;</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1901,23 +1898,23 @@ service "aaaaa-aa"</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Subtypes</dt>
+<dt class="hdlist1">派生型</dt>
 <dd>
-<p>The subtypes of a service type are those service types that possibly have additional methods, and where the type of an existing method is changed to a subtype.</p>
+<p>service 型の派生型とは、追加のメソッドが付与されたり、既存のメソッドの型が派生型に変更されている service 型です。</p>
 <div class="paragraph">
-<p>This is exactly the same principle as discussed for upgrade rules in <a href="candid-concepts.html#upgrades">Service upgrades</a>.</p>
+<p>これは、<a href="candid-concepts.html#upgrades">Service のアップグレード</a>内のルールにて説明されているのと同じ原理に基づくものです。</p>
 </div>
 </dd>
-<dt class="hdlist1">Supertypes</dt>
+<dt class="hdlist1">基本型</dt>
 <dd>
-<p>The supertypes of a service type are those service types that may have some methods removed, and the type of existing methods are changed to a supertype.</p>
+<p>service 型の基本型とは、一部のメソッドが削除されたり、既存のメソッドの型が基本型に変更されている service 型です。</p>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>Service types in Candid correspond directly to <code>actor</code> types in Motoko:</p>
+<p>Candid の Service 型は Motoko の <code>actor</code> 型に直接対応します：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1932,11 +1929,11 @@ service "aaaaa-aa"</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p><code>candid::IDLValue::Service(Principal)</code>, see <a href="https://docs.rs/candid/0.6.15/candid/parser/value/enum.IDLValue.html">IDLValue</a>.</p>
+<p><code>candid::IDLValue::Service(Principal)</code> に対応します。詳しくは、 <a href="https://docs.rs/candid/0.6.15/candid/parser/value/enum.IDLValue.html">IDLValue</a> を参照してください。</p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
 <p><code>Principal.fromText("aaaaa-aa")</code></p>
 </dd>
@@ -1945,18 +1942,18 @@ service "aaaaa-aa"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-principal"><a class="anchor" href="#type-principal"></a>Type principal</h2>
+<h2 id="type-principal"><a class="anchor" href="#type-principal"></a>principal 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Internet Computer uses <em>principals</em> as the common scheme to identify canisters, users, and other entities.</p>
+<p>Internet Computer では、Canister やユーザーや他のエンティティを識別するための共通の方式として、<em>principal</em> を使用しています。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <p><code>principal</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <div class="listingblock">
 <div class="content">
@@ -1966,15 +1963,15 @@ principal "aaaaa-aa"</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <p><code>Principal</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
-<p><code>candid::Principal</code> or <code>ic_types::Principal</code></p>
+<p><code>candid::Principal</code> または <code>ic_types::Principal</code></p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
 <p><code>Principal.fromText("aaaaa-aa")</code></p>
 </dd>
@@ -1983,13 +1980,13 @@ principal "aaaaa-aa"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-reserved"><a class="anchor" href="#type-reserved"></a>Type reserved</h2>
+<h2 id="type-reserved"><a class="anchor" href="#type-reserved"></a>reserved 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>reserved</code> type is a type with one (uninformative) value <code>reserved</code>, and is the supertype of all other types.</p>
+<p><code>reserved</code> 型は、1つの（情報を持たない）値 <code>reserved</code> を持つ型で、他のすべての型の基本型です。</p>
 </div>
 <div class="paragraph">
-<p>The <code>reserved</code> type can be used to remove method arguments. Consider a method with the following signature:</p>
+<p>メソッドの引数を削除するのに <code>reserved</code> 型を使用することができます。次のようなシグネチャを持つメソッドを考えてみましょう：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1999,7 +1996,7 @@ principal "aaaaa-aa"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>and assume you no longer care about the <code>middle_name</code>. Although Candid will not prevent you from changing the signature to this:</p>
+<p>ここで、<code>middle_name</code> をもはや使わなくなったと仮定します。ところが、Candid はあなたが関数シグネチャを以下のように変更することを妨げません：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2009,10 +2006,10 @@ principal "aaaaa-aa"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>it would be disastrous: If a client talks to you using the old interface, you will silently ignore the <code>last_name</code> and take the <code>middle_name</code> as the <code>last_name</code>. Remember that method parameter names are just convention, and method arguments are identified by their position.</p>
+<p>これは非常に危険です。なぜなら、クライアントが古いインターフェースを使ってコールした場合、この関数は黙って <code>last_name</code> を無視し、<code>middle_name</code> を <code>last_name</code> として受け取ることになるからです。メソッドの引数名は単なる慣例であり、メソッドの引数はその位置によって識別されることを思い出してください。</p>
 </div>
 <div class="paragraph">
-<p>Instead, you can use:</p>
+<p>代わりに、以下のようにすることができます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2022,11 +2019,11 @@ principal "aaaaa-aa"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>to indicate that <code>foo</code> used to take a second argument, but you no longer care about that.</p>
+<p>これは、<code>foo</code> は以前は第 2 引数を使用していたものの、現在は使用していないということを示しています。</p>
 </div>
 <div class="paragraph">
-<p>You can avoid this pitfall by adopting the pattern any function that is anticipated to have changing arguments, or whose arguments can only be distinguished by position, not type, is declared to take a single record.
-For example:</p>
+<p>将来引数が変わることが予想される関数や、型ではなく位置でしか区別できない引数を持つ関数は、1つの record を取るように宣言するというパターンを採用することで、この落とし穴を回避することができます。
+例えば以下のようになります：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2036,7 +2033,7 @@ For example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Now, changing the signature to this:</p>
+<p>ここで、関数シグネチャを以下のように変更します：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2046,7 +2043,7 @@ For example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>does the right thing, and you don’t even need to keep a record of the removed argument around.</p>
+<p>これは正しく動作します。このようにすることで、削除された引数に関する記録を残す必要もありません。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2055,51 +2052,50 @@ For example:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In general, it is not recommended to remove arguments from methods. Usually, it is preferable to introduce a new method that omits the argument.
+一般的に、メソッドから引数を削除することは推奨されません。通常は、引数を省略した新しいメソッドを導入することが望ましいです。
 </td>
 </tr>
 </table>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <p><code>reserved</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
 <p><code>reserved</code></p>
 </dd>
-<dt class="hdlist1">Subtypes</dt>
+<dt class="hdlist1">派生型</dt>
 <dd>
-<p>All types</p>
+<p>全ての型</p>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <p><code>Any</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
 <p><code>candid::Reserved</code></p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p>Any value</p>
+<p>任意の値</p>
 </dd>
 </dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="type-empty"><a class="anchor" href="#type-empty"></a>Type empty</h2>
+<h2 id="type-empty"><a class="anchor" href="#type-empty"></a>empty 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>empty</code> type is the type without values, and is the subtype of any other type.</p>
+<p><code>empty</code> 型は、値を持たない型で、他のどの型の派生型でもあります。</p>
 </div>
 <div class="paragraph">
-<p>Practical use cases for the <code>empty</code> type are relatively rare.
-It could be used to mark a method as “never returns successfully”.
-For example:</p>
+<p><code>empty</code> 型の実用的なユースケースは比較的まれです。
+例えば、<code>empty</code> 型は、あるメソッドが「決して正常にリターンしない」ことを示すために使用することができます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2110,29 +2106,29 @@ For example:</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Type syntax</dt>
+<dt class="hdlist1">型の構文</dt>
 <dd>
 <p><code>empty</code></p>
 </dd>
-<dt class="hdlist1">Textual syntax</dt>
+<dt class="hdlist1">テキスト表現の構文</dt>
 <dd>
-<p>None, as this type has no values</p>
+<p>この型には値がないため、テキスト表現はありません。</p>
 </dd>
-<dt class="hdlist1">Supertypes</dt>
+<dt class="hdlist1">基本型</dt>
 <dd>
-<p>All types</p>
+<p>全ての型</p>
 </dd>
-<dt class="hdlist1">Corresponding Motoko type</dt>
+<dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
 <p><code>None</code></p>
 </dd>
-<dt class="hdlist1">Corresponding Rust type</dt>
+<dt class="hdlist1">対応する Rust の型</dt>
 <dd>
 <p><code>candid::Empty</code></p>
 </dd>
-<dt class="hdlist1">Corresponding JavaScript values</dt>
+<dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p>None, as this type has no values</p>
+<p>この型には値がないため、対応する JavaScript の値はありません。</p>
 </dd>
 </dl>
 </div>
