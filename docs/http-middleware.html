@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Introducing a new approach to handling HTTP requests and serving assets :: Dfinity 日本語ドキュメント</title>
+    <title>HTTP リクエストの処理とアセットの提供に関する新しいアプローチの紹介 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/http-middleware.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../_/css/site.css">
@@ -819,188 +819,188 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Developer Center</a></li>
-    <li><a href="http-middleware.html">Introducing a new approach to handling HTTP requests and serving assets</a></li>
+    <li><a href="http-middleware.html">HTTP リクエストの処理とアセットの提供に関する新しいアプローチの紹介</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/ROOT/pages/http-middleware.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Introducing a new approach to handling HTTP requests and serving assets</h1>
+<h1 class="page">HTTP リクエストの処理とアセットの提供に関する新しいアプローチの紹介</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you are installing any 0.7.0 (or later) version of the DFINITY Canister SDK, you might have noticed that those versions have introduced some major improvements for handling HTTP queries and front-end assets.
-When these changes are officially rolled into the next publicly-available release of the DFINITY Canister SDK, they will change how you build and deploy applications on the Internet Computer.</p>
+<p>DFINITY Canister SDK の 0.7.0（またはそれ以降）のバージョンをインストールしている方は、それらのバージョンで HTTP クエリやフロントエンドのアセットの処理にいくつかの大きな改善が行なわれていることにお気づきかもしれません。
+これらの変更が DFINITY Canister SDK の次のパブリックリリースに正式に組み込まれると、Internet Computer 上でのアプリケーションのビルドとデプロイの方法が変わるでしょう。</p>
 </div>
 <div class="paragraph">
-<p>If you are creating new projects, the changes to the underlying architecture will have little, if any, effect on your development workflow. In fact, you might find that the new architecture makes building applications that run on the Internet Computer a more familiar experience.</p>
+<p>新しいプロジェクトを作成する場合、基盤となるアーキテクチャの変更は、開発ワークフローにほとんど影響を与えません。むしろ、Internet Computer 上で動作するアプリケーションを構築する上で、新しいアーキテクチャの方が馴染みやすいと感じるかもしれません。</p>
 </div>
 <div class="paragraph">
-<p>If you have any existing projects, however, you’ll need to plan for a one-time migration to the new architecture.
-Migration to the new architecture doesn’t have to be completed immediately, but updating your projects to take advantage of the changes will ultimately make it easier to upload and manage front-end assets.</p>
+<p>ただし、既存のプロジェクトがある場合は、新アーキテクチャへの移行を考える必要があります。
+新アーキテクチャへの移行はすぐに行う必要はありませんが、プロジェクトを更新することで、フロントエンドのアセットのアップロードと管理が圧倒的に容易になった変更の恩恵を受けることができます。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_replacing_the_bootstrap_code_a_recap"><a class="anchor" href="#_replacing_the_bootstrap_code_a_recap"></a>Replacing the bootstrap code: a recap</h2>
+<h2 id="_bootstrap_コードの置き換え_要約"><a class="anchor" href="#_bootstrap_コードの置き換え_要約"></a>Bootstrap コードの置き換え： 要約</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before we describe the new architecture, it’s useful to have some context about the old approach that we are replacing and how the code has worked up to this point.
-Previously, developing a front-end on the Internet Computer involved adding a front-end assets canister with a <code>retrieve()</code> function.
-The <code>retrieve()</code> function would take a path and return a blob. The blob returned by the <code>retrieve()</code> function would then have an <code>index.js</code> file that contained some JavaScript and static HTML called the <code>bootstrap</code> code.
-After you deployed an application as smart contract—called a <a href="developers-guide/glossary.html#g-canister">canister</a>—on the Internet Computer, accessing the canister using the <code>&lt;CANISTER_ID&gt;.ic0.app</code> URL executed the <code>bootstrap</code> code, which in turn, performed the following steps:</p>
+<p>新しいアーキテクチャを説明する前に、置き換えようとしている従来のアプローチと、これまでのコードがどのように機能していたかについての背景を知っておくとよいでしょう。
+以前は、Internet Computer のフロントエンドを開発するには、フロントエンドのアセット Canister に <code>retrieve()</code> という関数を追加する必要がありました。
+<code>retrieve()</code> 関数は、パスを受け取り、blob を返します。<code>retrieve()</code> 関数が返す blob には、<code>index.js</code> というファイルがあり、<code>bootstrap</code> コードと呼ばれる JavaScript と 静的な HTML が含まれていました。
+スマートコントラクトとしてのアプリケーション、すなわち <a href="developers-guide/glossary.html#g-canister">Canister</a> を Internet Computer にデプロイした後、<code>&lt;CANISTER_ID&gt;.ic0.app</code> の URL を用いて Canister にアクセスすると、<code>bootstrap</code> コードが実行され、次のようなステップが実行されていました：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Created a secure worker to contain your private key.</p>
+<p>秘密鍵を格納するセキュアな Web Worker を作成。</p>
 </li>
 <li>
-<p>Polyfilled the <code>window.ic</code> to provide some mechanics to the running application so that it can communicate with the Internet Computer.</p>
+<p>実行中のアプリケーションが Internet Computer と通信できる仕組みを提供するため、<code>window.ic</code> をポリフィル化。</p>
 </li>
 <li>
-<p>Called the canister’s <code>retrieve()</code> method with <code>index.js</code> as the path, and evaluate it.</p>
+<p>Canister の <code>retrieve()</code> メソッドから <code>index.js</code> をパスとして呼び出し、評価。</p>
 </li>
 <li>
-<p>Passed control of the document object model (DOM) and the page to the canister’s JavaScript code.</p>
+<p>ドキュメントオブジェクトモデル（DOM）とページの制御を Canister の JavaScript コードに渡す。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This <code>bootstrap</code> workflow is quite different from how people usually build web applications.
-For example, this approach did not support loading HTML directly or downloading assets like PNG files.
-Asset handling required either loading the assets from another domain (for example, an AWS bucket) or loading the assets in JavaScript, transforming them into data URI, then setting the <code>src</code> attribute accordingly.
-Handling assets in this way led to problems in the browser, such as:</p>
+<p>この <code>bootstrap</code> のワークフローは、通常のウェブアプリケーションの構築方法とはかなり異なります。
+例えば、このアプローチでは、HTML を直接ロードしたり、PNG ファイルのようなアセットをダウンロードすることをサポートしていませんでした。
+アセットを扱うには、別のドメイン（例えば、AWS のバケット）からアセットを読み込むか、JavaScript でアセットを読み込み、データ URI に変換し、<code>src</code> 属性を設定する必要がありました。
+この方法でアセットを処理すると、ブラウザ上で次のような問題が発生していました：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Not waiting for re-layout of pages.</p>
+<p>ページの再レイアウトを待たない。</p>
 </li>
 <li>
-<p>Deferred loading of assets.</p>
+<p>アセットの読み込みが保留される。</p>
 </li>
 <li>
-<p>Executing JavaScript out of band.</p>
+<p>帯域外で JavaScript を実行する。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The <code>bootstrap</code> approach provided advantages in terms of security and decentralization, but those advantages were offset by the poor HTTP and asset handling that front-end developers and application users didn&#8217;t expect to experience.</p>
+<p><code>bootstrap</code> 方式は、セキュリティや分散性の面で利点がありましたが、フロントエンドの開発者やアプリケーションのユーザーが望まない、貧弱な HTTP やアセットの処理によって、そのメリットが相殺されていました。</p>
 </div>
 <div class="paragraph">
-<p>Over the last year, the DFINITY Canister SDK team has been gathering and evaluating feedback from the developer community. Based on that feedback, the team has decided to provide a more flexible developer experience while continuing to provide an equivalent security model.</p>
+<p>過去 1 年間に渡って、DFINITY Canister SDK チームは、開発者コミュニティからのフィードバックを収集し、評価してきました。その結果、同等のセキュリティモデルを提供しつつ、より柔軟な開発環境を提供することを決定しました。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_enabling_canisters_to_respond_to_http_requests"><a class="anchor" href="#_enabling_canisters_to_respond_to_http_requests"></a>Enabling canisters to respond to HTTP requests</h2>
+<h2 id="_canister_が_http_リクエストに応答できるようにする"><a class="anchor" href="#_canister_が_http_リクエストに応答できるようにする"></a>Canister が HTTP リクエストに応答できるようにする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After considering the advantages and disadvantages of different  proposals, the team decided on an architecture that would allow canisters to answer HTTP requests directly.
-With this new approach, the DFINITY Canister SDK implements an HTTP middleware server.</p>
+<p>さまざまな案のメリットとデメリットを検討した結果、開発チームは Canister が HTTP リクエストに直接応答できるようなアーキテクチャを採用することを決定しました。
+DFINITY Canister SDK は、この新しいアプローチによって HTTP ミドルウェアサーバを実装しています。</p>
 </div>
 <div class="paragraph">
-<p>The HTTP middleware server handles the processing for the HTTP request by doing the following:</p>
+<p>HTTP ミドルウェアサーバは、HTTP リクエストに対する処理を以下のように行います：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Receiving the HTTP request and converting its method, uri, headers and body into a Candid structure.</p>
+<p>HTTP リクエストを受信し、そのメソッド、URI、ヘッダ、ボディを Candid 構造に変換する。</p>
 </li>
 <li>
-<p>Resolving the canister identifier for the request.</p>
+<p>リクエストの Canister ID を解決する。</p>
 </li>
 <li>
-<p>Instantiating an agent to talk to the canister.</p>
+<p>Canister と通信するためのエージェントをインスタンス化する。</p>
 </li>
 <li>
-<p>Calling an <code>http_request()</code> query method.</p>
+<p><code>http_request()</code> のクエリメソッドを呼び出す。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If the canister implements the <code>http_request()</code> method, the HTTP middleware decodes the response, takes the headers and body, and constructs an HTTP response.
-If the canister does not implement the <code>http_request()</code> method, for backward compatibility, the middleware returns a bootstrap polyfill that points out the deprecation as a warning.
-For any errors in the process, the HTTP middleware returns the following error codes:</p>
+<p>Canister が <code>http_request()</code> メソッドを実装している場合、HTTP ミドルウェアはレスポンスをデコードし、ヘッダーとボディを受け取り、HTTP レスポンスを構築します。
+Canister が <code>http_request()</code> メソッドを実装していない場合、後方互換性のため、ミドルウェアは警告として非推奨を指摘しつつ bootstrap ポリフィルを返します。
+処理中にエラーが発生した場合、HTTP ミドルウェアは以下のエラーコードを返します：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>400 Bad Request for any invalid requests (for example, if the HTTP middleware could not find or decode a canister ID).</p>
+<p>400 Bad Request：不正なリクエスト（HTTP ミドルウェアが Canister ID を見つけられなかったり、デコードできなかった場合など）。</p>
 </li>
 <li>
-<p>500 Internal Server Error for errors from the HTTP middleware itself (for example, if it could not connect to a replica)</p>
+<p>500 Internal Server Error：HTTP　ミドルウェア自身のエラー（例えば、レプリカに接続できなかった場合など）。</p>
 </li>
 <li>
-<p>502 Bad Gateway if an error is coming from the replica itself (including canister trapping).</p>
+<p>502 Bad Gateway：レプリカ自身からのエラー（Canister のトラッピングを含む）。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If any of these errors occur,  the <code>dfx</code> command-line interface provides additional details in the response body.</p>
+<p>これらのエラーが発生した場合、<code>dfx</code> コマンドラインインターフェースは、レスポンスボディに詳細を追加します。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_revisiting_the_asset_storage_canister"><a class="anchor" href="#_revisiting_the_asset_storage_canister"></a>Revisiting the asset storage canister</h2>
+<h2 id="_アセットストレージ_canister_の再考"><a class="anchor" href="#_アセットストレージ_canister_の再考"></a>アセットストレージ Canister の再考</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To make this transition easier, new and existing projects built with the newer version of <code>dfx</code> will include an improved asset canister that supports the <code>http_request()</code> method by default. This means that assets you upload—including binary assets like images—will be available directly from your browser using their URL.
-For example, in a new project, the <code>sample-asset.txt</code> file would be uploaded and available after publishing to the Internet Computer at <a href="https://&lt;CANISTER_ID&gt;.raw.ic0.app/sample-asset.txt" class="bare">https://&lt;CANISTER_ID&gt;.raw.ic0.app/sample-asset.txt</a>.</p>
+<p>この移行を容易にするために、新しいバージョンの <code>dfx</code> でビルドされた新規および既存のプロジェクトには、 <code>http_request()</code> メソッドをサポートしている改良されたアセット Canister がデフォルトで含まれています。これは、画像などのバイナリアセットを含むアップロードされたアセットが、その URL を使ってブラウザから直接利用できるようになることを意味します。
+例えば、新しいプロジェクトでは、<code><a href="https://&lt;CANISTER_ID&gt;.raw.ic0.app/sample-asset.txt" class="bare">https://&lt;CANISTER_ID&gt;.raw.ic0.app/sample-asset.txt</a></code> というファイルがアップロードされ、Internet Computer に公開された後に利用できるようになります。</p>
 </div>
 <div class="paragraph">
-<p>In the future, we will also provide additional support for managing the asset canister cache, handling default assets, and providing HTTP-specific features.</p>
+<p>将来的には、アセット Casniter のキャッシュ管理、デフォルトのアセットの取り扱い、HTTP に特化した機能の提供などのサポートも追加していく予定です。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_routing"><a class="anchor" href="#_routing"></a>Routing</h2>
+<h2 id="_ルーティング"><a class="anchor" href="#_ルーティング"></a>ルーティング</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Both the <code>/api</code> (for replicas) and <code>/_</code> (for tool purposes) routes are reserved by the HTTP request specification.
-All other routes are available for you to use as needed within your application, eliminating the need to rely on a separate hash router.</p>
+<p><code>/api</code> （レプリカ用）と <code>/_</code> （ツール用）のルートは、HTTP リクエストの仕様で予約されています。
+それ以外のルートは、アプリケーション内で必要に応じて使用することができ、別途ハッシュルーターに頼る必要はありません。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_structure_of_a_new_dfx_project"><a class="anchor" href="#_structure_of_a_new_dfx_project"></a>Structure of a new DFX project</h2>
+<h2 id="_dfx_の新規プロジェクトの構成"><a class="anchor" href="#_dfx_の新規プロジェクトの構成"></a>DFX の新規プロジェクトの構成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before going into how to migrate an existing project, let’s take a look at a new project.
-The front-end changes include the following:</p>
+<p>既存のプロジェクトを移行する方法に入る前に、新しいプロジェクトを見てみましょう。
+フロントエンドの変更点は以下の通りです：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>dfx.json</code> includes a <code>frontend</code> key for the asset canister that now points to an <code>index.html</code> file instead of the <code>index.js</code> JavaScript entry point.</p>
+<p><code>dfx.json</code> でアセット Canister 用の <code>frontend</code> キーを指定します。アセット Canister は JavaScript のエントリーポイントである <code>index.js</code> の代わりに <code>index.html</code> ファイルを指すようになりました。</p>
 </li>
 <li>
-<p>The <code>package.json</code> file now supports Webpack 5 by default.</p>
+<p><code>package.json</code> ファイルは、デフォルトで Webpack 5 をサポートするようになりました。</p>
 </li>
 <li>
-<p>The <code>webpack.config.js</code> file now generates the list of canister imports for for each canister that has a <code>frontend</code> key in a different way.</p>
+<p><code>webpack.config.js</code> ファイルは、<code>frontend</code> キーを持つ各 Canister に対し、Canister のインポートのリストを生成しますが、その方法が変わりました。</p>
 </li>
 <li>
-<p>The <code>src/&lt;project_name&gt;_assets/src/index.html</code> file is a new template file that you can replace with your own <code>index.html</code> file for your front-end. It is served by default by the asset canister when a file isn’t found.</p>
+<p><code>src/&lt;プロジェクト名&gt;_assets/src/index.html</code> ファイルは新しいテンプレートファイルであり、フロントエンド用に作成したご自身の <code>index.html</code> ファイルに置き換えることができます。ファイルが見つからない場合には、アセット Canister によってデフォルトで生成されます。</p>
 </li>
 <li>
-<p>The <code>index.js</code> file has been modified to support agent and actor creation.</p>
+<p><code>index.js</code> ファイルは、エージェントや Actor の作成をサポートするように変更されました。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_agent_and_actor_creation"><a class="anchor" href="#_agent_and_actor_creation"></a>Agent and actor creation</h2>
+<h2 id="_エージェントと_actor_の作成"><a class="anchor" href="#_エージェントと_actor_の作成"></a>エージェントと Actor の作成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With the new architecture, we explicitly create an agent instance, then create the actor that we’ll use for our canister.
-In the <code>index.js</code> file, this means that where before there was only one <code>import</code> from files generated by <code>dfx</code>, now there are two.</p>
+<p>新しいアーキテクチャでは、エージェントのインスタンスを明示的に作成してから、Canister に使用する Actor を作成します。
+これは、<code>index.js</code> ファイルにおいて、<code>dfx</code> で生成されたファイルからの <code>import</code> が以前は1つだったのに対し、現在は2つになったことを意味します。</p>
 </div>
 <div class="paragraph">
-<p>For example, the new <code>index.js</code> file in a project provides code similar to this:</p>
+<p>例えば、プロジェクトの新しい <code>index.js</code> ファイルは、以下のようなコードとなります：</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1012,40 +1012,40 @@ const example = Actor.createActor(example_idl, { agent, canisterId: example_id }
 </div>
 </div>
 <div class="paragraph">
-<p>Explicitly creating the agent and actor like this example illustrates is better for a couple reasons:</p>
+<p>以上の例のようにエージェントと Actor を明示的に作成することは、以下のような理由で優れています：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>First, the agent itself is entirely configurable by the application, and so is the actor. For example, authentication can only be set when the agent is constructed, so if you want to manage a user identity, you’ll need to do it before creating the agent.</p>
+<p>第1に、エージェント自体はアプリケーションによって完全に設定可能であり、Actor も同様です。例えば、認証の設定はエージェントのインスタンスが作成されるときにしかできないので、ユーザーの ID を管理したい場合は、エージェントを作成する前に行う必要があります。</p>
 </li>
 <li>
-<p>Second, being explicit about creating the agent and actor gives you much more control over when you instantiate those objects. If you want a React hook or an Angular service to create the actor, this approach allows you to do so easily.</p>
+<p>第2に、エージェントと Actor の作成を明示的に行うことで、これらのオブジェクトをインスタンス化する際に、より多くのコントロールを行うことができます。React フックや Angular のサービスで Actor を作成したい場合、このアプローチにより簡単に実行することができます。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_migrating_an_existing_project"><a class="anchor" href="#_migrating_an_existing_project"></a>Migrating an existing project</h2>
+<h2 id="_既存のプロジェクトを移行する"><a class="anchor" href="#_既存のプロジェクトを移行する"></a>既存のプロジェクトを移行する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you have an existing project, chances are it will not work seamlessly after you update the DFINITY Canister SDK.
-Unfortunately, a direct migration path isn’t possible in this case.
-The best way to migrate your current front-end is to create a new project and move your code manually to the new structure.</p>
+<p>既存のプロジェクトがある場合、DFINITY Canister SDK をアップデートしても、シームレスに動作しない可能性があります。
+残念ながら、このような場合、直接移行することはできません。
+現在のフロントエンドを移行するための最良の方法は、新しいプロジェクトを作成し、コードを新しい構造に合わせて手動で移動させることです。</p>
 </div>
 <div class="sect2">
-<h3 id="_certified_and_uncertified_front_end_assets"><a class="anchor" href="#_certified_and_uncertified_front_end_assets"></a>Certified and uncertified front-end assets</h3>
+<h3 id="_認証されたフロントエンドアセットと認証されていないアセット"><a class="anchor" href="#_認証されたフロントエンドアセットと認証されていないアセット"></a>認証されたフロントエンドアセットと認証されていないアセット</h3>
 <div class="paragraph">
-<p>With the launch of the Internet Computer main network Beta, all projects serve front-end assets use the new HTTP query architecture.
-In addition, the Internet Computer launch introduces a new capability to serve front-end assets as certified data that has been signed and can be considered authenticated and secure or as raw, uncertified data.
-Front-end assets that don&#8217;t go through the certification process are served using the <code>raw.ic0.app</code> URL suffix.
-Certified front-end assets use the <code>.ic0.app</code> URL suffix.</p>
+<p>Internet Computer メインネットのベータ版の開始に伴い、フロントエンドアセットを提供するすべてのプロジェクトは、新しい HTTP クエリアーキテクチャを使用します。
+また、Internet Computer の開始に伴い、フロントエンドアセットを、証明済で安全とみなせるように署名された認証データとしてか、あるいは認証されていない生のデータとして提供する、新たな機能が導入されました。
+認証プロセスを経ていないフロントエンドアセットは、<code>raw.ic0.app</code> という URL サフィックスを使って提供されます。
+認証されたフロントエンドアセットは、`.ic0.app`というURLサフィックスを使用します。</p>
 </div>
 <div class="paragraph">
-<p>All of the current tutorials illustrate applications that serve uncertified front-end assets.
-Learning how to build an application that uses certified query results for front-end assets is an advanced development topic.
-For information about how to return certified data in response to queries, see the <a href="interface-spec/index.html">Interface specification</a> and connect with other developers through the <a href="https://forum.dfinity.org/">DFINITY Developer Forum</a>.</p>
+<p>現在の全てのチュートリアルは、認証されていないフロントエンドアセットを提供するアプリケーションについて説明しています。
+認証されたクエリ結果をフロントエンドアセットに使用するアプリケーションを構築する方法については、高度な開発トピックです。
+クエリに応答して認証されたデータを返す方法については、<a href="interface-spec/index.html">インターフェースの仕様</a>を参照してください。また、<a href="https://forum.dfinity.org/">DFINITY Developer Forum</a>を通じて他の開発者と交流してください。</p>
 </div>
 </div>
 </div>
