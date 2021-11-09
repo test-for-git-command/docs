@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Explore the default project :: Dfinity 日本語ドキュメント</title>
+    <title>デフォルトプロジェクトを探索する :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/developers-guide/tutorials/explore-templates.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../../_/css/site.css">
@@ -829,15 +829,14 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Explore the default project</h1>
+<h1 class="page">デフォルトプロジェクトを探索する</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you started your tour of the DFINITY Canister Software Development Kit (SDK) with the <a href="../../quickstart/quickstart-intro.html">Quick start</a>, you have already seen the basic work flow for creating dapps that run on the Internet Computer.
-Now, let&#8217;s take a closer look at that work flow by exploring the default files and folders that are added to your workspace when you create a new project.</p>
+<p>もし <a href="../../quickstart/quickstart-intro.html">クイックスタート</a> の DFINITY Canister Software Development Kit (SDK) ツアーを始めているなら、すでに Internet Computer 上に Dapps を作成する基本ワークフローを見たことでしょう。ここでは今から新規プロジェクト作成時に、ワークスペースに追加されるデフォルトファイルとデフォルトフォルダを、詳しく見ていきましょう。</p>
 </div>
 <div class="paragraph">
-<p>As a preview, the following diagram illustrates the development work flow when running the Internet Computer locally on you computer.</p>
+<p>概要を掴めるように、コンピュータ上でローカルに Internet Computer を動かす開発のワークフローを以下の図に示しています。</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../_images/dev-workflow-explore.svg" alt="Development work flow"></span></p>
@@ -845,95 +844,91 @@ Now, let&#8217;s take a closer look at that work flow by exploring the default f
 </div>
 </div>
 <div class="sect1">
-<h2 id="_before_you_begin"><a class="anchor" href="#_before_you_begin"></a>Before you begin</h2>
+<h2 id="_始める前に"><a class="anchor" href="#_始める前に"></a>始める前に</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you start this tutorial, verify the following:</p>
+<p>このチュートリアルを始める前に、以下のことを確認してください:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You have an internet connection and access to a shell terminal on your local macOS or Linux computer.</p>
+<p>インターネット接続があり、macOS もしくは Linux コンピュータのシェルターミナルへアクセスできること</p>
 </li>
 <li>
-<p>You have <code>node.js</code> installed if you want to include the default template files for front-end development in your project.</p>
+<p>もしプロジェクトのフロントエンド開発でデフォルトテンプレートファイルを取り込みたいのであれば、<code>node.js</code> を既にインストールしていること</p>
 </li>
 <li>
-<p>You have downloaded and installed the DFINITY Canister SDK package as described in <a href="../../quickstart/local-quickstart.html#download-and-install">Download and install</a>.</p>
+<p><a href="../../quickstart/local-quickstart.html#download-and-install">ダウンロードとインストール</a> に記載されている DFINITY Canister SDK パッケージをダウンロードしてインストールをしていること</p>
 </li>
 <li>
-<p>You have installed the Visual Studio Code plugin for Motoko as described in <a href="../../quickstart/local-quickstart.html#install-vscode">Install the language editor plug-in</a> if you are using Visual Studio Code as your IDE.</p>
+<p>IDE として Visual Studio Code を使用しているのであれば、<a href="../../quickstart/local-quickstart.html#install-vscode">言語別エディタプラグインをインストールする</a> に記載されている Motoko 専用プラグインをインストールしていること</p>
 </li>
 <li>
-<p>You have stopped any local canister execution environment processes running on the local computer.</p>
+<p>ローカルコンピュータ上で走るすべてのローカル Canister 実行環境プロセスを止めていること</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This tutorial takes approximately 20 minutes to complete.</p>
+<p>このチュートリアルの所要時間は２０分程度です。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="create-a-new-project"><a class="anchor" href="#create-a-new-project"></a>Create a new project</h2>
+<h2 id="create-a-new-project"><a class="anchor" href="#create-a-new-project"></a>新しいプロジェクトを作成する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As discussed in the <a href="../../quickstart/quickstart-intro.html">Quick start</a>, dapps for the Internet Computer start as <strong>projects</strong> that you create. You can create projects using the <code>dfx</code> executable command-line interface (CLI).</p>
+<p><a href="../../quickstart/quickstart-intro.html">クイックスタート</a> でも話したとおり、Internet Computer での dapps は、あなたが作るプロジェクトとして始まります。コマンドライン（CLI）上で <code>dfx</code> コマンドを実行することでプロジェクトを作成することができます。</p>
 </div>
 <div class="paragraph">
-<p>To take a closer look at the files and folders that are included in a  project by default, let&#8217;s create a new project to work with.</p>
+<p>デフォルトでプロジェクトに含まれているファイルやフォルダを詳しく見るために、実際に新しいプロジェクトを作っていきましょう。</p>
 </div>
 <div class="paragraph">
-<p>To create a new project:</p>
+<p>新しいプロジェクトを作る:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal shell on your local computer, if you don’t already have one open.</p>
+<p>ローカルコンピュータ上でターミナルシェルを、まだ開いていなければ開きます。</p>
 </li>
 <li>
-<p>Navigate to the folder you are using for your Internet Computer projects, if you are using a separate working folder.</p>
+<p>別のワーキングフォルダーを利用しているなら、Internet Computer プロジェクトで使うフォルダに移動します。</p>
 </li>
 <li>
-<p>Create a new project by running the following command:</p>
+<p>以下のコマンドを走らせて、新しいプロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new explore_hello</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>dfx new explore_hello</code> command creates a new <code>explore_hello</code>
-project, including a default project directory structure under the new
-project name and a new Git repository for your project.
-If you have <code>node.js</code> installed locally, creating a new project also adds some template front-end code and dependencies.</p>
+<p><code>dfx new explore_hello</code> コマンドは、新しいプロジェクト名直下のデフォルトプロジェクト構造と新しい Git リポジトリを含めた <code>explore_hello</code> プロジェクトを作成します。もし <code>node.js</code> をローカルにインストールしていれば、新規のプロジェクトを作成することでテンプレートフロントエンドコードと依存ライブラリも追加されます。</p>
 </div>
 <div class="paragraph">
-<p>To ensure that project names are valid when used in JavaScript, Motoko, and other contexts, you should only use alphanumeric characters and underscores.
-You cannot include dashes or any special characters.</p>
+<p>JavaScript や Motoko または別の環境で、プロジェクト名が有効であることを保証するために、英数字とアンダースコアのみを使うべきです。ダッシュやいかなる特殊文字は、含めることができません。</p>
 </div>
 </li>
 <li>
-<p>View the default directory structure by running the following command:</p>
+<p>以下のコマンドを走らせて、デフォルトディレクトリ構成を見ていきます。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls -l explore_hello</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>By default, the project directory structure includes at least one source subdirectory, a template <code>README.md</code> file, and a default <code>dfx.json</code> configuration file.</p>
+<p>デフォルトでのプロジェクトディレクトリ構成は、少なくとも１つのソースサブディレクトリ、テンプレート <code>README.md</code> ファイル、また <code>dfx.json</code> 環境設定ファイルを含んでいます。</p>
 </div>
 <div class="paragraph">
-<p>Depending on whether you have <code>node.js</code> installed, your project directory might include some or all of the following files:</p>
+<p><code>node.js</code> をインストールしているかどうかで、以下のファイルを一部もしくは全て含んでいるかが変わります。</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>explore_hello/
-├── README.md      # default project documentation
-├── dfx.json       # project configuration file
-├── node_modules   # libraries for front-end development
+├── README.md      # デフォルトプロジェクトのドキュメント
+├── dfx.json       # プロジェクトの環境設定ファイル
+├── node_modules   # フロントエンド開発のライブラリ
 ├── package-lock.json
 ├── package.json
-├── src            # source files directory
+├── src            # ソースファイルディレクトリ
 │   ├── explore_hello
 │   │   └── main.mo
 │   └── explore_hello_assets
@@ -948,55 +943,52 @@ You cannot include dashes or any special characters.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>At a minimum, the default project directory includes the following folders and files:</p>
+<p>最小単位では、デフォルトプロジェクトのディレクトリは、以下のフォルダやファイルを含みます。</p>
 </div>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>A default <code>README</code> file for documenting your project in the repository.</p>
+<p>リポジトリのプロジェクトを説明する <code>README</code> ファイル</p>
 </li>
 <li>
-<p>A default <code>dfx.json</code> configuration file to set configurable options for your project.</p>
+<p>プロジェクトのオプションを設定する <code>dfx.json</code> 環境設定ファイル</p>
 </li>
 <li>
-<p>A default <code>src</code> directory for all of the source files required by your dapp.</p>
+<p>Dapp に必要なすべてのソースファイルを持つ <code>src</code> ディレクトリ</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>The default <code>src</code> directory includes a template <code>main.mo</code> file that you can modify or replace to include your core programming logic.</p>
-</div>
-<div class="paragraph">
-<p>Because this tutorial focuses on the basics of getting started, you are only going to use the <code>main.mo</code> file.
-If you have <code>node.js</code> installed, your project directory includes additional files and directories that you can use to define the front-end interface for your dapp.
-Front-end development and the template files in the <code>assets</code> folder are discussed a little later.</p>
+<p>デフォルトの <code>src</code> ディレクトリは、テンプレートファイルである <code>main.mo</code> を含んでおり、ファイルを修正したり、自分のプログラミングロジックへと置き換えることができます。</p>
 </div>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>このチュートリアルでは、始める上での基本に重点を置いているので、<code>main.mo</code> ファイルだけを使うことになります。もし <code>node.js</code> をインストールしているなら、プロジェクトディレクトリは、Dapp のフロントエンドインターフェースを定義するのに使える追加のファイルとディレクトリを含んでいます。フロントエンド開発と <code>assets</code> フォルダにあるテンプレートファイルについては、少し後に話します。</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_review_the_default_configuration"><a class="anchor" href="#_review_the_default_configuration"></a>Review the default configuration</h2>
+<h2 id="_デフォルト環境設定を確認する"><a class="anchor" href="#_デフォルト環境設定を確認する"></a>デフォルト環境設定を確認する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>By default, creating a new project adds some template files to your project directory.
-You can edit these template files to customize the configuration settings for your project and to include your own code to speed up the development cycle.</p>
+<p>デフォルトで、新しいプロジェクトを作成すると、プロジェクトディレクトリにいくつかのテンプレートファイルが追加されます。プロジェクトの環境設定をカスタマイズする、もしくは開発サイクルを加速するために自身のコードを取り込むのに、これらのテンプレートファイルを編集することができます。</p>
 </div>
 <div class="paragraph">
-<p>To review the default configuration file for your project:</p>
+<p>プロジェクトのデフォルト環境設定ファイルを確認する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal shell on your local computer, if you don’t already have one open.</p>
+<p>ローカルコンピュータ上でターミナルシェルを、まだ開いていなければ開きます。</p>
 </li>
 <li>
-<p>Change to your project directory by running the following command:</p>
+<p>以下のコマンドを走らせて、プロジェクトディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd explore_hello</code></pre>
@@ -1004,9 +996,9 @@ You can edit these template files to customize the configuration settings for yo
 </div>
 </li>
 <li>
-<p>Open the <code>dfx.json</code> configuration file in a text editor to review the default settings.</p>
+<p>デフォルト設定を確認するために、テキストエディタで <code>dfx.json</code> 環境設定ファイルを開きます。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1047,28 +1039,28 @@ You can edit these template files to customize the configuration settings for yo
 </div>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s take a look at a few of the default settings.</p>
+<p>いくつかデフォルト設定を見ていきましょう。</p>
 </div>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>settings</code> section specifies the name of the WebAssembly module for your <code>explore_hello</code> project is <code>explore_hello</code>.</p>
+<p><code>settings</code> セクションでは、プロジェクトの WebAssembly モジュールの名前を指定します。今回は <code>explore_hello</code> になります。</p>
 </li>
 <li>
-<p>The <code>canisters.explore_hello</code> key specifies that the main program to be compiled is located in the path specified by the <code>main</code> setting, in this case, <code>src/explore_hello/main.mo</code> and the <code>type</code> setting indicates that this is a <code>motoko</code> program.</p>
+<p><code>canisters.explore_hello</code> キーは、メイン設定に指定されたパス上に、コンパイルされるメインプログラムが位置していることを明記しています、今回のケースでは、<code>src/explore_hello/main.mo</code> と <code>type</code> 設定が、これは <code>Motoko</code> プログラムであることを示しています。</p>
 </li>
 <li>
-<p>The <code>canisters.explore_hello_assets</code> key specifies configuration details about front-end assets for this project. Let&#8217;s skip those for now.</p>
+<p><code>canisters.explore_hello_assets</code> キーは、プロジェクトのフロントエンドアセットの環境設定の詳細を指定します。今、こちらは飛ばしましょう。</p>
 </li>
 <li>
-<p>The <code>dfx</code> setting is used to identify the version of the software used to create the project.</p>
+<p><code>dfx</code> 設定は、プロジェクト作成時のソフトウェアバージョンを識別するのに使われます。</p>
 </li>
 <li>
-<p>The <code>networks</code> section specifies information about the networks to which you connect. The default settings bind the local canister execution environment to the local host address <code>127.0.0.1</code> and port <code>8000</code>.</p>
+<p><code>networks</code> セクションは、あなたがつなげているネットワーク情報を指定します。デフォルトの設定では、ローカル Canister 実行環境は、ローカルホストアドレス <code>127.0.0.1</code> と ポート番号を <code>8000</code> に結びついています。</p>
 <div class="paragraph">
-<p>If you have access to other Internet Computer network providers, the <code>networks</code> section can include network aliases and URLs for connecting to those providers.</p>
+<p>もし別の Internet Computer ネットワークプロバイダへのアクセスできるのであれば、<code>networks</code> セクションは、そのプロバイダ接続を行うネットワークエイリアスと URLs を持ちます。</p>
 </div>
 </li>
 </ul>
@@ -1076,33 +1068,32 @@ You can edit these template files to customize the configuration settings for yo
 </div>
 </div>
 <div class="paragraph">
-<p>You can leave the default settings as they are.</p>
+<p>デフォルト設定のままにすることもできます。</p>
 </div>
 </li>
 <li>
-<p>Close the <code>dfx.json</code> file to continue.</p>
+<p>次に進むために <code>dfx.json</code> ファイルを閉じます。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_review_the_default_program_code"><a class="anchor" href="#_review_the_default_program_code"></a>Review the default program code</h2>
+<h2 id="_デフォルトプログラムコードを確認する"><a class="anchor" href="#_デフォルトプログラムコードを確認する"></a>デフォルトプログラムコードを確認する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>New projects always include a template <code>main.mo</code> source code file.
-You can edit this file to include your own code to speed up the development cycle.</p>
+<p>新しいプロジェクトは、常にテンプレート <code>main.mo</code> ソースコードファイルを含んでいます。開発サイクルを加速する自身のコードを埋め込むために、このファイルを編集することができます。</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s take a look at the sample program in the default <code>main.mo</code> template file as a starting point for creating simple dapp using the Motoko programming language.</p>
+<p>Motoko プログラミング言語を使った Dapp を作るスタート地点として、<code>main.mo</code> デフォルトテンプレートファイルのサンプルプログラムを見ていきましょう。</p>
 </div>
 <div class="paragraph">
-<p>To review the default sample program for your project:</p>
+<p>プロジェクトのデフォルトサンプルプログラムを確認する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in your project directory by running the following command:</p>
+<p>以下のコマンドを走らせて、プロジェクトでのあなたの現在地を確認しましょう。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pwd</code></pre>
@@ -1110,7 +1101,7 @@ You can edit this file to include your own code to speed up the development cycl
 </div>
 </li>
 <li>
-<p>Open the <code>src/explore_hello/main.mo</code> file in a text editor and review the code in the template:</p>
+<p>テキストエディタで <code>src/explore_hello/main.mo</code> ファイルを開き、テンプレートのコードを確認します。</p>
 <div class="literalblock">
 <div class="content">
 <pre>actor {
@@ -1121,70 +1112,67 @@ You can edit this file to include your own code to speed up the development cycl
 </div>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s take a look at a few key elements of this program:</p>
+<p>このプログラムのキーとなるいくつかの要素を見ていきましょう。</p>
 </div>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>You might notice that this sample code defines an <code>actor</code> instead of a <code>main</code> function, which some programming languages require.
-For Motoko, the <code>main</code> function is implicit in the file itself.</p>
+<p>このサンプルコードは、ある一部のプログラミング言語が必要とする <code>main</code> 関数の代わりに <code>actor</code> を定義しているのに気づいたかもしれません。Motoko では、<code>main</code> 関数はそのファイル単体では動作しません。</p>
 </li>
 <li>
-<p>Although the traditional "Hello, World!" program illustrates how you can print a string using a <code>print</code> or <code>println</code> function, that traditional program would not represent a typical use case for Motoko dapps that run on the Internet Computer.</p>
+<p>伝統的な "Hello, World!" プログラムは、<code>print</code> または <code>println</code> 関数を使って文字列を表示する方法を説明しますが、その伝統的なプログラムは、Internet Computer 上で動く Motoko Dapps の典型的なユースケースを提示することはしないでしょう。</p>
 </li>
 <li>
-<p>Instead of a print function, this sample program defines an <code>actor</code> with a public <code>greet</code> function that takes a <code>name</code> argument with a type of <code>Text</code>.</p>
+<p>print 関数の代わりに、このサンプルプログラムは、<code>Text</code> 型の <code>name</code> 引数を受けるパブリックの <code>greet</code> 関数を用いて <code>actor</code> を定義します。</p>
 </li>
 <li>
-<p>The program then uses the <code>async</code> keyword to indicate that the program returns an asynchronous message consisting of a concatenated text string constructed using <code>"Hello, "</code>, the <code>#</code> operator, the <code>name</code> argument, and <code>"!"</code>.</p>
+<p>そのプログラムは、<code>"Hello, "</code>、<code>#</code> 演算子、<code>name</code> 引数、また <code>"!"</code> を連結した文字列から成る非同期メッセージを返すことをを示すのに <code>async</code> キーワードを使います。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>We’ll explore code that uses <code>actor</code> objects and asynchronous message handling more a little later.
-For now, you can continue to the next section.</p>
+<p><code>actor</code> オブジェクトと非同期メッセージ処理を使用するコードを探検するのは、もう少し後になります。今は次のセクションに進みましょう。</p>
 </div>
 </li>
 <li>
-<p>Close the <code>main.mo</code> file to continue.</p>
+<p>次に進むために <code>main.mo</code> ファイルを閉じます。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="start-the-local-network"><a class="anchor" href="#start-the-local-network"></a>Start the local canister execution environment</h2>
+<h2 id="start-the-local-network"><a class="anchor" href="#start-the-local-network"></a>ローカル Canister 実行環境を起動する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you can deploy the default project, you need to connect to either the local canister execution environment, or to the Internet Computer blockchain mainnet.</p>
+<p>デフォルトプロジェクトをデプロイする前に、ローカル Canister 環境もしくは Internet Computer ブロックチェーンメインネットに接続する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>Starting the local canister execution environment requires a <code>dfx.json</code> file, so you should be sure you are in your project&#8217;s root directory.
-For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.</p>
+<p>ローカル Canister 実行環境を起動するには、<code>dfx.json</code> ファイルが必要になります、そのため現在地がプロジェクトのルートディレクトリ直下であることを確認してください。このチュートリアルでは、分離している２つのターミナルシェルを開いておくと良いです。１つのターミナルシェルでネットワーク処理を行い、もう１つの方でプロジェクトを管理するのが良いです。</p>
 </div>
 <div class="paragraph">
-<p>To start the local canister execution environment:</p>
+<p>ローカル Canister 実行環境を起動する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new terminal window or a new terminal tab on your local computer.</p>
+<p>新しいターミナルウィンドウまたは新しいターミナルタブを、ローカルコンピュータ上で開きます。</p>
 </li>
 <li>
-<p>Navigate to the root directory for your project, if necessary.</p>
+<p>必要であればプロジェクトのルートディレクトリ直下に移動します。</p>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>You should now have <strong>two terminals</strong> open.</p>
+<p><strong>２つのターミナル</strong> を開いておくと良いです。</p>
 </li>
 <li>
-<p>You should have the <strong>project directory</strong> as your <strong>current working directory</strong>.</p>
+<p><strong>現在のワーキングディレクトリ</strong> を、<strong>プロジェクトディレクトリ</strong> としておくと良いです。</p>
 </li>
 </ul>
 </div>
@@ -1192,54 +1180,52 @@ For this tutorial, you should have two separate terminal shells, so that you can
 </div>
 </li>
 <li>
-<p>Start the local canister execution environment by running the following command:</p>
+<p>以下のコマンドを走らせて、ローカル Cansiter 実行環境を起動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Depending on your platform and local security settings, you might see a warning displayed.
-If you are prompted to allow or deny incoming network connections, click <strong>Allow</strong>.</p>
+<p>プラットフォームやローカルセキュリティ設定によっては、警告の表示が出るかもしれません。もしネットワーク接続の許可もしくは拒否の選択を促されているなら、<strong>Allow</strong> をクリックしましょう。</p>
 </div>
 <div class="paragraph">
-<p>After you start the local canister execution environment, you have one terminal that displays messages about network operations and another for performing project-related tasks.</p>
+<p>ローカル Canister 実行環境を起動した後は、ネットワーク処理を表示するターミナルとプロジェクトに関連したタスクを表示するもう１つのターミナルを持つことになります。</p>
 </div>
 </li>
 <li>
-<p>Leave the terminal that displays network operations open and switch your focus to the terminal where you created your new project.</p>
+<p>ネットワーク処理を表示するターミナルはそのままにしておいて、新しく作成したプロジェクトの場所を表示するターミナルに重点を置き変えます。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_register_canister_identifiers"><a class="anchor" href="#_register_canister_identifiers"></a>Register canister identifiers</h2>
+<h2 id="_canister_identifiers_を登録する"><a class="anchor" href="#_canister_identifiers_を登録する"></a>Canister Identifiers を登録する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you connect to the local canister execution environment, you can register with the network to generate unique, network-specific <strong>canister identifiers</strong> for your project.</p>
+<p>ローカル Canister 実行環境に接続した後に、あなたのプロジェクトをユニークなネットワーク固有の <strong>canister Identifiers</strong> を生成することでネットワークに登録できます。</p>
 </div>
 <div class="paragraph">
-<p>In the <a href="../../quickstart/quickstart-intro.html">Quick start</a> tutorial, this step was performed as part of the <code>dfx deploy</code> command work flow.
-This tutorial demonstrates how to perform each of the operations independently.</p>
+<p><a href="../../quickstart/quickstart-intro.html">クイックスタート</a> では、このステップは <code>dfx deploy</code> コマンドワークフローの一部として扱われました。このチュートリアルでは、独立してそれぞれの処理をどう扱うかを説明します。</p>
 </div>
 <div class="paragraph">
-<p>To register canister identifiers for the local network:</p>
+<p>ローカルネットワークに対して Canister Identifiers を登録する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in your project directory, if needed.</p>
+<p>プロジェクトディレクトリに位置することを確認します、必要であれば移動します。</p>
 </li>
 <li>
-<p>Register unique canister identifiers for the canisters in the project by running the following command:</p>
+<p>以下のコマンドを走らせて、プロジェクトの Canister に対しユニークな Canister Identifiers を登録します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister create --all</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays the network-specific canister identifiers for the canisters defined in the <code>dfx.json</code> configuration file.</p>
+<p>そのコマンドは <code>dfx.json</code> 環境設定ファイルで定義される Canisters のネットワーク固有の Canister Identifiers を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1252,10 +1238,10 @@ Creating canister "explore_hello_assets"...
 </div>
 </div>
 <div class="paragraph">
-<p>Because you are connected to the local canister execution environment, these canister identifiers are only valid locally and are stored for the project in the <code>.dfx/local/canister_ids.json</code> file.</p>
+<p>ローカル Canister 実行環境に接続したので、これらの Canister Identifiers は、ローカルでのみ有効かつ <code>.dfx/local/canister_ids.json</code> ファイルに保管されます。</p>
 </div>
 <div class="paragraph">
-<p>For example:</p>
+<p>例:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1275,31 +1261,31 @@ Creating canister "explore_hello_assets"...
 </div>
 </div>
 <div class="sect1">
-<h2 id="_build_the_dapp"><a class="anchor" href="#_build_the_dapp"></a>Build the dapp</h2>
+<h2 id="_dapp_をビルドする"><a class="anchor" href="#_dapp_をビルドする"></a>Dapp をビルドする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now that you have explored the default configuration settings and program code and have started the local canister execution environment, let&#8217;s compile the default program into an executable WebAssembly module.</p>
+<p>デフォルト環境設定やプログラムコードを探検して、ローカル Canister 実行環境を動かしてきたので、デフォルトプログラムを実行可能な WebAssembly モジュールにコンパイルしましょう。</p>
 </div>
 <div class="paragraph">
-<p>To build the program executable:</p>
+<p>プログラムを実行可能にビルドする:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the terminal shell on your local computer, navigate to your <code>explore_hello</code> project directory.</p>
+<p>ローカルコンピューターのターミナルシェルで <code>explore_hello</code> プロジェクトディレクトリに移動します。</p>
 <div class="paragraph">
-<p>You must run the <code>dfx build</code> command from within the project directory structure.</p>
+<p>そのプロジェクトディレクトリ構成の内側から <code>dfx build</code> コマンドを走らせなくてはいけません。</p>
 </div>
 </li>
 <li>
-<p>Build the executable canister by running the following command:</p>
+<p>以下のコマンドを走らせて、 Canister を実行可能にビルドします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx build</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You should see output similar to the following:</p>
+<p>以下と同様の結果を見ることになるでしょう。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1308,18 +1294,18 @@ Building frontend...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Because you are connected to the local canister execution environment, the <code>dfx build</code> command adds the <code>canisters</code> directory under the <code>.dfx/local/</code> directory for the project.</p>
+<p>ローカル canister 実行環境に接続されたので、<code>dfx build</code> コマンドは、プロジェクトの <code>.dfx/local/</code> ディレクトリ直下に <code>canisters</code> ディレクトリを追加します。</p>
 </div>
 </li>
 <li>
-<p>Verify that the <code>.dfx/local/canisters/explore_hello</code> directory created by the <code>dfx build</code> command contains the WebAssembly and related application files by running the following command.</p>
+<p>以下のコマンドを走らせて、<code>dfx build</code> コマンドで作成された <code>.dfx/local/canisters/explore_hello</code> ディレクトリが WebAssembly や関連アプリケーションファイルを含んでいることを確認します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls -l .dfx/local/canisters/explore_hello/</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For example, the command returns output similar to the following:</p>
+<p>例えば、そのコマンドは以下と同様な結果を返します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1331,39 +1317,39 @@ Building frontend...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>canisters/explore_hello</code> directory contains the following key files:</p>
+<p><code>canisters/explore_hello</code> ディレクトリは、次のキーとなるファイルを含みます。</p>
 </div>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>explore_hello.did</code> file contains an interface description for your main dapp.</p>
+<p>メイン Dapp のインターフェースの説明を持っている <code>explore_hello.did</code> ファイル</p>
 </li>
 <li>
-<p>The <code>explore_hello.did.js</code> file contains a JavaScript representation of the canister interface for the functions in your dapp.</p>
+<p>Dapp の関数の Canister インターフェースの JavaScript 表示を持っている <code>explore_hello.did.js</code> ファイル</p>
 </li>
 <li>
-<p>The <code>explore_hello.js</code> file contains a JavaScript representation of the canister interface for your dapp.</p>
+<p>Dapp の Canister インターフェースの JavaScript 表示を持っている <code>explore_hello.js</code> ファイル</p>
 </li>
 <li>
-<p>The <code>explore_hello.wasm</code> file contains the compiled WebAssembly for the assets used in your project.</p>
+<p>プロジェクトで使用されるコンパイルされた WebAssembly のアセットを持っている <code>explore_hello.wasm</code> ファイル</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>canisters/explore_hello_assets</code> directory contains similar files to describe the front-end assets associated with your project.</p>
+<p><code>canisters/explore_hello_assets</code> ディレクトリは、プロジェクトのフロントエンドアセットを表示するファイルを含みます。</p>
 </div>
 <div class="paragraph">
-<p>In addition to the files in the <code>canisters/explore_hello</code> and the <code>canisters/explore_hello_assets</code> directories, the <code>dfx build</code> command creates an <code>idl</code> directory.</p>
+<p><code>canisters/explore_hello</code> や <code>canisters/explore_hello_assets</code> ディレクトリにあるファイルに加えて、<code>dfx build</code> コマンドは、<code>idl</code> ディレクトリを作成します。</p>
 </div>
 </li>
 <li>
-<p>Verify that a new folder has been created, <code>src/declarations</code>.</p>
+<p><code>src/declarations</code> というディレクトリが作成されたことを確認します。</p>
 <div class="paragraph">
-<p>This folder will include copies of the folders from <code>.dfx/local</code>, except for the wasm. They do not contain any secrets, and we recommend committing these files along with the rest of your source code.</p>
+<p>このフォルダは Wasm を除いた <code>.dfx/local</code> のフォルダのコピーを含みます。そのコピーはどんな秘密も含まないので、これらのファイルと一緒に残りのソースコードをコミットすることを薦めます。</p>
 </div>
 </li>
 </ol>
@@ -1371,29 +1357,28 @@ Building frontend...</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploy_the_project_locally"><a class="anchor" href="#_deploy_the_project_locally"></a>Deploy the project locally</h2>
+<h2 id="_ローカルでプロジェクトをデプロイする"><a class="anchor" href="#_ローカルでプロジェクトをデプロイする"></a>ローカルでプロジェクトをデプロイする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve seen that the <code>dfx build</code> command creates several artifacts in a <code>canisters</code> directory for your project.
-The WebAssembly modules and the <code>canister_manifest.json</code> file are required for your dapp to be deployed on the Internet Computer network.</p>
+<p><code>dfx build</code> コマンドでプロジェクトの Canister ディレクトリに加工されたものを作成するのを見たことでしょう。Internet Computer ネットワーク上に Dapp をデプロイするためには、WebAssembly モジュールと <code>canister_manifest.json</code> ファイルが必要になります。</p>
 </div>
 <div class="paragraph">
-<p>To deploy to the local canister execution environment:</p>
+<p>ローカル Canister 実行環境をデプロイする:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In a terminal shell on your local computer, navigate to your <code>explore_hello</code> project directory.</p>
+<p>ローカルコンピューターの <code>explore_hello</code> プロジェクトディレクトリにターミナルシェルで移動します。</p>
 </li>
 <li>
-<p>Deploy your <code>explore_hello</code> project on the local network by running the following command:</p>
+<p>以下のコマンドを走らせて、ローカルネットワークに <code>explore_hello</code> プロジェクトをデプロイします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister install --all</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays output similar to the following:</p>
+<p>そのコマンドは、以下と同様の結果を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1412,27 +1397,27 @@ Uploading assets to asset canister...
 </div>
 </li>
 <li>
-<p>Run the <code>dfx canister call</code> command and specify the dapp and function to call by running the following command:</p>
+<p><code>dfx canister call</code> コマンドを走らせ、次のコマンドの動作で Dapp と関数呼び出しを指定します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call explore_hello greet '("everyone": text)'</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command specifies:</p>
+<p>このコマンドは以下を指定します:</p>
 </div>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p><code>explore_hello</code> as the name of the <em>canister smart contract</em> or dapp you want to call.</p>
+<p><code>explore_hello</code> は、コールしたい スマートコントラクト Canister もしくは dapp の名前</p>
 </li>
 <li>
-<p><code>greet</code> as the specific <em>method</em> or function you want to call.</p>
+<p><code>greet</code> は、コールした意特定の関数</p>
 </li>
 <li>
-<p><code>everyone</code> as the argument to pass to the <code>greet</code> function.</p>
+<p><code>everyone</code> は、<code>greet</code> 関数に渡す引数</p>
 </li>
 </ul>
 </div>
@@ -1440,9 +1425,9 @@ Uploading assets to asset canister...
 </div>
 </li>
 <li>
-<p>Verify the command displays the return value of the <code>greet</code> function.</p>
+<p>次のコマンドは、<code>greet</code> 関数の返り値を表示します。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1455,21 +1440,21 @@ Uploading assets to asset canister...
 </div>
 </div>
 <div class="sect1">
-<h2 id="default-frontend"><a class="anchor" href="#default-frontend"></a>View the default front-end</h2>
+<h2 id="default-frontend"><a class="anchor" href="#default-frontend"></a>デフォルトのフロントエンドを確認する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you have <code>node.js</code> installed in your development environment, your project includes a simple front-end example that uses a template <code>index.js</code> JavaScript file for accessing the <code>explore_hello</code> dapp in a browser.</p>
+<p>もし開発環境に <code>node.js</code> をインストールしているのであれば、あなたのプロジェクトは、ブラウザで Dapp にアクセスするのに <code>index.js</code> JavaScript ファイルを使う単純なフロントエンドの例を含んでいます。</p>
 </div>
 <div class="paragraph">
-<p>To explore the default front-end template:</p>
+<p>デフォルトのフロントエンドテンプレートを探検する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal shell on your local computer, if you don’t already have one open, and navigate to your <code>explore_hello</code> project directory.</p>
+<p>ローカルコンピューターでターミナルシェルを開いていなければ開き、また <code>explore_hello</code> プロジェクトディレクトリに移動します。</p>
 </li>
 <li>
-<p>Open the <code>src/explore_hello_assets/src/index.js</code> file in a text editor and review the code in the template script:</p>
+<p>テキストエディタで <code>src/explore_hello_assets/src/index.js</code> ファイルを開き、テンプレートスクリプトのコードを確認します。</p>
 <div class="literalblock">
 <div class="content">
 <pre>import { explore_hello } from "../../declarations/explore_hello";
@@ -1484,24 +1469,24 @@ document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
 </div>
 </div>
 <div class="paragraph">
-<p>The template <code>index.js</code> imports an <code>explore_hello</code> agent from our newly created <code>declarations</code> directory. The agent is automatically configured to interact with the interface we created in <code>Main.mo</code>, and makes calls to our canister using an <code>AnonymousIdentity</code> when the user clicks the <code>greeting</code> button.</p>
+<p>テンプレート <code>index.js</code> は、新しく作成した <code>declarations</code> ディレクトリから <code>explore_hello</code> エージェントをインポートします。そのエージェントは、自動的に <code>Main.mo</code> で作成したインターフェースと親和性があるように構成され、ユーザーが <code>greeting</code> ボタンをクリックした時に <code>AnonymousIdentity</code> を使って Canister にコールします。</p>
 </div>
 <div class="paragraph">
-<p>This file works in conjunction with the template <code>index.html</code> file to display an HTML page with an image asset, input field, and button for the <code>greet</code> function.</p>
+<p>このファイルはテンプレート <code>index.html</code> ファイルと組み合わせて、<code>greet</code> 関数の画像アセット、入力欄、ボタンを備えた HTML ページを表示するよう機能します。</p>
 </div>
 </li>
 <li>
-<p>Close the <code>index.js</code> file to continue.</p>
+<p>次に進むために、<code>index.js</code> ファイルを閉じます。</p>
 </li>
 <li>
-<p>View the front-end assets created for the project by running following command:</p>
+<p>以下のコマンドを走らせて、プロジェクトのフロントエンドアセットを確認します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls -l .dfx/local/canisters/explore_hello_assets/</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays output similar to the following:</p>
+<p>そのコマンドは、次と同様の結果を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1516,28 +1501,28 @@ document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
 </div>
 </div>
 <div class="paragraph">
-<p>These files were generated automatically by the <code>dfx build</code> command using node modules and the template <code>index.js</code> file.</p>
+<p>node モジュールと <code>index.js</code> ファイルテンプレートを使う <code>dfx build</code> コマンドによって、これらのファイルは自動的に作成されます。</p>
 </div>
 </li>
 <li>
-<p>Start a development server with <code>npm start</code>.</p>
+<p><code>npm start</code> コマンドで開発サーバーを起動します。</p>
 </li>
 <li>
-<p>Open a browser and navigate to the <code>local</code> network address and port number—<code>+127.0.0.1:8080</code></p>
+<p>ブラウザを開き、 <code>local</code> ネットアドレスとポート番号を <code>+127.0.0.1:8080</code> に指定します。</p>
 </li>
 <li>
-<p>Verify that you see the HTML page for the sample application.</p>
+<p>サンプルアプリケーションの HTML ページが見えることを確認します。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例:</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../_images/explore-hello.png" alt="Sample HTML entry page"></span></p>
 </div>
 </li>
 <li>
-<p>Type a greeting, then click <strong>Click Me</strong> to return the greeting.</p>
+<p>あいさつを打ち込みます、それから <strong>Click Me</strong> をクリックすることで、あいさつが返されます。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例:</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../_images/greeting.png" alt="Return the name argument"></span></p>
@@ -1548,21 +1533,21 @@ document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_stop_the_local_canister_execution_environment"><a class="anchor" href="#_stop_the_local_canister_execution_environment"></a>Stop the local canister execution environment</h2>
+<h2 id="_ローカル_canister_実行環境を止める"><a class="anchor" href="#_ローカル_canister_実行環境を止める"></a>ローカル Canister 実行環境を止める</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you finish experimenting with your dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.</p>
+<p>Dapp を使った実験を終えたら、ローカル Canister 実行環境を、バックグラウンドで動かし続けないために止めます。</p>
 </div>
 <div class="paragraph">
-<p>To stop the local canister execution environment:</p>
+<p>ローカル Canister 実行環境を止める:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the terminal that displays network operations, press Control-C to interrupt the local network process.</p>
+<p>ネットワーク処理を表示するターミナルで、ローカルネットワークでのプロセスを中断するためにControl-C を押します。</p>
 </li>
 <li>
-<p>Stop the local canister execution environment by running the following command:</p>
+<p>以下のコマンドを走らせることで、ローカル Canister 実行環境を止めます。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>
