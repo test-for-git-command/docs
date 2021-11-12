@@ -3,9 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Motoko at-a-glance :: Dfinity 日本語ドキュメント</title>
+    <title>Motoko の概要 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/languages/motoko-at-a-glance.html">
-    <meta name="keywords" content="Motoko,programming language,Internet Computer,developers">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
@@ -820,173 +819,173 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Developer Center</a></li>
-    <li><a href="motoko-at-a-glance.html">Motoko at-a-glance</a></li>
+    <li><a href="motoko-at-a-glance.html">Motoko の概要</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/languages/pages/motoko-at-a-glance.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Motoko at-a-glance</h1>
+<h1 class="page">Motoko の概要</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This summary provides a simple but comprehensive overview of Motoko with examples of key features to help you identify operations and patterns that you might know in other languages and what they look like in Motoko.</p>
+<p>ここでは、読者の理解の助けになるように、他の言語で見られるオペレーションやパターンが Motoko ではどうなるのかをまとめています。主要な機能の例を挙げて Motoko の概要をシンプルに、かつ包括的に説明します。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_motoko_motivation_and_goals"><a class="anchor" href="#_motoko_motivation_and_goals"></a>Motoko motivation and goals</h2>
+<h2 id="_motoko_の動機と目標"><a class="anchor" href="#_motoko_の動機と目標"></a>Motoko の動機と目標</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A simple, useful language for DFINITY and the Internet Computer プラットフォーム.</p>
+<p>Motoko は、DFINITY と Internet Computer プラットフォーム のためのシンプルで使いやすい言語です。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Familiar syntax</p>
+<p>よく見られるシンタックス</p>
 </li>
 <li>
-<p>Safe by default</p>
+<p>デフォルトで安全</p>
 </li>
 <li>
-<p>Incorporates smart contracts using the <strong>canister</strong> model</p>
+<p><strong>Canister</strong> モデルを使用したスマートコントラクトの組み込み</p>
 </li>
 <li>
-<p>Provides seamless integration of DFINITY and the Internet Computer プラットフォーム features</p>
+<p>DFINITY と Internet Computer プラットフォーム の機能のシームレスな統合を提供</p>
 </li>
 <li>
-<p>Makes the most of present and future WebAssembly</p>
+<p>現在、そして将来の WebAssembly を最大限に活用</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_key_design_points"><a class="anchor" href="#_key_design_points"></a>Key design points</h2>
+<h2 id="_設計のポイント"><a class="anchor" href="#_設計のポイント"></a>設計のポイント</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Motoko takes inspiration from several programming languages, including Java, JavaScript, C#, Swift, Pony, ML, Haskell.</p>
+<p>Motoko は、Java、JavaScript、C#、Swift、Pony、ML、Haskell など、いくつかのプログラミング言語からインスピレーションを受けています。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Object-oriented, functional, and imperative</p>
+<p>オブジェクト指向、関数型、命令型</p>
 </li>
 <li>
-<p>Objects as records of members</p>
+<p>メンバーの record としてのオブジェクト</p>
 </li>
 <li>
-<p><code>async</code>/<code>await</code> for sequential programming of asynchronous messaging</p>
+<p><code>async</code>/<code>await</code> による非同期メッセージングのシーケンシャルプログラミング</p>
 </li>
 <li>
-<p>Structural typing with simple generics and subtyping</p>
+<p>シンプルなジェネリクスと派生型付けによる構造的な型付け</p>
 </li>
 <li>
-<p>Safe arithmetic (unbounded and checked)</p>
+<p>安全な算術 (Unbounded とチェック)</p>
 </li>
 <li>
-<p>Non-nullable types by default</p>
+<p>デフォルトでは Non-nullable 型</p>
 </li>
 <li>
-<p>JavaScript-like syntax but statically typed and sane</p>
+<p>JavaScript のようなシンタックスでありながら、静的に型付けされており安全</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_semantics"><a class="anchor" href="#_semantics"></a>Semantics</h2>
+<h2 id="_セマンティクス"><a class="anchor" href="#_セマンティクス"></a>セマンティクス</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>call-by-value (like Java, C, JS, and ML; unlike Haskell and Nix)</p>
+<p>値渡し（Java、C、JS、MLと同様で、HaskellやNixとは異なる）</p>
 </li>
 <li>
-<p>declarations are locally mutually recursive</p>
+<p>宣言は局所・相互再帰</p>
 </li>
 <li>
-<p>parametric, bounded polymorphism</p>
+<p>パラメトリック・有界量化</p>
 </li>
 <li>
-<p>subtyping as subsumption, not coercion</p>
+<p>型強制ではなく包摂的な派生型付け</p>
 </li>
 <li>
-<p>no dynamic casts</p>
+<p>動的キャストなし</p>
 </li>
 <li>
-<p>no inheritance</p>
+<p>継承なし</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_implementations"><a class="anchor" href="#_implementations"></a>Implementations</h2>
+<h2 id="_実装"><a class="anchor" href="#_実装"></a>実装</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>implemented in OCaml (leverages <code>wasm</code> library)</p>
+<p>OCaml で実装（<code>wasm</code> ライブラリを利用）</p>
 </li>
 <li>
-<p>simple reference interpreter</p>
+<p>シンプルなリファレンスインタプリタ</p>
 </li>
 <li>
-<p>less simple compiler to WebAssembly</p>
+<p>WebAssembly へのシンプルなコンパイラ</p>
 </li>
 <li>
-<p>multipass with typed IR in each pass</p>
+<p>各パスで型付けされた IR によるマルチパス</p>
 </li>
 <li>
-<p>uniform representation, unboxed arithmetic</p>
+<p>統一された表現、Unboxed な算術</p>
 </li>
 <li>
-<p>two-space gc, gc between messages</p>
+<p>Two-space GC、メッセージ間 GC</p>
 </li>
 <li>
-<p>polymorphism by erasure</p>
+<p>消去によるポリモーフィズム</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_language_features"><a class="anchor" href="#_language_features"></a>Language features</h2>
+<h2 id="_言語の特徴"><a class="anchor" href="#_言語の特徴"></a>言語の特徴</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The next sections highlight Motoko programming language features in simplified form.
-For additional information about using these and other features, see the <a href="../language-guide/language-manual.html">Language quick reference</a> in the ink:../language-guide/motoko.html[<em>Motoko Programming Language Guide</em>].</p>
+<p>この章では、Motoko プログラミング言語の機能を簡単に紹介します。
+ここで紹介している機能やその他の機能の使い方については、<a href="../language-guide/language-manual.html">言語のクイックリファレンス</a> の <a href="../language-guide/motoko.html"><em>Motoko プログラミング言語のガイド</em></a> を参照してください。</p>
 </div>
 <div class="sect2">
-<h3 id="_expressions"><a class="anchor" href="#_expressions"></a>Expressions</h3>
+<h3 id="_表現"><a class="anchor" href="#_表現"></a>表現</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>identifiers such as <code>x</code>, <code>foo_bar</code>, <code>test'</code>, <code>List</code>, <code>Map</code></p>
+<p><code>x</code>、<code>foo_bar</code>、<code>test'</code>、<code>List</code>、<code>Map</code> などの識別子</p>
 </li>
 <li>
-<p>parentheses for grouping</p>
+<p>グルーピングのための括弧書き</p>
 </li>
 <li>
-<p>type annotations to help type inference, for example <code>(42 : Int)</code></p>
+<p>型推論を助けるための型アノテーション（例えば <code>(42 : Int)</code>）</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_blocks_and_declarations"><a class="anchor" href="#_blocks_and_declarations"></a>Blocks and declarations</h3>
+<h3 id="_ブロックと宣言"><a class="anchor" href="#_ブロックと宣言"></a>ブロックと宣言</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>semi-colons are required after each declaration</p>
+<p>各宣言の後にセミコロンが必要</p>
 </li>
 <li>
-<p>mutually recursive</p>
+<p>相互再帰</p>
 </li>
 <li>
-<p>mutable variables marked explicitly</p>
+<p>可変変数を明示的に記述</p>
 </li>
 </ul>
 </div>
@@ -1004,9 +1003,9 @@ print();</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_control_flow"><a class="anchor" href="#_control_flow"></a>Control flow</h3>
+<h3 id="_制御フロー"><a class="anchor" href="#_制御フロー"></a>制御フロー</h3>
 <div class="paragraph">
-<p>if and if - else</p>
+<p>if と if - else</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1015,7 +1014,7 @@ if (b) … else …</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>switch and case</p>
+<p>switch と case</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1023,7 +1022,7 @@ if (b) … else …</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>while and loop</p>
+<p>while と loop</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1045,88 +1044,88 @@ loop … while (b)`</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_primitive_types"><a class="anchor" href="#_primitive_types"></a>Primitive types</h2>
+<h2 id="_プリミティブ型"><a class="anchor" href="#_プリミティブ型"></a>プリミティブ型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The next sections highlight the primitive types in the Motoko programming language.</p>
+<p>次の章では、Motoko プログラミング言語のプリミティブ型について説明します。</p>
 </div>
 <div class="sect2">
-<h3 id="_unbounded_integers"><a class="anchor" href="#_unbounded_integers"></a>Unbounded integers</h3>
+<h3 id="_制限なし整数"><a class="anchor" href="#_制限なし整数"></a>制限なし整数</h3>
 <div class="paragraph">
 <p><code>Int</code></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>inferred by default for negative literals</p>
+<p>負のリテラルを標準で推論</p>
 </li>
 <li>
-<p>literals: <code>13</code>, <code>0xf4</code>, <code>-20</code>, <code>+1</code>, <code>1_000_000</code></p>
+<p>リテラル: <code>13</code>、<code>0xf4</code>、<code>-20</code>、<code>+1</code>、<code>1_000_000</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_unbounded_naturals"><a class="anchor" href="#_unbounded_naturals"></a>Unbounded naturals</h3>
+<h3 id="_制限なし自然数"><a class="anchor" href="#_制限なし自然数"></a>制限なし自然数</h3>
 <div class="paragraph">
 <p><code>Nat</code></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>non-negative numbers, trap upon underflow</p>
+<p>非負数、アンダーフロー時のトラップ</p>
 </li>
 <li>
-<p>inferred by default for non-negative literals</p>
+<p>非負のリテラルを標準で推論</p>
 </li>
 <li>
-<p>literals: <code>13</code>, <code>0xf4</code>, <code>1_000_000</code></p>
+<p>リテラル: <code>13</code>, <code>0xf4</code>, <code>1_000_000</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bounded_numbers_trapping"><a class="anchor" href="#_bounded_numbers_trapping"></a>Bounded numbers (trapping)</h3>
+<h3 id="_制限あり数トラップあり"><a class="anchor" href="#_制限あり数トラップあり"></a>制限あり数（トラップあり）</h3>
 <div class="paragraph">
 <p><code>Nat8</code>, <code>Nat16</code>, <code>Nat32</code>, <code>Nat64</code>, <code>Int8</code>, <code>Int16</code>, <code>Int32</code>, <code>Int64</code></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>trap on over- and underflow</p>
+<p>オーバーフロー、アンダーフロー時にトラップ</p>
 </li>
 <li>
-<p>need type annotations specified</p>
+<p>型アノテーションの指定が必要</p>
 </li>
 <li>
-<p>literals: <code>13</code>, <code>0xf4</code>, <code>-20</code>, <code>1_000_000</code></p>
+<p>リテラル: <code>13</code>, <code>0xf4</code>, <code>-20</code>, <code>1_000_000</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_floating_point_numbers"><a class="anchor" href="#_floating_point_numbers"></a>Floating point numbers</h3>
+<h3 id="_浮動小数点数"><a class="anchor" href="#_浮動小数点数"></a>浮動小数点数</h3>
 <div class="paragraph">
 <p><code>Float</code></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>IEEE 754 double precision (64 bit) semantics, normalized NaN</p>
+<p>IEEE 754 の倍精度（64ビット）セマンティクス、正規化された NaN</p>
 </li>
 <li>
-<p>inferred for fractional literals</p>
+<p>小数点以下のリテラルの推論</p>
 </li>
 <li>
-<p>literals: <code>0</code>, <code>-10</code>, <code>2.71</code>, <code>-0.3e+15</code>, <code>3.141_592_653_589_793_12</code></p>
+<p>リテラル: <code>0</code>、<code>-10</code>、<code>2.71</code>、<code>-0.3e+15</code>、<code>3.141_592_653_589_793_12</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_numeric_operations"><a class="anchor" href="#_numeric_operations"></a>Numeric operations</h3>
+<h3 id="_数値演算"><a class="anchor" href="#_数値演算"></a>数値演算</h3>
 <div class="paragraph">
-<p>operators behave as you would expect (no surprises)</p>
+<p>数値演算は期待通りの動作をします</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1137,12 +1136,12 @@ a &amp; b</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_characters_and_text"><a class="anchor" href="#_characters_and_text"></a>Characters and text</h3>
+<h3 id="_文字とテキスト"><a class="anchor" href="#_文字とテキスト"></a>文字とテキスト</h3>
 <div class="paragraph">
-<p><code>Char</code>, <code>Text</code></p>
+<p><code>Char</code>、<code>Text</code></p>
 </div>
 <div class="paragraph">
-<p>Unicode, no random access</p>
+<p>ユニコード、ランダムアクセスなし</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1153,12 +1152,12 @@ a &amp; b</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_booleans"><a class="anchor" href="#_booleans"></a>Booleans</h3>
+<h3 id="_ブーリアン"><a class="anchor" href="#_ブーリアン"></a>ブーリアン</h3>
 <div class="paragraph">
 <p><code>Bool</code></p>
 </div>
 <div class="paragraph">
-<p>literals: <code>true</code>, <code>false</code></p>
+<p>リテラル: <code>true</code>, <code>false</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1172,15 +1171,15 @@ if (b) e1 else e2</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_functions"><a class="anchor" href="#_functions"></a>Functions</h2>
+<h2 id="_関数"><a class="anchor" href="#_関数"></a>関数</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The next sections provide examples for working with functions in the Motoko programming language.</p>
+<p>次の章では、プログラミング言語 Motoko で関数を扱うための例を紹介します。</p>
 </div>
 <div class="sect2">
-<h3 id="_function_types"><a class="anchor" href="#_function_types"></a>Function types</h3>
+<h3 id="_関数型"><a class="anchor" href="#_関数型"></a>関数型</h3>
 <div class="paragraph">
-<p>simple functions</p>
+<p>シンプルな関数</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1188,7 +1187,7 @@ if (b) e1 else e2</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>multiple arguments and return values</p>
+<p>複数の引数と返り値</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1196,7 +1195,7 @@ if (b) e1 else e2</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>can be generic/polymorphic</p>
+<p>は、ジェネリクス、ポリモーフィックでは以下のようになります：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1204,7 +1203,7 @@ if (b) e1 else e2</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>first-class (can be passed around, stored)</p>
+<p>第一級関数（引き渡し、保管が可能）</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1214,18 +1213,18 @@ let funcs : [&lt;T&gt;(T) -&gt; T] = …</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_function_declarations_and_use"><a class="anchor" href="#_function_declarations_and_use"></a>Function declarations and use</h3>
+<h3 id="_関数の宣言と使用"><a class="anchor" href="#_関数の宣言と使用"></a>関数の宣言と使用</h3>
 <div class="paragraph">
-<p><code>func() { … }</code> short for <code>func() : () = { … }</code></p>
+<p><code>func() { … }</code> は <code>func() : () = { … }</code> の短縮形</p>
 </div>
 <div class="paragraph">
-<p>parametric functions</p>
+<p>パラメトリック関数</p>
 </div>
 <div class="paragraph">
-<p>type instantiations may sometimes be omitted</p>
+<p>型のインスタンス化は省略されることがあります。</p>
 </div>
 <div class="paragraph">
-<p>anonymous functions (a.k.a. lambdas)</p>
+<p>匿名関数（ラムダ関数）</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1250,18 +1249,18 @@ let funcs : [&lt;T&gt;(T) -&gt; T] = …</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_composite_types"><a class="anchor" href="#_composite_types"></a>Composite types</h2>
+<h2 id="_複合型"><a class="anchor" href="#_複合型"></a>複合型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The next sections provide examples for working with composite types in the Motoko programming language.</p>
+<p>次の章では、プログラミング言語 Motoko で複合型を扱う例を紹介します。</p>
 </div>
 <div class="sect2">
-<h3 id="_tuples"><a class="anchor" href="#_tuples"></a>Tuples</h3>
+<h3 id="_タプル型"><a class="anchor" href="#_タプル型"></a>タプル型</h3>
 <div class="paragraph">
 <p><code>(Bool, Float, Text)</code></p>
 </div>
 <div class="paragraph">
-<p>immutable, heterogeneous, fixed size</p>
+<p>イミュータブル、異なる型を格納可能、固定サイズ</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1272,12 +1271,12 @@ let (_,_,t) = tuple;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_options"><a class="anchor" href="#_options"></a>Options</h3>
+<h3 id="_オプション型"><a class="anchor" href="#_オプション型"></a>オプション型</h3>
 <div class="paragraph">
 <p><code>?Text</code></p>
 </div>
 <div class="paragraph">
-<p>is either a value of that type, or <code>null</code></p>
+<p>は、その型の値か、<code>null</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1293,7 +1292,7 @@ foo(?"Test");</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_arrays_immutable"><a class="anchor" href="#_arrays_immutable"></a>Arrays (immutable)</h3>
+<h3 id="_配列型イミュータブル"><a class="anchor" href="#_配列型イミュータブル"></a>配列型（イミュータブル）</h3>
 <div class="paragraph">
 <p><code>[Text]</code></p>
 </div>
@@ -1302,13 +1301,13 @@ foo(?"Test");</code></pre>
 <pre class="highlightjs highlight"><code>let days = ["Monday", "Tuesday", … ];
 assert(days.len() == 7);
 assert(days[1] == "Tuesday");
-// days[7] will trap (fixed size)
+// days[7] はトラップ (固定長)
 for (d in days.vals()) { Debug.print(d) };</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_arrays_mutable"><a class="anchor" href="#_arrays_mutable"></a>Arrays (mutable)</h3>
+<h3 id="_配列型_ミュータブル"><a class="anchor" href="#_配列型_ミュータブル"></a>配列型 (ミュータブル)</h3>
 <div class="paragraph">
 <p><code>[var Nat]</code></p>
 </div>
@@ -1317,12 +1316,12 @@ for (d in days.vals()) { Debug.print(d) };</code></pre>
 <pre class="highlightjs highlight"><code>let counters = [var 1, 2, 3];
 assert(counters.len() == 3);
 counters[1] := counters[1] + 1;
-// counters[3] will trap (fixed size)</code></pre>
+// counters[3] はトラップ (固定長)</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_records"><a class="anchor" href="#_records"></a>Records</h3>
+<h3 id="_レコード型"><a class="anchor" href="#_レコード型"></a>レコード型</h3>
 <div class="paragraph">
 <p><code>{name : Text; points : var Int}</code></p>
 </div>
@@ -1338,17 +1337,17 @@ player.points += 1;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_objects"><a class="anchor" href="#_objects"></a>Objects</h3>
+<h3 id="_オブジェクト"><a class="anchor" href="#_オブジェクト"></a>オブジェクト</h3>
 <div class="paragraph">
 <p><code>{ get : () &#8594; Int; add : Int &#8594; () }</code></p>
 </div>
 <div class="paragraph">
-<p>different syntax, same type as records</p>
+<p>レコード型と同じ型の異なるシンタックス</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>object self {
-  var points = 0; // private by default
+  var points = 0; // デフォルトでプライベート
   public func get() = points;
   public func add(p : Int) { points += p };
 }</code></pre>
@@ -1356,12 +1355,12 @@ player.points += 1;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_variants"><a class="anchor" href="#_variants"></a>Variants</h3>
+<h3 id="_バリアント型"><a class="anchor" href="#_バリアント型"></a>バリアント型</h3>
 <div class="paragraph">
 <p><code>{ #invincible; #alive : Int; #dead }</code></p>
 </div>
 <div class="paragraph">
-<p>similar to enumerated types</p>
+<p>列挙型と類似</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1381,26 +1380,26 @@ func takeDamage(h : Health, p : Nat) : Health {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_packages_and_modules"><a class="anchor" href="#_packages_and_modules"></a>Packages and modules</h2>
+<h2 id="_パッケージとモジュール"><a class="anchor" href="#_パッケージとモジュール"></a>パッケージとモジュール</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The next sections provide examples for working with packages and modules in the Motoko programming language.</p>
+<p>次の章では、プログラミング言語 Motoko でパッケージやモジュールを扱う例を紹介します。</p>
 </div>
 <div class="sect2">
-<h3 id="_modules"><a class="anchor" href="#_modules"></a>Modules</h3>
+<h3 id="_モジュール"><a class="anchor" href="#_モジュール"></a>モジュール</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>types and values like objects</p>
+<p>オブジェクトのような型と値</p>
 </li>
 <li>
-<p>restricted to <em>static</em> content (pure, no state, …)</p>
+<p><em>静的</em> なコンテンツに限定（純粋、ステートなし、&#8230;&#8203;）。</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>// the type of base/Int.mo
+<pre class="highlightjs highlight"><code>// base/Int.mo の型
 module {
   toText : Int -&gt; Text;
   abs : Int -&gt; Nat;
@@ -1410,14 +1409,14 @@ module {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_module_imports"><a class="anchor" href="#_module_imports"></a>Module imports</h3>
+<h3 id="_モジュールのインポート"><a class="anchor" href="#_モジュールのインポート"></a>モジュールのインポート</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><code>base</code> package provides basic features</p>
+<p>基本的な機能を提供する <code>base</code> パッケージ</p>
 </li>
 <li>
-<p>additional libraries evolving with community support</p>
+<p>コミュニティのサポートにより開発されている追加のライブラリ</p>
 </li>
 </ul>
 </div>
@@ -1431,20 +1430,20 @@ import Int "mo:base/Int";</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_platform_features"><a class="anchor" href="#_platform_features"></a>Platform features</h2>
+<h2 id="_プラットフォームの機能"><a class="anchor" href="#_プラットフォームの機能"></a>プラットフォームの機能</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The next sections provide examples of the Motoko programming language platform-specific features.</p>
+<p>次の章では、プログラミング言語 Motoko のプラットフォーム固有の機能の例を紹介します。</p>
 </div>
 <div class="sect2">
-<h3 id="_actor_types"><a class="anchor" href="#_actor_types"></a>Actor types</h3>
+<h3 id="_actor_型"><a class="anchor" href="#_actor_型"></a>Actor 型</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>like object types, but marked as <code>actor</code>:</p>
+<p>オブジェクト型に似ていますが、<code>actor</code> としてマークされています。</p>
 </li>
 <li>
-<p><em>sharable</em> arguments and <em>no</em> or <em>async</em> result type.</p>
+<p><em>sharable</em> の引数と、<em>no</em> または <em>async</em> の返り値型。</p>
 </li>
 <li>
 <p>“canister” ≈ “actor”</p>
@@ -1462,44 +1461,44 @@ type Broadcast = actor {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sharable_serializable"><a class="anchor" href="#_sharable_serializable"></a>Sharable ≈ serializable</h3>
+<h3 id="_sharable_型_シリアライズ"><a class="anchor" href="#_sharable_型_シリアライズ"></a>Sharable 型 ≈ シリアライズ</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>all primitive types</p>
+<p>全てプリミティブ型</p>
 </li>
 <li>
-<p>records, tuples, arrays, variants, options with immutable sharable components</p>
+<p>レコード、タプル、配列、バリアント、オプションなどであり、イミュータブルで Sharable なコンポーネントであるもの</p>
 </li>
 <li>
-<p><code>actor</code> types</p>
+<p><code>actor</code> 型</p>
 </li>
 <li>
-<p><code>shared</code> function type</p>
+<p><code>shared</code> 関数型</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following are <strong>not sharable:</strong></p>
+<p>以下は <strong>sharable ではない:</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>mutable things</p>
+<p>ミュータブルなもの</p>
 </li>
 <li>
-<p>local functions</p>
+<p>ローカル関数</p>
 </li>
 <li>
-<p>objects (with methods)</p>
+<p>オブジェクト (メソッドを持つもの)</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_complete_actor_example"><a class="anchor" href="#_complete_actor_example"></a>Complete actor example</h3>
+<h3 id="_完全な_actor_の例"><a class="anchor" href="#_完全な_actor_の例"></a>完全な Actor の例</h3>
 <div class="paragraph">
-<p>typical canister main file</p>
+<p>典型的な Canister の main ファイル</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1528,19 +1527,19 @@ actor {
 <div class="ulist">
 <ul>
 <li>
-<p>asynchronous future or promise</p>
+<p>非同期の future や promise</p>
 </li>
 <li>
-<p>introduced by <code>async { … }</code> (implicit in async function declaration)</p>
+<p><code>async { &#8230;&#8203; }</code> によって導入（async 関数宣言では暗黙的）。</p>
 </li>
 <li>
-<p><code>await e</code> suspends computation pending `e&#8217;s result</p>
+<p><code>await e</code> は <code>e</code> の結果を待つために計算をサスペンドする。</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_actor_import"><a class="anchor" href="#_actor_import"></a>Actor import</h3>
+<h3 id="_actor_のインポート"><a class="anchor" href="#_actor_のインポート"></a>Actor のインポート</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>import Broadcast "ic:ABCDEF23";
@@ -1556,9 +1555,9 @@ actor Self {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_principal_and_caller"><a class="anchor" href="#_principal_and_caller"></a>Principal and caller</h3>
+<h3 id="_principal_と_caller"><a class="anchor" href="#_principal_と_caller"></a>Principal と Caller</h3>
 <div class="paragraph">
-<p>a <code>Principal</code> type represents the identity of a user or canister/actor</p>
+<p>プリンシパル型は、ユーザーや Canister/Actor の ID を表します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1578,15 +1577,15 @@ actor Self {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_type_system"><a class="anchor" href="#_type_system"></a>Type system</h2>
+<h2 id="_型システム"><a class="anchor" href="#_型システム"></a>型システム</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The next sections highlight details about type system used in the Motoko programming language.</p>
+<p>次の章では、プログラミング言語 Motoko で使用されている型システムの詳細を紹介します。</p>
 </div>
 <div class="sect2">
-<h3 id="_structural"><a class="anchor" href="#_structural"></a>Structural</h3>
+<h3 id="_構造"><a class="anchor" href="#_構造"></a>構造</h3>
 <div class="paragraph">
-<p>type definitions do not create types, but name existing types</p>
+<p>型定義は、型を作るのではなく、既存の型に名前を付けます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1595,12 +1594,12 @@ type Health2 = { #invincible; #alive : Nat; #dead };
 
 let takeDamage : (Health1, Nat) -&gt; Health1 = …;
 let h : Health2 = #invincible;
-let h' = takeDamage(h, 100); // works</code></pre>
+let h' = takeDamage(h, 100); // 動作します</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_subtyping"><a class="anchor" href="#_subtyping"></a>Subtyping</h3>
+<h3 id="_派生型付け"><a class="anchor" href="#_派生型付け"></a>派生型付け</h3>
 <div class="paragraph">
 <p><code>Mortal &lt;: Health</code></p>
 </div>
@@ -1611,15 +1610,15 @@ type Mortal = { #alive : Nat; #dead };
 
 let takeDamage : (Health, Nat) -&gt; Health = …;
 let h : Mortal = #alive 1000;
-let h' = takeDamage(h, 100); // also works</code></pre>
+let h' = takeDamage(h, 100); // こちらも動作します</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>t1 &lt;: t2</code>: <code>t1</code> can be used wherever <code>t2</code> is expected</p>
+<p><code>t1 &lt;: t2</code>: <code>t1</code> は <code>t2</code> が期待されるところであればどこでも使用できます。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generic_types"><a class="anchor" href="#_generic_types"></a>Generic types</h3>
+<h3 id="_ジェネリクス型"><a class="anchor" href="#_ジェネリクス型"></a>ジェネリクス型</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>type List&lt;T&gt; = ?{head : T; tail : List&lt;T&gt;};
@@ -1631,7 +1630,7 @@ let l : List&lt;Nat&gt; = ?{head = 0; tail = ?{head = 1 ; tail = null }};</code>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_error_handling"><a class="anchor" href="#_error_handling"></a>Error handling</h2>
+<h2 id="_エラーハンドリング"><a class="anchor" href="#_エラーハンドリング"></a>エラーハンドリング</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -1643,10 +1642,10 @@ throw …</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_class_declaration_example"><a class="anchor" href="#_class_declaration_example"></a>Class declaration example</h2>
+<h2 id="_クラス宣言の例"><a class="anchor" href="#_クラス宣言の例"></a>クラス宣言の例</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following table compares class declarations in Motoko with class declarations in JavaScript and TypeScript.</p>
+<p>次の表は、Motoko のクラス宣言と、JavaScript や TypeScript のクラス宣言を比較したものです。</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
