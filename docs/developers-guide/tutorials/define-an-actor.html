@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Query using an actor :: Dfinity 日本語ドキュメント</title>
+    <title>Actor を使って処理を要求する :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/developers-guide/tutorials/define-an-actor.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../../_/css/site.css">
@@ -829,53 +829,51 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Query using an actor</h1>
+<h1 class="page">Actor を使って処理を要求する</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the <a href="../../quickstart/quickstart-intro.html">Quick start</a>, you had your first look at a simple canister for the Internet Computer involving an actor object and asynchronous messaging.
-As the next step in learning to write canisters that take advantage of actor-based messaging, this tutorial illustrates how to modify a traditional <code>Hello, World!</code> canister to define an actor, then deploy and test your canister on a local canister execution environment.</p>
+<p><a href="../../quickstart/quickstart-intro.html">クイックスタート</a> では、Actor オブジェクトや非同期メッセージを含めた Internet Computer の単純な Canister を初めて見たことでしょう。Actor ベースのメッセージを活用する Canister の書き方を学ぶ次のステップとして、このチュートリアルでは Actor を定義する伝統的な <code>Hello, World!</code> Canister を修正する方法を説明して、ローカル実行環境でのデプロイからテストまで行います。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_before_you_begin"><a class="anchor" href="#_before_you_begin"></a>Before you begin</h2>
+<h2 id="_始める前に"><a class="anchor" href="#_始める前に"></a>始める前に</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before starting the tutorial, verify the following:</p>
+<p>このチュートリアルを始める前に、以下のことを確認してください。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You have downloaded and installed the DFINITY Canister SDK package as described in <a href="../../quickstart/local-quickstart.html#download-and-install">Download and install</a>.</p>
+<p><a href="../../quickstart/local-quickstart.html#download-and-install">ダウンロードとインストール</a> に記載されている DFINITY Canister SDK パッケージを、ダウンロードしてインストールまで行っていること</p>
 </li>
 <li>
-<p>You have stopped any local canister execution environment processes</p>
+<p>すべてのローカル Canister 実行環境プロセスを停止していること</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This tutorial takes approximately 20 minutes to complete.</p>
+<p>このチュートリアルの所要時間は２０分程度です。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_a_new_project"><a class="anchor" href="#_create_a_new_project"></a>Create a new project</h2>
+<h2 id="_新しいプロジェクトを作成する"><a class="anchor" href="#_新しいプロジェクトを作成する"></a>新しいプロジェクトを作成する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a new project for this tutorial:</p>
+<p>このチュートリアルで利用する新しいプロジェクトを作成する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal shell on your local computer, if you don’t already
-have one open.</p>
+<p>ターミナルシェルをまだ開いていなければ開きます。</p>
 </li>
 <li>
-<p>Change to the folder you are using for your Internet Computer projects, if you are using one.</p>
+<p>もし別のフォルダを使用しているなら、Internet Computer プロジェクト用のフォルダに移動します。</p>
 </li>
 <li>
-<p>Create a new project by running the following command:</p>
+<p>以下のコマンドを実行して、新しいプロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new actor_hello</code></pre>
@@ -883,7 +881,7 @@ have one open.</p>
 </div>
 </li>
 <li>
-<p>Change to your project directory by running the following command:</p>
+<p>以下のコマンドを実行して、プロジェクトディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd actor_hello</code></pre>
@@ -895,41 +893,39 @@ have one open.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_default_configuration"><a class="anchor" href="#_modify_the_default_configuration"></a>Modify the default configuration</h2>
+<h2 id="_デフォルト設定を修正する"><a class="anchor" href="#_デフォルト設定を修正する"></a>デフォルト設定を修正する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the <a href="explore-templates.html">Exploring the default project</a> tutorial, you saw that creating a new project adds a default <code>dfx.json</code> configuration file to your project directory.
-In this tutorial, you need to modify a few of the default settings to reflect your project.</p>
+<p><a href="explore-templates.html">デフォルトプロジェクトを探索する</a> チュートリアルでは、新しくプロジェクトを作成することで、プロジェクトディレクトリにデフォルト <code>dfx.json</code> 設定ファイルが追加されるのを見たことでしょう。このチュートリアルでは、プロジェクトに反映するデフォルト設定をいくつか修正する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To modify the <code>dfx.json</code> configuration file:</p>
+<p><code>dfx.json</code> 設定ファイルを修正する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <code>dfx.json</code> configuration file in a text editor.</p>
+<p>テキストエディタで <code>dfx.json</code> 設定ファイルを開きます。</p>
 </li>
 <li>
-<p>Check the default settings for the <code>actor_hello</code> project.</p>
+<p><code>actor_hello</code> プロジェクトのデフォルト設定を確認します。</p>
 </li>
 <li>
-<p>Notice that the names and paths to source and output files all use the <code>actor_hello</code> project name.</p>
+<p>名前、ソースへのパス、出力ファイルのすべてが、<code>actor_hello</code> プロジェクト名を使用していることに注目します。</p>
 <div class="paragraph">
-<p>For example, the default canister smart contract name is <code>actor_hello</code> and the default path to the main code file is <code>src/actor_hello/main.mo</code>.</p>
+<p>例えば、デフォルト Canister スマートコントラクト名は <code>actor_hello</code> であり、メインコードのファイルへのデフォルトパスは <code>src/actor_hello/main.mo</code> です。</p>
 </div>
 <div class="paragraph">
-<p>You can rename any of these files or directories.
-If you make any changes, however, be sure that the names you use for your files and directories on the file system match the names you specify in the <code>dfx.json</code> configuration file.
-If you plan to use the default directory and file names, no changes are necessary.</p>
+<p>これらのファイルやディレクトリの名前は変更することができます。ただし、変更する場合は、ファイルシステム上のファイルやディレクトリの名前が、<code>dfx.json</code> 設定ファイルで指定している名前と一致していることを確認してください。
+デフォルトのディレクトリ名やファイル名を使用するつもりであれば、変更する必要はありません。</p>
 </div>
 </li>
 <li>
-<p>Remove all of the <code>actor_hello_assets</code> configuration settings from the file.</p>
+<p>ファイルから <code>actor_hello_assets</code> 設定をすべて取り除きます。</p>
 <div class="paragraph">
-<p>The sample canister for this tutorial doesn&#8217;t use any front-end assets, so you can remove those settings from the configuration file.</p>
+<p>このチュートリアルでのサンプル Canister では、フロントエンドアセットを使用しないので、設定ファイルからこれらの設定を削除できます。</p>
 </div>
 <div class="paragraph">
-<p>For example, the configuration file looks like this after you remove the <code>actor_hello_assets</code> section:</p>
+<p>例えば、<code>actor_hello_assets</code> セクションを取り除いた後、設定ファイルは以下のようになります。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -958,26 +954,25 @@ If you plan to use the default directory and file names, no changes are necessar
 </div>
 </li>
 <li>
-<p>Save your changes and close the file to continue.</p>
+<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_default_canister"><a class="anchor" href="#_modify_the_default_canister"></a>Modify the default canister</h2>
+<h2 id="_デフォルト_canister_を修正する"><a class="anchor" href="#_デフォルト_canister_を修正する"></a>デフォルト Canister を修正する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the <a href="explore-templates.html">Exploring the default project</a> tutorial, you saw that creating a new project creates a default <code>src</code> directory with a template <code>main.mo</code> file.
-In this tutorial, you modify the template code to create a simple "Hello, World!" canister. by defining an actor in Motoko. In Motoko,  an Internet Computer canister is representeded as a Motoko actor.</p>
+<p><a href="explore-templates.html">デフォルトプロジェクトを探索する</a> チュートリアルでは、新しいプロジェクトを作成することで、<code>main.mo</code> ファイルを含む <code>src</code> デフォルトディレクトリが作成されるのを見たことでしょう。このチュートリアルでは、Actor を定義することで、単純な "Hello, World!" Canister を作成するテンプレートコードを修正します。Motoko では、Internet Computer Canister は Motoko Actor として表現されます。</p>
 </div>
 <div class="paragraph">
-<p>To modify the default template source code:</p>
+<p>デフォルトテンプレートソースコードを修正する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Change to the source code directory for your project by running the following command:</p>
+<p>以下のコマンドを実行して、プロジェクトのソースコードディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd src/actor_hello</code></pre>
@@ -985,14 +980,19 @@ In this tutorial, you modify the template code to create a simple "Hello, World!
 </div>
 </li>
 <li>
-<p>Open the template <code>main.mo</code> file in a text editor and delete the existing content.</p>
+<p>テキストエディタでテンプレート <code>main.mo</code> ファイルを開き、既存のコンテンツを削除します。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd src/actor_hello</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>The next step is to write a canister that prints a statement like the traditional "Hello, World!" sample canister.
-To compile the canister for the Internet Computer, however, your Motoko code must define an <code>actor</code>.</p>
+<p>次のステップは、伝統的な "Hello, World!" のような文章を表示する Canister を書くことです。
+ただ Internet Computer の Canister をコンパイルするには、Motoko コードで Actor を定義する必要があります。</p>
 </div>
 </li>
 <li>
-<p>Copy and paste the following sample code into the <code>main.mo</code> file:</p>
+<p>以下のサンプルコードをコピーして、<code>main.mo</code> ファイルに貼り付けます。</p>
 <div class="listingblock copy">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">import Debug "mo:base/Debug";
@@ -1004,62 +1004,59 @@ actor HelloActor {
 </div>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s take a closer look at this Motoko actor defining our canister:</p>
+<p>Canister を定義した Motoko Actor を詳しく見ていきましょう。</p>
 </div>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The code imports a <code>Debug</code> module to provide the <code>print</code> functionality.</p>
+<p>まず <code>print</code> 機能を提供する <code>Debug</code> モジュールをインポートします。</p>
 </li>
 <li>
-<p>The actor uses the <code>public query func</code> declaration to define an Internet Computer <em>query</em> method.  Our method doesn&#8217;t need to make any permanent changes to the state of the actor. Declaring it as a query means that  any changes it does make are transient and discarded after the query completes.</p>
+<p>Actor は、Internet Computer <em>query</em> メソッドを定義するのに <code>public query func</code> 宣言を使います。メソッドは Actor のステートに永続的な変更を加える必要はありません。メソッドをクエリとして宣言することで、メソッドが行ういかなる変更も一時的なものになり、クエリの完了後に破棄されます。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>For more information about using a query call, see <a href="../concepts/canisters-code.html#query-update">query calls</a> in <a href="../concepts/canisters-code.html#canister-state">Canisters include both program and state</a>.</p>
+<p>クエリコールの使用方法に関しては、<a href="../concepts/canisters-code.html#canister-state">Canisters はプログラムとステートを含める</a> にある <a href="../concepts/canisters-code.html#query-update">クエリコール</a> を参照してください。</p>
 </div>
 </li>
 <li>
-<p>Save your changes and close the <code>main.mo</code> file.</p>
+<p>変更内容を保存して、<code>main.mo</code> ファイルを閉じます。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_checking_that_the_canister_builds"><a class="anchor" href="#_checking_that_the_canister_builds"></a>Checking that the canister builds</h2>
+<h2 id="_canister_のビルドを確認する"><a class="anchor" href="#_canister_のビルドを確認する"></a>Canister のビルドを確認する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Usually, in order to build a canister, it&#8217;s necessary to first reserve a unique canister identifier
-on the Internet Computer blockchain mainnet.</p>
+<p>通常 Canister をビルドするには、まず Internet Computer ブロックチェーンメインネット上でユニークな Canister ID を予約する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>However, it&#8217;s also possible to compile your program without connecting to the Internet Computer blockchain mainnet at all.
-The <code>dfx build --check</code> command uses a temporary, hard-coded canister identifier to accomplish this.</p>
+<p>しかしながら、Internet Computer ブロックチェーンメインネットに全く接続せずに、プログラムをコンパイルすることも可能です。<code>dfx build --check</code> コマンドは、一時的にハードコードされた Canister ID を使用してコンパイルを実現します。</p>
 </div>
 <div class="paragraph">
-<p>To check that the canister builds:</p>
+<p>Canister のビルドを確認する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate back to the root of your project directory.</p>
+<p>プロジェクトディレクトリのルート直下に戻ります。</p>
 </li>
 <li>
-<p>Build the canister executable with a temporary, hard-coded identifier by running the following command:</p>
+<p>以下のコマンドを実行して、一時的にハードコードされた Canister ID での Canister をビルドします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx build --check</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>--check</code> option enables you to build a project locally to verify that it compiles and to inspect the files produced.
-Because the <code>dfx build --check</code> command only uses a temporary identifier, you should see output similar to the following:</p>
+<p><code>--check</code> オプションは、プロジェクトをローカルにビルドして、コンパイルの確認と生成されたファイルの調査を可能にします。<code>dfx build --check</code> コマンドは、一時的な ID のみを使用するので、以下のような出力を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1068,10 +1065,10 @@ Building canisters...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If the canister compiles successfully, you can inspect the output in the default <code>.dfx/local/canisters</code> directory and <code>.dfx/local/canisters/actor_hello/</code> subdirectory.</p>
+<p>もし Canister のコンパイルが成功すれば、デフォルト <code>.dfx/local/canisters</code> ディレクトリと <code>.dfx/local/canisters/actor_hello/</code> サブディレクトリにある出力を調査できます。</p>
 </div>
 <div class="paragraph">
-<p>For example, you might use the <code>tree</code> command to review the files created:</p>
+<p>例えば、生成されたファイルを確認するには、<code>tree</code> コマンドを使います。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1079,7 +1076,7 @@ Building canisters...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays output similar to the following</p>
+<p>コマンドを実行すると、以下のような出力が表示されます。</p>
 </div>
 </li>
 </ol>
@@ -1101,60 +1098,57 @@ Building canisters...</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploy_the_project"><a class="anchor" href="#_deploy_the_project"></a>Deploy the project</h2>
+<h2 id="_プロジェクトをデプロイする"><a class="anchor" href="#_プロジェクトをデプロイする"></a>プロジェクトをデプロイする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You cannot deploy the output from the <code>dfx build --check</code> command to  a local canister execution environment or the Internet Computer mainnet.
-If you wanted to deploy this project, you would need to do the following:</p>
+<p><code>dfx build --check</code> コマンドからローカル Canister 実行環境もしくは Internet Computer メインネットにデプロイすることはできません。
+もしプロジェクトをデプロイしたいのであれば、以下のことを実行する必要があります。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Connect to the either the local canister execution environment or Internet Computer mainnet.</p>
+<p>ローカル Canister 実行環境もしくは Internet Computer メインネットに接続すること</p>
 </li>
 <li>
-<p>Register a connection-specific canister identifier.</p>
+<p>接続専用の Canister ID を登録すること</p>
 </li>
 <li>
-<p>Deploy the canister.</p>
+<p>Canister をデプロイすること</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s consider these steps in a bit more detail.
-Before you can deploy this project, you must connect to either your local canister execution environment, provided by <code>dfx</code>, or to the Internet Computer blockchain mainnet.
-After you connect to a local canister execution environment or Internet Computer mainnet, you must also generate a unique, <strong>connection-specific</strong> canister identifier to replace your locally-defined identifier.
-To see the steps involved for yourself, let&#8217;s deploy the project locally.</p>
+<p>これらのステップをもう少し詳しく考えてみましょう。まずプロジェクトをデプロイする前に、<code>dfx</code> のローカル Canister 実行環境もしくは Internet Computer ブロックチェーンメインネットに接続する必要があります。どちらかに接続した後、ローカルで定義した ID の代わりに、ユニークで接続専用の Canister ID を生成する必要があります。これらのステップを確認するために、プロジェクトをローカルにデプロイしてみましょう。</p>
 </div>
 <div class="paragraph">
-<p>To deploy this project locally:</p>
+<p>プロジェクトをローカルにデプロイする:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal and navigate to your project directory, if needed.</p>
+<p>必要であればターミナルを開き、プロジェクトディレクトリに移動します。</p>
 </li>
 <li>
-<p>Start the local canister execution environment on your local computer by running the following command:</p>
+<p>以下のコマンドを実行して、ローカル Canister 実行環境を起動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start --background</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For this tutorial, you can use the <code>--background</code> option to start the local canister execution environment as background processes.
-With this option, you can continue to the next step without opening another terminal shell on your local computer.</p>
+<p>このチュートリアルでは、バックグラウンドプロセスとして、ローカル Canister 実行環境を動かすのに <code>--background</code> オプションを使用します。
+このオプションのおかげで、別のターミナルシェルを開くことなく、次のステップに進むことができます。</p>
 </div>
 </li>
 <li>
-<p>Generate a new canister identifier for your project on the local canister execution environment by running the following command:</p>
+<p>以下のコマンドを実行して、ローカル Canister 実行環境のプロジェクトに対する新しい Canister ID を生成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister create actor_hello</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You should see output similar to the following:</p>
+<p>コマンドの実行で、以下のような出力が表示されます。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1165,10 +1159,10 @@ Creating canister "actor_hello"...
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>dfx canister create</code> command also stores the connection-specific canister identifier in a <code>canister_ids.json</code> file in the <code>.dfx/local</code> directory.</p>
+<p><code>dfx canister create</code> コマンドは、<code>.dfx/local</code> ディレクトリの <code>canister_ids.json</code> ファイルに接続専用の Canister ID を格納します。</p>
 </div>
 <div class="paragraph">
-<p>For example:</p>
+<p>例:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1181,14 +1175,14 @@ Creating canister "actor_hello"...
 </div>
 </li>
 <li>
-<p>Build the canister by running the following command:</p>
+<p>以下のコマンドを実行して、Canister をビルドします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx build</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays output similar to the following:</p>
+<p>コマンドの実行で、以下のような出力が表示されます。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1197,14 +1191,14 @@ Creating canister "actor_hello"...
 </div>
 </li>
 <li>
-<p>Deploy your <code>actor_hello</code> project on the local canister execution environment by running the following command:</p>
+<p>以下のコマンドを実行して、ローカル Canister 実行環境に <code>actor_hello</code> プロジェクトをデプロイします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister install actor_hello</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays output similar to the following:</p>
+<p>コマンドの実行で、以下のような出力が表示されます。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1217,18 +1211,18 @@ Creating canister "actor_hello"...
 </div>
 </div>
 <div class="sect1">
-<h2 id="_query_the_canister"><a class="anchor" href="#_query_the_canister"></a>Query the canister</h2>
+<h2 id="_canister_に処理を要求する"><a class="anchor" href="#_canister_に処理を要求する"></a>Canister に処理を要求する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You now have a canister deployed on your local canister execution environment and can test your canister by using the <code>dfx canister call</code> command.</p>
+<p>これでローカル Canister 実行環境にデプロイした Canister がありますので、<code>dfx canister call</code> コマンドを使用して Canister をテストします。</p>
 </div>
 <div class="paragraph">
-<p>To test the canister you have deployed on the local canister execution environment:</p>
+<p>ローカル Canister 実行環境にデプロイした Canister をテストする:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Use <code>dfx canister call</code> to call the <code>hello</code> function by running the following command:</p>
+<p>以下のコマンドを実行することで、<code>dfx canister call</code> を使用して <code>hello</code> 関数を呼び出します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call actor_hello hello</code></pre>
@@ -1236,9 +1230,9 @@ Creating canister "actor_hello"...
 </div>
 </li>
 <li>
-<p>Verify that the command returns the text specified for the <code>hello</code> function along with a checkpoint message in the terminal running the local canister execution environment.</p>
+<p>ローカル Canister 実行環境が稼働しているターミナルで、コマンドが <code>hello</code> 関数に指定された文章とチェックポイントのメッセージを返すことを確認します。</p>
 <div class="paragraph">
-<p>For example, the canister displays "Hello, World from DFINITY" in output similar to the following:</p>
+<p>例えば、Canister は、以下のような出力の中に "Hello, World from DFINITY" を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1246,7 +1240,7 @@ Creating canister "actor_hello"...
 </div>
 </div>
 <div class="paragraph">
-<p>Note that if you are running the Internet Computer mainnet in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays mainnet activity.</p>
+<p>もしバックグラウンドの代わりに別のターミナルで Internet Computer メインネットを動かしていたら、"Hello, World from DFINITY" メッセージはメインネットの処理を表示するターミナルに表示されることに注意してください。</p>
 </div>
 </li>
 </ol>
@@ -1254,27 +1248,27 @@ Creating canister "actor_hello"...
 </div>
 </div>
 <div class="sect1">
-<h2 id="_stop_the_local_canister_execution_environment"><a class="anchor" href="#_stop_the_local_canister_execution_environment"></a>Stop the local canister execution environment</h2>
+<h2 id="_ローカル_canister_実行環境を止める"><a class="anchor" href="#_ローカル_canister_実行環境を止める"></a>ローカル Canister 実行環境を止める</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you finish experimenting with your canister, you can stop the local canister execution environment so that it doesn’t continue running in the background.</p>
+<p>Canister での実験が終わりましたら、バックグラウンドで動かし続けないために、ローカル Canister 実行環境を停止します。</p>
 </div>
 <div class="paragraph">
-<p>To stop the local canister execution environment, you can:</p>
+<p>ローカル Canister 実行環境を止める:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the terminal used to interact with your canister, issue the command <code>dfx stop</code>; or</p>
+<p>Canister とやり取りを行うターミナルで、<code>dfx stop</code> コマンドを実行します。もしくは</p>
 </li>
 <li>
-<p>In the terminal that displays operations from the local canister execution environment, press Control-C to interrupt that process; or</p>
+<p>ローカル Canister 実行環境の処理を表示しているターミナルで、プロセスを中断するために Control-C を押します。もしくは</p>
 </li>
 <li>
-<p>Kill the <code>replica</code> process using commands or tools of your operating system.</p>
+<p>コマンドやOSのツールを使用して <code>replica</code> プロセスを強制終了します。</p>
 </li>
 <li>
-<p>Stop the local canister execution environment by running the following command:</p>
+<p>以下のコマンドを実行して、ローカル Canister 実行環境を止めます。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>
