@@ -889,7 +889,7 @@
 <h2 id="create-a-new-project"><a class="anchor" href="#create-a-new-project"></a>新しいプロジェクトを作成する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="../../quickstart/quickstart-intro.html">クイックスタート</a> でも話したとおり、Internet Computer での dapps は、あなたが作るプロジェクトとして始まります。コマンドライン（CLI）上で <code>dfx</code> コマンドを実行することでプロジェクトを作成することができます。</p>
+<p><a href="../../quickstart/quickstart-intro.html">クイックスタート</a> でも話したとおり、Internet Computer での Dapps は、あなたが作るプロジェクトとして始まります。コマンドライン（CLI）上で <code>dfx</code> コマンドを実行することでプロジェクトを作成することができます。</p>
 </div>
 <div class="paragraph">
 <p>デフォルトでプロジェクトに含まれているファイルやフォルダを詳しく見るために、実際に新しいプロジェクトを作っていきましょう。</p>
@@ -903,10 +903,10 @@
 <p>ローカルコンピュータ上でターミナルシェルを、まだ開いていなければ開きます。</p>
 </li>
 <li>
-<p>別のワーキングフォルダーを利用しているなら、Internet Computer プロジェクトで使うフォルダに移動します。</p>
+<p>別のワーキングフォルダを利用しているなら、Internet Computer プロジェクトで使うフォルダに移動します。</p>
 </li>
 <li>
-<p>以下のコマンドを走らせて、新しいプロジェクトを作成します。</p>
+<p>以下のコマンドを実行して、新しいプロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new explore_hello</code></pre>
@@ -920,14 +920,14 @@
 </div>
 </li>
 <li>
-<p>以下のコマンドを走らせて、デフォルトディレクトリ構成を見ていきます。</p>
+<p>以下のコマンドを実行して、デフォルトディレクトリ構成を見ていきます。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls -l explore_hello</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>デフォルトでのプロジェクトディレクトリ構成は、少なくとも１つのソースサブディレクトリ、テンプレート <code>README.md</code> ファイル、また <code>dfx.json</code> 環境設定ファイルを含んでいます。</p>
+<p>デフォルトでのプロジェクトディレクトリ構成は、少なくとも１つのソースサブディレクトリ、テンプレート <code>README.md</code> ファイル、また <code>dfx.json</code> 設定ファイルを含んでいます。</p>
 </div>
 <div class="paragraph">
 <p><code>node.js</code> をインストールしているかどうかで、以下のファイルを一部もしくは全て含んでいるかが変わります。</p>
@@ -936,7 +936,7 @@
 <div class="content">
 <pre>explore_hello/
 ├── README.md      # デフォルトプロジェクトのドキュメント
-├── dfx.json       # プロジェクトの環境設定ファイル
+├── dfx.json       # プロジェクトの設定ファイル
 ├── node_modules   # フロントエンド開発のライブラリ
 ├── package-lock.json
 ├── package.json
@@ -965,7 +965,7 @@
 <p>リポジトリのプロジェクトを説明する <code>README</code> ファイル</p>
 </li>
 <li>
-<p>プロジェクトのオプションを設定する <code>dfx.json</code> 環境設定ファイル</p>
+<p>プロジェクトのオプションを設定する <code>dfx.json</code> 設定ファイル</p>
 </li>
 <li>
 <p>Dapp に必要なすべてのソースファイルを持つ <code>src</code> ディレクトリ</p>
@@ -986,13 +986,13 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_デフォルト環境設定を確認する"><a class="anchor" href="#_デフォルト環境設定を確認する"></a>デフォルト環境設定を確認する</h2>
+<h2 id="_デフォルト設定を確認する"><a class="anchor" href="#_デフォルト設定を確認する"></a>デフォルト設定を確認する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>デフォルトで、新しいプロジェクトを作成すると、プロジェクトディレクトリにいくつかのテンプレートファイルが追加されます。プロジェクトの環境設定をカスタマイズする、もしくは開発サイクルを加速するために自身のコードを取り込むのに、これらのテンプレートファイルを編集することができます。</p>
+<p>デフォルトで、新しいプロジェクトを作成すると、プロジェクトディレクトリにいくつかのテンプレートファイルが追加されます。プロジェクトの設定をカスタマイズする、もしくは開発サイクルを加速するために自身のコードを取り込むのに、これらのテンプレートファイルを編集することができます。</p>
 </div>
 <div class="paragraph">
-<p>プロジェクトのデフォルト環境設定ファイルを確認する:</p>
+<p>プロジェクトのデフォルト設定ファイルを確認する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1000,7 +1000,7 @@
 <p>ローカルコンピュータ上でターミナルシェルを、まだ開いていなければ開きます。</p>
 </li>
 <li>
-<p>以下のコマンドを走らせて、プロジェクトディレクトリに移動します。</p>
+<p>以下のコマンドを実行して、プロジェクトディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd explore_hello</code></pre>
@@ -1008,7 +1008,7 @@
 </div>
 </li>
 <li>
-<p>デフォルト設定を確認するために、テキストエディタで <code>dfx.json</code> 環境設定ファイルを開きます。</p>
+<p>デフォルト設定を確認するために、テキストエディタで <code>dfx.json</code> 設定ファイルを開きます。</p>
 <div class="paragraph">
 <p>例:</p>
 </div>
@@ -1064,7 +1064,7 @@
 <p><code>canisters.explore_hello</code> キーは、メイン設定に指定されたパス上に、コンパイルされるメインプログラムが位置していることを明記しています、今回のケースでは、<code>src/explore_hello/main.mo</code> と <code>type</code> 設定が、これは <code>Motoko</code> プログラムであることを示しています。</p>
 </li>
 <li>
-<p><code>canisters.explore_hello_assets</code> キーは、プロジェクトのフロントエンドアセットの環境設定の詳細を指定します。今、こちらは飛ばしましょう。</p>
+<p><code>canisters.explore_hello_assets</code> キーは、プロジェクトのフロントエンドアセットの詳細設定を指定します。今、こちらは飛ばしましょう。</p>
 </li>
 <li>
 <p><code>dfx</code> 設定は、プロジェクト作成時のソフトウェアバージョンを識別するのに使われます。</p>
@@ -1084,7 +1084,7 @@
 </div>
 </li>
 <li>
-<p>次に進むために <code>dfx.json</code> ファイルを閉じます。</p>
+<p><code>dfx.json</code> ファイルを閉じて、次に進みます。</p>
 </li>
 </ol>
 </div>
@@ -1105,7 +1105,7 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>以下のコマンドを走らせて、プロジェクトでのあなたの現在地を確認しましょう。</p>
+<p>以下のコマンドを実行して、プロジェクトでのあなたの現在地を確認しましょう。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pwd</code></pre>
@@ -1151,7 +1151,7 @@
 </div>
 </li>
 <li>
-<p>次に進むために <code>main.mo</code> ファイルを閉じます。</p>
+<p><code>main.mo</code> ファイルを閉じて、次に進みます。</p>
 </li>
 </ol>
 </div>
@@ -1192,7 +1192,7 @@
 </div>
 </li>
 <li>
-<p>以下のコマンドを走らせて、ローカル Cansiter 実行環境を起動します。</p>
+<p>以下のコマンドを実行して、ローカル Cansiter 実行環境を起動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start</code></pre>
@@ -1213,16 +1213,16 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_canister_identifiers_を登録する"><a class="anchor" href="#_canister_identifiers_を登録する"></a>Canister Identifiers を登録する</h2>
+<h2 id="_canister_id_を登録する"><a class="anchor" href="#_canister_id_を登録する"></a>Canister ID を登録する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ローカル Canister 実行環境に接続した後に、あなたのプロジェクトをユニークなネットワーク固有の <strong>canister Identifiers</strong> を生成することでネットワークに登録できます。</p>
+<p>ローカル Canister 実行環境に接続した後に、あなたのプロジェクトをユニークなネットワーク固有の <strong>Canister ID</strong> を生成することでネットワークに登録できます。</p>
 </div>
 <div class="paragraph">
 <p><a href="../../quickstart/quickstart-intro.html">クイックスタート</a> では、このステップは <code>dfx deploy</code> コマンドワークフローの一部として扱われました。このチュートリアルでは、独立してそれぞれの処理をどう扱うかを説明します。</p>
 </div>
 <div class="paragraph">
-<p>ローカルネットワークに対して Canister Identifiers を登録する:</p>
+<p>ローカルネットワークに対して Canister ID を登録する:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1230,14 +1230,14 @@
 <p>プロジェクトディレクトリに位置することを確認します、必要であれば移動します。</p>
 </li>
 <li>
-<p>以下のコマンドを走らせて、プロジェクトの Canister に対しユニークな Canister Identifiers を登録します。</p>
+<p>以下のコマンドを実行して、プロジェクトの Canister に対しユニークな Canister ID を登録します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister create --all</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>そのコマンドは <code>dfx.json</code> 環境設定ファイルで定義される Canisters のネットワーク固有の Canister Identifiers を表示します。</p>
+<p>そのコマンドは <code>dfx.json</code> 環境設定ファイルで定義される Canisters のネットワーク固有の Canister ID を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1250,7 +1250,7 @@ Creating canister "explore_hello_assets"...
 </div>
 </div>
 <div class="paragraph">
-<p>ローカル Canister 実行環境に接続したので、これらの Canister Identifiers は、ローカルでのみ有効かつ <code>.dfx/local/canister_ids.json</code> ファイルに保管されます。</p>
+<p>ローカル Canister 実行環境に接続したので、これらの Canister ID は、ローカルでのみ有効かつ <code>.dfx/local/canister_ids.json</code> ファイルに保管されます。</p>
 </div>
 <div class="paragraph">
 <p>例:</p>
@@ -1286,18 +1286,18 @@ Creating canister "explore_hello_assets"...
 <li>
 <p>ローカルコンピューターのターミナルシェルで <code>explore_hello</code> プロジェクトディレクトリに移動します。</p>
 <div class="paragraph">
-<p>そのプロジェクトディレクトリ構成の内側から <code>dfx build</code> コマンドを走らせなくてはいけません。</p>
+<p>そのプロジェクトディレクトリ構成の内側から <code>dfx build</code> コマンドを実行する必要があります。</p>
 </div>
 </li>
 <li>
-<p>以下のコマンドを走らせて、 Canister を実行可能にビルドします。</p>
+<p>以下のコマンドを実行して、Canister を実行可能にビルドします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx build</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>以下と同様の結果を見ることになるでしょう。</p>
+<p>以下のような出力を見ることになるでしょう。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1310,14 +1310,14 @@ Building frontend...</pre>
 </div>
 </li>
 <li>
-<p>以下のコマンドを走らせて、<code>dfx build</code> コマンドで作成された <code>.dfx/local/canisters/explore_hello</code> ディレクトリが WebAssembly や関連アプリケーションファイルを含んでいることを確認します。</p>
+<p>以下のコマンドを実行して、<code>dfx build</code> コマンドで作成された <code>.dfx/local/canisters/explore_hello</code> ディレクトリが WebAssembly や関連アプリケーションファイルを含んでいることを確認します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls -l .dfx/local/canisters/explore_hello/</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>例えば、そのコマンドは以下と同様な結果を返します。</p>
+<p>例えば、そのコマンドは以下のような出力を返します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1329,7 +1329,7 @@ Building frontend...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>canisters/explore_hello</code> ディレクトリは、次のキーとなるファイルを含みます。</p>
+<p><code>canisters/explore_hello</code> ディレクトリは、以下のキーとなるファイルを含みます。</p>
 </div>
 <div class="openblock">
 <div class="content">
@@ -1383,14 +1383,14 @@ Building frontend...</pre>
 <p>ローカルコンピューターの <code>explore_hello</code> プロジェクトディレクトリにターミナルシェルで移動します。</p>
 </li>
 <li>
-<p>以下のコマンドを走らせて、ローカルネットワークに <code>explore_hello</code> プロジェクトをデプロイします。</p>
+<p>以下のコマンドを実行して、ローカルネットワークに <code>explore_hello</code> プロジェクトをデプロイします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister install --all</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>そのコマンドは、以下と同様の結果を表示します。</p>
+<p>そのコマンドは、以下のような出力を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1409,21 +1409,21 @@ Uploading assets to asset canister...
 </div>
 </li>
 <li>
-<p><code>dfx canister call</code> コマンドを走らせ、次のコマンドの動作で Dapp と関数呼び出しを指定します。</p>
+<p><code>dfx canister call</code> コマンドを実行して、Dapp を指定して関数を呼び出します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call explore_hello greet '("everyone": text)'</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>このコマンドは以下を指定します:</p>
+<p>このコマンドは、以下を指定します:</p>
 </div>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p><code>explore_hello</code> は、コールしたい スマートコントラクト Canister もしくは dapp の名前</p>
+<p><code>explore_hello</code> は、コールしたい スマートコントラクト Canister もしくは Dapp の名前</p>
 </li>
 <li>
 <p><code>greet</code> は、コールした意特定の関数</p>
@@ -1437,7 +1437,7 @@ Uploading assets to asset canister...
 </div>
 </li>
 <li>
-<p>次のコマンドは、<code>greet</code> 関数の返り値を表示します。</p>
+<p>そのコマンドが、<code>greet</code> 関数の返り値を表示するのを確認します。</p>
 <div class="paragraph">
 <p>例:</p>
 </div>
@@ -1488,17 +1488,17 @@ document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
 </div>
 </li>
 <li>
-<p>次に進むために、<code>index.js</code> ファイルを閉じます。</p>
+<p><code>index.js</code> ファイルを閉じて、次に進みます。</p>
 </li>
 <li>
-<p>以下のコマンドを走らせて、プロジェクトのフロントエンドアセットを確認します。</p>
+<p>以下のコマンドを実行して、プロジェクトのフロントエンドアセットを確認します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls -l .dfx/local/canisters/explore_hello_assets/</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>そのコマンドは、次と同様の結果を表示します。</p>
+<p>そのコマンドは、以下のような出力を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1559,7 +1559,7 @@ document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
 <p>ネットワーク処理を表示するターミナルで、ローカルネットワークでのプロセスを中断するためにControl-C を押します。</p>
 </li>
 <li>
-<p>以下のコマンドを走らせることで、ローカル Canister 実行環境を止めます。</p>
+<p>以下のコマンドを実行することで、ローカル Canister 実行環境を止めます。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>
