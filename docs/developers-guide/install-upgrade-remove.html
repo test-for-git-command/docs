@@ -139,6 +139,14 @@
     
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/cycles-faucet.html">Claim Your Free Cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/host-a-website.html">Host a Static Website</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstart/local-quickstart.html">ローカル開発</a>
     
   </li>
@@ -172,6 +180,10 @@
     <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.4-rn.html">0.8.4</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../release-notes/0.8.3-rn.html">0.8.3</a>
     
@@ -833,7 +845,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="../quickstart/quickstart-intro.html">クイックスタート</a>で説明したように、ターミナルシェルでコマンドを実行することで、DFINITY Canister スマートコントラクトSDKパッケージの最新バージョンをダウンロードしてインストールすることができます。
+<p><a href="../quickstart/quickstart-intro.html">クイックスタート</a>で説明したように、ターミナルシェルでコマンドを実行することで、DFINITY Canister スマートコントラクト SDK パッケージの最新バージョンをダウンロードしてインストールすることができます。
 このセクションでは、DFINITY Canister SDK のインストール、アップグレード、および削除に関する追加情報を提供します。</p>
 </div>
 </div>
@@ -868,7 +880,7 @@
 <h2 id="install-version"><a class="anchor" href="#install-version"></a>ターミナルから特定のバージョンをインストールする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>以前のバージョンと比較してテストときするなど、特定のバージョンをインストールしたい場合は、バージョン名を含めたインストールコマンドを実行します。</p>
+<p>以前のバージョンと比較してテストするときなど、特定のバージョンをインストールしたい場合は、バージョン名を含めたインストールコマンドを実行します。</p>
 </div>
 <div class="paragraph">
 <p>以下のようにして、ターミナルシェルから特定のバージョンをダウンロードしてインストールすることができます:</p>
@@ -881,11 +893,11 @@
 <li>
 <p>環境変数である <code>DFX_VERSION</code> に、<code>curl</code> コマンドのプレフィックスとしてインストールしたい DFINITY Canister SDK パッケージのバージョンを設定します。</p>
 <div class="paragraph">
-<p>例えば、バージョン0.8.3をインストールするには、以下のコマンドを実行します:</p>
+<p>例えば、バージョン 0.8.4 をインストールするには、以下のコマンドを実行します:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">DFX_VERSION=0.8.3 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">DFX_VERSION=0.8.4 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"</code></pre>
 </div>
 </div>
 </li>
@@ -958,7 +970,7 @@
 <div class="paragraph">
 <p><code>~/.cache/dfinity/versions</code> ディレクトリには、DFINITY Canister SDK の各バージョンのサブディレクトリが格納されています。
 各バージョンのサブディレクトリには、DFINITY Canister SDK の特定のバージョンに必要な全てのディレクトリとファイルが含まれています。
-例えば、<code>~/.cache/dfinity/versions/0.8.3</code> ディレクトリの内容をリストアップすると、以下のような主要コンポーネントが表示されます。</p>
+例えば、<code>~/.cache/dfinity/versions/0.8.4</code> ディレクトリの内容をリストアップすると、以下のような主要コンポーネントが表示されます。</p>
 </div>
 <div class="literalblock">
 <div class="content">
