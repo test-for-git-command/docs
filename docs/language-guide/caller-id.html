@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Principals and caller identification :: Dfinity 日本語ドキュメント</title>
+    <title>プリンシパルと Caller の証明 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/language-guide/caller-id.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -843,20 +843,20 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Principals and caller identification</h1>
+<h1 class="page">プリンシパルと Caller の証明</h1>
 <div class="paragraph">
-<p>Motoko&#8217;s shared functions support a simple form of caller identification that allows you to inspect the Internet Computer <strong>principal</strong> associated with the caller of a function.
-The principal associated with a call is a value that identifies a unique user or canister smart contract.</p>
+<p>Motoko の Shared 関数は、シンプルな Caller（関数の呼び出し元）の証明をサポートしており、これにより関数の Caller に関連付けられた Internet Computer の <strong>プリンシパル</strong> を検査することが可能になります。
+関数の呼び出しに関連づけられたプリンシパルは、ユニークなユーザか Canister スマートコントラクトを同定する値です。</p>
 </div>
 <div class="paragraph">
-<p>You can use the <strong>principal</strong> associated with the caller of a function to implement a basic form of <em>access-control</em> in your program.</p>
+<p>関数の Caller に関連づけられたプリンシパルを用いて、プログラム内で基本的な形式の <em>アクセスコントロール</em> を実装することができます。</p>
 </div>
 <div class="paragraph">
-<p>In Motoko, the <code>shared</code> keyword is used to declare a shared function.
-The shared function can also declare an optional parameter of type <code>{caller : Principal}</code>.</p>
+<p>Motoko では、<code>shared</code> キーワードを用いて <code>Shared</code> 関数を宣言します。
+また、Shared 関数は <code>{caller : Principal}</code> 型のオプション引数を宣言することができます。</p>
 </div>
 <div class="paragraph">
-<p>To illustrate how to access the caller of a shared function, consider the following:</p>
+<p>Shared 関数の Caller にアクセスする方法を説明するため、以下のような関数を考えます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -866,14 +866,14 @@ The shared function can also declare an optional parameter of type <code>{caller
 </div>
 </div>
 <div class="paragraph">
-<p>In this example, the shared function <code>inc()</code> specifies a <code>msg</code> parameter, a record, and the <code>msg.caller</code> accesses the principal field of <code>msg</code>.</p>
+<p>この例では、Shared 関数である <code>inc()</code> は Record 型である <code>msg</code> を受け取り、<code>msg.caller</code> は <code>msg</code> のプリンシパルフィールドにアクセスします。</p>
 </div>
 <div class="paragraph">
-<p>The calls to the <code>inc()</code> function do not change — at each call site, the caller&#8217;s principal is provided by the system, not the user — so the principal cannot be forged or spoofed by a malicious user.</p>
+<p><code>inc()</code> 関数の呼び出しは変更されません。それぞれの関数呼び出しにおいて、呼び出し側のプリンシパルはユーザーではなくシステムから提供されます。そのため、悪意のあるユーザーはプリンシパルを偽造したり、なりすましたりすることができません。</p>
 </div>
 <div class="paragraph">
-<p>To access the caller of an actor class constructor, you use the same (optional) syntax on the actor class declaration.
-For example:</p>
+<p>Actor クラスのコンストラクタの Caller にアクセスするには、Actor クラスの宣言と同じ（オプショナルの）シンタックスを用います。
+例えば、以下のようになります：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -883,9 +883,9 @@ For example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>To extend this example, assume you want to restrict the <code>Counter</code> actor so it can only be modified by the installer of the <code>Counter</code>.
-To do this, you can record the principal that installed the actor by binding it to an <code>owner</code> variable.
-You can then check that the caller of each method is equal to <code>owner</code> like this:</p>
+<p>この例を拡張し、<code>Counter</code> のインストーラであるプリンシパルだけが <code>Counter</code> を変更できるように制限したいとします。
+これを行うには、Actor を設置したプリンシパルを <code>owner</code> 変数にバインドして記録します。
+そうすることで、各メソッドの呼び出し元が <code>owner</code> と等しいかどうかを次のようにチェックすることができます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -913,10 +913,10 @@ You can then check that the caller of each method is equal to <code>owner</code>
 </div>
 </div>
 <div class="paragraph">
-<p>In this example, the <code>assert (owner == msg.caller)</code> expression causes the functions <code>inc()</code> and <code>bump()</code> to trap if the call is unauthorized, preventing any modification of the <code>count</code> variable while the <code>read()</code> function permits any caller.</p>
+<p>この例では、<code>assert (owner == msg.caller)</code> により、関数 <code>inc()</code> と <code>bump()</code> の呼び出しが認証されていなければトラップし、<code>count</code> 変数の変更を阻止します。一方、<code>read()</code> 関数はあらゆる呼び出しを許可しています。</p>
 </div>
 <div class="paragraph">
-<p>The argument to <code>shared</code> is just a pattern, so, if you prefer, you can also rewrite the above to use pattern matching:</p>
+<p>また、<code>shared</code> の引数は単なるパターンなので、お好みで、上記をパターンマッチを使うように書き換えることもできます:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -940,14 +940,17 @@ You can then check that the caller of each method is equal to <code>owner</code>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Simple actor declarations do not let you access their installer. If you need access to the installer of an actor, rewrite the actor declaration as a zero-argument actor class instead.
+単純な Actor 宣言では、そのインストーラにアクセスすることはできません。Actor のインストーラにアクセスする必要がある場合は、Actor 宣言を引数なしの Actor クラスに書き換えてください。
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Principals support equality, ordering, and hashing, so you can efficiently store principals in containers, for example, to maintain an allow or deny list.
-More operations on principals are available in <a href="../base-libraries/principal.html">Principal</a> base library.</p>
+<p>プリンシパルは等価性、順序付け、ハッシングをサポートしているため、コンテナにプリンシパルを効率的に格納して、許可リストや拒否リストを管理することができます。
+プリンシパルに関するその他の操作は、<a href="../base-libraries/principal.html">Principal</a> ベースライブラリを参照してください。</p>
+</div>
+<div class="paragraph">
+<p>(The type is a record to accommodate future extension.)</p>
 </div>
 </article>
 <aside class="toc sidebar">
