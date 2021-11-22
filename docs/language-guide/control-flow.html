@@ -1118,7 +1118,7 @@ assert(i == 11);</code></pre>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">(lower:Nat, upper:Nat) -&gt; Iter&lt;Nat&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">(lower : Nat, upper : Int) -&gt; Iter&lt;Nat&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1142,19 +1142,19 @@ assert(i == 11);</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="intro-revrange"><a class="anchor" href="#intro-revrange"></a>Using <code>revrange</code></h2>
+<h2 id="intro-revrange"><a class="anchor" href="#intro-revrange"></a>Using <code>revRange</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Like <code>range</code>, the function <code>revrange</code> is a <code>class</code> that constructs iterators (each of type <code>Iter&lt;Nat&gt;</code>).
+<p>Like <code>range</code>, the function <code>revRange</code> is a <code>class</code> that constructs iterators (each of type <code>Iter&lt;Int&gt;</code>).
 As a constructor function, it has a function type:</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">(upper:Nat, lower:Nat) -&gt; Iter&lt;Nat&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">(upper : Int, lower : Int) -&gt; Iter&lt;Int&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Unlike <code>range</code>, the <code>revrange</code> function <em>descends</em> in its iteration sequence, from an initial <em>upper</em> bound to a final <em>lower</em> bound.</p>
+<p>Unlike <code>range</code>, the <code>revRange</code> function <em>descends</em> in its iteration sequence, from an initial <em>upper</em> bound to a final <em>lower</em> bound.</p>
 </div>
 </div>
 </div>

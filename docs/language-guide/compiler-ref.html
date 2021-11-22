@@ -913,7 +913,11 @@ If you invoke the compiler directly on the command-line, you can press CTRL-C to
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--compacting-gc</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Link with compacting GC instead of copying GC.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use compacting GC</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--copying-gc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use copying GC (default)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--debug</code></p></td>
@@ -937,7 +941,7 @@ If you invoke the compiler directly on the command-line, you can press CTRL-C to
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--idl</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generates the interface description language specification.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compile binary and emit Candid IDL specification to <code>.did</code> file.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-i</code></p></td>
@@ -964,6 +968,10 @@ If you invoke the compiler directly on the command-line, you can press CTRL-C to
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a package-name package-path pair, separated by a space.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--public-metadata &lt;name&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Emit icp custom section &lt;name&gt; (candid:args or candid:service or motoko:stable-types) as <code>public</code> (default is <code>private</code>)</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--print-deps</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Prints the dependencies for a given source file.</p></td>
 </tr>
@@ -974,6 +982,14 @@ If you invoke the compiler directly on the command-line, you can press CTRL-C to
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--release</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ignores debug expressions in the source.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--stable-types</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compile binary and emit signature of stable types to <code>.most</code> file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--stable-compatible &lt;pre&gt; &lt;post&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test upgrade compatibility between stable-type signatures &lt;pre&gt; and &lt;post&gt;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-t</code></p></td>

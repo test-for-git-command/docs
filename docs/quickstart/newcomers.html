@@ -983,8 +983,8 @@ Homebrewが インストールされていない場合は、以下のコマン�
 </div>
 </div>
 <div class="paragraph">
-<p>バージョン情報が返ってきたら、そのまま <a href="#working-folder">作業フォルダの作成</a> に進みます。
-もし <code>node.js</code> がインストールされていない場合は、以下のコマンドをコピーしてターミナルに貼り付けます。</p>
+<p>サポートされている node.js の最低バージョンは 12 です。バージョン情報が返ってきて、node のバージョンが 12 以上であれば、そのまま <a href="#working-folder">作業フォルダの作成</a> に進みます。
+もし <code>node.js</code> がインストールされていないか、バージョンが 12 より古い場合には、以下のコマンドをコピーしてターミナルに貼り付けます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1082,7 +1082,7 @@ Homebrewが インストールされていない場合は、以下のコマン�
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>export PATH=&lt;dfx コマンドが配置されているディレクトリ&gt;</pre>
+<pre>export PATH="&lt;dfx コマンドが配置されているディレクトリ&gt;:$PATH"</pre>
 </div>
 </div>
 <div class="paragraph">

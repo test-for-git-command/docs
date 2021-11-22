@@ -1063,10 +1063,155 @@ The <code>postupgrade</code> system method resets <code>entries</code> to the em
 </div>
 </div>
 <div class="sect1">
-<h2 id="_upgrading_the_compiled_program"><a class="anchor" href="#_upgrading_the_compiled_program"></a>Upgrading the compiled program</h2>
+<h2 id="_stable_type_signatures"><a class="anchor" href="#_stable_type_signatures"></a>Stable type signatures</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you have deployed a Motoko program with the appropriate <code>stable</code> variables or <code>preupgrade</code> and <code>postupgrade</code> system methods, you can use the <code>dfx canister install</code> command with the <code>--mode=upgrade</code> option to upgrade the deployed code. For information about upgrading the deployed program, see <a href="../developers-guide/working-with-canisters.html#upgrade-canister">Upgrade a canister</a>.</p>
+<p>The collection of stable variable declarations in an actor can be summarized in a
+<em>stable signature</em>.</p>
+</div>
+<div class="paragraph">
+<p>The textual representation of an actor&#8217;s stable signature resembles the internals of a Motoko actor type:</p>
+</div>
+<div class="listingblock no-repl">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">actor {
+  stable x : Nat;
+  stable var y : Int;
+  stable z : [var Nat];
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It specifies the names, types and mutability of the actor&#8217;s stable fields, possibly preceded by relevant Motoko type declarations.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can emit the stable signature of the main actor or actor class to a <code>.most</code> file using <code>moc</code> compiler option <code>--stable-types</code>. You should never need to author your own <code>.most</code> file.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A stable signature <code>&lt;stab-sig1&gt;</code> is <em>stable-compatible</em> with signature <code>&lt;stab-sig2&gt;</code>, if, and only,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>every immutable field <code>stable &lt;id&gt; : T</code> in <code>&lt;stab-sig1&gt;</code> has a matching field <code>stable &lt;id&gt; : U</code> in <code>&lt;stab-sig2&gt;</code> with <code>T &lt;: U</code>.</p>
+</li>
+<li>
+<p>every mutable field <code>stable var &lt;id&gt; : T</code> in <code>&lt;stab-sig1&gt;</code> has a matching field <code>stable var &lt;id&gt; : U</code> in <code>&lt;stab-sig2&gt;</code> with <code>T &lt;: U</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note that <code>&lt;stab-sig2&gt;</code> may contain additional fields.
+Typically, <code>&lt;stab-sig1&gt;</code> is the signature of an older version while <code>&lt;stab-sig2&gt;</code> is the signature of a newer version.</p>
+</div>
+<div class="paragraph">
+<p>The subtyping condition on stable fields ensures that the final value of some field can be consumed as the initial value of that field in the upgraded code.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can check the stable-compatiblity of two <code>.most</code> files, <code>cur.most</code> and <code>nxt.most</code> (containing stable signatures), using <code>moc</code> compiler option <code>--stable-compatible cur.most nxt.most</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <em>stable-compatible</em> relation is quite conservative. In the future, it may be relaxed to accommodate a change in field mutability
+and/or abandoning fields from <code>&lt;stab-sig1&gt;</code> (but with a warning).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_upgrade_safety"><a class="anchor" href="#_upgrade_safety"></a>Upgrade safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before upgrading a deployed canister, you should ensure that the upgrade is safe and will not</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>break existing clients (due to a Candid interface change); or</p>
+</li>
+<li>
+<p>discard Motoko stable state (due to an incompatible change in stable declarations).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A Motoko canister upgrade is safe provided:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the canister&#8217;s Candid interface evolves to a Candid subtype; and</p>
+</li>
+<li>
+<p>the canister&#8217;s Motoko stable signature evolves to a <em>stable-compatible</em> one.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Upgrade safety does not guarantee that the upgrade process will succeed (it can still fail due to resource constraints). However, it should at least ensure that a successful upgrade will not break Candid type compatibility with existing clients or unexpectedly lose data that was marked <code>stable</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can check valid Candid subtyping between two services described in <code>.did</code> files, <code>cur.did</code> and <code>nxt.did</code> (containing Candid types), using  the <code>didc</code> tool with argument <code>check nxt.did cur.did</code>.
+The <code>didc</code> tool is available at <a href="https://github.com/dfinity/candid" class="bare">https://github.com/dfinity/candid</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_metadata_sections"><a class="anchor" href="#_metadata_sections"></a>Metadata sections</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Motoko compiler embeds the Candid interface and stable signature
+of a canister as canister metadata, recorded in additional Wasm custom
+sections of a compiled binary.</p>
+</div>
+<div class="paragraph">
+<p>This metadata can be selectively exposed by the IC and used
+by tools such as <code>dfx</code> to verify upgrade compatibility.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_upgrading_a_deployed_actor_or_canister_smart_contract"><a class="anchor" href="#_upgrading_a_deployed_actor_or_canister_smart_contract"></a>Upgrading a deployed actor or canister smart contract</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After you have deployed a Motoko actor with the appropriate <code>stable</code> variables or <code>preupgrade</code> and <code>postupgrade</code> system methods, you can use the <code>dfx canister install</code> command with the <code>--mode=upgrade</code> option to upgrade an already deployed version. For information about upgrading a deployed canister, see <a href="../developers-guide/working-with-canisters.html#upgrade-canister">Upgrade a canister smart contract</a>.</p>
+</div>
+<div class="paragraph">
+<p>An upcoming version of <code>dfx</code> will, if appropriate, check the safety of an upgrade by comparing the Candid and (for Motoko canisters only) the stable signatures embedded in the deployed binary and upgrade binary, and abort the upgrade request when unsafe.</p>
 </div>
 </div>
 </div>
