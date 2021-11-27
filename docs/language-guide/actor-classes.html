@@ -844,21 +844,20 @@
 <div class="main-content">
 <article class="doc">
 <div class="sect1">
-<h2 id="actor_classes"><a class="anchor" href="#actor_classes"></a>Actor classes</h2>
+<h2 id="actor_classes"><a class="anchor" href="#actor_classes"></a>Actor クラス</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Actor classes enable you to create networks of actors (canister smart contracts) <em>programmatically</em>.
-Currently, actor classes have to be defined in a separate source file.
-To illustrate how to define and import actor classes, the following example
-implements a distributed map of keys of  type <code>Nat</code> to values of type <code>Text</code>. It provides simple insert and lookup functions, <code>put(k, v)</code> and <code>get(k)</code>, for working with these keys and values.</p>
+<p>Actor クラスは、Actor (Canister スマートコントラクト）のネットワークを <em>プログラム的に</em> 作成することを可能にします。
+現在のところ、Actor クラスは別々のソースファイルに定義される必要があります。
+Actor クラスの定義とインポートの仕方を説明するため、以下の例では <code>Nat</code> 型のキーからから <code>Text</code> 型の値への Map を実装します。 これは、キーと値の簡単な操作（挿入とルックアップ）のために <code>put(k, v)</code> と <code>get(k)</code> の関数を持つ Actor クラスとなります。</p>
 </div>
 <div class="paragraph">
-<p>To distribute the data for this example, the set of keys is partitioned into <code>n</code> buckets. For now, we just fix <code>n = 8</code>.
-The bucket, <code>i</code>, of a key, <code>k</code>, is determined by the remainder of <code>k</code> divided by <code>n</code>, that is, <code>i = k % n</code>.
-The <code>i</code>th bucket (<code>i</code> in <code>[0..n)</code>)  receives a dedicated actor to store text values assigned to keys in that bucket.</p>
+<p>この例では、データを分散させるために、キーのセットを <code>n</code> 個のバケットに分割します。ここでは、<code>n = 8</code>に固定します。
+キー <code>k</code> のバケット <code>i</code> は、 <code>k</code> を <code>n</code> で割った余り、つまり <code>i = k % n</code> で決定されます。
+<code>i</code>番目のバケット（<code>[0..n]</code> の <code>+i+</code> 番目）は、そのバケットのキーに割り当てられたテキスト値を格納するための専用の Actor を受け取ります。</p>
 </div>
 <div class="paragraph">
-<p>The actor responsible for bucket <code>i</code> is obtained as an instance of the actor class <code>Bucket(i)</code>, defined in the sample <code>Buckets.mo</code> file, as follows:</p>
+<p>バケット <code>i</code> に割り当てられる Actor は、サンプルの <code>Buckets.mo</code> ファイルで定義されている Actor クラスである <code>Bucket(i)</code> のインスタンスとして、以下のように取得されます：</p>
 </div>
 <div id="Buckets" class="listingblock">
 <div class="title">Buckets.mo</div>
@@ -887,19 +886,19 @@ actor class Bucket(n : Nat, i : Nat) {
 </div>
 </div>
 <div class="paragraph">
-<p>A bucket stores the current mapping of keys to values in a mutable <code>map</code> variable containing an imperative RedBlack tree, <code>map</code>, that is initially empty.</p>
+<p>バケットは、キーと値の現在のマッピングを、可変変数である <code>map</code> に格納します。<code>map</code> は命令的な RedBlack ツリーであり、初期状態では空です。</p>
 </div>
 <div class="paragraph">
-<p>On <code>get(k)</code>, the bucket actor simply returns any value stored at <code>k</code>, returning <code>map.get(k)</code>.</p>
+<p><code>get(k)</code> 関数では、バケット Actor は <code>k</code> に格納されている任意の値を <code>map.get(k)</code> によって単純に返します。</p>
 </div>
 <div class="paragraph">
-<p>On <code>put(k, v)</code>, the bucket actor updates the current <code>map</code> to  map <code>k</code> to <code>?v</code> by calling <code>map.put(k, v)</code>.</p>
+<p><code>put(k, v)</code> 関数では、バケット Actor は <code>map.put(k, v)</code> を呼ぶことで、現在の <code>map</code> を、<code>k</code> から <code>?v</code> にマップする <code>map</code> へとアップデートします。</p>
 </div>
 <div class="paragraph">
-<p>Both functions use the class parameters <code>n</code> and <code>i</code> to verify that the key is appropriate for the bucket by asserting <code>((k % n) == i)</code>.</p>
+<p>どちらの関数も、クラス変数である <code>n</code> と <code>i</code> を使って、キーがバケットに適しているかどうかを <code>((k % n) == i)</code> とアサートして検証します。</p>
 </div>
 <div class="paragraph">
-<p>Clients of the map can then communicate with a coordinating <code>Map</code> actor, implemented as follows:</p>
+<p>Map のクライアントは、以下のような調整役の <code>Map</code> Actor と通信することができます：</p>
 </div>
 <div class="listingblock include_Buckets">
 <div class="content">
@@ -941,48 +940,46 @@ actor Map {
 </div>
 </div>
 <div class="paragraph">
-<p>As this example illustrates, the <code>Map</code> code imports the <code>Bucket</code> actor class as module <code>Buckets</code>.</p>
+<p>この例が示すように、<code>Map</code> コードは、<code>Bucket</code> Actor クラスを <code>Buckets</code> モジュールとしてインポートしています。</p>
 </div>
 <div class="paragraph">
-<p>The actor maintains an array of <code>n</code> allocated buckets, with all
-entries initially <code>null</code>. Entries are populated with <code>Bucket</code> actors
-on demand.</p>
+<p>Actor は <code>n</code> 個の割り当てられたバケットの配列を保持しています。
+エントリは最初は <code>null</code> であり、必要に応じて <code>Bucket</code> の Actor が入ります。</p>
 </div>
 <div class="paragraph">
-<p>On <code>get(k, v)</code>, the <code>Map</code> actor:</p>
+<p><code>get(k, v)</code> 関数では、関数では、<code>Map</code> Actor は：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>uses the remainder of key  <code>k</code> divided by <code>n</code> to determine the index <code>i</code> of the bucket responsible for that key</p>
+<p>キー <code>k</code> を <code>n</code> で割った余りを使って、そのキーに対応するバケットのインデックス <code>i</code> を決定します。</p>
 </li>
 <li>
-<p>returns <code>null</code> if the <code>i</code>th bucket does not exist, or</p>
+<p><code>i</code> 番目のバケットが存在していなければ、<code>null</code> を返します。</p>
 </li>
 <li>
-<p>delegates to that bucket by calling <code>bucket.get(k, v)</code> if it does.</p>
+<p><code>i</code> 番目のバケットが存在していれば、<code>bucket.get(k, v)</code> を呼び結果を返します。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>On <code>put(k, v)</code>, the <code>Map</code> actor:</p>
+<p><code>put(k, v)</code> 関数では、関数では、<code>Map</code> Actor は：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>uses the remainder of key  <code>k</code> divided by <code>n</code> to determine the index <code>i</code> of the bucket responsible for that key</p>
+<p>キー <code>k</code> を <code>n</code> で割った余りを使って、そのキーに対応するバケットのインデックス <code>i</code> を決定します。</p>
 </li>
 <li>
-<p>installs bucket <code>i</code> if the bucket does not exist by using an asynchronous call to the constructor, <code>Buckets.Bucket(i)</code>, and, after awaiting the result, records it in the array <code>buckets</code></p>
+<p>バケット <code>i</code> が存在しない場合は、コンストラクタである <code>Buckets.Bucket(i)</code> を非同期に呼び出してバケットを作成し、その結果を待ってから配列 <code>buckets</code> に記録します。</p>
 </li>
 <li>
-<p>delegates the insertion to that bucket by calling <code>bucket.put(k, v)</code>.</p>
+<p><code>bucket.put(k, v)</code> を呼び出し，バケットへ挿入します。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>While this example sets the number of buckets to <code>8</code>, you can easily
-generalize the example by making the <code>Map</code> actor an actor <em>class</em>, adding a parameter <code>(n : Nat)</code> and omitting the declaration <code>let n = 8;</code>. For example:</p>
+<p>この例ではバケットの数を <code>8</code> としていますが、<code>Map</code> Actor を Actor <em>class</em> にして、パラメータ <code>(n : Nat)</code> を追加し、<code>let n = 8;</code> という宣言を省略することで簡単に一般化できます。例えば、以下のようになります：</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -994,7 +991,7 @@ generalize the example by making the <code>Map</code> actor an actor <em>class</
 </div>
 </div>
 <div class="paragraph">
-<p>Clients of actor <em>class</em> <code>Map</code> are now free to determine the (maximum) number of buckets in the network by passing an argument on construction.</p>
+<p>Actor <em>class</em> <code>Map</code> のクライアントは、コンストラクタに引数を渡すことで、ネットワーク内のバケットの（最大）数を自由に決定できるようになりました。</p>
 </div>
 </div>
 </div>

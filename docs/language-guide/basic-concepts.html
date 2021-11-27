@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Basic concepts and terms :: Dfinity 日本語ドキュメント</title>
+    <title>基本的なコンセプトと用語 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/language-guide/basic-concepts.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -843,98 +843,96 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Basic concepts and terms</h1>
+<h1 class="page">基本的なコンセプトと用語</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Motoko is designed for distributed programming with actors.</p>
+<p>Motoko は、Actor を使った分散型プログラミングのために設計されています。</p>
 </div>
 <div class="paragraph">
-<p>When programming on the Internet Computer in Motoko, each <strong>actor</strong> represents an <strong>Internet Computer canister smart contract</strong> with a Candid interface, whether written in Motoko, Rust, Wasm or some other language that compiles to Wasm. Within Motoko, we use the term <strong>actor</strong> to refer to any canister, authored in any language that deploys to the Internet Computer. The role of Motoko is to make these actors easy to author, and easy to use programmatically, once deployed.</p>
+<p>Internet Computer 上で Motoko を使ってプログラミングする場合、各 <strong>Actor</strong> は Motoko、Rust、Wasm、または Wasm にコンパイルされた他の言語など、その記述言語に関わらず、Candid インターフェースを持つ <strong>Internet Computer Canister スマートコントラクト</strong> を表します。Motoko 内では、Internet Computer にデプロイされる任意の言語で書かれた Canister を指すために <strong>Actor</strong> という用語を使用します。Motoko の役割は、これらの Actor を簡単に作成し、デプロイ後にプログラムで簡単に使用できるようにすることです。</p>
 </div>
 <div class="paragraph">
-<p>Before you begin writing distributed applications using actors, you should be familiar with a few of the basic building blocks of any programming language and with Motoko in particular.
-To get you started, this section introduces the following key concepts and terms that are used throughout the remainder of the documentation and that are essential to learning to program in Motoko:</p>
+<p>Actor を使って分散型アプリケーションを書き始める前に、プログラミング言語の基本的な構成要素、特に Motoko について知っておく必要があります。
+この章では、以降のドキュメントで使用されている、Motoko を使ったプログラミングを学ぶ上で欠かせない以下のような重要な概念や用語を紹介します：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>program</p>
+<p>プログラム</p>
 </li>
 <li>
-<p>declaration</p>
+<p>宣言</p>
 </li>
 <li>
-<p>expression</p>
+<p>式</p>
 </li>
 <li>
-<p>value</p>
+<p>値</p>
 </li>
 <li>
-<p>variable</p>
+<p>変数</p>
 </li>
 <li>
-<p>type</p>
+<p>型</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If you have experience programming in other languages or are familiar with modern programming language theory, you are probably already comfortable with these terms and how they are used.
-There&#8217;s nothing unique in how these terms are used in Motoko.
-If you are new to programming, however, this guide introduces each of these terms gradually and by using simplified example programs that eschew any use of actors or distributed programming.
-After you have the basic terminology as a foundation to build on, you can explore more advanced aspects of the language.
-More advanced features are illustrated with correspondingly more complex examples.</p>
+<p>他の言語でのプログラミング経験がある方や、モダンプログラミング言語の理論に精通している方は、これらの用語やその使われ方に既に慣れていることでしょう。
+これらの用語の使われ方は、Motoko でも特に変わった点はありません。
+しかし、プログラミングに慣れていない方のために、このガイドでは、Actor や分散型プログラミングの使用を避けたシンプルなサンプルプログラムを用いて、これらの用語を徐々に紹介していきます。
+基本的な用語を理解した後、言語のより高度な部分を学ぶことができます。
+より高度な機能は、その複雑さに伴い、より複雑な例で説明されています。</p>
 </div>
 <div class="paragraph">
-<p>The following topics are covered in the section:</p>
+<p>この章では、以下のトピックについて説明します：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#intro-progs">Motoko program syntax</a></p>
+<p><a href="#intro-progs">Motoko プログラムの構文</a></p>
 </li>
 <li>
-<p><a href="#intro-printing">Printing numbers and text</a>, and <a href="#intro-stdlib">using the base library</a></p>
+<p><a href="#intro-printing">数字のテキストの表示</a> と <a href="#intro-stdlib">ベースライブラリの使い方</a></p>
 </li>
 <li>
-<p><a href="#intro-decls-vs-exps">Declarations versus expressions</a></p>
+<p><a href="#intro-decls-vs-exps">宣言と式</a></p>
 </li>
 <li>
-<p><a href="#intro-lexical-scoping">Lexical scoping of variables</a></p>
+<p><a href="#intro-lexical-scoping">変数の字句スコープ</a></p>
 </li>
 <li>
-<p><a href="#intro-values">Values and evaluation</a></p>
+<p><a href="#intro-values">値と評価</a></p>
 </li>
 <li>
-<p><a href="#intro-type-anno">Type annotations variables</a></p>
+<p><a href="#intro-type-anno">変数の型アノテーション</a></p>
 </li>
 <li>
-<p><a href="#intro-type-soundness">Type soundness and type-safe evaluation</a></p>
+<p><a href="#intro-type-soundness">型健全性と型安全な評価</a></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="intro-progs"><a class="anchor" href="#intro-progs"></a>Motoko program syntax</h2>
+<h2 id="intro-progs"><a class="anchor" href="#intro-progs"></a>Motoko プログラムの構文</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Each Motoko <em>program</em> is a free mix of declarations and expressions, whose syntactic classes are distinct, but related (see the <a href="language-manual.html">language quick reference guide</a> for precise program syntax).</p>
+<p>各 Motoko <em>プログラム</em> は、宣言と式を自由に組み合わせたもので、それらの統語的な分類は異なりますが、互いに関連しています（プログラムの正確な構文については、<a href="language-manual.html">言語のクイックリファレンスガイド</a>を参照して下さい）。</p>
 </div>
 <div class="paragraph">
-<p>For programs that we deploy on the Internet Computer, a valid program consists of an <em>actor expression</em>, introduced with specific syntax (keyword <code>actor</code>) that we discuss in
-<a href="actors-async.html">Actors and async data</a>.</p>
+<p>私たちが Internet Computer 上にデプロイするプログラムでは、有効なプログラムは <em>Actor 式</em>で構成されており、<a href="actors-async.html">Actor と async データ</a>で説明するように、特定の構文(<code>actor</code> キーワード)が用いられます。</p>
 </div>
 <div class="paragraph">
-<p>In preparing for that discussion, we discuss programs in this chapter and in <a href="mutable-state.html">Mutable state</a> that are not meant to be Internet Computer services.
-Rather, these tiny programs illustrate snippets of Motoko for writing those services, and each can (usually) be run on its own as a (non-service) Motoko program, possibly with some printed terminal output.</p>
+<p>議論の準備として、本章と <a href="mutable-state.html">ミュータブルなステート</a> の中で、Internet Computer の Service ではなく、Service を書くための Motoko のコードスニペットを用いて説明しています。それぞれは通常、（Service ではない） Motoko プログラムとして単独で実行することができ、場合によってはターミナルの出力をプリントすることもできます。</p>
 </div>
 <div class="paragraph">
-<p>The examples in this section illustrate basic principles using simple expressions, such as arithmetic.
-For an overview of the full expression syntax of Motoko, see the <a href="language-manual.html">Language quick reference</a>.</p>
+<p>この章の例では、四則演算などの簡単な式を使って、Motoko の基本原理を説明します。
+Motoko の全ての式の構文について知りたい方は、<a href="language-manual.html">言語のクイックリファレンス</a>を参照してください。</p>
 </div>
 <div class="paragraph">
-<p>As a starting point, the following code snippet consists of two declarations — for the variables <code>x</code> and <code>y</code> — followed by an expression to form a single program:</p>
+<p>まず初めに、次のコードスニペットは、変数 <code>x</code> と <code>y</code> の2つの宣言で構成されており、続く式で1つのプログラムを形成しています：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -944,13 +942,13 @@ x * y + x;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We will use variations of this small program in our discussion below.</p>
+<p>以下の議論では、この小さなプログラムの変形を使用します。</p>
 </div>
 <div class="paragraph">
-<p>First, this program&#8217;s type is <code>Nat</code> (natural number), and when run, it evaluates to the (natural number) value of <code>3</code>.</p>
+<p>まず、このプログラムの型は <code>Nat</code>（自然数）であり、実行すると <code>3</code> という自然数の値に評価されます。</p>
 </div>
 <div class="paragraph">
-<p>Introducing a block with enclosing braces (<code>do {</code> and <code>}</code>) and another variable (<code>z</code>), we can amend our original program as follows:</p>
+<p>中括弧で囲まれたブロック（<code>do {</code> と <code>}</code>）と別の変数（<code>z</code>）を導入することで、元のプログラムを次のように修正することができます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -964,23 +962,23 @@ x * y + x;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="intro-decls-exps-def"><a class="anchor" href="#intro-decls-exps-def"></a>Declarations and expressions</h2>
+<h2 id="intro-decls-exps-def"><a class="anchor" href="#intro-decls-exps-def"></a>宣言と式</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Declarations introduce immutable variables, mutable state, actors, objects, classes and other types.
-Expressions describe computations that involve these notions.</p>
+<p>宣言は、イミュータブル（不変）な変数、ミュータブル（可変）なステート、Actor、オブジェクト、クラス、その他の型を導入します。
+式は、これらを使った計算を記述します。</p>
 </div>
 <div class="paragraph">
-<p>For now, we use example programs that declare immutable variables, and compute simple arithmetic.</p>
+<p>ここでは、イミュータブルな変数を宣言し、簡単な演算を行うプログラムを例に説明します。</p>
 </div>
 <div class="sect2">
-<h3 id="intro-decls-vs-exps"><a class="anchor" href="#intro-decls-vs-exps"></a>Declarations versus expressions</h3>
+<h3 id="intro-decls-vs-exps"><a class="anchor" href="#intro-decls-vs-exps"></a>宣言と式の違い</h3>
 <div class="paragraph">
-<p><a href="#intro-progs">Recall</a> that each Motoko <em>program</em> is a free mix of declarations and expressions, whose syntactic classes are distinct, but related.
-In this section, we use examples to illustrate their distinctions and accommodate their intermixing.</p>
+<p>各 Motoko <em>プログラム</em> は、宣言と式を自由に組み合わせたもので、それらの統語的な分類は異なるものの互いに関連しているということを<a href="#intro-progs">思い出しましょう</a>。
+この章では、例を使って宣言と式の区別を説明し、それらを混在させて使うことに慣れていきます。</p>
 </div>
 <div class="paragraph">
-<p>Recall our example program, first introduced above:</p>
+<p>上で最初に紹介したサンプルプログラムを思い出しましょう：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -990,37 +988,37 @@ x * y + x;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In reality, this program is a <em>declaration list</em> that consists of <em>three</em> declarations:</p>
+<p>実際のところ、このプログラムは以下の <em>3</em> 個の宣言からなる <em>宣言のリスト</em> です：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>immutable variable <code>x</code>, via declaration <code>let x = 1;</code>,</p>
+<p>宣言 <code>let x = 1;</code> によるイミュータブルな変数 <code>x</code> と、</p>
 </li>
 <li>
-<p>immutable variable <code>y</code>, via declaration <code>let y = x + 1;</code>,</p>
+<p>宣言 <code>let y = x + 1;</code> によるイミュータブルな変数 <code>y</code> と、</p>
 </li>
 <li>
-<p>and an <em>unnamed, implicit variable</em> holding the final expression&#8217;s value, <code>x * y + x</code>.</p>
+<p>最終的な式の値である <code>x * y + x</code> を保持する <em>匿名の 暗黙的変数</em>。</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>This expression <code>x * y + x</code> illustrates a more general principle:
-Each expression can be thought of as a declaration where necessary since the language implicitly declares an unnamed variable with that expression&#8217;s result value.</p>
+<p>この式 <code>x * y + x</code> は、より一般的な原理を示しています。
+それぞれの式は、その式の結果の値で無名変数を暗黙的に宣言しているので、必要に応じて宣言と考えることができます。</p>
 </div>
 <div class="paragraph">
-<p>When the expression appears as the final declaration, this expression may have any type.  Here, the expression <code>x * y + x</code> has type <code>Nat</code>.</p>
+<p>式が最後の宣言として現れる場合、式は任意の型を持つことができます。ここでは、式 <code>x * y + x</code> の型は <code>Nat</code> です。</p>
 </div>
 <div class="paragraph">
-<p>Expressions that do not appear at the end, but rather <em>within</em> the list of declarations must have unit type <code>()</code>.</p>
+<p>式が宣言リストの最後ではなく、宣言リストの中にある場合は、式はユニット型 <code>()</code> でなければなりません。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ignoring_non_unit_typed_expressions_in_declaration_lists"><a class="anchor" href="#_ignoring_non_unit_typed_expressions_in_declaration_lists"></a>Ignoring non-unit-typed expressions in declaration lists</h3>
+<h3 id="_宣言リストにおけるユニット型でない式の無視"><a class="anchor" href="#_宣言リストにおけるユニット型でない式の無視"></a>宣言リストにおけるユニット型でない式の無視</h3>
 <div class="paragraph">
-<p>We can always overcome this unit-type restriction by explicitly using <code>ignore</code> to ignore any unused result values.
-For example:</p>
+<p>このユニット型でなければならないという制限は、<code>ignore</code> を明示的に使用して、使用されていない結果の値を無視することで切り抜けることができます。
+例えば、以下のようになります：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1033,13 +1031,12 @@ x * y + x;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_declarations_and_variable_substitution"><a class="anchor" href="#_declarations_and_variable_substitution"></a>Declarations and variable substitution</h3>
+<h3 id="_宣言と変数の代入"><a class="anchor" href="#_宣言と変数の代入"></a>宣言と変数の代入</h3>
 <div class="paragraph">
-<p>Declarations can be mutually recursive, but in cases where they are not, they permit substitution semantics.
-(that is, replacing equals for equals, as familiar from high-school algebraic simplification).</p>
+<p>宣言は相互再帰可能ですが、そうでない書き方のために代入セマンティクスを使うことができます（高校数学における式の単純化でおなじみの、等式を別の等式に代入すること。)</p>
 </div>
 <div class="paragraph">
-<p>Recall our original example:</p>
+<p>元の例を思い出してみましょう：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1049,10 +1046,8 @@ x * y + x;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We can manually rewrite the program above by <em>substituting</em> the variables' declared values for each of their respective occurrences.</p>
-</div>
-<div class="paragraph">
-<p>In so doing, we produce the following expression, which is also a program:</p>
+<p>変数の宣言値をそれぞれの出現箇所に <em>代入</em> することで、上のプログラムを手動で書き換えることができます。
+そうすることで次のような式になり、これも有効なプログラムです。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1060,16 +1055,14 @@ x * y + x;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This is also a valid program — of the same type and with the same behavior (result value <code>3</code>) — as the original program.</p>
-</div>
-<div class="paragraph">
-<p>We can also form a single expression using a block.</p>
+<p>上の式も、元のプログラムと同じ型で、同じ動作（結果値 <code>3</code>）をする有効なプログラムです。
+また、ブロックを使って一つの式を形成することもできます。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_from_declarations_to_block_expressions"><a class="anchor" href="#_from_declarations_to_block_expressions"></a>From declarations to block expressions</h3>
+<h3 id="_宣言からブロック式への変換"><a class="anchor" href="#_宣言からブロック式への変換"></a>宣言からブロック式への変換</h3>
 <div class="paragraph">
-<p>Many of the programs above each consist of a list of declarations, as with this example, just above:</p>
+<p>上記のプログラムの多くは、先ほどの例のように宣言のリストで構成されています：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1079,11 +1072,10 @@ x * y + x</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A declaration list is not itself (immediately) an <em>expression</em>, so we cannot (immediately) declare another variable with its final value (<code>3</code>).</p>
+<p>宣言リストそれ自体は <em>式</em> ではないので、その最終値（<code>3</code>）を使って別の変数を（すぐに）宣言することはできません。</p>
 </div>
 <div id="intro-exp-block" class="paragraph">
-<p><strong>Block expressions.</strong> We can form a <em>block expression</em> from this list of declarations by enclosing it with matching <em>curly braces</em>. Blocks are only allowed as sub-expressions of control flow expressions like <code>if</code>, <code>loop</code>, <code>case</code>, etc. In all other places,
-we use <code>do { &#8230;&#8203; }</code> to represent block expression, to distinguish blocks from object literals. For example, <code>do {}</code> is the empty block of type <code>()</code>, while <code>{}</code> is an empty record of record type <code>{}</code>.</p>
+<p><strong>ブロック式</strong>：この宣言リストを <em>中括弧</em> で囲むことで、<em>ブロック式</em> を形成することができます。ブロックは、<code>if</code>、<code>loop</code>、<code>case</code> などの制御フローのサブ式としてのみ使用できます。それ以外の場所では、<code>do { &#8230;&#8203; }</code> を使ってブロック式を表現し、ブロックをオブジェクトリテラルと区別しています。例えば、<code>do {}</code> は <code>()</code> 型の空のブロックで、<code>{}</code> は <code>{}</code> 型の空のレコードです。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1095,21 +1087,21 @@ we use <code>do { &#8230;&#8203; }</code> to represent block expression, to dist
 </div>
 </div>
 <div class="paragraph">
-<p>This is also program, but one where the declared variables <code>x</code> and <code>y</code> are privately scoped to the block we introduced.</p>
+<p>これも有効なプログラムですが、宣言された変数 <code>x</code> と <code>y</code> が、導入したブロック内のプライベートスコープになっています。</p>
 </div>
 <div class="paragraph">
-<p>This block form preserves the autonomy of the declaration list and its <em>choice of variable names</em>.</p>
+<p>このブロック形式は、宣言リストとその <em>変数名の選択</em> の自律性を維持するのに役立ちます。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="intro-lexical-scoping"><a class="anchor" href="#intro-lexical-scoping"></a>Declarations follow <strong>lexical scoping</strong></h3>
+<h3 id="intro-lexical-scoping"><a class="anchor" href="#intro-lexical-scoping"></a>宣言は <strong>字句スコープ</strong> に従う</h3>
 <div class="paragraph">
-<p>Above, we saw that nesting blocks preserves the autonomy of each separate declaration list and its <em>choice of variable names</em>.
-Language theorists call this idea <em>lexical scoping</em>.
-It means that variables' scopes may nest, but they may not interfere as they nest.</p>
+<p>上の例では、ブロックを入れ子にすることで、それぞれの宣言リストとその変数名の選択の自律性が保たれることを説明しました。
+言語理論家はこの考え方を <em>字句スコープ</em> と呼んでいます。
+つまり、変数のスコープはネストしても構わないが、ネストする際に干渉してはいけないということです。</p>
 </div>
 <div class="paragraph">
-<p>For instance, the following (larger, enclosing) program evaluates to <code>42</code>, <em>not</em> <code>2</code>, since the final occurrences of <code>x</code> and <code>y</code>, on the final line, refer to the <em>very first</em> definitions, <em>not</em> the later ones within the enclosed block:</p>
+<p>例えば、次の（ブロックの外の）プログラムは、2 ではなく 42 と評価されます。なぜなら、最後の行で出現する <code>x</code> と <code>y</code> は、囲まれたブロック内の定義ではなく、<em>最初の行の</em> 定義を参照しているからです。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1123,131 +1115,132 @@ x + y</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Other languages that lack lexical scoping may give a different meaning to this program.
-However, modern languages universally favor lexical scoping, the meaning given here.</p>
+<p>字句スコープを持たない他の言語では、このプログラムは異なる結果となるかもしれません。
+しかし、モダンな言語では普遍的に字句スコープが好まれています。</p>
 </div>
 <div class="paragraph">
-<p>Aside from mathematical clarity, the chief practical benefit of lexical scoping is <em>security</em>, and its use in building compositionally-secure systems.
-Specifically, Motoko gives very strong composition properties. For example, nesting your program within a program you do not trust cannot arbitrarily redefine your variables with different meanings.</p>
+<p>数学的な明快さはさておき、字句スコープの実用的な利点は <em>安全性</em> であり、組成的に安全なシステムを構築する際に使用されます。
+具体的には、Motoko は非常に強力な構成上の特性を持っています。例えば、信頼していないプログラムの中に自分のプログラムを入れ子にしても、入れ子の外のプログラムが、あなたの変数を恣意的に異なる意味に再定義することはできません。</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="intro-values"><a class="anchor" href="#intro-values"></a>Values and evaluation</h2>
+<h2 id="intro-values"><a class="anchor" href="#intro-values"></a>値と評価</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once a Motoko expression receives the program&#8217;s (single) thread of control, it evaluates eagerly until it reduces to a <em>result value</em>.</p>
+<p>ひとたび Motoko の式がプログラムの制御の（シングル）スレッドを受け取ると、<em>結果の値</em> になるまで張り切って評価します。</p>
 </div>
 <div class="paragraph">
-<p>In so doing, it will generally pass control to sub-expressions, and to sub-routines before it gives up control from the <em>ambient control stack</em>.</p>
+<p>その際、一般的には <em>環境側の制御スタック</em> からの制御を放棄する前に、サブ式やサブルーチンに制御を渡します。</p>
 </div>
 <div class="paragraph">
-<p>If this expression never reaches a value form, the expression evaluates indefinitely.
-Later we introduce recursive functions and imperative control flow, which each permit non-termination.
-For now, we only consider terminating programs that result in values.</p>
+<p>もしこの式が値の形式に到達しない場合、式は無限に評価され続けます。
+後ほど再帰関数や命令型制御フローを紹介しますが、これらはいずれも終了しない処理を許容するものです。
+ここでは、結果として値が得られる、終了するプログラムのみを考えます。</p>
 </div>
 <div class="paragraph">
-<p>In the material above, we focused on expressions that produced natural numbers.
-As a broader language overview, however, we briefly summarize the other value forms below:</p>
+<p>上の例では、自然数を生成する式に焦点を当てて説明しました。
+言語のより広範な概要として、以下に他の値の形式について簡単にまとめます：</p>
 </div>
 <div class="sect2">
-<h3 id="_primitive_values"><a class="anchor" href="#_primitive_values"></a>Primitive values</h3>
+<h3 id="_プリミティブな値"><a class="anchor" href="#_プリミティブな値"></a>プリミティブな値</h3>
 <div class="paragraph">
-<p>Motoko permits the following primitive value forms:</p>
+<p>Motoko では、以下のプリミティブな値の形式を利用することができます：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Boolean values (<code>true</code> and <code>false</code>).</p>
+<p>ブール値 (<code>true</code> と <code>false</code>).</p>
 </li>
 <li>
-<p>Integers (&#8230;&#8203;,<code>-2</code>, <code>-1</code>, <code>0</code>, <code>1</code>, <code>2</code>, &#8230;&#8203;) - bounded and <em>unbounded</em> variants.</p>
+<p>整数 (&#8230;&#8203;,<code>-2</code>, <code>-1</code>, <code>0</code>, <code>1</code>, <code>2</code>, &#8230;&#8203;) - 制限付き整数と <em>制限なし</em> 整数</p>
 </li>
 <li>
-<p>Natural numbers (<code>0</code>, <code>1</code>, <code>2</code>, &#8230;&#8203;) - bounded and <em>unbounded</em> variants.</p>
+<p>自然数 (<code>0</code>, <code>1</code>, <code>2</code>, &#8230;&#8203;) - 制限付き自然数と <em>制限なし</em> 自然数</p>
 </li>
 <li>
-<p>Text values - strings of unicode characters.</p>
+<p>テキスト値 - ユニコード文字の文字列</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>By default, <strong>integers</strong> and <strong>natural numbers</strong> are <em>unbounded</em> and do not overflow.
-Instead, they use representations that grow to accommodate any finite number.</p>
+<p>デフォルトでは、<strong>整数</strong> と <strong>自然数</strong> は <em>制限なし</em> で、オーバーフローしません。
+その代わり、いかなる有限の数にも対応できるように、伸長する表現を使用しています。</p>
 </div>
 <div class="paragraph">
-<p>For practical reasons, Motoko also includes <em>bounded</em> types for integers and natural numbers, distinct from the default versions.
-Each bounded variant has a fixed width (one of <code>8</code>, <code>16</code>, <code>32</code>, <code>64</code>) and each carries the potential for &#8220;overflow&#8221;. If and when this event occurs, it is an error and causes the
-<a href="#overview-traps">program to trap</a>.
-There are no unchecked, uncaught overflows in Motoko, except in well-defined situations, for explicitly <em>wrapping</em> operations (indicated by a <code>%</code>  character in the operator).
-The language provides primitive built-ins to convert between these various number representations.</p>
+<p>実用性の観点から、Motoko には、デフォルトの制限なし数値とは別に、整数や自然数の <em>制限付き</em> の型も含まれています。
+それぞれの制限付き数値の型は、固定長（<code>8</code>, <code>16</code>, <code>32</code>, <code>64</code> のいずれか）を持ち、それぞれに &#8220;オーバーフロー&#8221; の可能性があります。このイベントが発生するとエラーとなり、<a href="#overview-traps">プログラムはトラップします</a>。</p>
 </div>
 <div class="paragraph">
-<p>The <a href="language-manual.html">language quick reference</a> contains a complete list of <a href="language-manual.html#primitive-types">primitive types</a>.</p>
+<p>Motoko では、明示的に <em>ラッピング</em> 操作（演算子の中の <code>%</code> 文字で示されます）を行う場合などの十分に定義された状況を除いて、チェック・キャッチできないオーバーフローはありません。
+Motoko では、さまざまな数値表現を変換するためのプリミティブな組み込み関数が用意されています。</p>
+</div>
+<div class="paragraph">
+<p><a href="language-manual.html">言語のクイックリファレンス</a>は、<a href="language-manual.html#primitive-types">プリミティブ型</a>の完全なリストを提供しています。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_non_primitive_values"><a class="anchor" href="#_non_primitive_values"></a>Non-primitive values</h3>
+<h3 id="_非プリミティブな値"><a class="anchor" href="#_非プリミティブな値"></a>非プリミティブな値</h3>
 <div class="paragraph">
-<p>Building on the primitive values and types above, the language permits user-defined types, and each of the following non-primitive value forms and associated types:</p>
+<p>Motoko では、上記のプリミティブな値と型に加えて、ユーザー定義の型や、以下の非プリミティブな値の形式とそれに関連する型を利用することができます。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="language-manual.html#exp-tuple">Tuples</a>, including the unit value (the "empty tuple")</p>
+<p><a href="language-manual.html#exp-tuple">タプル</a>（ユニット値である "空のタプル" を含む）</p>
 </li>
 <li>
-<p><a href="language-manual.html#exp-arrays">Arrays</a>, with both <em>immutable</em> and <em>mutable</em> variants.</p>
+<p><a href="language-manual.html#exp-arrays">配列</a>（イミュータブルな配列とミュータブルな配列の両方）</p>
 </li>
 <li>
-<p><a href="language-manual.html#exp-object">Objects</a>, with named, unordered fields and methods</p>
+<p><a href="language-manual.html#exp-object">オブジェクト</a>（匿名の順序なしフィールドとメソッドを含む）</p>
 </li>
 <li>
-<p><a href="language-manual.html#variant-types">Variants</a>, with named constructors and optional payload values</p>
+<p><a href="language-manual.html#variant-types">バリアント</a>（名前付きコンストラクタとオプショナルのペイロード値を含む）</p>
 </li>
 <li>
-<p><a href="language-manual.html#exp-func">Function values</a>, including <a href="sharing.html">shareable functions</a>.</p>
+<p><a href="language-manual.html#exp-func">関数値</a>（<a href="sharing.html">shared 関数</a>を含む）</p>
 </li>
 <li>
-<p><a href="language-manual.html#exp-async">Async values</a>, also known as <em>promises</em> or <em>futures</em>.</p>
+<p><a href="language-manual.html#exp-async">Async 値</a>（<em>promise</em> や <em>future</em> としても知られる）</p>
 </li>
 <li>
-<p><a href="language-manual.html#type-Error">Error values</a> carry the payload of exceptions and system failures</p>
+<p><a href="language-manual.html#type-Error">エラー値</a>（例外やシステム障害のペイロードを運ぶ）</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>We discuss the use of these forms in the succeeding chapters.
-For precise language definitions of primitive and non-primitive values, see the <a href="language-manual.html#exp-error">language quick reference</a>.</p>
+<p>これらの形式の使用については後の章で説明します。
+プリミティブな値と非プリミティブな値の正確な言語定義については、<a href="language-manual.html#exp-error">言語のクイックリファレンス</a>を参照してください。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="intro-unit-type"><a class="anchor" href="#intro-unit-type"></a>The <strong>unit type</strong> versus the <code>void</code> type</h3>
+<h3 id="intro-unit-type"><a class="anchor" href="#intro-unit-type"></a><strong>unit型</strong> vs <code>void型</code></h3>
 <div class="paragraph">
-<p>Motoko has no type named <code>void</code>.
-In many cases where readers may think of return types being &#8220;void&#8221; from using languages like Java or C++, we encourage them to think instead of the <em>unit type</em>, written <code>()</code>.</p>
+<p>Motoko には <code>void</code> という名前の型はありません。
+Java や C++ などの言語を使っていて、返り値の型が &#8220;void&#8221; だと思っている読者も多いと思いますが、代わりに <code>()</code> と書かれた <em>ユニット型</em> を思い浮かべるようにしてみてください。</p>
 </div>
 <div class="paragraph">
-<p>In practical terms, like <code>void</code>, the unit value usually carries zero representation cost.</p>
+<p>実用的には、<code>void</code> と同様に、ユニット値は一般的に表現上のコストがありません。</p>
 </div>
 <div class="paragraph">
-<p>Unlike the <code>void</code> type, there <em>is</em> a unit value, but like the <code>void</code> return value, the unit value carries no values internally, and as such, it always carries zero <em>information</em>.</p>
+<p><code>void</code> 型とは異なり、ユニット値は <em>存在します</em> が、<code>void</code> 型の返り値と同様、ユニット値は内部的には何の値も持たず、<em>情報</em> は常にゼロです。</p>
 </div>
 <div class="paragraph">
-<p>Another mathematical way to think of the unit value is as a tuple with no elements - the nullary (&#8220;zero-ary&#8221;) tuple. There is only one value with these properties, so it is mathematically unique, and thus need not be represented at runtime.</p>
+<p>ユニット値を数学的に考えるもう一つの方法は、要素を持たないタプル（"nullary" ならぬ &#8220;zero-ary&#8221;）です。このようなプロパティを持つ値は1つしかないので、数学的に一意であり、よって実行時に表現する必要はありません。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_natural_numbers"><a class="anchor" href="#_natural_numbers"></a>Natural numbers</h3>
+<h3 id="_自然数"><a class="anchor" href="#_自然数"></a>自然数</h3>
 <div class="paragraph">
-<p>The members of this type consist of the usual values - <code>0</code>, <code>1</code>, <code>2</code>, &#8230;&#8203; - but, as in mathematics, the members of are not bound to a special maximum size.
-Rather, the runtime representation of these values accommodates arbitrary-sized numbers, making their "overflow" (nearly) impossible.
-(<em>nearly</em> because it is the same event as running out of program memory, which can always happen for some programs in extreme situations).</p>
+<p>この型のメンバは、通常の値である <code>0</code>, <code>1</code>, <code>2</code>, &#8230;&#8203; で構成されていますが、数学のように、特別な最大サイズに制限されることはありません。
+これらの値のランタイム表現は任意の大きさの数値に対応しており、"オーバーフロー" を（ほぼ）不可能にしています。
+（<em>ほぼ</em> 不可能というのは、プログラムのメモリが足りなくなるのと同じことで、極端な状況下ではプログラムによっては常に起こりうることだからです。)</p>
 </div>
 <div class="paragraph">
-<p>Motoko permits the usual arithmetic operations one would expect.
-As an illustrative example, consider the following program:</p>
+<p>Motoko では、通常の算術演算が可能です。
+例として、次のようなプログラムを考えてみましょう：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1255,47 +1248,47 @@ As an illustrative example, consider the following program:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This program evaluates to the value <code>45</code>, also of type <code>Nat</code>.</p>
+<p>このプログラムは <code>Nat</code> 型の値 <code>45</code> と評価されます。</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="intro-type-soundness"><a class="anchor" href="#intro-type-soundness"></a>Type soundness</h2>
+<h2 id="intro-type-soundness"><a class="anchor" href="#intro-type-soundness"></a>型の健全性</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Each Motoko expression that type-checks we call <em>well-typed</em>.  The <em>type</em> of a Motoko expression serves as a promise from the language to the developer about the future behavior of the program, if executed.</p>
+<p>各 Motoko の式に対して型チェックが行われることを、<em>正しく型付けされている</em> と呼んでいます。Motokoの式の <em>型</em> は、プログラムが実行されたときの将来の動作についての、言語から開発者への約束事の役割を果たします。</p>
 </div>
 <div class="paragraph">
-<p>First, each well-typed program will evaluate without undefined behavior.
-That is, the phrase <strong>&#8220;well-typed programs don&#8217;t go wrong&#8221;</strong> applies here.
-For those unfamiliar with the deeper implications of that phrase, it means that there is a precise space of meaningful (unambiguous) programs, and the type system enforces that we stay within it, and that all well-typed programs have a precise (unambiguous) meaning.</p>
+<p>まず、正しく型付けされたプログラムは、未定義の動作をすることなく評価されます。
+これには、<code>正しく型付けされたプログラムは間違いを起こさない</code> という言葉が当てはまります。
+この言葉の深い意味を知らない人のために補足すると、意味のある（曖昧さのない）プログラムには厳密な（概念としての）空間があり、型システムはその空間の中に留まることを強制しているため、すべての正しく型付けされたプログラムは、正確な（曖昧さのない）意味を持っているということです。</p>
 </div>
 <div class="paragraph">
-<p>Furthermore, the types make a precise prediction over the program&#8217;s result.
-If it yields control, the program will generate a <em>result value</em> that agrees with that of the original program.</p>
+<p>さらに言えば、型はプログラムの結果を正確に予測します。
+制御を得れば、プログラムは元のプログラムの結果の型と一致する <em>結果の値</em> を生成します。</p>
 </div>
 <div class="paragraph">
-<p>In either case, the static and dynamic views of the program are linked by and agree with the static type system.
-This agreement is the central principle of a static type system, and is delivered by Motoko as a core aspect of its design.</p>
+<p>いずれにしても、プログラムの静的な見方と動的な見方は、静的な型システムによってリンクされ、互いに一致します。
+この静的な見方と動的な見方の一致は静的な型システムの中心的な原理であり、設計の中核的な側面として Motoko によって提供されています。</p>
 </div>
 <div class="paragraph">
-<p>The same type system also enforces that asynchronous interactions agree between static and dynamic views of the program, and that the resulting messages generated "under the hood" never mismatch at runtime.
-This agreement is similar in spirit to the caller/callee argument type and return type agreements that one ordinarily expects in a typed language.</p>
+<p>この型システムは、非同期のインタラクションがプログラムの静的・動的な見方が一致していること、そして "ボンネットの下で（内部で）" 生成された結果のメッセージが実行時に不一致にならないことも強制します。
+この一致は、型付けされた言語で通常期待される、呼び出し元と呼び出された側の引数の型や返り値の型が一致することと、その精神が似ています。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="intro-type-anno"><a class="anchor" href="#intro-type-anno"></a>Type annotations and variables</h2>
+<h2 id="intro-type-anno"><a class="anchor" href="#intro-type-anno"></a>型アノテーションと変数</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Variables relate (static) names and (static) types with (dynamic) values that are present only at runtime.</p>
+<p>変数は、（静的な）名前や（静的な）型と、実行時にのみ存在する（動的な）値を関連付けます。</p>
 </div>
 <div class="paragraph">
-<p>In this sense, Motoko types provide a form of <em>trusted, compiler-verified documentation</em> in the program source code.</p>
+<p>この意味で、Motoko の型は、プログラムのソースコードの中で、<em>コンパイラが検証した信頼できるドキュメント</em> を提供します。</p>
 </div>
 <div class="paragraph">
-<p>Consider this very short program:</p>
+<p>以下の非常に短いプログラムを考えてみましょう：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1303,10 +1296,10 @@ This agreement is similar in spirit to the caller/callee argument type and retur
 </div>
 </div>
 <div class="paragraph">
-<p>In this example, the compiler infers that the expression <code>1</code> has type <code>Nat</code>, and that <code>x</code> has the same type.</p>
+<p>この例では、コンパイラは式 <code>1</code> が <code>Nat</code> 型であり、<code>x</code> も同じ型であることを推定します。</p>
 </div>
 <div class="paragraph">
-<p>In this case, we can omit this annotation without changing the meaning of the program:</p>
+<p>この場合、プログラムの意味を変えることなく、この型アノテーションを省略することができます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1314,19 +1307,19 @@ This agreement is similar in spirit to the caller/callee argument type and retur
 </div>
 </div>
 <div class="paragraph">
-<p>Except for some esoteric situations involving operator overloading, type annotations do not (typically) affect the meaning of the program as it runs.</p>
+<p>演算子のオーバーロードを伴うような難解な状況を除いて、型アノテーションは（通常は）実行中のプログラムの意味に影響を与えません。</p>
 </div>
 <div class="paragraph">
-<p>If they are omitted and the compiler accepts the program, as is the case above, the program has the same meaning (same <em>behavior</em>) as it did originally.</p>
+<p>型アノテーションが省略された状態でコンパイルが通った場合、上記のケースのように、プログラムは元のプログラムと同じ意味（同じ <em>動作</em> ）となります。</p>
 </div>
 <div class="paragraph">
-<p>However, sometimes type annotations are required by the compiler to infer other assumptions, and to check the program as a whole.</p>
+<p>しかし、コンパイラが他の前提条件を推測したり、プログラム全体をチェックしたりするために、型アノテーションが必要になることがあります。</p>
 </div>
 <div class="paragraph">
-<p>When they are added and the compiler still accepts the program, we know that the added annotations are <em>consistent</em> with the existing ones.</p>
+<p>型アノテーションを追加してもコンパイルが通る場合、追加された型アノテーションは既存の型アノテーションと <em>矛盾がない</em> ことがわかります。</p>
 </div>
 <div class="paragraph">
-<p>For instance, we can add additional (not required) annotations, and the compiler checks that all annotations and other inferred facts agree as a whole:</p>
+<p>例えば、（必須ではない）型アノテーションを追加することで、コンパイラはすべての型アノテーションと他の推論された事実が全体として一致していることをチェックします。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1334,10 +1327,10 @@ This agreement is similar in spirit to the caller/callee argument type and retur
 </div>
 </div>
 <div class="paragraph">
-<p>If we were to try to do something <em>inconsistent</em> with our annotation type, however, the type checker will signal an error.</p>
+<p>しかし、アノテーションの型と <em>矛盾すること</em> をしようとすると、タイプチェッカーはエラーを知らせます。</p>
 </div>
 <div class="paragraph">
-<p>Consider this program, which is not well-typed:</p>
+<p>以下のような、正しく型付けされていないプログラムを考えましょう：</p>
 </div>
 <div class="listingblock run">
 <div class="content">
@@ -1345,45 +1338,44 @@ This agreement is similar in spirit to the caller/callee argument type and retur
 </div>
 </div>
 <div class="paragraph">
-<p>The type annotation <code>Text</code> does not agree with the rest of the program, since the type of <code>1 + 1</code> is <code>Nat</code> and not <code>Text</code>, and these types are unrelated by subtyping.
-Consequently, this program is not well-typed, and the compiler will signal an error (with a message and location) and will not compile or execute it.</p>
+<p><code>1 + 1</code> の型は <code>Nat</code> であって <code>Text</code> ではなく、また <code>Nat</code> と <code>Text</code> は派生型の関係にないので、型アノテーションの <code>Text</code> はその後のプログラムと一致しません。
+結果的に、このプログラムは正しく型付けされておらず、コンパイラはエラーメッセージとエラー箇所を知らせ、コンパイルも実行もしません。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_type_errors_and_messages"><a class="anchor" href="#_type_errors_and_messages"></a>Type errors and messages</h2>
+<h2 id="_型のエラーとメッセージ"><a class="anchor" href="#_型のエラーとメッセージ"></a>型のエラーとメッセージ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mathematically, the type system of Motoko is <em>declarative</em>, meaning that it exists independently of any implementation, as a concept entirely in formal logic.
-Likewise, the other key aspects of the language definition (for example, its execution semantics) exist outside of an implementation.</p>
+<p>数学的には、Motoko の型システムは <em>宣言的</em> であり、形式論理の概念として実装とは無関係に存在しています。
+同様に、言語定義の他の重要な側面（例：実行セマンティクス）も、実装の外に存在しています。</p>
 </div>
 <div class="paragraph">
-<p>However, to design this logical definition, to experiment with it, and to practice making mistakes, we want to interact with this type system, and to make lots of harmless mistakes along the way.</p>
+<p>しかし、この論理定義を設計し、試し、間違いを犯す練習をするために、私たちはこの型システムと対話し、その過程でたくさんの無害な間違いを犯したいのです。</p>
 </div>
 <div class="paragraph">
-<p>The error messages of the <em>type checker</em> attempt to help the developer when they misunderstand or otherwise misapply the logic of the type system, which is explained indirectly in this book.</p>
+<p><em>タイプチェッカー</em> のエラーメッセージは、開発者が型システムの論理を誤解したり、あるいは適用を誤ったりしたときに開発者を助けようとするもので、本書では間接的に説明されています。</p>
 </div>
 <div class="paragraph">
-<p>These error messages will evolve over time, and for this reason, we will not include particular error messages in this text.
-Instead, we will attempt to explain each code example in its surrounding prose.</p>
+<p>これらのエラーメッセージは時間の経過とともに改善されていくため、このドキュメントでは特定のエラーメッセージを記載していません。
+その代わりに、各コード例をその周辺の文章で説明するようにしています。</p>
 </div>
 <div class="sect2">
-<h3 id="intro-stdlib"><a class="anchor" href="#intro-stdlib"></a>Using the Motoko base library</h3>
+<h3 id="intro-stdlib"><a class="anchor" href="#intro-stdlib"></a>Motoko ベースライブラリの使い方</h3>
 <div class="paragraph">
-<p>For various practical language engineering reasons, the design of Motoko strives to minimize builtin types and operations.</p>
+<p>言語のエンジニアリングにおけるさまざまな実用上の理由から、Motoko の設計では組み込みの型や操作を最小限に抑えるようにしています。</p>
 </div>
 <div class="paragraph">
-<p>Instead, whenever possible, the Motoko base library provides the types and operations that make the language feel complete.
-<em><strong>However</strong>, this base library is still under development,
-and is still incomplete</em>.</p>
+<p>その代わり、Motoko ベースライブラリは、言語を完全なものにするための型や操作を可能な限り提供しています。
+<em><strong>ただし</strong>、このベースライブラリは開発中であり、まだ不完全です。</em></p>
 </div>
 <div class="paragraph">
-<p>The <a href="base-libraries/stdlib-intro.html">Motoko Base Library</a> lists a <em>selection</em> of modules from the Motoko base library, focusing on core features used in the examples that are unlikely to change radically.
-However, all of these base library APIs will certainly change over time (to varying degrees), and in particular, they will grow in size and number.</p>
+<p><a href="base-libraries/stdlib-intro.html">Motoko ベースライブラリ</a>では、Motoko ベースライブラリからのモジュールを <em>選定して</em> 示していますが、これは例題で使われているコアな機能に焦点を当てたもので、抜本的な変更はないと考えられます。
+しかし、これらのベースライブラリの API はすべて時間の経過とともに（程度の差こそあれ）確実に変化し、特にサイズと数が大きくなっていくでしょう。</p>
 </div>
 <div class="paragraph">
-<p>To import from the base library, use the <code>import</code> keyword.
-Give a local module name to introduce, in this example <code>D</code> for &#8220;<strong>D</strong>ebug&#8221;, and a URL where the <code>import</code> declaration may locate the imported module:</p>
+<p>ベースライブラリからインポートするには、<code>import</code> キーワードを使います。
+導入するローカルモジュールの名前、この例では &#8220;<strong>D</strong>ebug&#8221; を表す <code>D</code> と、<code>import</code> 宣言がインポートされたモジュールを見つけるための URL を指定します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1392,14 +1384,14 @@ D.print("hello world");</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In this case, we import Motoko code (not some other module form) with the <code>mo:</code> prefix.
-We specify the <code>base/</code> path, followed by the module&#8217;s file name <code>Debug.mo</code> minus its extension.</p>
+<p>ここでは、Motoko のコードを（他のモジュール形式ではなく）、<code>mo:</code> という接頭辞でインポートします。
+<code>base/</code> のパスを指定し、その後にモジュールのファイル名 <code>Debug.mo</code> から拡張子を除いたものを指定します。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="intro-printing"><a class="anchor" href="#intro-printing"></a>Printing using <code>Debug.print</code> and <code>debug_show</code></h3>
+<h3 id="intro-printing"><a class="anchor" href="#intro-printing"></a><code>Debug.print</code> と <code>debug_show</code> を使った出力</h3>
 <div class="paragraph">
-<p>Above, we print the text string using the function <code>print</code> in library <code>Debug.mo</code>:</p>
+<p>上の例では、ライブラリ <code>Debug.mo</code> の関数 <code>print</code> を使ってテキスト文字列を出力しています：</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1407,21 +1399,21 @@ We specify the <code>base/</code> path, followed by the module&#8217;s file name
 </div>
 </div>
 <div class="paragraph">
-<p>The function <code>print</code> accepts a text string (of type <code>Text</code>) as input, and produces the <em>unit value</em> (of <em>unit type</em>, or <code>()</code>) as its output.</p>
+<p><code>print</code> 関数は、入力として（<code>Text</code> 型の）テキストの文字列を受け取り、出力として（<em>ユニット型</em> または <code>()</code> の） <em>ユニット値</em> を生成します。</p>
 </div>
 <div class="paragraph">
-<p>Because unit values carry no information, all values of type unit are identical,  so the <code>print</code> function doesn&#8217;t actually produce an interesting result. Instead of a result, it has a <em>side effect</em>.
-The function <code>print</code> has the effect of emitting the text string in a human-readable form to the output terminal. Functions that have side effects, such as emitting output, or modifying state, are often called <em>impure</em>. Functions that just return values, without further side-effects, are called <em>pure</em>.
-We discuss the return value (the unit value) <a href="#intro-unit-type">in detail below</a>, and relate it to the <code>void</code> type for readers more familiar with that concept.</p>
+<p>ユニット値は情報を持たないので、ユニット型の値はすべて同一であり、<code>print</code> 関数は実際には何の結果も生み出しません。結果の代わりに <em>副作用</em> を伴います。
+<code>print</code> 関数は、人間が読める形式のテキスト文字列を出力端末に出力するという効果があります。出力したり、ステートを変更したりするような副作用のある関数は、しばしば <em>非純粋関数</em> と呼ばれます。一方、副作用を伴わずに値を返すだけの関数は、<em>純粋関数</em> と呼ばれます。
+返り値（ユニット値）については<a href="#intro-unit-type">以下で詳しく</a>説明し、<code>void</code> 型のコンセプトに慣れている読者のために、<code>void</code> 型との関連性についても述べます。</p>
 </div>
 <div class="paragraph">
-<p>Finally, we can transform most Motoko values into human-readable text strings for debugging purposes, <em>without</em> having to write those transformations by hand.</p>
+<p>最後になりますが、ほとんどの Motoko の値はデバッグ用に人間が読めるテキスト文字列に変換することができ、それらの変換を自分で書く必要は <em>ありません</em> 。</p>
 </div>
 <div class="paragraph">
-<p>The <code>debug_show</code> primitive permits converting a large class of values into values of type <code>Text</code>.</p>
+<p><code>debug_show</code> プリミティブは、大規模なクラスの値を <code>Text</code> 型の値に変換することができます。</p>
 </div>
 <div class="paragraph">
-<p>For instance, we can convert a triple (of type <code>(Text, Nat, Text)</code>) into debugging text without writing a custom conversion function ourselves:</p>
+<p>例えば、（<code>(Text, Nat, Text)</code> 型の）トリプルを、独自の変換関数を自分で書かずに、デバッグ用のテキストに変換することができます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1430,26 +1422,26 @@ D.print(debug_show(("hello", 42, "world")))</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Using these text transformations, we can print most Motoko data as we experiment with our programs.</p>
+<p>これらのテキスト変換を使用して、プログラムを試す際にほとんどの Motoko データを出力することができます。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_accommodating_incomplete_code"><a class="anchor" href="#_accommodating_incomplete_code"></a>Accommodating incomplete code</h3>
+<h3 id="_不完全なコードへの対応"><a class="anchor" href="#_不完全なコードへの対応"></a>不完全なコードへの対応</h3>
 <div class="paragraph">
-<p>Sometimes, in the midst of writing a program, we want to run an incomplete version, or a version where one or more execution paths are either missing or simply invalid.</p>
+<p>プログラムを書いている最中に、完成前のコードや、いくつかの実行パスが見つからないか無効な状態のコードを実行したいと思うことがあります。</p>
 </div>
 <div class="paragraph">
-<p>To accommodate these situations, we use the <code>xxx</code>, <code>nyi</code> and <code>unreachable</code> functions from the base <code>Prelude</code> library, explained below.
-Each wraps a <a href="#overview-traps">general trap mechanism</a>, explained further below.</p>
+<p>このような状況に対応するために、ベースライブラリである <code>Prelude</code> の <code>xxx</code>, <code>nyi</code>, <code>unreachable</code> 関数を、後述のように使用することができます。
+それぞれの関数は、以下に説明する <a href="#overview-traps">一般的なトラップメカニズム</a> をラップしています。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_use_short_term_holes"><a class="anchor" href="#_use_short_term_holes"></a>Use short-term holes</h3>
+<h3 id="_短期的な穴を埋める"><a class="anchor" href="#_短期的な穴を埋める"></a>短期的な穴を埋める</h3>
 <div class="paragraph">
-<p>Short-term holes are never committed to a source repository, and only ever exist in a single development session, for a developer that is still writing the program.</p>
+<p>プログラム上に開いた短期的な穴（式の欠落）は、ソースリポジトリにコミットされることはなく、まだプログラムを書いている開発者の開発セッションでのみ存在します。</p>
 </div>
 <div class="paragraph">
-<p>Assuming that earlier, one has imported the prelude as follows:</p>
+<p>次のように Prelude をインポートしていたと仮定します：</p>
 </div>
 <div id="prelude" class="listingblock">
 <div class="content">
@@ -1457,7 +1449,7 @@ Each wraps a <a href="#overview-traps">general trap mechanism</a>, explained fur
 </div>
 </div>
 <div class="paragraph">
-<p>The developer can fill <em>any missing expression</em> with the following one:</p>
+<p>開発者は、次のようにして <em>欠けている式</em> を埋めることができます：</p>
 </div>
 <div class="listingblock include_prelude">
 <div class="content">
@@ -1465,13 +1457,13 @@ Each wraps a <a href="#overview-traps">general trap mechanism</a>, explained fur
 </div>
 </div>
 <div class="paragraph">
-<p>The result will <em>always</em> type check at compile time, and <em>will always</em> trap at run time, if and when this expression ever executes.</p>
+<p>その結果、この式が実行された場合には、コンパイル時に <em>常に</em> 型チェックが行われ、実行時に <em>常に</em> トラップが行われます。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_document_longer_term_holes"><a class="anchor" href="#_document_longer_term_holes"></a>Document longer-term holes</h3>
+<h3 id="_長期的な穴を文書化する"><a class="anchor" href="#_長期的な穴を文書化する"></a>長期的な穴を文書化する</h3>
 <div class="paragraph">
-<p>By convention, longer-term holes can be considered "not yet implemented" (<code>nyi</code>) features, and marked as such with a similar function from the Prelude module:</p>
+<p>慣習的に、長期的な穴は「まだ実装されていない」（<code>nyi: not yet implimented</code>）機能とみなされ、Prelude モジュールの似たような関数を使ってマークすることができます。</p>
 </div>
 <div class="listingblock include_prelude">
 <div class="content">
@@ -1480,12 +1472,13 @@ Each wraps a <a href="#overview-traps">general trap mechanism</a>, explained fur
 </div>
 </div>
 <div class="sect2">
-<h3 id="_document_unreachable_code_paths"><a class="anchor" href="#_document_unreachable_code_paths"></a>Document <code>unreachable</code> code paths</h3>
+<h3 id="_到達不可能な_コードパスを文書化する"><a class="anchor" href="#_到達不可能な_コードパスを文書化する"></a><code>到達不可能な</code> コードパスを文書化する</h3>
 <div class="paragraph">
-<p>In contrast to the situations above, sometimes code will <em>never</em> be filled, since it will <em>never</em> be evaluated, assuming the coherence of the internal logic of the programs' invariants.</p>
+<p>上記の状況とは対照的に、プログラムの不変条件における内部論理の一貫性を仮定すると、
+コードが評価されることが <em>決してない</em> ので、コードは <em>決して埋められない</em> という場面もあります。</p>
 </div>
 <div class="paragraph">
-<p>To document a code path as logically impossible, or <em>unreachable</em>, use the base library function <code>unreachable</code>:</p>
+<p>コードパスを、論理的に不可能あるいは <em>到達不可能</em> なものとして記録するには、ベースライブラリの関数である <code>unreachable</code> を使います：</p>
 </div>
 <div class="listingblock include_prelude">
 <div class="content">
@@ -1493,35 +1486,35 @@ Each wraps a <a href="#overview-traps">general trap mechanism</a>, explained fur
 </div>
 </div>
 <div class="paragraph">
-<p>As in the situations above, this function type-checks in all contexts, and when evaluated, traps in all contexts.</p>
+<p>上記の状況と同様に、この関数はいかなる前後関係でも型チェックを行い、評価されるといかなる前後関係でもトラップを行います。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="overview-traps"><a class="anchor" href="#overview-traps"></a>Traps due to execution failure</h3>
+<h3 id="overview-traps"><a class="anchor" href="#overview-traps"></a>実行の失敗によるトラップ</h3>
 <div class="paragraph">
-<p>Some errors, such as division by zero, out-of-bounds array indexing, and pattern match failure are not prevented by the type system, but can cause dynamic failures called <em>traps</em>.</p>
+<p>ゼロ除算、配列の境界外へのインデックス、パターンマッチの失敗などのエラーは型システムでは防ぐことができませんが、実行時に <em>トラップ</em> と呼ばれるエラーを引き起こす可能性があります。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">1/0; // traps due to division by 0</code></pre>
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">1/0; // ゼロ除算によるトラップ</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">let a = ["hello", "world"];
-a[2]; // traps due to out-of-bounds indexing</code></pre>
+a[2]; // 配列の境界外へのインデックスによるトラップ</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">let true = false; // pattern match failure</code></pre>
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">let true = false; // パターンマッチの失敗</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We say that code <em>traps</em> when its exection causes a <em>trap</em>.</p>
+<p>コードの実行がトラップを引き起こしたとき、コードが <em>トラップした</em> と言います。</p>
 </div>
 <div class="paragraph">
-<p>Execution of code is aborted at the first trap and makes no further progress.</p>
+<p>コードの実行は最初のトラップで中断され、以降は実行されません。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1530,19 +1523,19 @@ a[2]; // traps due to out-of-bounds indexing</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Traps that occur within actor messages are more subtle: they don&#8217;t abort the entire actor, but prevent that particular message from proceeding, rolling back any yet uncommitted state changes. Other messages on the actor will continue execution.
+Actor メッセージ内で発生するトラップは少し微妙です。Actor 全体を中止するのではなく、特定のメッセージの進行を妨げ、まだコミットされていないステートの変更をロールバックします。Actor 上の他のメッセージは実行を継続します。
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="overview-debug-trap"><a class="anchor" href="#overview-debug-trap"></a>Explicit traps</h3>
+<h3 id="overview-debug-trap"><a class="anchor" href="#overview-debug-trap"></a>明示的なトラップ</h3>
 <div class="paragraph">
-<p>Occasionally it can be useful to force an unconditional trap, with a user-defined message.</p>
+<p>ときどき、ユーザーが定義したメッセージを用いて、無条件にトラップを強制することが有用な場合があります。</p>
 </div>
 <div class="paragraph">
-<p>The <code>Debug</code> library provides the function <code>trap(t)</code> for this purpose, which can be used in any context.</p>
+<p><code>Debug</code> ライブラリでは、この目的のために、<code>trap(t)</code> 関数を提供しており、どのような文脈においても使うことができます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1559,37 +1552,35 @@ let swear : Text = Debug.trap("oh my!");</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>(The <code>Prelude</code> functions <code>nyi()</code>, <code>unreachable()</code> and <code>xxx()</code> discussed above are simple wrappers around <code>Debug.trap</code>.)</p>
+<p>（前述の <code>Prelude</code> 関数の <code>nyi()</code>、<code>unreachable()</code>、<code>xxx()</code> は、<code>Debug.trap</code> の単純なラッパーです。）</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="overview-assertions"><a class="anchor" href="#overview-assertions"></a>Assertions</h3>
+<h3 id="overview-assertions"><a class="anchor" href="#overview-assertions"></a>アサーション</h3>
 <div class="paragraph">
-<p>Assertions allow you to conditionally trap when some Boolean test fails to hold,
-but continue execution otherwise. For example,</p>
+<p>アサーションでは、あるブール値のテストが成立しなかったときに条件付きでトラップし、成立する場合は実行を継続することができます。例えば、以下のようになります：</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">let n = 65535;
-assert n % 2 == 0; // traps when n not even</code></pre>
+assert n % 2 == 0; // n が偶数ではない場合にトラップ</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">assert false; // unconditionally traps</code></pre>
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">assert false; // 無条件にトラップ</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">import Debug "mo:base/Debug";
 
-assert 1 &gt; 0; // never traps
+assert 1 &gt; 0; // トラップしない
 Debug.print "bingo!";</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Because an assertion may succeed, and thus proceed with execution,
-it may only be used in context where a value of type <code>()</code> is expected.</p>
+<p>アサーションが成功して実行に移ることもあるため、<code>()</code> 型の値が期待される文脈でのみ使用することができます。</p>
 </div>
 </div>
 </div>
