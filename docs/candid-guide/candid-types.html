@@ -856,7 +856,7 @@
 <p>型の構文と、型のテキスト表現の構文。</p>
 </li>
 <li>
-<p>それぞれの型に対する Candid のアップグレードに関するルールは、型の <em>派生型（サブタイプ）</em> と <em>基本型（スーパータイプ）</em> によって決まります。</p>
+<p>それぞれの型に対する Candid のアップグレードに関するルールは、型の <em>サブタイプ</em> と <em>スーパータイプ</em> によって決まります。</p>
 </li>
 <li>
 <p>それぞれの型に対応する Rust、Motoko、Javascript の型。</p>
@@ -864,15 +864,15 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>既存メソッドの <em>返り値</em> の型は以前の型の派生型に変更できます。
-既存メソッドの <em>引数</em> の型は以前の型の基本型に変更できます。</p>
+<p>既存メソッドの <em>返り値</em> の型は以前の型のサブタイプに変更できます。
+既存メソッドの <em>引数</em> の型は以前の型のスーパータイプに変更できます。</p>
 </div>
 <div class="paragraph">
-<p>このリファレンスには、それぞれの型に関連する特定の派生型と基本型のみが記載されていることに注意してください。
-どの型にも適用可能な派生型や基本型は記載していません。
-たとえば、<code>empty</code> は他のどの型の派生型にもなりうるので、このリファレンスでは派生型として挙げていません。
-同様に、<code>reserved</code> と <code>opt t</code> 型 は、任意の型の基本型であるため、特定の型の基本型として挙げていません。
-<code>empty</code>、<code>reserved</code>、<code>opt t</code> 型の派生型化のルールに関する詳細については、以下の節を参照してください。</p>
+<p>このリファレンスには、それぞれの型に関連する特定のサブタイプとスーパータイプのみが記載されていることに注意してください。
+どの型にも適用可能なサブタイプやスーパータイプは記載していません。
+たとえば、<code>empty</code> は他のどの型のサブタイプにもなりうるので、このリファレンスではサブタイプとして挙げていません。
+同様に、<code>reserved</code> と <code>opt t</code> 型 は、任意の型のスーパータイプであるため、特定の型のスーパータイプとして挙げていません。
+<code>empty</code>、<code>reserved</code>、<code>opt t</code> 型のサブタイプ化のルールに関する詳細については、以下の節を参照してください。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -952,13 +952,13 @@
 <p>Text 型に関して詳しく知りたい場合は、<a href="#type-text">Text 型</a>を参照してください。</p>
 </div>
 </dd>
-<dt class="hdlist1">派生型</dt>
+<dt class="hdlist1">サブタイプ</dt>
 <dd>
-<p><code>vec nat8</code> および <code>vec nat8</code> の全ての派生型。</p>
+<p><code>vec nat8</code> および <code>vec nat8</code> の全てのサブタイプ。</p>
 </dd>
-<dt class="hdlist1">基本型</dt>
+<dt class="hdlist1">スーパータイプ</dt>
 <dd>
-<p><code>vec nat8</code> および <code>vec nat8</code> の全ての基本型。</p>
+<p><code>vec nat8</code> および <code>vec nat8</code> の全てのスーパータイプ。</p>
 </dd>
 <dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
@@ -1000,7 +1000,7 @@
 </div>
 </div>
 </dd>
-<dt class="hdlist1">基本型</dt>
+<dt class="hdlist1">スーパータイプ</dt>
 <dd>
 <p><code>int</code></p>
 </dd>
@@ -1050,7 +1050,7 @@
 </div>
 </div>
 </dd>
-<dt class="hdlist1">派生型</dt>
+<dt class="hdlist1">サブタイプ</dt>
 <dd>
 <p><code>nat</code></p>
 </dd>
@@ -1247,7 +1247,7 @@
 <h2 id="type-null"><a class="anchor" href="#type-null"></a>null 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>null</code> 型は値 <code>null</code> の型であり、全ての <code>opt t</code> 型の派生型です。また、<a href="#type-variant">バリアント</a>を使用して列挙型をモデル化する際に慣例的に使用されます。</p>
+<p><code>null</code> 型は値 <code>null</code> の型であり、全ての <code>opt t</code> 型のサブタイプです。また、<a href="#type-variant">バリアント</a>を使用して列挙型をモデル化する際に慣例的に使用されます。</p>
 </div>
 <div class="dlist">
 <dl>
@@ -1259,7 +1259,7 @@
 <dd>
 <p><code>null</code></p>
 </dd>
-<dt class="hdlist1">基本型</dt>
+<dt class="hdlist1">スーパータイプ</dt>
 <dd>
 <p>全ての <code>opt t</code> 型。</p>
 </dd>
@@ -1301,28 +1301,28 @@ vec { "john@doe.com"; "john.doe@example.com" };</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">派生型</dt>
+<dt class="hdlist1">サブタイプ</dt>
 <dd>
 <div class="ulist">
 <ul>
 <li>
-<p><code>t</code> が <code>t'</code> の派生型であるときはいつでも、<code>vec t</code> は <code>vec t'</code> の派生型です。</p>
+<p><code>t</code> が <code>t'</code> のサブタイプであるときはいつでも、<code>vec t</code> は <code>vec t'</code> のサブタイプです。</p>
 </li>
 <li>
-<p><code>blob</code> は <code>vec nat8</code> の派生型です。</p>
+<p><code>blob</code> は <code>vec nat8</code> のサブタイプです。</p>
 </li>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">基本型</dt>
+<dt class="hdlist1">スーパータイプ</dt>
 <dd>
 <div class="ulist">
 <ul>
 <li>
-<p><code>t</code> が <code>t'</code> の基本型であるときはいつでも、<code>vec t</code> は <code>vec t'</code> の基本型です。</p>
+<p><code>t</code> が <code>t'</code> のスーパータイプであるときはいつでも、<code>vec t</code> は <code>vec t'</code> のスーパータイプです。</p>
 </li>
 <li>
-<p><code>blob</code> は <code>vec nat8</code> の基本型です。</p>
+<p><code>blob</code> は <code>vec nat8</code> のスーパータイプです。</p>
 </li>
 </ul>
 </div>
@@ -1360,7 +1360,7 @@ vec { "john@doe.com"; "john.doe@example.com" };</code></pre>
 <p><code>opt</code> 型は入れ子にすることができ（例：<code>opt opt text</code>）、値 <code>null</code> と <code>opt null</code> は別の値です。</p>
 </div>
 <div class="paragraph">
-<p><code>opt</code> 型は、Candid インターフェース のアップグレードにおいて重要な役割を果たしており、以下のような特別な派生型のルールを持っています。</p>
+<p><code>opt</code> 型は、Candid インターフェース のアップグレードにおいて重要な役割を果たしており、以下のような特別なサブタイプのルールを持っています。</p>
 </div>
 <div class="dlist">
 <dl>
@@ -1380,38 +1380,38 @@ opt opt "test"</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">派生型</dt>
+<dt class="hdlist1">サブタイプ</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p><code>opt</code> を使った派生型の規範的なルールは次の通りです：</p>
+<p><code>opt</code> を使ったサブタイプの規範的なルールは次の通りです：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>t</code> が <code>t'</code> の派生型であるときはいつでも、<code>opt t</code> は <code>opt t'</code> の派生型です。</p>
+<p><code>t</code> が <code>t'</code> のサブタイプであるときはいつでも、<code>opt t</code> は <code>opt t'</code> のサブタイプです。</p>
 </li>
 <li>
-<p><code>null</code> は <code>opt t'</code> の派生型です。</p>
+<p><code>null</code> は <code>opt t'</code> のサブタイプです。</p>
 </li>
 <li>
-<p><code>t</code> は <code>opt t</code> の派生型です（<code>t</code> 自体が <code>null</code> でない限り、<code>opt &#8230;&#8203;</code> または <code>reserved</code> ）。</p>
+<p><code>t</code> は <code>opt t</code> のサブタイプです（<code>t</code> 自体が <code>null</code> でない限り、<code>opt &#8230;&#8203;</code> または <code>reserved</code> ）。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>加えて、アップグレードや上位のサービスに関する技術的な理由から、 <em>every</em> 型は <code>opt t</code> の派生型であり、型が一致しない場合には <code>null</code> が生成されます。ただし、ユーザーはこのルールを直接利用しないようにしてください。</p>
+<p>加えて、アップグレードや上位のサービスに関する技術的な理由から、 <em>every</em> 型は <code>opt t</code> のサブタイプであり、型が一致しない場合には <code>null</code> が生成されます。ただし、ユーザーはこのルールを直接利用しないようにしてください。</p>
 </div>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">基本型</dt>
+<dt class="hdlist1">スーパータイプ</dt>
 <dd>
 <div class="ulist">
 <ul>
 <li>
-<p><code>t</code> が <code>t'</code> の基本型であるとき、<code>opt t</code> は <code>opt t'</code> の基本型です。</p>
+<p><code>t</code> が <code>t'</code> のスーパータイプであるとき、<code>opt t</code> は <code>opt t'</code> のスーパータイプです。</p>
 </li>
 </ul>
 </div>
@@ -1499,12 +1499,12 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">派生型</dt>
+<dt class="hdlist1">サブタイプ</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>record の派生型とは、（任意のタイプの）フィールドが追加されたり、フィールドの型が派生型に変更されたり、選択型のフィールドが削除されたりした record 型のことです。ただし、メソッドの返り値で選択型のフィールドを削除するのはバッドプラクティスです。フィールドの型を <code>opt empty</code> に変更することで、そのフィールドがもう使われていないことを示すことができます。</p>
+<p>record のサブタイプとは、（任意のタイプの）フィールドが追加されたり、フィールドの型がサブタイプに変更されたり、選択型のフィールドが削除されたりした record 型のことです。ただし、メソッドの返り値で選択型のフィールドを削除するのはバッドプラクティスです。フィールドの型を <code>opt empty</code> に変更することで、そのフィールドがもう使われていないことを示すことができます。</p>
 </div>
 <div class="paragraph">
 <p>例えば、次のような record を返す関数があったとします：</p>
@@ -1532,12 +1532,12 @@ record { "a"; "tuple"; null }</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">基本型</dt>
+<dt class="hdlist1">スーパータイプ</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>record の基本型とは、一部のフィールドが削除された record 型、一部のフィールドのタイプが基本型に変更された record 型、または選択型のフィールドが追加された record 型のことです。</p>
+<p>record のスーパータイプとは、一部のフィールドが削除された record 型、一部のフィールドのタイプがスーパータイプに変更された record 型、または選択型のフィールドが追加された record 型のことです。</p>
 </div>
 <div class="paragraph">
 <p>後者は、引数の record を追加フィールドで拡張することができるものです。古いインターフェースを使用しているクライアントは、 record にフィールドを含めることができず、アップグレードされたサービスで期待される <code>null</code> としてデコードされます。</p>
@@ -1661,12 +1661,12 @@ variant { fall }</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">派生型</dt>
+<dt class="hdlist1">サブタイプ</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>variant 型の派生型は、一部のタグを削除し、一部のタグの型を派生型に変更した variant 型です。</p>
+<p>variant 型のサブタイプは、一部のタグを削除し、一部のタグの型をサブタイプに変更した variant 型です。</p>
 </div>
 <div class="paragraph">
 <p>メソッドの返り値の variant に新しいタグを <em>追加</em> できるようにしたい場合、variant 自体が <code>opt &#8230;&#8203;</code> でラップされていれば可能です。これには事前の計画が必要です。インターフェースを設計する際には、次のように書く代わりに：</p>
@@ -1694,9 +1694,9 @@ variant { fall }</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">基本型</dt>
+<dt class="hdlist1">スーパータイプ</dt>
 <dd>
-<p>variant 型の基本型は、タグが追加された variant です。一部のタグの型が基本型に変更されている場合もあります。</p>
+<p>variant 型のスーパータイプは、タグが追加された variant です。一部のタグの型がスーパータイプに変更されている場合もあります。</p>
 </dd>
 <dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
@@ -1787,9 +1787,9 @@ func "aaaaa-aa".create_canister</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">派生型</dt>
+<dt class="hdlist1">サブタイプ</dt>
 <dd>
-<p><a href="candid-concepts.html#upgrades">サービスのアップグレード</a>のルールで説明されているように、以下の修正は、ある func 型をその派生型に変更します：</p>
+<p><a href="candid-concepts.html#upgrades">サービスのアップグレード</a>のルールで説明されているように、以下の修正は、ある func 型をそのサブタイプに変更します：</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1802,17 +1802,17 @@ func "aaaaa-aa".create_canister</code></pre>
 <p>引数の型のリストを、オプションの引数（<code>opt &#8230;&#8203;</code> 型）で拡張することができます。</p>
 </li>
 <li>
-<p>既存の引数の型を <em>基本型</em> に変更することができます。言い換えれば、関数の型は引数の型に <em>反変</em> であるということです。</p>
+<p>既存の引数の型を <em>スーパータイプ</em> に変更することができます。言い換えれば、関数の型は引数の型に <em>反変</em> であるということです。</p>
 </li>
 <li>
-<p>既存の返り値の型を派生型に変更することができます。</p>
+<p>既存の返り値の型をサブタイプに変更することができます。</p>
 </li>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">基本型</dt>
+<dt class="hdlist1">スーパータイプ</dt>
 <dd>
-<p>以下の修正は、ある func 型をその基本型に変更します：</p>
+<p>以下の修正は、ある func 型をそのスーパータイプに変更します：</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1825,10 +1825,10 @@ func "aaaaa-aa".create_canister</code></pre>
 <p>引数の型のリストは拡張さすることができます。</p>
 </li>
 <li>
-<p>既存の引数の型を <em>派生型</em> に変更することができます。言い換えれば、関数の型は引数の型に <em>反変</em> であるということです。</p>
+<p>既存の引数の型を <em>サブタイプ</em> に変更することができます。言い換えれば、関数の型は引数の型に <em>反変</em> であるということです。</p>
 </li>
 <li>
-<p>既存の返り値の型を基本型に変更することができます。</p>
+<p>既存の返り値の型をスーパータイプに変更することができます。</p>
 </li>
 </ul>
 </div>
@@ -1910,16 +1910,16 @@ service "aaaaa-aa"</code></pre>
 </div>
 </div>
 </dd>
-<dt class="hdlist1">派生型</dt>
+<dt class="hdlist1">サブタイプ</dt>
 <dd>
-<p>service 型の派生型とは、追加のメソッドが付与されたり、既存のメソッドの型が派生型に変更されている service 型です。</p>
+<p>service 型のサブタイプとは、追加のメソッドが付与されたり、既存のメソッドの型がサブタイプに変更されている service 型です。</p>
 <div class="paragraph">
 <p>これは、<a href="candid-concepts.html#upgrades">Service のアップグレード</a>内のルールにて説明されているのと同じ原理に基づくものです。</p>
 </div>
 </dd>
-<dt class="hdlist1">基本型</dt>
+<dt class="hdlist1">スーパータイプ</dt>
 <dd>
-<p>service 型の基本型とは、一部のメソッドが削除されたり、既存のメソッドの型が基本型に変更されている service 型です。</p>
+<p>service 型のスーパータイプとは、一部のメソッドが削除されたり、既存のメソッドの型がスーパータイプに変更されている service 型です。</p>
 </dd>
 <dt class="hdlist1">対応する Motoko の型</dt>
 <dd>
@@ -1995,7 +1995,7 @@ principal "aaaaa-aa"</code></pre>
 <h2 id="type-reserved"><a class="anchor" href="#type-reserved"></a>reserved 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>reserved</code> 型は、1つの（情報を持たない）値 <code>reserved</code> を持つ型で、他のすべての型の基本型です。</p>
+<p><code>reserved</code> 型は、1つの（情報を持たない）値 <code>reserved</code> を持つ型で、他のすべての型のスーパータイプです。</p>
 </div>
 <div class="paragraph">
 <p>メソッドの引数を削除するのに <code>reserved</code> 型を使用することができます。次のようなシグネチャを持つメソッドを考えてみましょう：</p>
@@ -2079,7 +2079,7 @@ principal "aaaaa-aa"</code></pre>
 <dd>
 <p><code>reserved</code></p>
 </dd>
-<dt class="hdlist1">派生型</dt>
+<dt class="hdlist1">サブタイプ</dt>
 <dd>
 <p>全ての型</p>
 </dd>
@@ -2103,7 +2103,7 @@ principal "aaaaa-aa"</code></pre>
 <h2 id="type-empty"><a class="anchor" href="#type-empty"></a>empty 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>empty</code> 型は、値を持たない型で、他のどの型の派生型でもあります。</p>
+<p><code>empty</code> 型は、値を持たない型で、他のどの型のサブタイプでもあります。</p>
 </div>
 <div class="paragraph">
 <p><code>empty</code> 型の実用的なユースケースは比較的まれです。
@@ -2126,7 +2126,7 @@ principal "aaaaa-aa"</code></pre>
 <dd>
 <p>この型には値がないため、テキスト表現はありません。</p>
 </dd>
-<dt class="hdlist1">基本型</dt>
+<dt class="hdlist1">スーパータイプ</dt>
 <dd>
 <p>全ての型</p>
 </dd>

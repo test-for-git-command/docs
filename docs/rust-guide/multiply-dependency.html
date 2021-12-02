@@ -1035,8 +1035,8 @@ Internet Computer 上で動作する Canister スマートコントラクトを�
       "type": "motoko"
     },
     "rust_deps": {
-      "build": "cargo build --target wasm32-unknown-unknown --package  rust_deps --release",
-      "candid": "src/rust_deps/deps.did",
+      "build": "cargo build --target wasm32-unknown-unknown --package rust_deps --release",
+      "candid": "src/rust_deps/src/deps.did",
       "wasm": "target/wasm32-unknown-unknown/release/rust_deps.wasm",
       "type": "custom",
       "dependencies": [
@@ -1260,7 +1260,7 @@ use ic_cdk::export::candid;
 #[import(canister = "multiply_deps")]
 struct CounterCanister;
 
-#[update]
+#[query]
 async fn read() -&gt; candid::Nat {
     CounterCanister::read().await.0
 }</code></pre>

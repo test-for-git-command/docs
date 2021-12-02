@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Mutable states :: Dfinity 日本語ドキュメント</title>
+    <title>ミュータブルなステート :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/language-guide/mutable-state.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -843,42 +843,31 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Mutable states</h1>
+<h1 class="page">ミュータブルなステート</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Each actor in Motoko may use, but may <em>never directly share</em>,
-internal mutable state.</p>
+<p>Motoko の各 Actor は、内部のミュータブル（可変）なステートを使用することはできますが、<em>決して直接共有することはできません</em> 。</p>
 </div>
 <div class="paragraph">
-<p>Later, we discuss <a href="sharing.html">sharing among actors</a>, where
-actors send and receive <em>immutable</em> data, and also handles to each
-others external entry points, which serve as <em>shareable functions</em>.
-Unlike those cases of shareable data, a key Motoko design
-invariant is that <em><strong>mutable data</strong> is kept internal (private) to the
-actor that allocates it, and <strong>is never shared remotely</strong></em>.</p>
+<p>後ほど、<a href="sharing.html">Actor 間の共有</a>について議論しますが、
+これは Actor が <em>イミュータブル</em> （不変）な データやハンドルを、shared 関数として提供されている外部エントリーポイントに送受信するものです。
+これらの共有可能なデータを送受信する場合とは異なり、Motoko の設計上の重要な不変性は、<em><strong>ミュータブルなデータ</strong>は、それを割り当てた Actor の内部（プライベート）に保持され、<strong>リモートで共有されることは決してない</strong>ということです</em> 。</p>
 </div>
 <div class="paragraph">
-<p>In this chapter, we continue using minimal
-examples to show how to introduce (private) actor state, and use
-mutation operations to change it over time.</p>
+<p>この章では、（プライベートな）Actor のステートを用いて、値の変更操作を行って時間の経過とともにステートの値を変化させる方法を、最小限の例を使って説明します。</p>
 </div>
 <div class="paragraph">
-<p>In <a href="local-objects-classes.html">local objects and classes</a>, we introduce the
-syntax for local objects, and a minimal <code>counter</code> actor with a single
-mutable variable.  In the <a href="actors-async.html">following chapter</a>, we
-show an actor with the same behavior, exposing the counter variable
-indirectly behind an associated service interface for using it
-remotely.</p>
+<p><a href="local-objects-classes.html">ローカルオブジェクトとクラス</a>では、ローカルオブジェクトの構文と、1つのミュータブルな変数を持つ最小構成の <code>counter</code> Actor を紹介しています。
+<a href="actors-async.html">次の章</a>では、同じ動作をする Actor を用いますが、リモートで使用するための Service インターフェースによって間接的に counter 変数を公開する方法について説明しています。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_immutable_versus_mutable_variables"><a class="anchor" href="#_immutable_versus_mutable_variables"></a>Immutable versus mutable variables</h2>
+<h2 id="_イミュータブルな変数_vs_ミュータブルな変数"><a class="anchor" href="#_イミュータブルな変数_vs_ミュータブルな変数"></a>イミュータブルな変数 vs ミュータブルな変数</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>var</code> syntax declares mutable variables in a declaration
-block:</p>
+<p><code>var</code> 構文は、宣言ブロックの中でミュータブルな変数を宣言します：</p>
 </div>
 <div id="init" class="listingblock">
 <div class="content">
@@ -890,25 +879,23 @@ var text2 : Text = text;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The declaration list above declares four variables.
-The first two variables (<code>text</code> and <code>num</code>) are lexically-scoped, <em>immutable variables</em>.
-The final two variables (<code>pair</code> and <code>text2</code>) are lexically-scoped, <strong><em>mutable</em></strong> variables.</p>
+<p>上記の宣言リストでは、4つの変数を宣言しています。
+最初の2つの変数 (<code>text</code> と <code>num</code>) は字句スコープされた <em>イミュータブルな変数</em> です。
+最後の2つの変数 (<code>pair</code> と <code>text2</code>) は字句スコープされた <strong><em>ミュータブルな</em></strong> 変数です。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="intro-assignment"><a class="anchor" href="#intro-assignment"></a>Assignment to mutable memory</h2>
+<h2 id="intro-assignment"><a class="anchor" href="#intro-assignment"></a>ミュータブルなメモリへの割り当て</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mutable variables permit assignment, and immutable variables do not.</p>
+<p>ミュータブルな変数には代入が可能ですが、イミュータブルな変数には代入ができません。</p>
 </div>
 <div class="paragraph">
-<p>If we try to assign new values to either <code>text</code> or <code>num</code> above, we
-will get static type errors; these variables are immutable.</p>
+<p>上記の <code>text</code> や <code>num</code> に新しい値を代入しようとすると、これらの変数はイミュータブルなので静的型エラーが発生します。</p>
 </div>
 <div class="paragraph">
-<p>However, we may freely update the value of mutable variables <code>pair</code>
-and <code>text2</code> using the syntax for assignment, written as <code>:=</code>, as follows:</p>
+<p>しかし、ミュータブルな変数である <code>pair</code> と <code>text2</code> の値は、以下のように <code>:=</code> で表される代入の構文を使って自由に更新することができます：</p>
 </div>
 <div class="listingblock include_init">
 <div class="content">
@@ -918,25 +905,18 @@ pair</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Above, we update each variable based on applying a simple &#8220;update
-rule&#8221; to their current values (for example, we <em>update</em> <code>text2</code> by
-appending string constant <code>"xyz"</code> to its suffix).  Likewise, an actor
-processes some calls by performing <em>updates</em> on its internal (private)
-mutable variables, using the same assignment syntax as above.</p>
+<p>上記では、各変数の値に単純な <code>更新ルール</code> を適用することで各変数を更新しています（例えば、<code>text2</code> の接尾辞に文字列 <code>"xyz"</code> を付加することで  <em>更新</em> しています）。 同様に、Actor は内部（プライベート）のミュータブルな変数に対して同じ代入構文を使用して <em>update</em> を実行することで、更新の呼び出しを処理します。</p>
 </div>
 <div class="sect2">
-<h3 id="_special_assignment_operations"><a class="anchor" href="#_special_assignment_operations"></a>Special assignment operations</h3>
+<h3 id="_特殊な代入操作"><a class="anchor" href="#_特殊な代入操作"></a>特殊な代入操作</h3>
 <div class="paragraph">
-<p>The assignment operation <code>:=</code> is general, and works for all types.</p>
+<p>代入操作 <code>:=</code> は一般的であり、すべての型に対して機能します。</p>
 </div>
 <div class="paragraph">
-<p>Motoko also includes special assignment operations that combine
-assignment with a binary operation.  The assigned value uses the
-binary operation on a given operand and the
-current contents of the assigned variable.</p>
+<p>また、Motoko には、代入と二項演算（2つの数から新たな数を決定する演算）を組み合わせた特殊な代入操作もあります。代入値は、与えられたオペランド（被演算子）に対する二項演算と、代入された変数の現在の値を使用します。</p>
 </div>
 <div class="paragraph">
-<p>For example, numbers permit a combination of assignment and addition:</p>
+<p>例えば数字では、加算と同時に代入することが可能です：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -946,10 +926,10 @@ num2</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>After the second line, the variable <code>num2</code> holds <code>42</code>, as one would expect.</p>
+<p>2行目以降の変数 <code>num2</code> には、期待する通り <code>42</code> が格納されます。</p>
 </div>
 <div class="paragraph">
-<p>Motoko includes other combinations as well.  For example, we can rewrite the line above that updates <code>text2</code> more concisely as:</p>
+<p>Motoko には、他の代入と二項演算の組み合わせもあります。例えば、<code>text2</code> を更新する上の行を、より簡潔に次のように書き換えることができます：</p>
 </div>
 <div class="listingblock include_init">
 <div class="content">
@@ -958,45 +938,34 @@ text2</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>As with <code>+=</code>, this combined form avoids repeating the assigned
-variable&#8217;s name on the right hand side of the (special) assignment
-operator <code>#=</code>.</p>
+<p><code>+=</code> と同様に、代入される変数の名前を（特殊）代入演算子 <code>#=</code> の右側で繰り返すことを避けることができます。</p>
 </div>
 <div class="paragraph">
-<p>The <a href="language-manual.html#syntax-ops-assignment">full list of assignment operations</a>
-lists numerical, logical, and textual operations over appropriate
-types (number, boolean and text values, respectively).</p>
+<p><a href="language-manual.html#syntax-ops-assignment">代入演算の全リスト</a>に、適切な型（数値、ブール、テキスト値）に対する数値、論理、テキストの演算の一覧が記載されています。</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_reading_from_mutable_memory"><a class="anchor" href="#_reading_from_mutable_memory"></a>Reading from mutable memory</h2>
+<h2 id="_ミュータブルなメモリからの読み込み"><a class="anchor" href="#_ミュータブルなメモリからの読み込み"></a>ミュータブルなメモリからの読み込み</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When we updated each variable, we also first <em>read</em> from the mutable
-contents, with no special syntax.</p>
+<p>各変数を更新する際には、特殊な構文なしに、ミュータブルな値を最初に <em>読み込み</em> しています。</p>
 </div>
 <div class="paragraph">
-<p>This illustrates a subtle point: Each use of a mutable variable <em>looks
-like</em> the use of an immutable variable, but does not <em>act like</em> one.
-In fact, its meaning is more complex.  As in many languages
-(JavaScript, Java, C#, etc.), but not all, the syntax of each use
-hides the <em>memory effect</em> that accesses the memory cell identified by
-that variable, and gets its current value.  Other languages from
-functional traditions (SML, OCaml, Haskell, etc), generally expose
-these effects syntactically.</p>
+<p>これは細かいポイントを示しています。それぞれのミュータブルな変数の使用は、イミュータブルな変数の使用のように <em>見え</em> ますが、実際にはイミュータブルな変数のようには <em>動作</em> しません。
+実際、その意味はさらに複雑です。すべての言語ではありませんが、多くの言語（JavaScript、Java、C# など）では、それぞれの構文は、その変数で特定されるメモリのセルにアクセスして現在の値を取得する <em>メモリ効果</em> を隠蔽しています。関数型言語の伝統を持つ他の言語（SML、OCaml、Haskell など）では、一般的にこれらの作用を構文的に公開しています。</p>
 </div>
 <div class="paragraph">
-<p>Below, we explore this point in detail.</p>
+<p>以下では，この点について詳しく説明します：</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_understanding_var_versus_let_bound_variables"><a class="anchor" href="#_understanding_var_versus_let_bound_variables"></a>Understanding <code>var</code>- versus <code>let</code>-bound variables</h2>
+<h2 id="_var_と_let_の違いについて理解する"><a class="anchor" href="#_var_と_let_の違いについて理解する"></a><code>var</code> と <code>let</code> の違いについて理解する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Consider the following two variable declarations, which look similar:</p>
+<p>次の2つのよく似た変数宣言を考えてみましょう：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1004,7 +973,7 @@ these effects syntactically.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>and:</p>
+<p>と</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1012,34 +981,32 @@ these effects syntactically.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The only difference in their syntax is the use of keyword <code>let</code> versus
-<code>var</code> to define the variable <code>x</code>, which in each case the program
-initializes to <code>0</code>.</p>
+<p>これらの構文の唯一の違いは変数 <code>x</code> を定義するのにキーワード <code>let</code> と <code>var</code> を使用していることで、いずれもプログラムは <code>0</code> に初期化します。</p>
 </div>
 <div class="paragraph">
-<p>However, these programs carry different meanings, and in the context of larger programs, the difference in meanings will impact the meaning of each occurrence of <code>x</code>.</p>
+<p>しかしながら、これらのプログラムは異なる意味を持っており、より大きなプログラムの文脈では、その意味の違いが <code>x</code> の使われ方の意味に影響を及ぼします。</p>
 </div>
 <div class="paragraph">
-<p>For the first program, which uses <code>let</code>, each such occurrence <em>means</em> <code>0</code>.  Replacing each occurrence with <code>0</code> will not change the meaning of the program.</p>
+<p><code>let</code> を使用している最初のプログラムでは、<code>x</code> が <code>0</code> であることを <em>意味して</em> います。 <code>x</code> が使われている箇所を <code>0</code> に置き換えても、プログラムの意味は変わりません。</p>
 </div>
 <div class="paragraph">
-<p>For the second program, which uses <code>var</code>, each occurrence <em>means</em>: &#8220;read and produce the current value of the mutable memory cell named <code>x</code>.&#8221;
-In this case, each occurrence&#8217;s value is determined by dynamic state: the contents of the mutable memory cell named <code>x</code>.</p>
+<p><code>var</code> を使った2つ目のプログラムでは、それぞれの <code>x</code> は「<code>x</code> という名前の、ミュータブルなメモリセルの現在の値を読み込んで生成する」ということを <em>意味して</em> います。
+この場合、それぞれの <code>x</code> の値は動的な状態（<code>x</code> という名前のミュータブルなメモリセルの内容）によって決定されます。</p>
 </div>
 <div class="paragraph">
-<p>As one can see from the definitions above, there is a fundamental contrast between the meanings of <code>let</code>-bound and <code>var</code>-bound variables.</p>
+<p>上記の定義からわかるように、<code>let</code> に束縛された変数と <code>var</code> に束縛された変数の意味には根本的な違いがあります。</p>
 </div>
 <div class="paragraph">
-<p>In large programs, both kinds of variables can be useful, and neither kind serves as a good replacement for the other.</p>
+<p>大規模なプログラムでは、どちらの種類の変数も有用であり、どちらかがもう一方のよい代替とはなりません。</p>
 </div>
 <div class="paragraph">
-<p>However, <code>let</code>-bound variables <em>are</em> more fundamental.</p>
+<p>ただし、<code>let</code> 変数はより基本的なものです。</p>
 </div>
 <div class="paragraph">
-<p>To see why, consider encoding a <code>var</code>-bound variable using a one-element, mutable array, itself bound using a <code>let</code>-bound variable.</p>
+<p>その理由を知るため、<code>let</code> 変数 1 要素のミュータブルな配列を使って、<code>var</code> 変数を書き表すことを考えてみましょう。</p>
 </div>
 <div class="paragraph">
-<p>For instance, instead of declaring <code>x</code> as a mutable variable initially holding <code>0</code>, we could instead use <code>y</code>, an immutable variable that denotes a mutable array with one entry, holding <code>0</code>:</p>
+<p>例えば、<code>0</code> で初期化されたミュータブルな変数として <code>x</code> を宣言することは、1 要素（<code>0</code>）のミュータブルな配列を示す、イミュータブルな変数 <code>y</code> によって代替することが可能です：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1048,45 +1015,39 @@ let y : [var Nat] = [var 0] ;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We explain mutable arrays in more detail <a href="#mutable-arrays">below</a>.</p>
+<p>ミュータブルな配列の詳細については<a href="#mutable-arrays">以下</a>で説明します。</p>
 </div>
 <div class="paragraph">
-<p>Unfortunately, the read and write syntax required for this encoding
-reuses that of mutable arrays, which is not as readable as that of
-<code>var</code>-bound variables.  As such, the reads and writes of variable <code>x</code>
-will be easier to read than those of variable <code>y</code>.</p>
+<p>残念ながら、この書き方に用いた読み書きの構文は、ミュータブルな配列の構文を再利用しており、<code>var</code> 変数の構文ほど読みやすくありません。
+つまり、変数 <code>x</code> の読み書きの仕方は、変数 <code>y</code> の読み書きの仕方よりも読みやすいです。</p>
 </div>
 <div class="paragraph">
-<p>For this practical reason, and others, <code>var</code>-bound variables are a
-core aspect of the language design.</p>
+<p>このような実用上の理由から、<code>var</code> 変数は、言語設計の中核をなすものです。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="immutable-arrays"><a class="anchor" href="#immutable-arrays"></a>Immutable arrays</h2>
+<h2 id="immutable-arrays"><a class="anchor" href="#immutable-arrays"></a>イミュータブルな配列</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before discussing <a href="#mutable-arrays">mutable arrays</a>, we introduce immutable arrays, which share the same projection syntax, but do not permit mutable updates (assignments) after allocation.</p>
+<p><a href="#mutable-arrays">ミュータブルな配列</a>について説明する前に、同じ射影（値の抽出）の構文を持ち、割り当て後の可変的な更新（代入）を許可しないイミュータブルな配列について説明します。</p>
 </div>
 <div class="sect2">
-<h3 id="_allocate_an_immutable_array_of_constants"><a class="anchor" href="#_allocate_an_immutable_array_of_constants"></a>Allocate an immutable array of constants</h3>
+<h3 id="_イミュータブルな定数配列の割り当て"><a class="anchor" href="#_イミュータブルな定数配列の割り当て"></a>イミュータブルな定数配列の割り当て</h3>
 <div id="array" class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">let a : [Nat] = [1, 2, 3] ;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The array <code>a</code> above holds three natural numbers, and has type <code>[Nat]</code>.
-In general, the type of an immutable array is <code>[_]</code>, using square
-brackets around the type of the array&#8217;s elements, which must share a
-single common type, in this case <code>Nat</code>.</p>
+<p>上の配列 <code>a</code> は3つの自然数を保持しており、型は <code>[Nat]</code> です。
+一般に、イミュータブルな配列の型は <code>[_]</code> であり、配列の要素の型を角括弧で囲んで表現します。要素の型は配列内で共通となる単一の型である必要があり、今回の場合は <code>Nat</code> です。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_project_from_read_from_an_array_index"><a class="anchor" href="#_project_from_read_from_an_array_index"></a>Project from (read from) an array index</h3>
+<h3 id="_配列のインデックスからの射影値の読み込みについて"><a class="anchor" href="#_配列のインデックスからの射影値の読み込みについて"></a>配列のインデックスからの射影（値の読み込み）について</h3>
 <div class="paragraph">
-<p>We can project from (<em>read from</em>) an array using the usual bracket
-syntax (<code>[</code> and <code>]</code>) around the index we want to access:</p>
+<p>配列からの射影（<em>読み込み</em>）には、角括弧（<code>[</code> と <code>]</code>）でアクセスしたいインデックスを囲む、よくあるブラケット構文を用いることができます：</p>
 </div>
 <div class="listingblock include_array">
 <div class="content">
@@ -1094,17 +1055,17 @@ syntax (<code>[</code> and <code>]</code>) around the index we want to access:</
 </div>
 </div>
 <div class="paragraph">
-<p>Every array access in Motoko is safe.  Accesses that are out of
-bounds will not access memory unsafely, but instead will cause the program to trap, as with an <a href="basic-concepts.html#overview-traps">assertion failure</a>.</p>
+<p>Motoko において配列へのアクセスはすべて安全です。
+範囲外へのアクセスは危険なメモリアクセスを引き起こさず、代わりに <a href="basic-concepts.html#overview-traps">アサーションの失敗</a>のようにプログラムがトラップされます。</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_array_module"><a class="anchor" href="#_the_array_module"></a>The Array module</h2>
+<h2 id="_配列モジュール"><a class="anchor" href="#_配列モジュール"></a>配列モジュール</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Motoko standard library provides basic operations for immutable and mutable arrays. It can be imported as follows,</p>
+<p>Motoko 標準ライブラリは、ミュータブルな配列およびイミュータブルな配列に対する基本的な操作を提供しています。以下のようにインポートできます。</p>
 </div>
 <div id="import" class="listingblock">
 <div class="content">
@@ -1112,25 +1073,19 @@ bounds will not access memory unsafely, but instead will cause the program to tr
 </div>
 </div>
 <div class="paragraph">
-<p>In this section, we discuss some of the most frequently used array operations.
-For more information about using arrays, see the <a href="stdlib/array.html">Array</a> library descriptions.</p>
+<p>この章では、最も頻繁に使用される配列操作について説明します。
+配列の使い方の詳細については、<a href="stdlib/array.html">配列</a>ライブラリの説明をご覧ください。</p>
 </div>
 <div class="sect2">
-<h3 id="_allocate_an_immutable_array_with_varying_content"><a class="anchor" href="#_allocate_an_immutable_array_with_varying_content"></a>Allocate an immutable array with varying content</h3>
+<h3 id="_イミュータブルな配列へのさまざまな要素の割り当て"><a class="anchor" href="#_イミュータブルな配列へのさまざまな要素の割り当て"></a>イミュータブルな配列へのさまざまな要素の割り当て</h3>
 <div class="paragraph">
-<p>Above, we showed a limited way of creating immutable arrays.</p>
+<p>上記では、イミュータブルな配列を作成するためのごく限られた方法を示しました。</p>
 </div>
 <div class="paragraph">
-<p>In general, each new array allocated by a program will contain
-a varying number of varying elements.  Without mutation, we need a way
-to specify this family of elements "all at once", in the argument to
-allocation.</p>
+<p>一般的に、プログラムによって割り当てられた新しい配列はさまざまな値を含みます。突然値が変わるようなことがないのであれば、要素群を割り当ての引数で "一度に" 指定する方法が必要です。</p>
 </div>
 <div class="paragraph">
-<p>To accommodate this need, the Motoko language provides <em>the
-higher-order</em> array-allocation function <code>Array.tabulate</code>, which
-allocates a new array by consulting a user-provided "generation
-function" <code>gen</code> for each element.</p>
+<p>このようなニーズに対応するために、Motoko 言語では、要素ごとに値を決めるためにユーザー指定の "生成関数" である <code>gen</code> を参照する、<em>高次の</em> 配列割り当て関数 <code>Array.tabulate</code> を用意しています。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1138,55 +1093,54 @@ function" <code>gen</code> for each element.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Function <code>gen</code> specifies the array <em>as a function value</em> of arrow
-type <code>Nat &#8594; T</code>, where <code>T</code> is the final array element type.</p>
+<p><code>gen</code> 関数は、アロー関数型 <code>Nat &#8594; T</code> （ここで <code>T</code> は最終的な配列要素の型）の <em>関数値</em> として配列を指定します。</p>
 </div>
 <div class="paragraph">
-<p>The function <code>gen</code> actually <em>functions</em> as the array during
-its initialization: It receives the index of the array element, and it produces the element (of type <code>T</code>) that should reside at that index in the array.
-The allocated output array populates itself based on this specification.</p>
+<p><code>gen</code> 関数は、配列の初期化時に配列として実際に <em>機能</em> します。つまり、配列要素のインデックスを受け取り、そのインデックスに割り当てられる（<code>T</code> 型の）要素を生成して返します。
+出力された配列は、<code>gen</code> 関数の指定に基づいて自らの配列に値を追加します。</p>
 </div>
 <div class="paragraph">
-<p>For instance, we can first allocate <code>array1</code> consisting of some initial constants, and then functionally-update <em>some</em> of the indices by "changing" them (in a pure, functional way), to produce <code>array2</code>, a second array that does not destroy the first.</p>
+<p>例えば、最初にいくつかの初期定数からなる <code>array1</code> を割り当て、次にインデックスの一部を（純粋な、関数型な方法で）変更してアップデートを行い、2番目の配列である <code>array2</code> を非破壊的に生成することができます。</p>
 </div>
 <div class="listingblock include_import">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">let array1 : [Nat] = [1, 2, 3, 4, 6, 7, 8] ;
 
 let array2 : [Nat] = Array.tabulate&lt;Nat&gt;(7, func(i:Nat) : Nat {
-    if ( i == 2 or i == 5 ) { array1[i] * i } // change 3rd and 6th entries
-    else { array1[i] } // no change to other entries
+    if ( i == 2 or i == 5 ) { array1[i] * i } // 3番目と6番目の要素を変更
+    else { array1[i] } // 他の要素は変更なし
   }) ;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Even though we "changed" <code>array1</code> into <code>array2</code> in a functional sense, notice that both arrays and both variables are immutable.</p>
+<p>関数型の要領で <code>array1</code> を <code>array2</code> に変更しているものの、両方の配列と両方の変数はイミュータブルであることに注意してください。</p>
 </div>
 <div class="paragraph">
-<p>Next, we consider <em>mutable</em> arrays, which are fundamentally distinct.</p>
+<p>次に、根本的に異なる <em>ミュータブル</em> な配列について考えてみましょう。</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_mutable_arrays"><a class="anchor" href="#_mutable_arrays"></a>Mutable arrays</h2>
+<h2 id="_イミュータブルな配列"><a class="anchor" href="#_イミュータブルな配列"></a>イミュータブルな配列</h2>
 <div class="sectionbody">
 <div id="mutable-arrays" class="paragraph">
-<p>Above, we introduced <em>immutable</em> arrays, which share the same projection syntax as mutable arrays, but do not permit mutable updates (assignments) after allocation.  Unlike immutable arrays, each mutable array in Motoko introduces (private) mutable actor state.</p>
+<p>上ではミュータブルな配列と同じ射影の構文を持つ <em>イミュータブルな配列</em> を紹介しましたが、イミュータブルな配列は値の割り当て後のミュータブルな更新（割り当て）を許可していません。イミュータブルな配列とは異なり、Motoko のミュータブルな配列は、（プライベートで）ミュータブルな Actor のステートを導入します。</p>
 </div>
 <div class="paragraph">
-<p>Because Motoko&#8217;s type system enforces that remote actors do not share their mutable state, the Motoko type system introduces a firm distinction between mutable and immutable arrays that impacts typing, subtyping and the language abstractions for asynchronous communication.</p>
+<p>Motoko の型システムでは、リモートの Actor がミュータブルなステートを共有しないことを強制しているため、ミュータブルな配列とイミュータブルな配列との間に確固たる区別がされており、これは型付け・サブタイピング・非同期通信のための言語抽象化に影響を与えています。</p>
 </div>
 <div class="paragraph">
-<p>Locally, the mutable arrays can not be used in places that expect immutable ones, since Motoko&#8217;s definition of <a href="language-manual.html#subtyping">subtyping</a> for arrays (correctly) distinguishes those cases for the purposes of type soundness.
-Additionally, in terms of
-actor communication, immutable arrays are safe to send and share, while mutable arrays can not be shared or otherwise sent in messages.
-Unlike immutable arrays, mutable arrays have <em>non-shareable types</em>.</p>
+<p>より身近な例として、ミュータブルな配列はイミュータブルな配列を想定している場所では使用できません。これは、Motoko における配列の <a href="language-manual.html#subtyping">サブタイピング</a> の定義が、型健全性の目的でそれらのケースを（正しく）区別しているためです。</p>
+</div>
+<div class="paragraph">
+<p>加えて、Actor 通信の観点では、イミュータブルな配列は送信したり共有したりしても安全ですが、ミュータブルな配列はメッセージで共有したり送信したりすることはできません。
+イミュータブルな配列とは異なり、ミュータブルな配列は <em>共有不可型</em> を持ちます。</p>
 </div>
 <div class="sect2">
-<h3 id="_allocate_a_mutable_array_of_constants"><a class="anchor" href="#_allocate_a_mutable_array_of_constants"></a>Allocate a mutable array of constants</h3>
+<h3 id="_ミュータブルな定数配列の割り当て"><a class="anchor" href="#_ミュータブルな定数配列の割り当て"></a>ミュータブルな定数配列の割り当て</h3>
 <div class="paragraph">
-<p>To indicate allocation of <em>mutable</em> arrays (in contrast to the forms above, for immutable ones), the mutable array syntax <code>[var _]</code> uses the <code>var</code> keyword, in both the expression and type forms:</p>
+<p><em>ミュータブルな</em> 配列の割り当てであることを示すために（<em>イミュータブルな</em> 配列の形式とは対照的に）、ミュータブルな配列の構文 <code>[var _]</code> では、式と型の両方で <code>var</code> キーワードを使用します：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1194,13 +1148,13 @@ Unlike immutable arrays, mutable arrays have <em>non-shareable types</em>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>As above, the array <code>a</code> above holds three natural numbers, but has type <code>[var Nat]</code>.</p>
+<p>上記の例と同様に、配列 <code>a</code> は3つの自然数を保持していますが、型は <code>[var Nat]</code> です。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_allocate_a_mutable_array_with_dynamic_size"><a class="anchor" href="#_allocate_a_mutable_array_with_dynamic_size"></a>Allocate a mutable array with dynamic size</h3>
+<h3 id="_動的サイズのミュータブルな配列の割り当て"><a class="anchor" href="#_動的サイズのミュータブルな配列の割り当て"></a>動的サイズのミュータブルな配列の割り当て</h3>
 <div class="paragraph">
-<p>To allocate mutable arrays of non-constant size, use the <code>Array_init</code> primitive, and supply an initial value:</p>
+<p>サイズが一定でないミュータブルな配列を割り当てるには、<code>Array_init</code> プリミティブを使用して、初期値を指定します：</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1208,7 +1162,7 @@ Unlike immutable arrays, mutable arrays have <em>non-shareable types</em>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>For example:</p>
+<p>例えば：</p>
 </div>
 <div class="listingblock include_import">
 <div class="content">
@@ -1217,13 +1171,14 @@ let x : [var Nat] = Array.init&lt;Nat&gt;(size, 3);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The variable <code>size</code> need not be constant here; the array will have <code>size</code> number of entries, each holding the initial value <code>3</code>.</p>
+<p>ここで、<code>size</code> は定数である必要はありません。
+配列は <code>size</code> 個の要素を持ち、それぞれが初期値である <code>3</code> を保持します。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mutable_updates"><a class="anchor" href="#_mutable_updates"></a>Mutable updates</h3>
+<h3 id="_ミュータブルな更新"><a class="anchor" href="#_ミュータブルな更新"></a>ミュータブルな更新</h3>
 <div class="paragraph">
-<p>Mutable arrays, each with type form <code>[var _]</code>, permit mutable updates via assignment to an individual element, in this case element index <code>2</code> gets updated from holding <code>3</code> to instead hold value <code>42</code>:</p>
+<p>ミュータブルな配列は、それぞれ <code>[var _]</code> という型を持ち、個々の要素への代入によるミュータブルな更新を許可します。以下の例では、要素のインデックス <code>2</code> が保持していた <code>3</code> の代わりに値 <code>42</code> を保持するように更新されます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1234,15 +1189,15 @@ a</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="intro-array-subtyping"><a class="anchor" href="#intro-array-subtyping"></a>Subtyping does not permit <em>mutable</em> to be used as <em>immutable</em></h3>
+<h3 id="intro-array-subtyping"><a class="anchor" href="#intro-array-subtyping"></a>サブタイピングでは、<em>ミュータブル</em> を <em>イミュータブル</em> として使用することはできません</h3>
 <div class="paragraph">
-<p>Subtyping in Motoko does not permit us to use a mutable array of type <code>[var Nat]</code> in places that expect an immutable one of type <code>[Nat]</code>.</p>
+<p>Motoko のサブタイピングでは、<code>[Nat]</code> 型のイミュータブルな配列を期待する場所で、<code>[var Nat]</code> 型のミュータブルな配列を使用することはできません。</p>
 </div>
 <div class="paragraph">
-<p>There are two reasons for this.
-First, as with all mutable state, mutable arrays require different rules for sound subtyping.
-In particular, mutable arrays have a less flexible subtyping definition, necessarily.
-Second, Motoko forbids uses of mutable arrays across <a href="actors-async.html">asynchronous communication</a>, where mutable state is never shared.</p>
+<p>これには2つの理由があります。
+第一に、すべてのミュータブルなステートと同様、ミュータブルな配列は健全なサブタイピングのために異なるルールを必要とします。
+特に、ミュータブルな配列は、必然的に柔軟性の低いサブタイピングの定義を持ちます。
+第二に、Motoko は <a href="actors-async.html">非同期通信</a> でのミュータブルな配列の使用を禁止しており、ミュータブルなステートは決して共有されません。</p>
 </div>
 </div>
 </div>

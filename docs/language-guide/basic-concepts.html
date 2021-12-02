@@ -894,7 +894,7 @@
 <p><a href="#intro-progs">Motoko プログラムの構文</a></p>
 </li>
 <li>
-<p><a href="#intro-printing">数字のテキストの表示</a> と <a href="#intro-stdlib">ベースライブラリの使い方</a></p>
+<p><a href="#intro-printing">数字のテキストの表示</a> と <a href="#intro-stdlib">標準ライブラリの使い方</a></p>
 </li>
 <li>
 <p><a href="#intro-decls-vs-exps">宣言と式</a></p>
@@ -919,7 +919,7 @@
 <h2 id="intro-progs"><a class="anchor" href="#intro-progs"></a>Motoko プログラムの構文</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>各 Motoko <em>プログラム</em> は、宣言と式を自由に組み合わせたもので、それらの統語的な分類は異なりますが、互いに関連しています（プログラムの正確な構文については、<a href="language-manual.html">言語のクイックリファレンスガイド</a>を参照して下さい）。</p>
+<p>各 Motoko <em>プログラム</em> は、宣言と式を自由に組み合わせたもので、それらの構文的な分類は異なりますが、互いに関連しています（プログラムの正確な構文については、<a href="language-manual.html">言語のクイックリファレンスガイド</a>を参照して下さい）。</p>
 </div>
 <div class="paragraph">
 <p>私たちが Internet Computer 上にデプロイするプログラムでは、有効なプログラムは <em>Actor 式</em>で構成されており、<a href="actors-async.html">Actor と async データ</a>で説明するように、特定の構文(<code>actor</code> キーワード)が用いられます。</p>
@@ -974,7 +974,7 @@ x * y + x;</code></pre>
 <div class="sect2">
 <h3 id="intro-decls-vs-exps"><a class="anchor" href="#intro-decls-vs-exps"></a>宣言と式の違い</h3>
 <div class="paragraph">
-<p>各 Motoko <em>プログラム</em> は、宣言と式を自由に組み合わせたもので、それらの統語的な分類は異なるものの互いに関連しているということを<a href="#intro-progs">思い出しましょう</a>。
+<p>各 Motoko <em>プログラム</em> は、宣言と式を自由に組み合わせたもので、それらの構文的な分類は異なるものの互いに関連しているということを<a href="#intro-progs">思い出しましょう</a>。
 この章では、例を使って宣言と式の区別を説明し、それらを混在させて使うことに慣れていきます。</p>
 </div>
 <div class="paragraph">
@@ -1338,7 +1338,7 @@ Java や C++ などの言語を使っていて、返り値の型が &#8220;void&
 </div>
 </div>
 <div class="paragraph">
-<p><code>1 + 1</code> の型は <code>Nat</code> であって <code>Text</code> ではなく、また <code>Nat</code> と <code>Text</code> は派生型の関係にないので、型アノテーションの <code>Text</code> はその後のプログラムと一致しません。
+<p><code>1 + 1</code> の型は <code>Nat</code> であって <code>Text</code> ではなく、また <code>Nat</code> と <code>Text</code> はサブタイプの関係にないので、型アノテーションの <code>Text</code> はその後のプログラムと一致しません。
 結果的に、このプログラムは正しく型付けされておらず、コンパイラはエラーメッセージとエラー箇所を知らせ、コンパイルも実行もしません。</p>
 </div>
 </div>
@@ -1361,20 +1361,20 @@ Java や C++ などの言語を使っていて、返り値の型が &#8220;void&
 その代わりに、各コード例をその周辺の文章で説明するようにしています。</p>
 </div>
 <div class="sect2">
-<h3 id="intro-stdlib"><a class="anchor" href="#intro-stdlib"></a>Motoko ベースライブラリの使い方</h3>
+<h3 id="intro-stdlib"><a class="anchor" href="#intro-stdlib"></a>Motoko 標準ライブラリの使い方</h3>
 <div class="paragraph">
 <p>言語のエンジニアリングにおけるさまざまな実用上の理由から、Motoko の設計では組み込みの型や操作を最小限に抑えるようにしています。</p>
 </div>
 <div class="paragraph">
-<p>その代わり、Motoko ベースライブラリは、言語を完全なものにするための型や操作を可能な限り提供しています。
-<em><strong>ただし</strong>、このベースライブラリは開発中であり、まだ不完全です。</em></p>
+<p>その代わり、Motoko 標準ライブラリは、言語を完全なものにするための型や操作を可能な限り提供しています。
+<em><strong>ただし</strong>、この標準ライブラリは開発中であり、まだ不完全です。</em></p>
 </div>
 <div class="paragraph">
-<p><a href="base-libraries/stdlib-intro.html">Motoko ベースライブラリ</a>では、Motoko ベースライブラリからのモジュールを <em>選定して</em> 示していますが、これは例題で使われているコアな機能に焦点を当てたもので、抜本的な変更はないと考えられます。
-しかし、これらのベースライブラリの API はすべて時間の経過とともに（程度の差こそあれ）確実に変化し、特にサイズと数が大きくなっていくでしょう。</p>
+<p><a href="base-libraries/stdlib-intro.html">Motoko 標準ライブラリ</a>では、Motoko 標準ライブラリからのモジュールを <em>選定して</em> 示していますが、これは例題で使われているコアな機能に焦点を当てたもので、抜本的な変更はないと考えられます。
+しかし、これらの標準ライブラリの API はすべて時間の経過とともに（程度の差こそあれ）確実に変化し、特にサイズと数が大きくなっていくでしょう。</p>
 </div>
 <div class="paragraph">
-<p>ベースライブラリからインポートするには、<code>import</code> キーワードを使います。
+<p>標準ライブラリからインポートするには、<code>import</code> キーワードを使います。
 導入するローカルモジュールの名前、この例では &#8220;<strong>D</strong>ebug&#8221; を表す <code>D</code> と、<code>import</code> 宣言がインポートされたモジュールを見つけるための URL を指定します。</p>
 </div>
 <div class="listingblock">
@@ -1431,7 +1431,7 @@ D.print(debug_show(("hello", 42, "world")))</code></pre>
 <p>プログラムを書いている最中に、完成前のコードや、いくつかの実行パスが見つからないか無効な状態のコードを実行したいと思うことがあります。</p>
 </div>
 <div class="paragraph">
-<p>このような状況に対応するために、ベースライブラリである <code>Prelude</code> の <code>xxx</code>, <code>nyi</code>, <code>unreachable</code> 関数を、後述のように使用することができます。
+<p>このような状況に対応するために、標準ライブラリである <code>Prelude</code> の <code>xxx</code>, <code>nyi</code>, <code>unreachable</code> 関数を、後述のように使用することができます。
 それぞれの関数は、以下に説明する <a href="#overview-traps">一般的なトラップメカニズム</a> をラップしています。</p>
 </div>
 </div>
@@ -1478,7 +1478,7 @@ D.print(debug_show(("hello", 42, "world")))</code></pre>
 コードが評価されることが <em>決してない</em> ので、コードは <em>決して埋められない</em> という場面もあります。</p>
 </div>
 <div class="paragraph">
-<p>コードパスを、論理的に不可能あるいは <em>到達不可能</em> なものとして記録するには、ベースライブラリの関数である <code>unreachable</code> を使います：</p>
+<p>コードパスを、論理的に不可能あるいは <em>到達不可能</em> なものとして記録するには、標準ライブラリの関数である <code>unreachable</code> を使います：</p>
 </div>
 <div class="listingblock include_prelude">
 <div class="content">
@@ -1492,7 +1492,7 @@ D.print(debug_show(("hello", 42, "world")))</code></pre>
 <div class="sect2">
 <h3 id="overview-traps"><a class="anchor" href="#overview-traps"></a>実行の失敗によるトラップ</h3>
 <div class="paragraph">
-<p>ゼロ除算、配列の境界外へのインデックス、パターンマッチの失敗などのエラーは型システムでは防ぐことができませんが、実行時に <em>トラップ</em> と呼ばれるエラーを引き起こす可能性があります。</p>
+<p>ゼロ除算、配列の範囲外へのアクセス、パターンマッチの失敗などのエラーは型システムでは防ぐことができませんが、実行時に <em>トラップ</em> と呼ばれるエラーを引き起こす可能性があります。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1502,7 +1502,7 @@ D.print(debug_show(("hello", 42, "world")))</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">let a = ["hello", "world"];
-a[2]; // 配列の境界外へのインデックスによるトラップ</code></pre>
+a[2]; // 配列の範囲外へのアクセスによるトラップ</code></pre>
 </div>
 </div>
 <div class="listingblock">
