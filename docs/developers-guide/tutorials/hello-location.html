@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Pass text arguments :: Dfinity 日本語ドキュメント</title>
+    <title>テキスト引数を渡す :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/developers-guide/tutorials/hello-location.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../../_/css/site.css">
@@ -841,56 +841,55 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Pass text arguments</h1>
+<h1 class="page">テキスト引数を渡す</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This tutorial provides a simple variation on the default program that lets you pass a single text argument to a single actor, compile the code to create a canister smart contract, then retrieve the argument.
-Throughout this document, the terms canister smart contract and canister are considered synonymous.</p>
+<p>このチュートリアルでは、デフォルトプログラムの簡単なバリエーションとして、1つのテキスト引数を1つの Actor に渡し、コードをコンパイルして Canister スマートコントラクトを作成し、その引数を取得することを行います。
+このドキュメントでは、Canister スマートコントラクトと Canister という用語は同義語とします。</p>
 </div>
 <div class="paragraph">
-<p>This tutorial illustrates how to pass arguments on the command-line in a terminal using the Candid interface description language (IDL) and how to modify the program to allow it to accept more than one value for the text argument.</p>
+<p>このチュートリアルでは、Candid インターフェース記述言語（IDL）を使ってターミナルのコマンドラインで引数を渡す方法と、テキスト引数に複数の値を受け取れるようにプログラムを修正する方法を説明します。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_before_you_begin"><a class="anchor" href="#_before_you_begin"></a>Before you begin</h2>
+<h2 id="_始める前に"><a class="anchor" href="#_始める前に"></a>始める前に</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you start this tutorial, verify the following:</p>
+<p>このチュートリアルを始める前に、以下のことを確認してください:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You have downloaded and installed the DFINITY Canister SDK package as described in <a href="../../quickstart/local-quickstart.html#download-and-install">Download and install</a>.</p>
+<p><a href="../../quickstart/local-quickstart.html#download-and-install">ダウンロードとインストール</a> に記載されている DFINITY Canister SDK パッケージをダウンロードしてインストールしていること</p>
 </li>
 <li>
-<p>You have stopped any canister execution environments running on the local
-computer.</p>
+<p>ローカルコンピュータ上のすべての Canister 実行環境を止めていること</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This tutorial takes approximately 20 minutes to complete.</p>
+<p>このチュートリアルの所要時間は20分程度です。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_a_new_project"><a class="anchor" href="#_create_a_new_project"></a>Create a new project</h2>
+<h2 id="_新しいプロジェクトを作成する"><a class="anchor" href="#_新しいプロジェクトを作成する"></a>新しいプロジェクトを作成する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a new project for this tutorial:</p>
+<p>このチュートリアルで利用する新しいプロジェクトを作成する手順は以下になります。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal shell on your local computer, if you don’t already have one open.</p>
+<p>ローカルコンピュータ上でターミナルシェルを、まだ開いていなければ開きます。</p>
 </li>
 <li>
-<p>Change to the folder you are using for your Internet Computer projects, if you are using one.</p>
+<p>別のフォルダを利用しているなら、Internet Computer プロジェクトで使うフォルダに移動します。</p>
 </li>
 <li>
-<p>Create a new project by running the following command:</p>
+<p>以下のコマンドを実行して、新しいプロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new location_hello</code></pre>
@@ -898,7 +897,7 @@ computer.</p>
 </div>
 </li>
 <li>
-<p>Change to your project directory by running the following command:</p>
+<p>以下のコマンドを実行して、プロジェクトディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd location_hello</code></pre>
@@ -910,55 +909,55 @@ computer.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_default_configuration"><a class="anchor" href="#_modify_the_default_configuration"></a>Modify the default configuration</h2>
+<h2 id="_デフォルト設定を変更する"><a class="anchor" href="#_デフォルト設定を変更する"></a>デフォルト設定を変更する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the <a href="explore-templates.html">Explore the default project</a> tutorial, you saw that creating a new project adds a default <code>dfx.json</code> configuration file to your project directory.
-You should always review the default settings in the file to verify the information accurately reflects the project settings you want to use.
-For this tutorial, you&#8217;ll modify the default configuration to remove settings that aren&#8217;t used.</p>
+<p><a href="explore-templates.html">デフォルトプロジェクトを探索する</a> チュートリアルでは、新しいプロジェクトを作成すると、デフォルトの <code>dfx.json</code> 設定ファイルがプロジェクトディレクトリに追加されることを確認しました。
+ここではファイルのデフォルト設定を見て、使用したいプロジェクトの設定を正確に反映しているかどうかを常に確認する必要があります。
+このチュートリアルでは、デフォルトの設定を変更して、使用しない設定を削除します。</p>
 </div>
 <div class="paragraph">
-<p>To modify settings in the <code>dfx.json</code> configuration file:</p>
+<p>設定ファイル <code>dfx.json</code> を変更するには以下のようにします。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <code>dfx.json</code> configuration file in a text editor.</p>
+<p><code>dfx.json</code> 設定ファイルをテキストエディタで開きます。</p>
 </li>
 <li>
-<p>Check the default settings for the <code>location_hello</code> project.</p>
+<p><code>location_hello</code> プロジェクトのデフォルト設定を確認します。</p>
 </li>
 <li>
-<p>Remove all of the unnecessary configuration settings.</p>
+<p>不要な設定をすべて削除します。</p>
 <div class="paragraph">
-<p>Because this tutorial does not involve creating any front-end assets, you can remove all of the <code>location_hello_assets</code> configuration settings from the file.</p>
+<p>このチュートリアルでは、フロントエンドのアセットを作成しないので、ファイルから <code>location_hello_assets</code> の設定をすべて削除することができます。</p>
 </div>
 </li>
 <li>
-<p>Save your changes and close the file to continue.</p>
+<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_default_program"><a class="anchor" href="#_modify_the_default_program"></a>Modify the default program</h2>
+<h2 id="_デフォルトプログラムを変更する"><a class="anchor" href="#_デフォルトプログラムを変更する"></a>デフォルトプログラムを変更する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the <a href="explore-templates.html">Explore the default project</a> tutorial, you saw that creating a new project creates a default <code>src</code> directory with a template <code>main.mo</code> file.</p>
+<p><a href="explore-templates.html">デフォルトプロジェクトを探索する</a> チュートリアルでは、新しいプロジェクトを作成すると、デフォルト <code>src</code> ディレクトリが、テンプレート <code>main.mo</code> ファイルと共に作成されることがわかりました。</p>
 </div>
 <div class="paragraph">
-<p>To modify the default template source code:</p>
+<p>デフォルトのテンプレートソースコードを変更するには以下のようにします。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <code>src/location_hello/main.mo</code> source code file in a text editor.</p>
+<p><code>src/location_hello/main.mo</code> ソースコードファイルをテキストエディタで開きます。</p>
 </li>
 <li>
-<p>Modify the default source code to replace the <code>greet</code> function with a <code>location</code> function and the <code>name</code> argument with a <code>city</code> argument.</p>
+<p>デフォルトのソースコードを修正して、<code>greet</code> 関数を <code>location</code> 関数に、<code>name</code> 引数を <code>city</code> 引数に置き換えます。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例:</p>
 </div>
 <div class="listingblock copy">
 <div class="content">
@@ -971,41 +970,41 @@ For this tutorial, you&#8217;ll modify the default configuration to remove setti
 </div>
 </li>
 <li>
-<p>Save your changes and close the file to continue.</p>
+<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_start_the_local_canister_execution_environment"><a class="anchor" href="#_start_the_local_canister_execution_environment"></a>Start the local canister execution environment</h2>
+<h2 id="_ローカル_canister_実行環境を起動する"><a class="anchor" href="#_ローカル_canister_実行環境を起動する"></a>ローカル Canister 実行環境を起動する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you can build your project, you need to connect to a local canister execution environment or the Internet Computer blockchain mainnet.</p>
+<p>プロジェクトをビルドする前に、ローカルの Canister 実行環境か、 Internet Computer ブロックチェーンメインネットに接続する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>Starting a canister execution environment locally requires a <code>dfx.json</code> file, so you should be sure you are in your project&#8217;s root directory.
-For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.</p>
+<p>Canister 実行環境をローカルで起動するには、<code>dfx.json</code> ファイルが必要なので、プロジェクトのルートディレクトリにいることを確認してください。
+このチュートリアルでは、2つの独立したターミナルシェルを用意して、1つのターミナルでネットワーク操作を開始・確認し、別のターミナルでプロジェクトを管理できるようにします。</p>
 </div>
 <div class="paragraph">
-<p>To start the local canister execution environment:</p>
+<p>ローカル Canister 実行環境を起動するには以下のようにします。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new terminal window or tab on your local computer.</p>
+<p>新しいターミナルウィンドウまたはタブを開きます。</p>
 </li>
 <li>
-<p>Navigate to the root directory for your project, if necessary.</p>
+<p>必要であれば、プロジェクトのルートディレクトリに移動してください。</p>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>You should now have <strong>two terminals</strong> open.</p>
+<p><strong>2つのターミナル</strong> を開いている必要があります。</p>
 </li>
 <li>
-<p>You should have the <strong>project directory</strong> as your <strong>current working directory</strong>.</p>
+<p><strong>プロジェクトディレクトリ</strong> を <strong>カレントワーキングディレクトリ</strong> にする必要があります。</p>
 </li>
 </ul>
 </div>
@@ -1013,46 +1012,46 @@ For this tutorial, you should have two separate terminal shells, so that you can
 </div>
 </li>
 <li>
-<p>Start the canister execution environment on your local computer by running the following command:</p>
+<p>以下のコマンドを実行して、ローカルコンピュータ上で Canister 実行環境を起動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If you are prompted to allow or deny incoming network connections, click <strong>Allow</strong>.</p>
+<p>受信したネットワーク接続を許可するかどうかのプロンプトが表示されたら、<strong>Allow</strong> をクリックします。</p>
 </div>
 </li>
 <li>
-<p>Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.</p>
+<p>ネットワーク操作が表示されているターミナルを開いたまま、プロジェクトを作成した元のターミナルに注目します。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_register_build_and_deploy_the_dapp"><a class="anchor" href="#_register_build_and_deploy_the_dapp"></a>Register, build, and deploy the dapp</h2>
+<h2 id="_dapp_の登録ビルドデプロイ"><a class="anchor" href="#_dapp_の登録ビルドデプロイ"></a>Dapp の登録、ビルド、デプロイ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you connect to the local canister execution environment, you can register, build, and deploy your dapp locally.</p>
+<p>ローカル Canister 実行環境に接続すると、ローカルで Dapp の登録、ビルド、デプロイを行うことができます。</p>
 </div>
 <div class="paragraph">
-<p>To deploy the dapp locally:</p>
+<p>Dapp をローカルでデプロイするには以下のようにします。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>必要に応じて、プロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Register, build, and deploy your application by running the following command:</p>
+<p>以下のコマンドを実行して、アプリケーションの登録、ビルド、デプロイを行います。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx deploy</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>dfx deploy</code> command output displays information about the operations it performs.</p>
+<p><code>dfx deploy</code> コマンドの出力には、実行する操作に関する情報が表示されます。</p>
 </div>
 </li>
 </ol>
@@ -1060,26 +1059,26 @@ For this tutorial, you should have two separate terminal shells, so that you can
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pass_a_text_argument"><a class="anchor" href="#_pass_a_text_argument"></a>Pass a text argument</h2>
+<h2 id="_テキスト引数を渡す"><a class="anchor" href="#_テキスト引数を渡す"></a>テキスト引数を渡す</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You now have a program deployed as a <strong>canister smart contract</strong> in your local canister execution environment and can test your program by using <code>dfx canister call</code> commands.</p>
+<p>これで、ローカル Cansiter 実行環境に <strong>Canister スマートコントラクト</strong> としてプログラムがデプロイされ、<code>dfx canister call</code> コマンドを使ってプログラムをテストすることができます。</p>
 </div>
 <div class="paragraph">
-<p>To test the program you have deployed locally:</p>
+<p>ローカルにデプロイしたプログラムをテストするには以下のようにします。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Call the <code>location</code> method in the program and pass your <code>city</code> argument of type <code>text</code> by running the following command:</p>
+<p>以下のコマンドを実行して、プログラムの中で <code>location</code> メソッドを呼び出し、<code>text</code> 型の <code>city</code> 引数を渡すには、次のコマンドを実行します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call location_hello location "San Francisco"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Because the argument in this case includes a space between <code>San</code> and <code>Francisco</code>, you need to enclose the argument in quotes.
-The command displays output similar to the following:</p>
+<p>この場合の引数には、<code>San</code> と <code>Francisco</code> の間にスペースが含まれているため、引数を引用符で囲む必要があります。
+このコマンドは以下のような出力を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1087,7 +1086,7 @@ The command displays output similar to the following:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>If the argument did not contain a space that required enclosing the text inside of quotation marks, you could allow the Candid interface description language to infer the data type like this:</p>
+<p>引数がスペースを含んでおらず、テキストを引用符で囲む必要がなければ、Candid インターフェース記述言語に次のようにデータ型を推測させることができます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1095,7 +1094,7 @@ The command displays output similar to the following:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Candid infers the data type as <code>Text</code> and returns the output from your program as text like this:</p>
+<p>Candid はデータを <code>Text</code> 型と推測し、プログラムの出力を以下のようなテキストとして返します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1104,14 +1103,14 @@ The command displays output similar to the following:</p>
 </div>
 </li>
 <li>
-<p>Call the <code>location</code> method in the program and pass your <code>city</code> argument explicitly using the Candid interface description language syntax for Text arguments:</p>
+<p>プログラム内で <code>location</code> メソッドを呼び出し、<code>city</code> の引数をCandid インターフェース記述言語のテキスト引数の構文を使って明示的に渡します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call location_hello location '("San Francisco and Paris")'</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays output similar to the following:</p>
+<p>このコマンドは、以下のような出力を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1119,10 +1118,10 @@ The command displays output similar to the following:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Because your program only accepts a single text argument, specifying multiple strings returns only the first argument.</p>
+<p>プログラムは1つのテキスト引数しか受け付けないため、複数の文字列を指定すると最初の引数のみが返されます。</p>
 </div>
 <div class="paragraph">
-<p>For example, if you try this command:</p>
+<p>例えば、このコマンドを試してみてください。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1130,7 +1129,7 @@ The command displays output similar to the following:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Only the first argument—<code>("Hello, San Francisco!")</code>—is returned.</p>
+<p>最初の引数である <code>("Hello, San Francisco!")</code> のみが返されます。</p>
 </div>
 </li>
 </ol>
@@ -1138,28 +1137,28 @@ The command displays output similar to the following:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_revise_the_source_code_in_your_program"><a class="anchor" href="#_revise_the_source_code_in_your_program"></a>Revise the source code in your program</h2>
+<h2 id="_プログラムのソースコードを修正する"><a class="anchor" href="#_プログラムのソースコードを修正する"></a>プログラムのソースコードを修正する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To extend what you have learned in this tutorial, you might want to try modifying the source code to return different results.
-For example, you might want to modify the <code>location</code> function to return multiple city names.</p>
+<p>このチュートリアルで学んだことを発展させるために、ソースコードを修正して異なる結果を返すようにしてみましょう。
+例えば、<code>location</code> 関数を修正して、複数の都市名を返すようにしてみましょう。</p>
 </div>
 <div class="paragraph">
-<p>To experiment with modifying the source code for this tutorial:</p>
+<p>ソースコードを変更して実験するには以下のようにします。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <code>dfx.json</code> configuration file in a text editor and change the default <code>location_hello</code> settings to <code>favorite_cities</code>.</p>
+<p>テキストエディタで設定ファイル <code>dfx.json</code> を開き、デフォルトの <code>location_hello</code> の設定を <code>favorite_cities</code> に変更します。</p>
 <div class="paragraph">
-<p>For this step, you should modify both the canister name and the path to the main program for the canister smart contract to use <code>favorite_cities</code>.</p>
+<p>このステップでは、Canister 名と Canister スマートコントラクトのメインプログラムへのパスの両方を、<code>favorite_cities</code> を使用するために変更する必要があります。</p>
 </div>
 </li>
 <li>
-<p>Save your changes and close the <code>dfx.json</code> file to continue.</p>
+<p>変更内容を保存して、<code>dfx.json</code> ファイルを閉じて、次に進みます。</p>
 </li>
 <li>
-<p>Copy the <code>location_hello</code> source file directory to match the name specified in the <code>dfx.json</code> configuration file by running the following command:</p>
+<p>以下のコマンドを実行して、<code>location_hello</code> のソースファイルディレクトリを、<code>dfx.json</code> 設定ファイルで指定した名前に合わせてコピーします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cp -r src/location_hello src/favorite_cities</code></pre>
@@ -1167,12 +1166,12 @@ For example, you might want to modify the <code>location</code> function to retu
 </div>
 </li>
 <li>
-<p>Open the <code>src/favorite_cities/main.mo</code> file in a text editor.</p>
+<p>テキストエディターで <code>src/favorite_cities/main.mo</code> ファイルを開きます。</p>
 </li>
 <li>
-<p>Copy and paste the following code sample to replace the <code>location</code> function with two new functions.</p>
+<p>以下のコードサンプルをコピー＆ペーストして、<code>location</code> 関数を2つの新しい関数で置き換えます。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例:</p>
 </div>
 <div class="listingblock copy">
 <div class="content">
@@ -1193,12 +1192,12 @@ For example, you might want to modify the <code>location</code> function to retu
 </div>
 </div>
 <div class="paragraph">
-<p>You might notice that <code>Text</code> in this code example is enclosed by square (<code>[ ]</code>) brackets. By itself, <code>Text</code> represents a collection of UTF-8 characters.
-The square brackets around a type indicate that it is an <strong>array</strong> of that type.
-In this context, therefore, <code>[Text]</code> indicates an array of a collection of UTF-8 characters, enabling the program to accept and return multiple text strings.</p>
+<p>このコード例では、<code>Text</code> が角括弧（<code>[ ]</code>）で囲まれていることにお気づきかもしれません。<code>Text</code> それ自体は UTF-8 の文字の集まりを表しています。
+角括弧で囲まれた型は、その型が <strong>配列</strong> であることを示しています。
+したがって、この文脈では、<code>[Text]</code> は、UTF-8 文字の集まりの配列を示し、プログラムが複数のテキスト文字列を受け入れて返すことができるようになります。</p>
 </div>
 <div class="paragraph">
-<p>The code sample also uses the basic format of an <code>apply</code> operation for the array, which can be abstracted as:</p>
+<p>また、このコードサンプルでは、配列に対する <code>apply</code> 処理の基本的なフォーマットを使用しており、次のように抽象化することができます。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1212,12 +1211,12 @@ In this context, therefore, <code>[Text]</code> indicates an array of a collecti
 </div>
 </div>
 <div class="paragraph">
-<p>For information about the functions that perform operations on arrays, see the description of the Array module in the Motoko base library or the <em>Motoko Programming Language Reference</em>.
-For another example focused on the use of arrays, see <a href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">Quicksort</a> in the <a href="https://github.com/dfinity/examples/">examples</a> repository.</p>
+<p>配列に対する操作を行う関数については、Motoko ベースライブラリの配列モジュールの説明や、<em>Motoko プログラミング言語レファレンス</em> を参照してください。
+配列の使用に焦点を当てた別の例については、<a href="https://github.com/dfinity/examples/">examples</a> リポジトリにある <a href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">クイックスタート</a> を参照してください。</p>
 </div>
 </li>
 <li>
-<p>Register, build, and deploy the dapp by running the following command:</p>
+<p>以下のコマンドを実行して、Dapp を登録、ビルド、デプロイします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx deploy</code></pre>
@@ -1225,18 +1224,18 @@ For another example focused on the use of arrays, see <a href="https://github.co
 </div>
 </li>
 <li>
-<p>Call the <code>location</code> method in the program and pass your <code>city</code> argument using the Candid interface description syntax by running the following command:</p>
+<p>以下のコマンドを実行して、プログラムの中で <code>location</code> メソッドを呼び出し、<code>city</code> 引数を Candid インターフェース記述の構文を使って渡します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call favorite_cities location '(vec {"San Francisco";"Paris";"Rome"})'</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command uses the Candid interface description syntax <code>(vec { val1; val2; val3; })</code> to return a vector of values.
-For more information about the Candid interface description language, see the <a href="../../candid-guide/candid-intro.html">Candid</a> language guide.</p>
+<p>このコマンドは、Candid インターフェース記述の構文にある <code>(vec { val1; val2; val3; })</code> を用いて、値のベクトルを返します。
+インターフェイス記述言語 Candid の詳細については、<a href="../../candid-guide/candid-intro.html">Candid</a> 言語ガイドをご覧ください。</p>
 </div>
 <div class="paragraph">
-<p>This command displays output similar to the following:</p>
+<p>このコマンドは、以下のような出力を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1245,14 +1244,14 @@ For more information about the Candid interface description language, see the <a
 </div>
 </li>
 <li>
-<p>Call the <code>location_pretty</code> method in the program and pass your <code>city</code> argument using the interface description syntax by running the following command:</p>
+<p>以下のコマンドを実行して、プログラムの中で <code>location_pretty</code> メソッドを呼び出し、インターフェイス記述の構文を使って <code>city</code> の引数を渡します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call favorite_cities location_pretty '(vec {"San Francisco";"Paris";"Rome"})'</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command displays output similar to the following:</p>
+<p>このコマンドは、以下のような出力を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1365,7 +1364,7 @@ For more information about the Candid interface description language, see the <a
 </div>
 <div class="paragraph">
 <p>+
-In this example, each function accepts an array of text strings. Therefore, you first select the length of the array, then set values for each item before clicking <strong>Call</strong>.</p>
+この例では、各関数はテキスト文字列の配列を受け取ります。そのため、まず配列の長さを選択し、各項目に値を設定してから <strong>Call</strong> をクリックします。</p>
 </div>
 <div class="paragraph">
 <p>+
@@ -1374,21 +1373,21 @@ In this example, each function accepts an array of text strings. Therefore, you 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_stop_the_local_canister_execution_environment"><a class="anchor" href="#_stop_the_local_canister_execution_environment"></a>Stop the local canister execution environment</h2>
+<h2 id="_ローカル_canister_実行環境を停止する"><a class="anchor" href="#_ローカル_canister_実行環境を停止する"></a>ローカル Canister 実行環境を停止する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you finish experimenting with your program, you can stop the local canister execution environment so that it doesn’t continue running in the background.</p>
+<p>プログラムの実験が終わったら、ローカル Canister 実行環境を停止して、バックグラウンドで実行し続けないようにします。</p>
 </div>
 <div class="paragraph">
-<p>To stop the local canister execution environment:</p>
+<p>ローカル Canister 実行環境を停止するには以下のようにします。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the terminal that displays network operations, press Control-C to interrupt the local process.</p>
+<p>ネットワーク処理を表示するターミナルで Control-C を押して、ローカルプロセスを中断します。</p>
 </li>
 <li>
-<p>Stop the canister execution environment by running the following command:</p>
+<p>以下のコマンドを実行して、Canister 実行環境を停止します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>

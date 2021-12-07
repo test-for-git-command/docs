@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Actors and async data :: Dfinity 日本語ドキュメント</title>
+    <title>Actor と async データ :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/language-guide/actors-async.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -843,52 +843,44 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Actors and async data</h1>
+<h1 class="page">Actor と async データ</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The programming model of the Internet Computer consists of memory-isolated canisters communicating by asynchronous message passing of binary data encoding Candid values.
-A canister processes its messages one-at-a-time, preventing race conditions.
-A canister uses call-backs to register what needs to be done with the result of any inter-canister messages it issues.</p>
+<p>Internet Computer のプログラミングモデルは、メモリが分離された Canister が、Candid の値をエンコードしたバイナリデータを非同期にメッセージングして通信するというものです。
+Canister はそのメッセージを一度に処理し、競合状態を防ぎます。
+Canister はコールバックを使用して、Canister 間で発行したメッセージの結果に対して何をする必要があるかを登録します。</p>
 </div>
 <div class="paragraph">
-<p>Motoko abstracts the complexity of the Internet Computer with a well known, higher-level abstraction: the <em>actor model</em>.
-Each canister is represented as a typed actor. The type of an actor lists the messages
-it can handle. Each message is abstracted as a typed, asynchronous function.
-A translation from actor types to Candid types imposes structure on the raw binary data of the underlying Internet Computer.
-An actor is similar to an object, but is different in that its state is completely isolated,
-its interactions with the world are entirely through asynchronous messaging, and its messages are processed one-at-a-time, even when issued in parallel by concurrent actors.</p>
+<p>Motoko は、Internet Computer の複雑さを、よく知られている高レベルの抽象化である <em>Actor</em> モデルで抽象化します。
+各 Canister は型付けされた Actor として表現されます。Actor の型は、その Actor が扱えるメッセージのリストです。各メッセージは型付きの非同期関数として抽象化されます。
+Actor 型から Candid 型への変換は、基礎となる Internet Computer の生のバイナリデータの構造を強制します。
+Actor はオブジェクトに似ていますが、そのステートが完全に分離されていること、外部環境とのやりとりが完全に非同期のメッセージングによって行われること、同時進行中の Actor によって並列に発行されたメッセージであっても一度に処理されることが異なります。</p>
 </div>
 <div class="paragraph">
-<p>In Motoko, sending a message to an actor is a function call, but instead of
-blocking the caller until the call has returned, the message is enqueued
-on the callee, and a <em>future</em> representing that pending request
-immediately returned to the caller.  The future is a placeholder for the eventual result
-of the request, that the caller can later query. Between issuing the
-request, and deciding to wait for the result, the caller is free to do
-other work, including issuing more requests to the same or other
-actors.
-Once the callee has processed the request, the future is completed and its result made
-available to the caller.
-If the caller is waiting on the future, its execution can resume with the result, otherwise the result is simply stored in the future for later use.</p>
+<p>Motoko では、Actor へのメッセージ送信は関数呼び出しですが、呼び出しが戻るまで発信側をブロッキングするのではなく、メッセージが受信側のキューに入り、リクエストが保留中であることを表す <em>future</em> が発信側にすぐに返されます。
+future は、発信側がリクエストを実行したときの最終的な結果に対するプレースホルダーであり、後でクエリすることができます。
+リクエストを発行してから結果を待つまでの間、発信側は同じ Actor や他の Actor にさらにリクエストを発行するなど、他の作業を自由に行うことができます。
+受信側がリクエストを処理すると、future が完了し、その結果が発信側に返され利用できるようになります。
+発信側が future を待っている場合は、結果が返り次第処理を再開するか、そうでない場合は結果を後で使用できるように future に保存します。</p>
 </div>
 <div class="paragraph">
-<p>In Motoko, actors have dedicated syntax and types; messaging is handled by so called <em>shared</em> functions returning futures (shared because they are available to remote actors);
-a future, <code>f</code>, is a value of the special type <code>async T</code> for some type <code>T</code>; waiting
-on <code>f</code> to be completed is expressed using <code>await f</code> to obtain a value of type <code>T</code>.
-To avoid introducing shared state through messaging, for example, by sending an object or mutable array,
-the data that can be transmitted through shared functions is restricted to immutable, <em>shared</em> types.</p>
+<p>Motoko では、Actor は専用の構文と型を持っています。メッセージングは、future を返す <em>shared</em> 関数と呼ばれる関数で処理されます（リモートの Actor が利用できるため、shared と呼ばれます）。
+ここで、future の <code>f</code> が、ある型 <code>T</code> に対する特別な型である <code>async T</code> の値であるとします。
+<code>f</code> が完了するのを待つことは、<code>await f</code> を使って <code>T</code> 型の値を得ることで表現されます。
+メッセージングにおいて共有ステートを持たないようにするには、例えばオブジェクトや可変配列を送信するなどの方法があります。
+shared 関数で送信できるデータは、不変の <em>shared</em> 型に制限されています。</p>
 </div>
 <div class="paragraph">
-<p>To start, we consider the simplest stateful service: a <code>Counter</code> actor, the distributed version of our previous, local <code>counter</code> object.</p>
+<p>はじめに、最も単純でステートフル（状態を保持する）な Service を考えてみましょう。以前のローカル <code>counter</code> オブジェクトの分散バージョンである <code>Counter</code> Actor です。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_example_a_counter_service"><a class="anchor" href="#_example_a_counter_service"></a>Example: a Counter service</h2>
+<h2 id="_例カウンタの_service"><a class="anchor" href="#_例カウンタの_service"></a>例：カウンタの Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Consider the following actor declaration:</p>
+<p>以下のような Actor の宣言を考えます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -908,38 +900,35 @@ the data that can be transmitted through shared functions is restricted to immut
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>Counter</code> actor declares one field and three public, <em>shared</em> functions:</p>
+<p><code>Counter</code> Actor は、1つのフィールドと3つのパブリックな <em>shared</em> 関数を宣言しています。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>the field <code>count</code> is mutable, initialized to zero and implicitly <code>private</code>.</p>
+<p>フィールド <code>count</code> は可変で、0 に初期化され、暗黙的に <code>private</code> となります。</p>
 </li>
 <li>
-<p>function <code>inc()</code> asynchronously increments the counter and returns a future of type <code>async ()</code> for synchronization.</p>
+<p>関数 <code>inc()</code> は、非同期的にカウンタをインクリメントし、同期のために <code>async ()</code> 型の future を返します。</p>
 </li>
 <li>
-<p>function <code>read()</code> asynchronously reads the counter value and returns a future of type <code>async Nat</code> containing its value.</p>
+<p>関数 <code>read()</code> は、非同期にカウンタの値を読み込み、その値を含む <code>async Nat</code> 型の future を返します。</p>
 </li>
 <li>
-<p>function <code>bump()</code> asynchronously increments and reads the counter.</p>
+<p>関数 <code>bump()</code> は、非同期的にカウンタをインクリメントし、値を読み込みます。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Shared functions, unlike local functions, are accessible to remote callers and have additional restrictions: their arguments and return value must be <em>shared</em> types - a subset of types that includes immutable data, actor references, and shared function references, but excludes
-references to local functions and mutable data. Because all interaction with actors is asynchronous,
-an actor&#8217;s functions must return futures, that is, types of the form <code>async T</code>, for some type <code>T</code>.</p>
+<p>shared 関数は、ローカル関数とは異なり、リモートの呼び出し元からアクセス可能です。さらに、引数と戻り値は <em>shared</em> 型でなければならないという追加の制限があります。shared 型はイミュータブルなデータ、Actor の参照、shared 関数の参照などを含む型のサブセットですが、ローカル関数への参照とミュータブルなデータは含まれません。Actor とのやりとりはすべて非同期で行われるので、Actor の関数は必ず future を返さなければなりません。つまり、ある型 <code>T</code> に対して <code>async T</code> という形の型を返さなければなりません。</p>
 </div>
 <div class="paragraph">
-<p>The only way to read or modify the state (<code>count</code>) of the <code>Counter</code> actor is through its shared functions.</p>
+<p><code>Counter</code> Actor のステート（<code>count</code>）を読み取ったり変更したりするには、shared 関数を使用するしかありません。</p>
 </div>
 <div class="paragraph">
-<p>A value of type <code>async T</code> is a future. The producer of the future
-completes the future when it returns a result, either a value or error.</p>
+<p><code>async T</code> 型の値は future です。future の生成元は、値またはエラーの結果を返した時点で future を完了させます。</p>
 </div>
 <div class="paragraph">
-<p>Unlike objects and modules, actors can only expose functions, and these functions must be <code>shared</code>. For this reason, Motoko allows you to omit the <code>shared</code> modifier on public actor functions, allowing the more concise, but equivalent, actor declaration:</p>
+<p>オブジェクトやモジュールとは異なり、Actor は関数のみを公開することができ、それらは <code>shared</code> 関数である必要があります。このため Motoko では、パブリックな Actor 関数の <code>shared</code> 修飾子を省略することができ、より簡潔に同じ Actor を宣言することが可能になっています。</p>
 </div>
 <div id="counter" class="listingblock">
 <div class="content">
@@ -959,24 +948,18 @@ completes the future when it returns a result, either a value or error.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>For now, the only place shared functions can be declared is in the
-body of an actor or actor class.  Despite this restriction, shared
-functions are still first-class values in Motoko and can be passed
-as arguments or results, and stored in data structures.</p>
+<p>現在、shared 関数を宣言できるのは、Actor や Actor クラスのボディの中だけです。このような制限はあるものの、shared 関数は Motoko の第一級関数であり、引数や返り値として渡したり、データ構造に格納したりすることができます。</p>
 </div>
 <div class="paragraph">
-<p>The type of a shared function is specified using a shared function type. For example, the
-value <code>inc</code> has type <code>shared () &#8594; async Nat</code> and could be supplied
-as a standalone callback to some other service (see <a href="sharing.html">publish-subscribe</a> for an example).</p>
+<p>shared 関数の型は、shared 関数型を使って指定します。たとえば、<code>inc</code> の型は <code>shared () &#8594; async Nat</code> であり、他の Service への独立したコールバックとして渡すことができます (例として <a href="sharing.html">publish-subscribe</a> を参照してください)。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_actor_types"><a class="anchor" href="#_actor_types"></a>Actor types</h2>
+<h2 id="_actor_型"><a class="anchor" href="#_actor_型"></a>Actor 型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Just as objects have object types, actors have <em>actor types</em>. The
-<code>Counter</code> actor has the following type:</p>
+<p>オブジェクトにオブジェクト型があるように、Actor には <em>Actor 型</em> があります。<code>Counter</code> Actor は、以下の型を持っています。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -988,12 +971,10 @@ as a standalone callback to some other service (see <a href="sharing.html">publi
 </div>
 </div>
 <div class="paragraph">
-<p>Again, because the <code>shared</code> modifier is required on every member of an actor,
-Motoko both elides them on display, and allows you to omit them
-when authoring an actor type.</p>
+<p>繰り返しになりますが、<code>shared</code> 修飾子は Actor のすべてのメンバー関数に必要なので、Motoko では、表示時と Actor 型を書く際に記載を省略することができます。</p>
 </div>
 <div class="paragraph">
-<p>Thus the previous type can be expressed more succinctly as:</p>
+<p>よって、先述の型はより簡潔に表現すると次のようになります。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1005,27 +986,24 @@ when authoring an actor type.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Like object types, actor types support subtyping: an actor type is a subtype of a more general one that offers fewer functions with more general types.</p>
+<p>オブジェクト型と同様に、Actor 型も派生型をサポートしています。ある Actor 型は、より一般的な型を使っていて、関数の数がより少ない Actor の派生型となります。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_using_await_to_consume_async_futures"><a class="anchor" href="#_using_await_to_consume_async_futures"></a>Using <code>await</code> to consume async futures</h2>
+<h2 id="_await_を使って非同期の_future_を使用する"><a class="anchor" href="#_await_を使って非同期の_future_を使用する"></a><code>await</code> を使って非同期の future を使用する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The caller of a shared function typically receives a future, a value of type <code>async T</code> for some T.</p>
+<p>shared 関数の呼び出し側は、一般的には、ある T についての <code>async T</code> 型の値である future を受け取ります。</p>
 </div>
 <div class="paragraph">
-<p>The only thing the caller, a consumer, can do with this future is
-wait for it to be completed by the producer, throw it away, or store
-it for later use.</p>
+<p>呼び出し側であるコンシューマ（受け取り側）がこの future に対してできることは、プロデューサ（future の生成側）の処理が完了するのを待つか、future を捨ててしまうか、後で使うために保存するかです。</p>
 </div>
 <div class="paragraph">
-<p>To access the result of an <code>async</code> value, the receiver of the future use an  <code><strong>await</strong></code> expression.</p>
+<p><code>async</code> 値の結果にアクセスするには、future の受け取り側で <code><strong>await</strong></code> 式を使用します。</p>
 </div>
 <div class="paragraph">
-<p>For example, to use the result of <code>Counter.read()</code> above, we can first bind the
-future to an identifier <code>a</code>, and then <code>await a</code> to retrieve the underlying <code>Nat</code>, <code>n</code>:</p>
+<p>例えば、上述の <code>Counter.read()</code> の結果を利用するには、まず future を変数 <code>a</code> にバインドし、次に <code>await</code> で future 処理後の返り値となる <code>Nat</code> の <code>n</code> を取得します。</p>
 </div>
 <div class="listingblock include_counter">
 <div class="content">
@@ -1034,14 +1012,14 @@ let n : Nat = await a;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The first line immediately receives <em>a future of the counter value</em>, but does not wait for it, and thus cannot (yet) use it as a natural number.</p>
+<p>1行目はすぐに <em>カウンタ値の future</em> を受け取りますが、処理の完了を待っていないため、自然数として使用することは（まだ）できません。</p>
 </div>
 <div class="paragraph">
-<p>The second line <code>await</code>s this future and extracts the result, a natural number.
-This line may suspend execution until the future has been completed.</p>
+<p>2行目は、この future を <code>await</code> し、その結果を自然数で取り出します。
+この行は、future の処理が完了するまで実行をブロッキングします。</p>
 </div>
 <div class="paragraph">
-<p>Typically, one rolls the two steps into one and one just awaits an asynchronous call directly:</p>
+<p>一般的には、2つのステップを1つにまとめ、非同期呼び出しを直接 <code>await</code> します。</p>
 </div>
 <div class="listingblock include_counter">
 <div class="content">
@@ -1049,17 +1027,15 @@ This line may suspend execution until the future has been completed.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Unlike a local function call, which blocks the caller until the callee has returned a result,
-a shared function call immediately returns a future, <code>f</code>, without blocking.
-Instead of blocking, a later call to <code>await f</code> suspends the current computation until <code>f</code> is complete.
-Once the future is completed (by the producer), execution of <code>await p</code> resumes with its result.
-If the result is a value, <code>await f</code> returns that value.
-Otherwise the result is some error, and <code>await f</code> propagates the error to the
-consumer of <code>await f</code>.</p>
+<p>呼び出し先が結果を返すまでブロッキングするローカル関数の呼び出しとは異なり、shared 関数の呼び出しは future である <code>f</code> をブロッキングせずにすぐに返します。
+呼び出し時にブロッキングする代わりに、後で <code>await f</code> を呼び出すと、<code>f</code> が完了するまで現在の計算が中断されます。
+呼び出し先によって future が完了すると、<code>await f</code> の実行はその結果とともに再開されます。
+もし結果が値であれば、<code>await f</code> はその値を返します。
+そうでなければ、結果は何らかのエラーであり、<code>await f</code> はそのエラーを <code>await f</code> の呼び出し側に伝播させます。</p>
 </div>
 <div class="paragraph">
-<p>Awaiting a future a second time will just produce the same result, including re-throwing any error stored in the future.
-Suspension occurs even if the future is already complete; this ensures state changes and message sends prior to <em>every</em> <code>await</code> are committed.</p>
+<p>future を 2 回 await しても同じ結果になり、future に何らかのエラーが格納されている場合にはそのエラーが再びスローされます。
+サスペンドは、future がすでに完了していても発生します。これによって、<em>それぞれの</em> <code>await</code> の前に行われたステートの変更やメッセージ送信が確実にコミットされます。</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1068,22 +1044,15 @@ Suspension occurs even if the future is already complete; this ensures state cha
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-A function that does not <code>await</code> in its body is guaranteed to
-execute atomically - in particular, the environment cannot change the
-state of the actor while the function is executing.  If a function
-performs an <code>await</code>, however, atomicity is no longer guaranteed.
-Between suspension and resumption around the <code>await</code>, the state of the
-enclosing actor may change due to concurrent processing of other
-incoming actor messages. It is the programmer&#8217;s responsibility to
-guard against non-synchronized state changes. A programmer may,
-however, rely on any state change prior to the await being committed.
+<code>await</code> を含まない関数はアトミックに実行されることが保証されています。具体的には、関数の実行中に環境が Actor のステートを変更することはできません。しかしながら、関数が <code>await</code> を実行すると、アトミック性は保証されなくなります。
+<code>await</code> によって実行が一時停止され再開するまでの間、その Actor のステートは他の Actor からのメッセージの同時処理により変化する可能性があります。非同期の状態変化を防ぐのはプログラマの責任です。ただし、プログラマは <code>await</code> がコミットされる前に行われた状態変化に関しては、他の Actor からの干渉がないことを信じることができます。
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>For example, the implementation of <code>bump()</code> above is guaranteed to increment and read the
-value of <code>count</code>, in one atomic step. The alternative implementation:</p>
+<p>例えば上記の <code>bump()</code> の実装では、<code>count</code> の値を 1 つのアトミックなステップでインクリメントし、読み取ることが保証されています。
+別の実装としては以下が考えられます。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1094,57 +1063,46 @@ value of <code>count</code>, in one atomic step. The alternative implementation:
 </div>
 </div>
 <div class="paragraph">
-<p>does <em>not</em> have the same semantics and allows another client of the actor to
-interfere with its operation: each <code>await</code> suspends execution, allowing an interloper
-to change the state of the actor.
-By design, the explicit <code>await</code>s make the potential points of interference clear to the reader.</p>
+<p>これは上記の <code>bump()</code> の実装とは異なるセマンティクスとなり、Actor の別のクライアントが操作に干渉することを可能にします。それぞれの <code>await</code> は実行を一時停止するので、別の Actor がこの Actor のステートを関数の実行中に変更することが可能になります。
+設計上、明示的な <code>await</code> は干渉の可能性があるポイントを、コードを読む人に対して明確にします。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_traps_and_commit_points"><a class="anchor" href="#_traps_and_commit_points"></a>Traps and Commit Points</h2>
+<h2 id="_トラップとコミットポイント"><a class="anchor" href="#_トラップとコミットポイント"></a>トラップとコミットポイント</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A trap is a non-recoverable runtime failure caused by, for example, division-by-zero,  out-of-bounds array indexing, numeric overflow, cycle exhaustion or assertion failure.</p>
+<p>トラップとは、ゼロ除算、範囲外への配列インデックス、数値のオーバーフロー、Cycle の枯渇、アサーションの失敗などが原因で発生する、回復不能なランタイムエラーのことです。</p>
 </div>
 <div class="paragraph">
-<p>A shared function call that executes without executing an <code>await</code> expression
-never suspends and executes atomically.
-A shared function that contains no <code>await</code> expression is syntactically atomic.</p>
+<p><code>await</code> 式を実行せずに実行される shared 関数の呼び出しは、サスペンドせずにアトミックに実行されます。<code>await</code> 式を含まない shared 関数は、構文的にアトミックです。</p>
 </div>
 <div class="paragraph">
-<p>An atomic shared function whose execution traps has no
-visible effect on the state of the enclosing actor or its environment
-- any state change is reverted, and any message that it has sent is
-revoked.  In fact, all state changes and message sends are tentative
-during execution: they are committed only after a successful <em>commit
-point</em> is reached.</p>
+<p>アトミックな shared 関数は、その実行時のトラップによって Actor のステートやその環境に目に見える影響を与えません。
+すなわち、トラップされた場合にはステートの変化はすべて元に戻され、送信したメッセージはすべて破棄されます。
+実際には、すべての状態変化とメッセージ送信は、実行中は暫定的なものであり、エラー無しに <em>コミットポイント</em> に到達して初めてコミットされます。</p>
 </div>
 <div class="paragraph">
-<p>The points at which tentative state changes and message sends are irrevocably
-committed are:</p>
+<p>暫定的な状態変化やメッセージ送信が取り消されずにコミットされるポイントは以下の通りです。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>implicit exit from a shared function by producing a result,</p>
+<p>結果を生成することによる shared 関数の暗黙的な終了</p>
 </li>
 <li>
-<p>explict exit via <code>return</code> or <code>throw</code> expressions, and</p>
+<p><code>return</code> や <code>throw</code> 式による明示的な終了</p>
 </li>
 <li>
-<p>explicit <code>await</code> expressions.</p>
+<p>明示的な <code>await</code> 式</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>A trap will only revoke changes made since the last commit point.  In
-particular, in a non-atomic function that does multiple awaits, a trap
-will only revoke changes attempted since the last await - all preceding effects
-will have been committed and cannot be undone.</p>
+<p>トラップが起こると、最後のコミットポイント以降に行われた変更のみが取り消されます。特に、複数の <code>await</code> を行う非アトミック関数では、トラップが起こると最後の <code>await</code> 以降に行われた変更のみが取り消され、その前のすべての副作用はコミットされてしまい、元に戻すことはできません。</p>
 </div>
 <div class="paragraph">
-<p>For example, consider the following (contrived) stateful <code>Atomicity</code> actor:</p>
+<p>例えば、次のような（作為的に）ステートフルな <code>Atomicity</code> Actor を考えてみましょう。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1179,43 +1137,30 @@ will have been committed and cannot be undone.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Calling (shared) function <code>atomic()</code> will fail with an error, since the last statement causes a trap.
-However, the trap leaves the mutable variable <code>s</code> with value <code>0</code>, not <code>1</code>, and variable <code>pinged</code> with value <code>false</code>, not <code>true</code>.
-This is because the trap happens <em>before</em> method <code>atomic</code> has executed an <code>await</code>, or exited with a result.
-Even though <code>atomic</code> calls <code>ping()</code>, <code>ping()</code> is tentative (queued) until the next commit point, so never delivered.</p>
+<p>shared 関数である <code>atomic()</code> を呼び出すと、最後のステートメントがトラップを引き起こしてエラーとなります。しかし、このトラップによって、可変型変数 <code>s</code> の値は <code>1</code> ではなく <code>0</code> になり、変数 <code>pinged</code> の値は <code>true</code> ではなく <code>false</code> になります。これは、<code>atomic</code> メソッド が <code>await</code> を実行する前、あるいは結果の値を得て終了する前にトラップが発生しているためです。<code>atomic</code> が <code>ping()</code> を呼び出しても、<code>ping()</code> は次のコミットポイントまでの暫定的なもの (キューされたもの) なので、反映されることはありません。</p>
 </div>
 <div class="paragraph">
-<p>Calling (shared) function <code>nonAtomic()</code> will fail with an error, since the last statement causes a trap.
-However, the trap leaves the variable <code>s</code> with value <code>3</code>, not <code>0</code>, and variable <code>pinged</code> with value <code>true</code>, not <code>false</code>.
-This is because each <code>await</code> commits its preceding side-effects, including message sends.
-Even though <code>f</code> is complete by the second await on <code>f</code>, this await also forces a commit of the state, suspends execution and allows for
-interleaved processing of other messages to this actor.</p>
+<p>shared 関数である <code>nonAtomic()</code> を呼び出すと、最後のステートメントがトラップを引き起こしてエラーとなります。しかし、このトラップによって、変数 <code>s</code> の値は <code>0</code> ではなく <code>3</code> になり、変数 <code>pinged</code> の値は <code>false</code> ではなく <code>true</code> になります。これは、各 <code>await</code> がメッセージ送信などの先行する副作用をコミットするためです。<code>f</code> に対する 2 回目の await で <code>f</code> が完了しても、この await はステートを強制的にコミットし、実行を一時停止して、この Actor への他のメッセージのインターリーブ処理が可能になります。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_query_functions"><a class="anchor" href="#_query_functions"></a>Query functions</h2>
+<h2 id="_クエリ関数"><a class="anchor" href="#_クエリ関数"></a>クエリ関数</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In Internet Computer terminology, all three <code>Counter</code> functions are <em>update</em> messages
-that can alter the state of the canister when called. Effecting a state change requires
-agreement amongst the distributed replicas before the Internet Computer can
-commit the change and return a result. Reaching consensus is an
-expensive process with relatively high latency.</p>
+<p>Internet Computer 用語では、3つの <code>Counter</code> 関数はすべて <em>アップデート</em> メッセージであり、関数が呼ばれると Canister のステートを変更することができます。
+ステートを変更するには、Internet Computer が変更をコミットして結果を返す前に、分散したレプリカ間の合意が必要です。
+コンセンサスを得るのは、比較的高いレイテンシを伴う高価なプロセスです。</p>
 </div>
 <div class="paragraph">
-<p>For the parts of applications that don&#8217;t require the guarantees of consensus, the Internet Computer supports more efficient
-<em>query</em> operations. These are able to read the state of a canister from a single replica,
-modify a snapshot during their execution and return a result, but
-cannot permanently alter the state or send further Internet Computer messages.</p>
+<p>コンセンサスの保証を必要としないアプリケーションの部分については、Internet Computer はより効率的であるクエリ操作をサポートしています。
+これは、単一のレプリカから Canister のステートを読み取り、実行中にスナップショットを変更して結果を返すことができますが、ステートを恒久的に変更したり、さらなる Internet Computer のメッセージを送信することはできません。</p>
 </div>
 <div class="paragraph">
-<p>Motoko supports the implementation of Internet Computer queries using <code>query</code> functions. The <code>query</code> keyword
-modifies the declaration of a (shared) actor function so that it executes with non-committing, and faster,
-Internet Computer query semantics.</p>
+<p>Motoko は、<code>query</code> 関数を使用した Internet Computer のクエリの実装をサポートしています。<code>query</code> キーワードは shared Actor 関数の宣言を変更し、コミットせずに高速で実行されるクエリのセマンティクスになるようにします。</p>
 </div>
 <div class="paragraph">
-<p>For example, we can extend the <code>Counter</code> actor with a fast-and-loose variant of the trustworthy <code>read</code> function, called <code>peek</code>:</p>
+<p>例えば、信頼性の高い <code>read</code> 関数をルーズにした <code>peek</code> 関数で <code>Counter</code> Actor を拡張してみましょう。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1233,18 +1178,17 @@ Internet Computer query semantics.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>peek()</code> function might be used by a <code>Counter</code> frontend offering a quick, but less trustworthy,
-display of the current counter value.</p>
+<p><code>peek()</code> 関数は、<code>Counter</code> フロントエンドで現在のカウンタの値を素早く（ただし信頼性低く）表示するのに使用される可能性があります。</p>
 </div>
 <div class="paragraph">
-<p>It is a compile-time error for a query method to call an actor function since this would violate dynamic restrictions imposed by the Internet Computer. Calls to ordinary functions are permitted.</p>
+<p>クエリメソッドが Actor の関数を呼び出すことは、Internet Computer が課す動的な制限に違反するため、コンパイルエラーとなります。通常の関数への呼び出しは許可されています。</p>
 </div>
 <div class="paragraph">
-<p>Query functions can be called from non-query functions. Because those nested calls require consensus,
-the efficiency gains of nested query calls will be modest at best.</p>
+<p>クエリ関数は、非クエリ関数から呼び出すことができます。
+これらのネストされた呼び出しにはコンセンサスが必要なため、ネストされたクエリコールの効率化は期待できないでしょう。</p>
 </div>
 <div class="paragraph">
-<p>The <code>query</code> modifier is reflected in the type of a query function:</p>
+<p><code>query</code> 修飾子はクエリ関数の型に反映されます。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1252,68 +1196,62 @@ the efficiency gains of nested query calls will be modest at best.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>As before, in <code>query</code> declarations and actor types the <code>shared</code> keyword can be omitted.</p>
+<p>これまでと同様、<code>query</code> の宣言や Actor 型では、<code>shared</code> キーワードを省略することができます。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_messaging_restrictions"><a class="anchor" href="#_messaging_restrictions"></a>Messaging Restrictions</h2>
+<h2 id="_メッセージングの制限"><a class="anchor" href="#_メッセージングの制限"></a>メッセージングの制限</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Internet Computer places restrictions on when and how canisters are allowed to communicate. These restrictions are enforced dynamically on the Internet Computer but prevented statically in Motoko, ruling out a class
-of dynamic execution errors. Two examples are:</p>
+<p>Internet Computer は、Canister がいつどのように通信可能かについて制限を設けています。これらの制限は Internet Computer 上では動的に実施されますが、Motoko では静的に防止されるため、動的実行エラーの類を排除します。2つの例は以下の通りです。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>canister installation can execute code, but not send messages.</p>
+<p>Canister の設置時はコードを実行できますが、メッセージを送信できません。</p>
 </li>
 <li>
-<p>a canister query method cannot send messages.</p>
+<p>Canister のクエリメソッドはメッセージを送信できません。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These restrictions are surfaced in Motoko as restrictions on the context in which certain
-expressions can be used.</p>
+<p>これらの制限は、Motoko ではどの式を使用できるかというコンテキストの制限として表れています。</p>
 </div>
 <div class="paragraph">
-<p>In Motoko, an expression occurs in an <em>asynchronous context</em> if
-it appears in the body of an <code>async</code> expression, which may be the body of a (shared or local) function or a stand-alone expression.
-The only exception are <code>query</code> functions, whose body is not considered to open an asynchronous context.</p>
+<p>Motoko では、（shared またはローカルの関数のボディ内や独立した式として登場する）<code>async</code> 式のボディ内に式が登場するとき、<em>非同期コンテキスト</em> になります。
+唯一の例外は <code>query</code> 関数で、そのボディ内は非同期コンテキストとは見なされません。</p>
 </div>
 <div class="paragraph">
-<p>In Motoko calling a shared function is an error unless the function is called in an asynchronouus context. In addition, calling a shared function from an actor class constructor is also an error.</p>
+<p>Motokoでは、shared 関数を呼び出すと、その関数が非同期コンテキストで呼び出されない限りエラーになります。また、Actor クラスのコンストラクタから shared 関数を呼び出してもエラーになります。</p>
 </div>
 <div class="paragraph">
-<p>The <code>await</code> construct is only allowed in an asynchronous context.</p>
+<p><code>await</code> 構文は非同期コンテキストでのみ使用できます。</p>
 </div>
 <div class="paragraph">
-<p>The <code>async</code> construct is only allowed in an asynchronous context.</p>
+<p><code>async</code> 構文は非同期コンテキストでのみ使用できます。</p>
 </div>
 <div class="paragraph">
-<p>It is only possible to <code>throw</code> or <code>try/catch</code> errors in an asynchronous context.
-This is because structured error handling is supported for messaging errors only and,
-like messaging itself, confined to asynchronous contexts.</p>
+<p>非同期コンテキストでは、エラーを <code>throw</code> または <code>try/catch</code> することしかできません。
+これは、構造化されたエラー処理がメッセージングエラーに対してのみサポートされており、メッセージングそのものと同様、非同期コンテキストに限定されているためです。</p>
 </div>
 <div class="paragraph">
-<p>These rules also mean that local functions cannot, in general, directly call shared functions or <code>await</code> futures. This limitation can sometimes be awkward:  we hope to extend the type system to be more permissive in future.</p>
+<p>これらのルールは、ローカル関数は一般的に shared 関数を直接呼び出したり、future を <code>await</code> することができないことを意味します。この制限は時に厄介なものです。将来的には型システムを拡張することで、より寛容にしたいと考えています。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="actor_classes"><a class="anchor" href="#actor_classes"></a>Actor classes generalize actors</h2>
+<h2 id="actor_classes"><a class="anchor" href="#actor_classes"></a>Actor クラスによる Actor の一般化</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An actor <em>class</em> generalizes a single actor declaration to the declaration of family of actors satisfying the same interface.
-An actor class declares a type, naming the interface of its actors, and a function that
-constructs a fresh actor of that type each time it is supplied with an argument.
-An actor class thus serves as a factory for manufacturing actors.
-Because canister installation is asynchronous on the Internet Computer, the constructor function is asynchronous too, and returns its actor in a future.</p>
+<p>Actor <em>クラス</em> は、単一の Actor 宣言を、同じインターフェイスを満たす Actor 群の宣言に一般化します。
+Actor クラスは、Actor のインターフェイスを指定する型と、引数が与えられるたびにその型の新たな Actor を構築する関数を宣言します。
+Actor クラスは、Actor を製造するファクトリーの役割を果たします。
+Canister の設置は Internet Computer では非同期なので、コンストラクタ関数も非同期であり、Actor を future で返します。</p>
 </div>
 <div class="paragraph">
-<p>For example, we can generalize <code>Counter</code> given above to <code>Counter(init)</code>
-below, by introducing a constructor parameter, variable <code>init</code> of type <code>Nat</code>:</p>
+<p>例えば、コンストラクタのパラメータとして、<code>Nat</code> 型の変数 <code>init</code> を導入することで、上で与えられた <code>Counter</code> を以下の <code>Counter(init)</code> に一般化することができます。</p>
 </div>
 <div id="Counters" class="listingblock">
 <div class="title">Counters.mo</div>
@@ -1333,9 +1271,7 @@ below, by introducing a constructor parameter, variable <code>init</code> of typ
 </div>
 </div>
 <div class="paragraph">
-<p>If this class is stored in file <code>Counters.mo</code>, then
-we can import the file as a module and use it to
-create several actors with different initial values:</p>
+<p>このクラスが <code>Counters.mo</code> というファイルに格納されている場合には、ファイルをモジュールとしてインポートし、それを使って初期値の異なる複数のアクターを作ることができます。</p>
 </div>
 <div class="listingblock include_Counters">
 <div class="content">
@@ -1347,10 +1283,10 @@ let C2 = await Counters.Counter(2);
 </div>
 </div>
 <div class="paragraph">
-<p>The last two lines above <em>instantiate</em> the actor class twice.
-The first invocation uses the initial value <code>1</code>, where the second uses initial value <code>2</code>.
-Because actor class instantiation is asynchronous, each call to <code>Counter(init)</code> returns a future that can be <code>await</code>ed for the resulting actor value.
-Both <code>C1</code> and <code>C2</code> have the same type, <code>Counters.Counter</code> and can be used interchangeably.</p>
+<p>上の最後の2行は、Actor クラスを2回 <em>インスタンス化</em> しています。
+最初の呼び出しでは初期値 <code>1</code> を使用し、2回目の呼び出しでは初期値 <code>2</code> を使用します。
+Actor クラスのインスタンス化は非同期的なので、<code>Counter(init)</code> の各呼び出しは future を返し、結果として得られる Actor の値を <code>await</code> することができます。
+<code>C1</code> と <code>C2</code> はどちらも同じ <code>Counters.Counter</code> 型であり、互換性を持って使用することができます。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1359,10 +1295,9 @@ Both <code>C1</code> and <code>C2</code> have the same type, <code>Counters.Coun
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For now, the Motoko compiler gives an error when compiling
-programs that do not consist of a single actor or actor class.
-Compiled programs may still, however, reference imported actor classes.
-For more information, see <a href="modules-and-imports.html#importing_actor_classes">Importing actor classes</a> and <a href="actor-classes.html#actor_classes">Actor classes</a>.
+現在のところ、Motoko コンパイラは、単一の Actor または Actor クラスで構成されていないプログラムをコンパイルするとエラーになります。
+しかし、コンパイルされたプログラムは、インポートされた Actor クラスを参照することができます。
+詳しくは <a href="modules-and-imports.html#importing_actor_classes">Actor クラスのインポート</a> と <a href="actor-classes.html#actor_classes">Actor クラス</a> を参照してください。
 </td>
 </tr>
 </table>
