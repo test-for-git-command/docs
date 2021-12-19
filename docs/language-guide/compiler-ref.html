@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Compiler reference :: Dfinity 日本語ドキュメント</title>
+    <title>コンパイラのリファレンス :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/language-guide/compiler-ref.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -152,6 +152,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstart/network-quickstart.html">ネットワークへのデプロイ</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../examples/index.html">Example Code</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Dfinity Examples</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Open-source Community Projects</a></span>
     
   </li>
 </ul>
@@ -441,6 +456,10 @@
     
   </li>
   <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="compatibility.html">Upgrade compatibility</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
     <a class="nav-link" href="language-manual.html">Language quick reference</a>
     
   </li>
@@ -450,6 +469,10 @@
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="motoko-grammar.html">Motoko grammar</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="overview.html">Concise overview of Motoko</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -596,6 +619,10 @@
     
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/trust-in-canisters.html">Trust in canisters</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../developers-guide/concepts/tokens-cycles.html">トークンと Cycle</a>
     
   </li>
@@ -739,25 +766,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Examples</span>
-    
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Awesome DFINITY</a></span>
-    
-  </li>
-  <li class="nav-item" data-depth="3">
-    <span class="nav-text"><a href="https://github.com/dfinity/cancan" target="_blank" rel="noopener">CanCan</a></span>
-    
-  </li>
-  <li class="nav-item" data-depth="3">
-    <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Mini Motoko examples</a></span>
-    
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <span class="nav-text">Community created resources</span>
     
 <ul class="nav-list">
@@ -843,16 +851,16 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Compiler reference</h1>
+<h1 class="page">コンパイラのリファレンス</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Motoko compiler (<code>moc</code>) is the primary tool for compiling Motoko programs into executable WebAssembly (Wasm) modules.
-The compiler runs in the background when you build projects using the DFINITY Canister SDK.
-If you invoke the compiler directly on the command-line, you can press CTRL-C to exit.</p>
+<p>Motoko のコンパイラ(<code>moc</code>) は、Motoko プログラムを実行可能な WebAssembly(Wasm) モジュールにコンパイルするための主要なツールです。
+コンパイラは DFINITY Canister SDK を使用してプロジェクトをビルドする際にバックグラウンドで実行されます。
+コマンドラインでコンパイラを直接起動した場合は、CTRL-C を押して終了することができます。</p>
 </div>
 <div class="paragraph">
-<p>This section provides compiler command-line reference information.</p>
+<p>この章では、コンパイラのコマンドラインのリファレンス情報を提供します。</p>
 </div>
 </div>
 </div>
@@ -860,10 +868,10 @@ If you invoke the compiler directly on the command-line, you can press CTRL-C to
 <h2 id="_moc"><a class="anchor" href="#_moc"></a>moc</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Use the Motoko compiler (<code>moc</code>) to compile Motoko programs into executable WebAssembly (Wasm) modules.</p>
+<p>Motoko プログラムを実行可能な WebAssembly(Wasm) モジュールにコンパイルするには、Motoko コンパイラ(<code>moc</code>)を使用します。</p>
 </div>
 <div class="sect2">
-<h3 id="_basic_usage"><a class="anchor" href="#_basic_usage"></a>Basic usage</h3>
+<h3 id="_基本的な使い方"><a class="anchor" href="#_基本的な使い方"></a>基本的な使い方</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">moc [option] [file ...]</code></pre>
@@ -871,9 +879,9 @@ If you invoke the compiler directly on the command-line, you can press CTRL-C to
 </div>
 </div>
 <div class="sect2">
-<h3 id="_options"><a class="anchor" href="#_options"></a>Options</h3>
+<h3 id="_オプション"><a class="anchor" href="#_オプション"></a>オプション</h3>
 <div class="paragraph">
-<p>You can use the following options with the <code>moc</code> command.</p>
+<p><code>moc</code> では以下のオプションが利用可能です。</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -882,130 +890,130 @@ If you invoke the compiler directly on the command-line, you can press CTRL-C to
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Option</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">オプション</th>
+<th class="tableblock halign-left valign-top">説明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--actor-idl &lt;idl-path&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a path to actor IDL (Candid) files.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor IDL (Candid) ファイルへのパスを指定する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--actor-alias &lt;alias&gt; &lt;principal&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an actor import alias.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor のインポートエイリアスを指定する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--args &lt;file&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Read additional newline separated command line arguments from &lt;file&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;file&gt; から改行区切りのコマンドライン引数を追加で読み込む。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--args0 &lt;file&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Read additional NUL separated command line arguments from &lt;file&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;file&gt; から NUL 区切りのコマンドライン引数を追加で読み込む。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-c</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Compile to WebAssembly.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WebAssembly へコンパイルする。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--check</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Performs type checking only.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">型チェックのみ実行する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--compacting-gc</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use compacting GC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">コンパクト GC を使用する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--copying-gc</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use copying GC (default)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">コピー GC を使用する（デフォルト）</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--debug</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Respects debug expressions in the source (the default).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ソース内のデバッグ式を優先する（デフォルト）。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--error-detail &lt;n&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set level of error message detail for syntax errors, n in [0..3] (default 2).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">構文エラーのエラーメッセージの詳細度レベルを設定する。n は [0..3] （デフォルトでは2）。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-help</code>,<code>--help</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Displays usage information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用に関する情報を表示する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--hide-warnings</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Hides compiler warnings.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">コンパイラの警告を隠す。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-Werror</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Treat warnings as errors.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">警告をエラーとして取り扱う。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--idl</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Compile binary and emit Candid IDL specification to <code>.did</code> file.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バイナリをコンパイルし Candid の IDL 仕様を <code>.did</code> ファイルに出力する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-i</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Runs the compiler in an interactive read–eval–print loop (REPL) shell so you can evaluate program execution (implies -r).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">プログラムの実行を評価（-r オプションを意味する）するために、コンパイラを対話型の Read-eval-print loop (REPL) シェルで実行する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--map</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Outputs a JavaScript source map.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScript ソースマップを出力する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-no-system-api</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Disables system API imports.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">システム API のインポートを無効化する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-o &lt;file&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the output file.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">出力ファイルを指定する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-p &lt;n&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the print depth.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">出力深度を設定する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--package &lt;package-name&gt; &lt;package-path&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a package-name package-path pair, separated by a space.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">スペースで区切られたパッケージ名とパッケージパスのペアを指定する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--public-metadata &lt;name&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Emit icp custom section &lt;name&gt; (candid:args or candid:service or motoko:stable-types) as <code>public</code> (default is <code>private</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">icp のカスタムセクション &lt;name&gt; (cidid:args または candid:service または motoko:stable-types) を <code>public</code> として出力する (デフォルトは <code>private</code>)。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--print-deps</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prints the dependencies for a given source file.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">与えられたソースファイルの依存関係を表示する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-r</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interprets programs.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">プログラムを解釈する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--release</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ignores debug expressions in the source.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ソースのソースのデバック式を無視する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--stable-types</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Compile binary and emit signature of stable types to <code>.most</code> file.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バイナリをコンパイルし、安定型のシグネチャを <code>.most</code> ファイルに出力する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--stable-compatible &lt;pre&gt; &lt;post&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test upgrade compatibility between stable-type signatures &lt;pre&gt; and &lt;post&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">安定型シグネチャ &lt;pre&gt; と &lt;post&gt; のアップグレード互換性をテストする。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-t</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Activates tracing in interpreter.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">インタープリタのトレースを有効にする。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-v</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generates verbose output.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">冗長出力を生成する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--version</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Displays version information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バージョン情報を表示する。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-wasi-system-api</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Uses the WASI system API (wasmtime).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WASI システム API (wasmtime) を使用する。</p></td>
 </tr>
 </tbody>
 </table>

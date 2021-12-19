@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Motoko 基本ライブラリの使用 :: Dfinity 日本語ドキュメント</title>
-    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/base-libraries/stdlib-intro.html">
+    <title>Example Code :: Dfinity 日本語ドキュメント</title>
+    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/examples/index.html">
+    <meta name="description" content="Quick links to example code for common use-cases for your dapp">
+    <meta name="keywords" content="Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding,dapp,example,code,rust,Motoko">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
@@ -156,9 +158,9 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../examples/index.html">Example Code</a>
+    <a class="nav-link" href="index.html">Example Code</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -382,8 +384,8 @@
     <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
     
   </li>
-  <li class="nav-item is-current-page" data-depth="5">
-    <a class="nav-link" href="stdlib-intro.html">Motoko 標準ライブラリ</a>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../base-libraries/stdlib-intro.html">Motoko 標準ライブラリ</a>
     
   </li>
   <li class="nav-item" data-depth="5">
@@ -839,62 +841,224 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Developer Center</a></li>
-    <li>Developer Docs</li>
-    <li>Building on the Internet Computer</li>
-    <li>Explore our languages</li>
-    <li><a href="../language-guide/motoko.html">Motoko</a></li>
-    <li><a href="stdlib-intro.html">Motoko 標準ライブラリ</a></li>
+    <li><a href="index.html">Example Code</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/motoko-base/edit/master/doc/modules/base-libraries/pages/stdlib-intro.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/examples/pages/index.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Motoko 基本ライブラリの使用</h1>
+<h1 class="page">Example Code</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>Motoko の設計においては、組み込みの型や操作を最小限にするように努めています。
-組み込み型を用いる代わりに、Motoko では多くの種類の一般的な操作を処理するモジュールの基本ライブラリを提供し、言語の完成度を高めています。
-この基本ライブラリは、コアな機能をサポートするモジュールとともに現在も進化しており、基本ライブラリのすべてのAPIは、程度の差こそあれ、時間の経過とともに変更される可能性があります。
-特に、基本ライブラリに含まれるモジュールや機能の規模や数は飛躍的に増加する可能性があり、基本ライブラリのモジュールの更新により、互換性を維持するためにプログラムを更新しなければならないような破壊的な変更が生じる可能性があることに注意する必要があります。</p>
+<div id="example-code-intro" class="paragraph">
+<p>In addition to our tutorials section, here are some quick references! You can also check out our <a href="https://github.com/dfinity/examples">Examples Repo</a> or <a href="https://github.com/dfinity/awesome-dfinity">Awesome Dfinity</a>, a curated set of open-source projects and examples from our community!</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_基本ライブラリからのインポート"><a class="anchor" href="#_基本ライブラリからのインポート"></a>基本ライブラリからのインポート</h2>
+<h2 id="motoko"><a class="anchor" href="#motoko"></a>Motoko Examples</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="motoko-playground"><a class="anchor" href="#motoko-playground"></a>Motoko Playground</h3>
 <div class="paragraph">
-<p>基本ライブラリからインポートするには、<code>import</code> キーワードに続いて、ローカルモジュール名と、インポートしたいモジュールを見つけるための URL を指定します。
-例えば、以下のようになります:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>import Debug "mo:base/Debug";
-Debug.print("hello world");</pre>
+<p>Some (but not all) of the following Motoko examples are available via the <a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/">Motoko Playground</a>. The playground provides the simplest enviromnent for trying out pure Motoko examples without having to download and learn to use the SDK, but does not support applications with frontends.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_basic"><a class="anchor" href="#_basic"></a>Basic</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/actor_reference">actor_reference</a>&#8201;&#8212;&#8201;IC management canister as an actor (reference).</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/counter">counter</a>&#8201;&#8212;&#8201;basic (stable) variable demo.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/echo">echo</a>&#8201;&#8212;&#8201;basic query function demo.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/factorial">factorial</a>&#8201;&#8212;&#8201;basic factorial demo.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/hello-world">hello-world</a>&#8201;&#8212;&#8201;basic hello world demo.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/hello_cycles">hello_cycles</a>&#8201;&#8212;&#8201;Receive and transfer cycles and check your balance.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/whoami">whoami</a>&#8201;&#8212;&#8201;a simple canister that reports the Principal of its caller.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_intermediate"><a class="anchor" href="#_intermediate"></a>Intermediate</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/classes">classes</a>&#8201;&#8212;&#8201;dynamic actor (class) instantiation.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/pub-sub">pub-sub</a>-- multiple canisters, with publisher-subscriber inter-canister calls.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">quicksort</a>&#8201;&#8212;&#8201;sorting an array, via Quick Sort, in Motoko.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/simple-to-do">simple-to-do</a>&#8201;&#8212;&#8201;CRUD-like demo service, sans a front end; see also: phone-book and superheroes.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/calc">calc</a>&#8201;&#8212;&#8201;more advanced version of counter demo.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_minimal_front_end"><a class="anchor" href="#_minimal_front_end"></a>Minimal front end.</h3>
 <div class="paragraph">
-<p>この例では、<code>mo:</code> プレフィックスで示される Motoko コードを、<code>base/</code> で示される基本ライブラリパスとモジュール名 <code>Debug</code> を使ってインポートする方法を示しています。
-また、相対パスを使って Motoko コードや他のモジュールをインポートすることもできます。
-例えば、メインのプログラムと同じフォルダに <code>types.mo</code> という名前の Motoko プログラムを作成した場合、次のような import 宣言でインクルードすることができます:</p>
+<p>These examples use a minimal front end component.</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>import Types "./types";</pre>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/random_maze">random_maze</a>&#8201;&#8212;&#8201;random maze generation, with IC-based randomness.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/cert-var">cert_var</a>&#8201;&#8212;&#8201;simple certified variable (a single 32-bit number), with client-side certificate validation.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_full_stack"><a class="anchor" href="#_full_stack"></a>Full stack.</h3>
+<div class="paragraph">
+<p>These examples use a "conventional" front end component (via <code>React.Component</code>).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/life">life</a>&#8201;&#8212;&#8201;Conway&#8217;s <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a>, running in a Motoko Canister. Demonstrates upgrades among three versions and state migration using stable variables.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/phone-book">phone-book</a>&#8201;&#8212;&#8201;CRUD-like demo service.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/superheroes">superheroes</a>&#8201;&#8212;&#8201;a simple CRUD dapp.</p>
+</li>
+<li>
+<p><a href="https://github.com/krpeacock/auth-client-demo">Auth Client Demo</a> - simple authentication with Internet Identity.</p>
+</li>
+<li>
+<p><a href="https://github.com/krpeacock/ic-avatar">IC-Avatar</a> - full-stack Motoko + React with more advanced authentication, image uploads, and optimistic updates.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="motoko-advanced"><a class="anchor" href="#motoko-advanced"></a>Advanced Examples</h3>
+<div class="paragraph">
+<p>Large examples contributed by the community and not necessarily up-to-date:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reversi game, in Motoko <a href="https://github.com/ninegua/reversi">src</a> accompanying <a href="https://ninegua.github.io/reversi">Blog post</a>.</p>
+</li>
+<li>
+<p>QR code generator in Motoko <a href="https://github.com/enzoh/motoko-qr">src</a> accompanying
+<a href="https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865b">Medium article</a>.</p>
+</li>
+<li>
+<p><a href="https://github.com/timohanke/icvault">IC Vault</a> - end-to-end Encryption.</p>
+</li>
+<li>
+<p>Certified asset canister in Motoko
+<a href="https://github.com/nomeata/motoko-certified-http">src</a>
+<a href="https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263">forum post</a> - demonstrating a larger application of Internet Computer certified variables.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_基本ライブラリのモジュールを見るには"><a class="anchor" href="#_基本ライブラリのモジュールを見るには"></a>基本ライブラリのモジュールを見るには</h2>
+<h2 id="rust"><a class="anchor" href="#rust"></a>Rust Examples</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Motoko 基本ライブラリのソースコードとドキュメントは、オープンソースのリポジトリである <a href="https://github.com/dfinity/motoko-base">motoko-base</a> でご覧いただけます。
-リポジトリには、Motoko 基本ライブラリの現在のドキュメントのローカルコピーを生成するための手順が示されています。</p>
+<div class="sect2">
+<h3 id="rust-beginner"><a class="anchor" href="#rust-beginner"></a>Beginner</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/rust/pub-sub">Pub Sub</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rust-videos"><a class="anchor" href="#rust-videos"></a>Videos</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.youtube.com/watch?v=6wyIhzsFbKw">Community Conversations | Overview of Building a Dapp in Rust</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=36L33S_DYHY&amp;ab_channel=DFINITY">Community Conversations | Best Practices for Canisters in Rust</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>また、Developer Center のどのページでも「検索」を使ってドキュメントを検索することができます。</p>
+<p>More Rust examples coming soon!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_c"><a class="anchor" href="#_c"></a>C</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For examples of projects written in the C programming language for the Internet Computer, see <a href="https://github.com/dfinity/examples/tree/master/c">C++ sample projects</a>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+these examples are likely to bit-rot and may need updating and are provided for illustration only.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/c/adventure">Adventure game</a></p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/c/qr">QR code generator</a></p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/c/reverse">Reverse game</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wat_wasm_textual_format"><a class="anchor" href="#_wat_wasm_textual_format"></a>Wat (Wasm textual format)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Just for fun, we also have a simple example written in pure Wasm textual format:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/wasm/counter">counter</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
