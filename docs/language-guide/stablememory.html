@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>イントロダクション :: Dfinity 日本語ドキュメント</title>
-    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/language-guide/motoko-introduction.html">
+    <title>The ExperimentalStableMemory library :: Dfinity 日本語ドキュメント</title>
+    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/language-guide/stablememory.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
@@ -395,7 +395,7 @@
     <a class="nav-link" href="about-this-guide.html">言語ガイドについて</a>
     
   </li>
-  <li class="nav-item is-current-page" data-depth="6">
+  <li class="nav-item" data-depth="6">
     <a class="nav-link" href="motoko-introduction.html">イントロダクション</a>
     
   </li>
@@ -839,190 +839,198 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Developer Center</a></li>
-    <li>Developer Docs</li>
-    <li>Building on the Internet Computer</li>
-    <li>Explore our languages</li>
-    <li><a href="motoko.html">Motoko</a></li>
-    <li>Motoko Guide</li>
-    <li><a href="motoko-introduction.html">イントロダクション</a></li>
+    <li><a href="stablememory.html">The <code>ExperimentalStableMemory</code> library</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/motoko/edit/master/doc/modules/language-guide/pages/motoko-introduction.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/motoko/edit/master/doc/modules/language-guide/pages/stablememory.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">イントロダクション</h1>
+<h1 class="page">The <code>ExperimentalStableMemory</code> library</h1>
 <div id="preamble">
 <div class="sectionbody">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The <code>ExperimentalStableMemory</code> library is experimental, subject to change and may be
+replaced by safer alternatives in later versions of Motoko. Use at
+your own risk and discretion.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Motoko は、<a href="../developers-guide/concepts/what-is-ic.html#ic-overview">Internet Computer</a> 上で動作するスマートコントラクトの Canister の開発に特化した、最新の汎用プログラミング言語です。
-この言語は Internet Computer を直接のターゲットにしていますが、将来的に他のターゲットへのコンパイルをサポートするのに十分な程度には一般的な設計になっています。</p>
+<p>Motoko stable variables, while convenient to use, require serialization
+and deserialization of all stable variables on upgrade
+(see <a href="upgrades.html">Stable variables and upgrade methods</a>).
+During an upgrade, the current values of stable variables are first saved to IC
+stable memory, then restored from stable memory after the new code is
+installed.  Unfortunately, this mechanism does not scale to canisters
+that maintain <em>large</em> amounts of data in stable variables: there may
+not be enough cycle budget to store then restore all stable variables
+within an upgrade, resulting in failed upgrades.</p>
+</div>
+<div class="paragraph">
+<p>To avoid this upgrade hazard, actors can elect to use a lower-level
+<code>ExperimentalStableMemory</code> library.  The library allows the
+programmer to incrementally allocate pages of (64-bit) IC stable memory and use
+those pages to incrementally read and write data in a user-defined binary format.</p>
+</div>
+<div class="paragraph">
+<p>The Motoko runtime system ensures there is no interference between the
+abstraction presented by the <code>ExperimentalStableMemory</code> library and an actor&#8217;s stable
+variables, even though the two abstractions ultimately use the same underlying
+(concrete) stable memory facilities available to all IC canisters.
+This runtime support means that is safe for a Motoko program to
+exploit both stable variables and <code>ExperimentalStableMemory</code>, within the same
+application.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_アプローチ性言語の親しみやすさ"><a class="anchor" href="#_アプローチ性言語の親しみやすさ"></a>アプローチ性（言語の親しみやすさ）</h2>
+<h2 id="_the_library"><a class="anchor" href="#_the_library"></a>The Library</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Motoko は、JavaScript、Rust、Swift、TypeScript、C#、Java などのモダンプログラミング言語を通してオブジェクト指向や関数型プログラミングのイディオムに基本的な知識を持っているプログラマーが親しみやすいように設計されたモダン言語です。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_非同期メッセージングと型安全な実行"><a class="anchor" href="#_非同期メッセージングと型安全な実行"></a>非同期メッセージングと型安全な実行</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Motoko は、分散型アプリケーション（Dapps）のための特別なプログラミング抽象化を含む、モダンプログラミングのイディオムを使用可能にしています。
-それぞれの Dapps は、<em>非同期のメッセージパッシング</em> のみで通信する、1つまたは複数の <em>Actor</em> で構成されます。Actor のステートは、他のすべての Actor から分離されており、分散性をサポートしています。複数の Actor 間でステートを共有する方法はありません。
-Motoko の Actor ベースのプログラミングの抽象化は、人間が読めるメッセージパッシングのパターンによってプログラミングすることを可能にし、各ネットワークの相互作用が特定のルールに従うことや、よくある間違いを避けることを強制します。</p>
+<p>Support for stable memory is provided by the <a href="../base-libraries/ExperimentalStableMemory.html">ExperimentalStableMemory</a>
+library in package <code>base</code>.</p>
 </div>
 <div class="paragraph">
-<p>具体的には、Motoko プログラムは実行前に各プログラムをチェックする実用的でモダンな型システムが含まれているため、<em>型健全</em> です。
-Motoko の型システムは、Motoko のプログラムが、可能なすべての入力に対して動的な型エラーを起こさずに安全に実行されるかどうかを静的にチェックします。
-その結果、他の言語、特に Web プログラミング言語でよく見られるプログラミング上の落とし穴の類の全てが除外されます。これには、NULL 参照エラー、引数や返り値の型のミスマッチ、フィールドの欠落エラーなどが含まれます。</p>
+<p>The interface to the <code>ExperimentalStableMemory</code> library consists of functions for querying and growing the currently allocated set of stable memory pages,
+plus matching pairs of <code>load</code>, <code>store</code> operations
+for most of Motoko&#8217;s fixed-size scalar types.</p>
 </div>
 <div class="paragraph">
-<p>実行時には、Motoko は、<a href="about-this-guide.html#wasm">WebAssembly</a> という、モダンコンピュータハードウェアをきれいに抽象化したポータブルなバイナリフォーマットに静的にコンパイルし、インターネット上で広く実行したり、<a href="&#8230;&#8203;/developers-guide/concepts/what-is-ic.html#ic-overview">Internet Computer</a> 上で実行したりすることを可能にしています。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="pitch-actors"><a class="anchor" href="#pitch-actors"></a><em>Actor</em> としての各 Canister スマートコントラクト</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Motoko は、<a href="../developers-guide/concepts/what-is-ic.html#ic-overview">Internet Computer</a> 上の Canister スマートコントラクトのものを含む Service を表現するための <strong>Actor ベース</strong> のプログラミングモデルを開発者に提供しています。</p>
-</div>
-<div class="paragraph">
-<p>Actor はオブジェクトに似ていますが、そのステートが完全に分離されており、世界中とのやりとりがすべて <em>非同期</em> メッセージングで行われる点が特別です。</p>
-</div>
-<div class="paragraph">
-<p>Actor との間のすべてのコミュニケーションは、Internet Computer のメッセージングプロトコルを使い、ネットワーク上で非同期にメッセージを渡しています。
-Actor のメッセージは順番に処理されるので、ステートの変更が競合状態を認めることはありません（<code>await</code> 式の区切りによって明示的に許可されている場合を除く）。</p>
-</div>
-<div class="paragraph">
-<p>Internet Computer は、送信された各メッセージが確実に応答を受け取ることを保証します。レスポンスは、ある値を持つ成功ステータスか、エラーのいずれかです。エラーには、受信側の Canister による明示的なメッセージの拒否、ゼロ除算などの不正な命令によるトラップ、配布やリソースの制約によるシステムエラーなどがあります。例えば、システムエラーとは、受信者が一時的または恒久的に利用できないことです（受信 Actor にアクセス集中しているか、削除されているかのいずれか）。</p>
-</div>
-<div class="sect2">
-<h3 id="pitch-async-actors"><a class="anchor" href="#pitch-async-actors"></a>非同期 Actor</h3>
-<div class="paragraph">
-<p>他の <em>モダン</em> プログラミング言語と同様に、Motoko はコンポーネント間の <em>非同期</em> コミュニケーションのための人間工学的なシンタックスを認めています。</p>
-</div>
-<div class="paragraph">
-<p>Motoko の場合、通信している各コンポーネントが Actor です。</p>
-</div>
-<div class="paragraph">
-<p>Actor を <em>使う</em> 例として（おそらく自分自身も <em>Actor</em> だと考えるのがよいでしょう）、この3行のプログラムを考えてみましょう。</p>
+<p>More general <code>loadBlob</code> and <code>storeBlob</code> operations are also available for reading/writing binary blobs and other types that can be encoded as <code>Blob</code>s (e.g. <code>Text</code> values) of arbitrary sizes, using Motoko supplied or user-provided encoders and decoders.</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">let result1 = service1.computeAnswer(params);
-let result2 = service2.computeAnswer(params);
-finalStep(await result1, await result2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">module {
+
+  // Current size of the stable memory, in pages.
+  // Each page is 64KiB (65536 bytes).
+  // Initially `0`.
+  size : () -&gt; (pages : Nat64);
+
+  // Grow current `size` of stable memory by `pagecount` pages.
+  // Each page is 64KiB (65536 bytes).
+  // Returns previous `size` when able to grow.
+  // Returns `0xFFFF_FFFF_FFFF_FFFF` if remaining pages insufficient.
+  grow : (new_pages : Nat64) -&gt; (oldpages : Nat64);
+
+  loadNat8 : (offset : Nat64) -&gt; Nat8;
+  storeNat8 : (offset : Nat64, value: Nat8) -&gt; ();
+
+  // ... and similar for Nat16, Nat32, Nat64,
+  // Int8, Int16, Int32 and Int64 ...
+
+  loadFloat : (offset : Nat64) -&gt; Float;
+  storeFloat : (offset : Nat64, value : Float) -&gt; ();
+
+  // Load `size` bytes starting from `offset` as a `Blob`.
+  // Traps on out-of-bounds access.
+  loadBlob : (offset : Nat64, size : Nat) -&gt; Blob;
+
+  // Write bytes of `blob` beginning at `offset`.
+  // Traps on out-of-bounds access.
+  storeBlob : (offset : Nat64, value : Blob) -&gt; ()
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example"><a class="anchor" href="#_example"></a>Example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To demonstrate the <code>ExperimentalStableMemory</code> library, we present a dead simple
+implementation of a logging actor that records text messages
+in a scalable, persistent log.</p>
+</div>
+<div class="paragraph">
+<p>The example illustrates the simultaneous use of
+stable variables and stable memory.
+It uses a single stable variable to keep track of the next available offset,
+but stores the contents of the log directly in stable memory.</p>
+</div>
+<div class="listingblock no-repl">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">import Nat32 "mo:base/Nat32";
+import Nat64 "mo:base/Nat64";
+import Text "mo:base/Text";
+import Array "mo:base/Array";
+import StableMemory "mo:base/ExperimentalStableMemory";
+
+actor StableLog {
+
+  func ensure(offset : Nat64) {
+    let pages = (offset + 65536) &gt;&gt; 16;
+    if (pages &gt; StableMemory.size()) {
+      let oldsize = StableMemory.grow(pages - StableMemory.size());
+      assert (oldsize != 0xFFFF_FFFF_FFFF_FFFF);
+    };
+  };
+
+  stable var base : Nat64 = 0;
+
+  public func log(t : Text) {
+    let blob = Text.encodeUtf8(t);
+    let size = Nat64.fromNat(blob.size());
+    ensure(base + size + 4);
+    StableMemory.storeBlob(base, blob);
+    base += size;
+    StableMemory.storeNat32(base, Nat32.fromNat(blob.size()));
+    base += 4;
+  };
+
+  public query func readLast(count : Nat) : async [Text] {
+    let a = Array.init&lt;Text&gt;(count, "");
+    var offset = base;
+    var k = 0;
+    while (k &lt; count and offset &gt; 0) {
+      offset -= 4;
+      let size = StableMemory.loadNat32(offset);
+      offset -= Nat64.fromNat(Nat32.toNat(size));
+      let blob = StableMemory.loadBlob(offset, Nat32.toNat(size));
+      switch (Text.decodeUtf8(blob)) {
+        case (?t) { a[k] := t };
+        case null { assert false };
+      };
+      k += 1;
+    };
+    return Array.tabulate&lt;Text&gt;(k, func i { a[i] });
+  };
+
+};</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>このプログラムの動作は、3つのステップでまとめることができます：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>プログラムは、Motoko Actor または他の言語で実装された Canister スマートコントラクトとして実装された2つの異なる Service に対して、2つのリクエスト（1行目と2行目）を行います。</p>
-</li>
-<li>
-<p>プログラムは、各返り値に対してキーワード <code>await</code> を用いて、各返り値の準備ができるのを待ちます（3行目）。</p>
-</li>
-<li>
-<p>プログラムは、最終ステップ（3行目）で <code>finalStep</code> 関数を呼び出して、両方の結果を使用します。</p>
-</li>
-</ol>
+<p>The auxiliary function <code>ensure(offset)</code> is
+used to grow <code>ExerimentalStableMemory</code> as necessary to accommodate more data.
+It computes the 64KiB page of a given offset and ensures enough pages have
+been allocated to guarantee that offset is within bounds.</p>
 </div>
 <div class="paragraph">
-<p>一般的に言えば、Service は互いに待つのではなく、実行を <em>インターリーブ</em> することで全体の待ち時間を短縮することができます。
-しかし、特別な言語サポート <em>なし</em> にこの方法で待ち時間を短縮しようとすると、そのようなインターリーブにはすぐに明快さや単純さが犠牲となります。</p>
+<p>The shared <code>log(t)</code> function encodes its <code>Text</code> argument as a  <code>Blob</code>,
+allocates enough stable memory to store it, and writes both
+the blob contents and its size at the next available
+offset in <code>ExperimentalStableMemory</code>, updating <code>base</code>.</p>
 </div>
 <div class="paragraph">
-<p>インターリーブ実行が <em>ない</em> 場合（例えば、上記の呼び出しが2つではなく1つだけの場合）でも、同じ理由で、プログラミングの抽象化によって明確さと単純さを実現しています。
-つまり、プログラムを変換する場所をコンパイラに知らせることで、背後にあるシステムのメッセージパッシングループによる実行をインターリーブするために、プログラマがプログラムロジックを歪めることをせずにすみます。</p>
+<p>The shared <code>readLast(count)</code> query reads up to <code>count</code> messages from the log, traversing
+the log in reverse from <code>base</code>.</p>
 </div>
 <div class="paragraph">
-<p>このプログラムでは、3行目で <code>await</code> を使用することで、そのインターリーブ動作を　Motoko が提供する人間が読めるシンタックスでシンプルに表現しています。</p>
-</div>
-<div class="paragraph">
-<p>このような抽象化がなされていない言語環境では、開発者は単にこれらの2つの関数を直接呼び出すのではなく、非常に高度なプログラミングパターンを採用することになります。おそらくシステムが提供する <code>イベントハンドラ</code> の中に開発者が提供する <code>コールバック関数</code> を登録することになるでしょう。</p>
-</div>
-<div class="paragraph">
-<p>各コールバックは、呼び出した関数の返り値の準備ができたときに発生する非同期イベントを処理することになります。このようなシステムレベルのプログラミングは強力ですが、高レベルのデータフローを、共有されているステートを通じて通信する低レベルのシステムイベントに分解することになるため、非常にエラーが発生しやすいです。
-このようなプログラミングスタイルが必要な場合もありますが、ここではそうではありません。</p>
-</div>
-<div class="paragraph">
-<p>私たちのプログラムは、このような煩雑なプログラミングスタイルを避け、代わりにより自然な <em>ダイレクト</em> スタイルを採用しており、各リクエストは通常の関数呼び出しに近い形となっています。
-この、よりシンプルで様式化されたプログラミング形式は、今日のほとんどのモダンソフトウェアがそうであるように、<em>外部環境</em> と相互作用する実用的なシステムの表現としてますます人気が高まっています。</p>
-</div>
-<div class="paragraph">
-<p>しかし、これには特別なコンパイラと型システムのサポートが必要で、その詳細については後述します。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="pitch-async-behavior"><a class="anchor" href="#pitch-async-behavior"></a><em>非同期</em> 動作のサポート</h3>
-<div class="paragraph">
-<p><em>非同期</em> コンピューティングでは、プログラムとその実行環境は、互いに <em>並行</em> して実行される <em>内部計算</em> を行うことができます。</p>
-</div>
-<div class="paragraph">
-<p>具体的には、非同期プログラムとは、プログラムの実行を計算環境に要求した場合に、その完了を待つ必要が（必ずしも）ないものです。
-同時に、計算環境が要求された計算を完了するまでの間、プログラムはその環境の中で内部計算を行うことが許されます。上の例では、プログラムは最初の要求が完了するのを待つ前に2番目の要求を発行します。</p>
-</div>
-<div class="paragraph">
-<p>対称的に、環境側がプログラムに要求することは、プログラムの回答を待つことを（必ずしも）必要としません。 環境側は、プログラム側で答えが生成される間に外部で計算を進行することができます。</p>
-</div>
-<div class="paragraph">
-<p>上では、この &#8220;通知&#8221; パターンの例を示していませんが、これはコールバック（および <em>高次</em> 関数と制御フロー）を使用するため、より複雑になるからです。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="pitch-async"><a class="anchor" href="#pitch-async"></a><code>async</code> / <code>await</code> 構文</h3>
-<div class="paragraph">
-<p>わかりやすさとシンプルさへのニーズに対応するために、Motoko では急速に普及している <code>async</code> と <code>await</code> というプログラム構成を採用しています。これは、複雑になりがちな非同期の依存関係グラフを記述するための <em>構造化された</em> 言語をプログラマにもたらします。</p>
-</div>
-<div class="paragraph">
-<p><a href="language-manual.html#exp-async">async</a> の構文によって、Future が導入されます。 Future の値は <em>将来的に非同期に配信される</em> 結果の <em>promise</em> を表します（上の最初の例では示されていません）。
-Future については、<a href="actors-async.html">Actor と async データ</a>で Actor を導入した際により詳しく学びます。</p>
-</div>
-<div class="paragraph">
-<p>ここでは単純に、<code>service1.computeAnswer(params)</code> と <code>service2.computeAnswer(params)</code> を呼び出した際に返ってくる値を使用します。</p>
-</div>
-<div class="paragraph">
-<p><code>await</code> 構文を用いると Future に同期し、その生成元によって Future が完了するまで計算を中断します。
-上の例では、2 つの Service の呼び出しから結果を得るために、<code>await</code> が2つ使われています。</p>
-</div>
-<div class="paragraph">
-<p>開発者がこれらのキーワードを使用すると、コンパイラは必要に応じてプログラムを変換します。多くの場合、純粋に同期的な言語では手作業で実行するのが面倒な、プログラムの制御フローやデータフローの複雑な変換を行います。
-一方、Motoko の型システムでは、型の生成側と使用側を流れる型は常に一致しており、Sercive 間で送信されるデータ型は行き来することが許可されていること、そして（例えば）<a href="mutable-state.html">プライベートな可変型ステート</a> を含まないことなど、これらの構成要素の一定の正しい使用パターンが強制されます。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="pitch-types"><a class="anchor" href="#pitch-types"></a>型と Static</h3>
-<div class="paragraph">
-<p>他のモダンプログラミング言語と同様、Motoko では、各変数に関数やオブジェクト、プリミティブなデータ（文字列、単語、整数など）の値を入れることができます。</p>
-</div>
-<div class="paragraph">
-<p>レコード、タプル、<em>バリアント</em> と呼ばれる &#8220;タグ付けされたデータ&#8221; など、他の <a href="basic-concepts.html#intro-values">値の型</a> も使用可能です。</p>
-</div>
-<div class="paragraph">
-<p>Motoko は、<em>型の健全性</em> としても知られる型安全性の形式的な特性を享受しています。
-この考え方は、<a href="basic-concepts.html#intro-type-soundness">正しく型付けされた Motoko プログラムは間違いを起こさない</a> というフレーズでしばしばまとめられます。これは、データに対して実行される操作は、その静的な型によって許可されるものだけであるという意味です。</p>
-</div>
-<div class="paragraph">
-<p>例えば、Motoko プログラムの各変数には関連する <em>型</em> があり、この型はプログラムが実行される前に <em>静的に</em> 知られています。
-各変数の使用はコンパイラによってチェックされ、NULL 参照エラー、無効なフィールドアクセスなどの実行時の型エラーを防ぎます。</p>
-</div>
-<div class="paragraph">
-<p>この意味で、Motoko の型は、プログラムのソースコードの中で、<em>信頼できる、<strong>コンパイラが検証した</strong> ドキュメント</em> を提供します。</p>
-</div>
-<div class="paragraph">
-<p>通常通り、動的テストでは Motoko の型システムの手の届かないところにあるプロパティをチェックすることができます。
-Motoko の型システムはモダンではありますが、意図的に <code>先進的</code> ではなく、特に風変わりなものでもありません。
-むしろ、Motoko の型システムは、モダンでありながら非常に理解しやすい、<a href="about-this-guide.html#modern-types">実用的な型システム</a>の標準的な概念を統合し、汎用の分散アプリケーションをプログラミングするための、親しみやすく表現力豊かでありながらも安全な言語を提供しています。</p>
-</div>
+<p>Because <code>StableLog</code> allocates and maintains its (potentially large)
+log data directly in stable memory and uses just a small and fixed
+amount of storage for actual stable variables (here <code>base</code>), upgrading
+<code>StableLog</code> to a new implementation (perhaps to provide more
+functionality) should not consume too many cycles, regardless of the
+current size of the log.</p>
 </div>
 </div>
 </div>
