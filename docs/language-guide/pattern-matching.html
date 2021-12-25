@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Pattern matching :: Dfinity 日本語ドキュメント</title>
+    <title>パターンマッチング :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/language-guide/pattern-matching.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -404,15 +404,15 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="mutable-state.html">Mutable state</a>
+    <a class="nav-link" href="mutable-state.html">ミュータブルなステート</a>
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="local-objects-classes.html">Local objects and classes</a>
+    <a class="nav-link" href="local-objects-classes.html">ローカルオブジェクトとクラス</a>
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="actors-async.html">Actors and async data</a>
+    <a class="nav-link" href="actors-async.html">Actor と async データ</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -420,7 +420,7 @@
     
   </li>
   <li class="nav-item is-current-page" data-depth="6">
-    <a class="nav-link" href="pattern-matching.html">Pattern matching</a>
+    <a class="nav-link" href="pattern-matching.html">パターンマッチング</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -432,7 +432,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="control-flow.html">Imperative control flow</a>
+    <a class="nav-link" href="control-flow.html">命令的制御フロー</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -464,7 +464,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="compiler-ref.html">Compiler reference</a>
+    <a class="nav-link" href="compiler-ref.html">コンパイラリファレンス</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -844,22 +844,22 @@
     <li>Explore our languages</li>
     <li><a href="motoko.html">Motoko</a></li>
     <li>Motoko Guide</li>
-    <li><a href="pattern-matching.html">Pattern matching</a></li>
+    <li><a href="pattern-matching.html">パターンマッチング</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/motoko/edit/master/doc/modules/language-guide/pages/pattern-matching.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Pattern matching</h1>
+<h1 class="page">パターンマッチング</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Pattern matching is a language feature that makes it easy to both test and decompose structured data into its constituent parts. While most programming languages provide familiar ways to build structured data, pattern matching enables you to take apart structured data and bring its fragments into scope by binding them to the names you specify.
-Syntactically, the patterns resemble the construction of structured data, but generally appear in input-direction positions, such as in function argument positions, after the <code>case</code> keyword in <code>switch</code> expressions, and after <code>let</code> or <code>var</code> declarations.</p>
+<p>パターンマッチングとは、構造化されたデータのテストとその構成要素への分解を容易にする言語機能です。ほとんどのプログラミング言語では、構造化データを構築するための機能が馴染みの方法で用意されていますが、パターンマッチングでは、構造化データを分解し、その断片を指定した名前に束縛（bind）することでスコープ内に取り込むことができます。
+構文的には、パターンは構造化データの構築に似ていますが、一般的に関数の引数の位置や、<code>switch</code> 式の <code>case</code> キーワードの後や、<code>let</code> や <code>var</code> 宣言の後など、入力を指示する場所に出現します。</p>
 </div>
 <div class="paragraph">
-<p>Consider the following function call:</p>
+<p>以下の関数呼び出しを考えてみましょう。</p>
 </div>
 <div class="listingblock include_fullname">
 <div class="content">
@@ -867,7 +867,7 @@ Syntactically, the patterns resemble the construction of structured data, but ge
 </div>
 </div>
 <div class="paragraph">
-<p>This code constructs a record with three fields and passes it to the function <code>fullName</code>. The result of the call is named and brought into scope by binding it to the identifier <code>name</code>. The last, binding step is called pattern matching, and <code>name : Text</code> is one of the simplest forms of pattern. For instance, in the following implementation of the callee:</p>
+<p>このコードでは、3 つのフィールドを持つレコードを作成し、関数 <code>fullName</code> に渡しています。関数呼び出しの結果には名前が付けられ、識別子である <code>name</code> に束縛されることでスコープに取り込まれます。最後の束縛部分がパターンマッチングと呼ばれており、<code>name : Text</code> は最も単純なパターン形式の一つです。例えば、次のような関数の実装を考えます。</p>
 </div>
 <div id="fullname" class="listingblock">
 <div class="content">
@@ -877,10 +877,10 @@ Syntactically, the patterns resemble the construction of structured data, but ge
 </div>
 </div>
 <div class="paragraph">
-<p>The input is an (anonymous) object, which is destructured into its three <code>Text</code> fields, whose values are bound to the identifiers <code>first</code>, <code>mid</code> and <code>last</code>. They can be freely used in the block that forms the body of the function. Above we have resorted to <em>name punning</em> (a form of aliasing) for object field patterns, using the name of a field to also name its contents. A more general form of field pattern allows the content to be named separately from the field, as in <code>&#8230;&#8203;; mid = m : Text; &#8230;&#8203;</code>. Here <code>mid</code> determines which field to match, and <code>m</code> names the content of that field within the scope of the pattern.</p>
+<p>入力は（匿名の）オブジェクトで、3つの <code>Text</code> フィールドに分解され、その値は識別子 <code>first</code>、<code>mid</code>、<code>last</code> に束縛されます。これらのフィールドは、関数本体のブロックの中で自由に使用することができます。上記では、オブジェクトのフィールドパターンを別名付け（aliasing）の一種である <em>名前のパニング</em>（name punning; 別の名前を付けること）を使って、フィールドの名前と一致させています。より一般的には、<code>&#8230;&#8203;; mid = m : Text; &#8230;&#8203;`のように、フィールドとは別の名前を付けることができます。ここでは `mid</code> がどのフィールドにマッチするかを決定し、<code>m</code> がスコープ内で用いられる名前を決定します。</p>
 </div>
 <div class="paragraph">
-<p>You can also use pattern matching to declare <em>literal patterns</em>, which look just like literal constants. Literal patterns are especially useful in <code>switch</code> expressions because they can cause the current pattern match to <em>fail</em>, and thus start to match the next pattern. For example:</p>
+<p>パターンマッチングを使用して、リテラル定数のような <em>リテラルパターン</em> を宣言することもできます。リテラルパターンは <code>switch</code> 式で特に便利です。なぜなら、現在のパターンマッチングを <em>失敗</em> させ、次のパターンへのマッチングに進ませることができるからです。例えば、以下のようになります。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -891,18 +891,16 @@ Syntactically, the patterns resemble the construction of structured data, but ge
 }</code></pre>
 </div>
 </div>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>will match the first <code>case</code> clause (because binding to the identifier <code>name</code> cannot fail and the shorthand variant literal <code>#Female</code> compares as equal), and evaluate to <code>"Adrienne is a girl!"</code>. The last clause showcases the <em>wildcard</em> pattern <code>_</code>. It cannot fail, but won&#8217;t bind any identifier.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>上のパターンは最初の <code>case</code> 節にマッチし (識別子 <code>name</code> への束縛は失敗せず、短縮形のバリアントリテラル <code>#Female</code> は等しいと比較されるから)、<code>"Adrienne is a girl!"</code> と評価されます。最後の節は、<em>ワイルドカード</em> パターン <code>_</code> の例を示しています。これは失敗することはないですが、識別子を束縛することはありません。</p>
 </div>
 <div class="paragraph">
-<p>The last kind of pattern is the <code>or</code> pattern. As its name suggests, these are two or more patterns that are separated by the keyword <code>or</code>. Each of the sub-patterns must bind to the same set of identifiers, and is matched from left-to-right. An <code>or</code> pattern fails when its rightmost sub-pattern fails.</p>
+<p>最後のパターンは <code>or</code> パターンです。その名前が示すように、これは 2 つ以上のパターンを <code>or</code> というキーワードで区切ったものです。それぞれのサブパターンは同じ識別子のセットに束縛されなければならず、左から右へとマッチングされます。<code>or</code> パターンは、一番右のサブパターンが失敗したときに失敗します。</p>
+</div>
+<div class="paragraph">
+<p>以下のテーブルはパターンマッチングの種々の方法をまとめたものです。</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. The following table summarises the different ways of pattern matching.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -912,128 +910,128 @@ Syntactically, the patterns resemble the construction of structured data, but ge
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">pattern kind</th>
-<th class="tableblock halign-left valign-top">example(s)</th>
-<th class="tableblock halign-left valign-top">context</th>
-<th class="tableblock halign-left valign-top">can fail</th>
-<th class="tableblock halign-left valign-top">remarks</th>
+<th class="tableblock halign-left valign-top">パターンの種類</th>
+<th class="tableblock halign-left valign-top">例</th>
+<th class="tableblock halign-left valign-top">コンテキスト</th>
+<th class="tableblock halign-left valign-top">失敗する可能性</th>
+<th class="tableblock halign-left valign-top">備考</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">literal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">リテラル</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>null</code>, <code>42</code>, <code>()</code>, <code>"Hi"</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">everywhere</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">when the type has more than one value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">どこでも</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">型が複数の値を持つ場合</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">named</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">名前付け</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>age</code>, <code>x</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">everywhere</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">introduces identifiers into a new scope</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">どこでも</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">なし</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">識別子を新たなスコープに導入する</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">wildcard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ワイルドカード</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>_</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">everywhere</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">どこでも</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">なし</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">typed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">型付け</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>age : Nat</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">everywhere</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">conditional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">どこでも</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">条件次第</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">option</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">オプション</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>?0</code>, <code>?val</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">everywhere</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">どこでも</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">あり</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tuple</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">タプル</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>( component<sub>0</sub>, component<sub>1</sub>, &#8230;&#8203; )</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">everywhere</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">conditional</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">must have at least two components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">どこでも</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">条件次第</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">最低 2 つ以上の構成要素が必要</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">オブジェクト</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ field<sub>A</sub>; field<sub>B</sub>; &#8230;&#8203; }</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">everywhere</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">conditional</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">allowed to mention a subset of fields</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">どこでも</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">条件次第</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">フィールドのサブセットを使用可能</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">field</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">フィールド</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>age</code>, <code>count = 0</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">conditional</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>age</code> is short for <code>age = age</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">オブジェクト</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">条件次第</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>age</code> は <code>age = age</code> の短縮形</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">variant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バリアント</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#celsius deg</code>, <code>#sunday</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">everywhere</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#sunday</code> is short form for <code>#sunday ()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">どこでも</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">あり</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#sunday</code> は <code>#sunday ()</code> の短縮型</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">alternative (<code>or</code>-pattern)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">選択肢（`or`パターン）</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>0 or 1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">everywhere</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">depends</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no alternative may bind an identifier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">どこでも</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">場合により</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">選択肢は識別子を束縛しない</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_additional_information_about_about_patterns"><a class="anchor" href="#_additional_information_about_about_patterns"></a>Additional information about about patterns</h2>
+<h2 id="_パターンに関する追加情報"><a class="anchor" href="#_パターンに関する追加情報"></a>パターンに関する追加情報</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Since pattern matching has a rich history and interesting mechanics, a few additional comments are justified.</p>
+<p>パターンマッチングには豊富な歴史と興味深い仕組みがあるため、いくつかの補足説明をさせていただきます。</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">terminology</dt>
+<dt class="hdlist1">用語</dt>
 <dd>
-<p>The (usually structured) expression that is being matched is frequently called the <em>scrutinee</em> and the patterns appearing behind the keyword <code>case</code> are the <em>alternatives</em>. When every possible scrutinee is matched by (at least one) alternative, then we say that the scrutinee is <em>covered</em>. The patterns are tried in top-down fashion and thus in case of <em>overlapping</em> patterns the one higher-up is selected. An alternative is considered <em>dead</em> (or <em>inactive</em>), if for every value that it matches there is higher-up alternative that is also matched.</p>
+<p>マッチングされる（通常は構造化された）式はしばしば <em>被検査体</em>（scrutinee; パターンマッチングされる対象）と呼ばれ、<code>case</code> キーワードの後ろに現れるパターンは <em>選択肢</em>（alternative）と呼ばれます。すべての可能な被検査体が（少なくとも一つの）選択肢とマッチするとき、被検査体は <em>カバーされている</em> と言います。パターンはトップダウン方式で試行されるので、パターンが重複している場合は上位のものが選択されます。ある選択肢にマッチするすべての値に対して上位の選択肢がある場合、その選択肢は <em>無効</em>（dead）（または <em>非アクティブ</em>）とみなされます。</p>
 </dd>
-<dt class="hdlist1">booleans</dt>
+<dt class="hdlist1">ブーリアン</dt>
 <dd>
-<p>The data type <code>Bool</code> can be regarded as two disjointed altenatives (<code>true</code> and <code>false</code>) and Motoko&#8217;s built-in <code>if</code> construct will <em>eliminate</em> the data and turn it into <em>control</em> flow. <code>if</code> expressions are a form of pattern matching that abbreviates the general <code>switch</code> expression for the special case of boolean scrutinees.</p>
+<p>データ型 <code>Bool</code> は 2 つに分離された選択肢（<code>true</code> と <code>false</code> ）とみなすことができ、Motoko の組み込み <code>if</code> 構造体がデータを <em>排除</em> して <em>制御</em> フローに変換します。<code>if</code> 式はパターンマッチングの一種で、一般的な <code>switch</code> 式をブーリアン被検査体という特殊なケースに対して省略して書けるようにしたものです。</p>
 </dd>
-<dt class="hdlist1">variant patterns</dt>
+<dt class="hdlist1">バリアントパターン</dt>
 <dd>
-<p>Motoko&#8217;s variant types are a form of <em>disjoint union</em> (sometimes also called a <em>sum type</em>). A value of variant type always has exactly one <em>discriminator</em> and a payload which can vary from discriminator to discriminator. When matching a variant pattern with a variant value, the discriminators must be the same (in order to select the alternative) and if so, the payload gets exposed for further matching.</p>
+<p>Motoko のバリアント型は <em>非交和</em> （disjoint union） の一種です（<em>直和型</em> （sum type）とも呼ばれることがあります）。バリアント型の値は常にただ 1 つの <em>判別器</em>（discriminator）と、判別器ごとに異なる可能性のあるペイロードを持っています。バリアントパターンとバリアント値をマッチングするとき、判別器は（選択肢を選ぶために）同じでなければならず、そうであればペイロードはさらなるマッチングのために公開されます。</p>
 </dd>
-<dt class="hdlist1">enumerated types</dt>
+<dt class="hdlist1">列挙型</dt>
 <dd>
-<p>Other programming languages — for example C, but not Motoko — often use a keyword <code>enum</code> to introduce enumerations. These are impoverished relatives of Motoko&#8217;s variant types, as the alternatives are not allowed to carry any payload. Correspondingly, in those languages the <code>switch</code>-like statements lack the full power of pattern matching. Motoko provides the short-hand syntax (as in <code>type Weekday = { #mon; #tue; &#8230;&#8203; }</code>) to define basic enumerations, for which no payloads are required.</p>
+<p>他のプログラミング言語はしばしば列挙を表すために <code>enum</code> というキーワードを使用します（例えば C 言語はそうですが、 Motoko はそうではありません）。これらは選択肢がペイロードを持つことができないため、Motoko のバリアント型の貧弱な親戚のようなものです。同様に、これらの言語では <code>switch</code> のような文はパターンマッチングの一部の機能を持っていません。Motoko にはペイロードを必要としない基本的な列挙型を定義するためのショートハンド構文（例: <code>type Weekday = { #mon; #tue; &#8230;&#8203; }</code>）があります。</p>
 </dd>
-<dt class="hdlist1">error handling</dt>
+<dt class="hdlist1">エラー処理</dt>
 <dd>
-<p>Error handling can be considered a use-case for pattern matching. When a function returns a value that has an alternative for success and one for failure (for example, an option value or a variant), pattern matching can be used to distinguish between the two as discussed in <a href="#errors.html">Error handling</a>.</p>
+<p>エラー処理は、パターンマッチングのユースケースの一つと考えることができます。関数が成功時の選択肢と失敗時の選択肢を持つ値を返す場合（例えば Option 値やバリアント）、<a href="#errors.html">エラー処理</a> で説明したように、パターンマッチングを使ってその 2 つを判別することができます。</p>
 </dd>
-<dt class="hdlist1">irrefutable matching</dt>
+<dt class="hdlist1">論駁不可能（irrefutable）なマッチング</dt>
 <dd>
-<p>Some types contain just a single value. We call these <em>singleton types</em>. Examples of these are the unit type (also known as an empty tuple) or tuples of singleton types. Variants with a single tag and no (or singleton-typed) payload are singleton types too. Pattern matching on singleton types is particularly straightforward, as it only has one possible outcome: a successful match.</p>
+<p>単一の値だけを含むような型があります。私たちはこれを <em>シングルトン</em> 型と呼んでいます。これらの例としては、ユニット型（空のタプル）やシングルトン型のタプルがあります。タグが 1 つでペイロードがない（またはシングルトン型である）バリアントも同様にシングルトン型です。シングルトン型に対するパターンマッチングは、成功するという 1 つの結果しか得られないため、特に簡単です。</p>
 </dd>
-<dt class="hdlist1">exhaustiveness (coverage) checking</dt>
+<dt class="hdlist1">網羅性（カバレッジ）チェック</dt>
 <dd>
-<p>When a pattern check alternative has the potential to fail, then it becomes important to find out whether the whole <code>switch</code> expression can fail. If this can happen the execution of the program can trap for certain inputs, posing an operational threat. To this end, the compiler checks for the exhaustiveness of pattern matching by keeping track of the covered shape of the scrutinee. The compiler issues a warning for any non-covered scrutinees (Motoko even constructs a helpful example of a scrutinee that is not matched). A useful by-product of the exhaustiveness check is that it identifies and warns about dead alternatives that can never be matched.</p>
+<p>パターンチェックの選択肢が失敗する可能性がある場合、<code>switch</code> 式全体が失敗する可能性があるかどうかを調べることが重要になります。もし式全体が失敗すると、プログラムの実行が特定の入力に対してトラップされる可能性があり、運用上の脅威となります。このため、コンパイラは被検査体がカバーされている形状（shape）かを追跡することで、パターンマッチングの網羅性をチェックします。コンパイラはカバーされていない被検査体に対して警告を発します（Motoko はマッチしない被検査体の有用な例も構築します）。網羅性チェックの便利な副産物は、決してマッチしない無効（dead）の選択肢を特定して警告することです。</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p>In summary, pattern checking is a great tool with several use-cases. By statically analyzing patterns, the compiler assists the programmer by pointing out unhandled cases and unreachable code, both of which often indicate programmer error. The static, compile-time nature of coverage checking reliably rules out runtime failures.</p>
+<p>まとめると、パターンチェックはいくつかのユースケースを持つ優れたツールです。パターンを静的に解析することで、コンパイラは未処理のケースや到達不可能なコードを指摘し、プログラマを支援します。これらはどちらもプログラマのエラーを示すことが多いです。カバレッジチェックは静的でコンパイル時に行われるため、ランタイムにおける失敗を確実に排除することができます。</p>
 </div>
 </div>
 </div>
