@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Modules and imports :: Dfinity 日本語ドキュメント</title>
+    <title>モジュールとインポート :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/language-guide/modules-and-imports.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -851,26 +851,26 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Modules and imports</h1>
+<h1 class="page">モジュールとインポート</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section provides examples of different scenarios for using the <code>module</code> and <code>import</code> keywords.</p>
+<p>この章では、<code>module</code> と <code>import</code> キーワードを使用するさまざまなシナリオの例を紹介します。</p>
 </div>
 <div class="paragraph">
-<p>To illustrate how these keywords are used, let&#8217;s step through some sample code.</p>
+<p>これらのキーワードがどのように使われるかを知るために、いくつかのサンプルコードを見てみましょう。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_importing_from_the_motoko_base_library"><a class="anchor" href="#_importing_from_the_motoko_base_library"></a>Importing from the Motoko base library</h2>
+<h2 id="_motoko_標準ライブラリからのインポート"><a class="anchor" href="#_motoko_標準ライブラリからのインポート"></a>Motoko 標準ライブラリからのインポート</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>One of the most common import scenarios is one that you see illustrated in the examples in this guide, in the Motoko projects in the examples repository, and in the tutorials involves importing modules from the Motoko base library.
-Importing modules from the base library enables you to re-use the values, functions and types defined in those modules rather than writing similar ones from scratch.</p>
+<p>最も一般的なインポートの使用場面の 1 つは、このガイドの例やサンプルリポジトリの Motoko プロジェクトやチュートリアルで見られるように、Motoko 標準ライブラリからモジュールをインポートすることです。
+標準ライブラリからモジュールをインポートすることで、同じようなものを最初から書くのではなく、それらのモジュールで定義された値、関数、型を再利用することができます。</p>
 </div>
 <div class="paragraph">
-<p>The following two lines import functions from the <code>Array</code> and <code>Result</code> modules:</p>
+<p>以下の 2 行は <code>Array</code> と <code>Result</code> モジュールから関数をインポートしています。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -879,35 +879,35 @@ import Result "mo:base/Result";</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Notice that the import declaration includes the <code>mo:</code> prefix to identify the module as a Motoko module and that the declaration does not include the <code>.mo</code> file type extension.</p>
+<p>import 宣言には、Motoko モジュールであることを示す <code>mo:</code> という接頭辞が含まれており、宣言には <code>.mo</code> というファイルの拡張子がないことに注意してください。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_importing_local_files"><a class="anchor" href="#_importing_local_files"></a>Importing local files</h2>
+<h2 id="_ローカルファイルのインポート"><a class="anchor" href="#_ローカルファイルのインポート"></a>ローカルファイルのインポート</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Another common approach to writing programs in Motoko involves splitting up the source code into different modules.
-For example, you might design an application to use the following model:</p>
+<p>Motoko でプログラムを書くためのもう一つの一般的なアプローチは、ソースコードを異なるモジュールに分割することです。
+例えば、以下のようなモデルでアプリケーションを設計するとします。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>a <code>main.mo</code> file to contain the actor and functions that change state.</p>
+<p>ステートを変更する Actor と関数を格納する <code>main.mo</code> ファイル。</p>
 </li>
 <li>
-<p>a <code>types.mo</code> file for all of your custom type definitions.</p>
+<p>カスタムの型定義を格納する <code>types.mo</code> ファイル。</p>
 </li>
 <li>
-<p>a <code>utils.mo</code> file for functions that do work outside of the actor.</p>
+<p>Actor の外で動作する関数を格納する <code>utils.mo</code> ファイル。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>In this scenario, you might place all three files in the same directory and use a local import to make the functions available where they are needed.</p>
+<p>このシナリオでは、3 つのファイルを同じディレクトリに置き、ローカルインポートを使って、必要な場所で関数を利用できるようにすると良いでしょう。</p>
 </div>
 <div class="paragraph">
-<p>For example, the <code>main.mo</code> contains the following lines to reference the modules in the same directory:</p>
+<p>例えば <code>main.mo</code> には、同じディレクトリにあるモジュールを参照するために、以下のような行が含まれています。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -916,22 +916,22 @@ import Utils "utils";</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Because these lines import modules from the local project instead of the Motoko library, these import declarations don&#8217;t use the <code>mo:</code> prefix.</p>
+<p>これらの行は Motoko ライブラリではなくローカルプロジェクトのモジュールをインポートしているので、これらのインポート宣言は <code>mo:</code> 接頭辞を使用しません。</p>
 </div>
 <div class="paragraph">
-<p>In this example, both the <code>types.mo</code> and <code>utils.mo</code> files are in the same directory as the <code>main.mo</code> file.
-Once again, import does not use the <code>.mo</code> file suffix.</p>
+<p>この例では、<code>types.mo</code> と <code>utils.mo</code> のファイルが <code>main.mo</code> ファイルと同じディレクトリに置かれています。
+繰り返しになりますが、インポートは <code>.mo</code> 接頭辞を使用しません。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_importing_from_another_package_or_directory"><a class="anchor" href="#_importing_from_another_package_or_directory"></a>Importing from another package or directory</h2>
+<h2 id="_他のパッケージやディレクトリからのインポート"><a class="anchor" href="#_他のパッケージやディレクトリからのインポート"></a>他のパッケージやディレクトリからのインポート</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can also import modules from other packages or from directories other than the local directory.</p>
+<p>他のパッケージやローカルディレクトリ以外のディレクトリからモジュールをインポートすることもできます。</p>
 </div>
 <div class="paragraph">
-<p>For example, the following lines import modules from a <code>redraw</code> package that is defined as a dependency:</p>
+<p>例えば、以下は依存関係にある <code>redraw</code> パッケージからモジュールをインポートしている例です。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -940,35 +940,35 @@ import Mono5x5 "mo:redraw/glyph/Mono5x5";</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can define dependencies for a project using the Vessel package manager or in the project <code>dfx.json</code> configuration file.</p>
+<p>プロジェクトの依存関係は、パッケージマネージャである Vessel を使うか、プロジェクトの設定ファイルである <code>dfx.json</code> で定義することができます。</p>
 </div>
 <div class="paragraph">
-<p>In this example, the <code>Render</code> module is in the default location for source code in the <code>redraw</code> package and the <code>Mono5x5</code> module is in a <code>redraw</code> package subdirectory called <code>glyph</code>.</p>
+<p>この例では、<code>Render</code> モジュールは <code>redraw</code> パッケージのソースコードのデフォルトの場所にあり、<code>Mono5x5</code> モジュールは <code>redraw</code> パッケージのサブディレクトリである <code>glyph</code> に入っています。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="importing_actor_classes"><a class="anchor" href="#importing_actor_classes"></a>Importing actor classes</h2>
+<h2 id="importing_actor_classes"><a class="anchor" href="#importing_actor_classes"></a>Actor クラスのインポート</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>While module imports are typically used to import libraries of local functions and values, they can also be used to import actor classes.
-When an imported file consists of a named actor class, the client of the imported field sees a module containing the actor class.</p>
+<p>モジュールのインポートは、通常ローカルの関数や値のライブラリをインポートするために使用されますが、Actor クラスをインポートするために使用することもできます。
+インポートされたファイルが名前付きの Actor クラスで構成されている場合、インポートされたフィールドのクライアントから Actor クラスを含むモジュールを見ることができます。</p>
 </div>
 <div class="paragraph">
-<p>This module has two components, both named after the actor class:</p>
+<p>モジュールには 2 つのコンポーネントがあり、両方とも Actor クラスの名前をとって命名されています。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>a type definition, describing the interface of the class, and</p>
+<p>クラスのインタフェースを記述する型定義。</p>
 </li>
 <li>
-<p>an asynchronous function, that takes the class parameters as arguments an asynchronously returns a fresh instance of the class.</p>
+<p>クラスのパラメータを引数に取り、非同期でクラスの新しいインスタンスを返す非同期関数。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, a Motoko actor can import and instantiate the <code>Counter</code> class described in <a href="actors-async{outfilesuffix#actor_class">Actors and async data</a> as follows:</p>
+<p>例えば、Motoko の Actor は <a href="actors-async{outfilesuffix#actor_class">Actor と async データ</a> で述べた <code>Counter</code> クラスを次のようにインポートしてインスタンス化することができます。</p>
 </div>
 <div id="Counters" class="listingblock">
 <div class="title">Counters.mo</div>
@@ -1007,18 +1007,18 @@ await CountToTen.countToTen()</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The call to <code>Counters.Counter(1)</code> installs a fresh counter on the network. Installation is asynchronous, so the caller must <code>await</code> the result.</p>
+<p><code>Counters.Counter(1)</code> の呼び出しは、ネットワーク上に新しいカウンタをインストールします。インストールは非同期なので、呼び出し元は結果を <code>await</code> しなければなりません。</p>
 </div>
 <div class="paragraph">
-<p>The type annotation  <code>: Counters.Counter</code> is redundant here. It&#8217;s included only to illustrate that the type of the actor class is available when required.</p>
+<p>型注釈 <code>: Counters.Counter</code> はここでは冗長です。Actor クラスの型が必要なときに利用できることを示す目的で記載しています。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_importing_from_another_canister_smart_contract"><a class="anchor" href="#_importing_from_another_canister_smart_contract"></a>Importing from another canister smart contract</h2>
+<h2 id="_他の_canister_スマートコントラクトからのインポート"><a class="anchor" href="#_他の_canister_スマートコントラクトからのインポート"></a>他の Canister スマートコントラクトからのインポート</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In addition to the examples above that import Motoko modules, you can also import actors (and their shared functions) from canister smart constracts by using the <code>canister:</code> prefix in place of the <code>mo:</code> prefix.</p>
+<p>上記の Motoko モジュールをインポートする例に加え、<code>mo:</code> の代わりに <code>canister:</code> という接頭辞を用いることで、Canister スマートコントラクトから Actor とその共有（shared）関数 をインポートすることもできます。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1027,32 +1027,32 @@ await CountToTen.countToTen()</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Unlike a Motoko library, an imported canister can be implemented in any other Internet Computer language that emits Candid interfaces for its canister smart contracts (for instance Rust). It could even be an older or newer version of Motoko.
+Motoko ライブラリとは異なり、インポートされた Canister は、その Canister スマートコントラクト用の Candid インターフェースを発行する他の Internet Computer 言語（例えばRust）で実装することが可能です。それは Motoko の古いバージョンや新しいバージョンである可能性もあります。
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>For example, you might have a project that produces the following three canisters:</p>
+<p>例えば、以下の 3 つの Canister を生成するプロジェクトがあるとします。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>BigMap (implemented in Rust)</p>
+<p>BigMap（Rust で実装）</p>
 </li>
 <li>
-<p>Connectd (implemented in Motoko)</p>
+<p>Connectd（Motoko で実装）</p>
 </li>
 <li>
-<p>LinkedUp (implemented in Motoko)</p>
+<p>LinkedUp（Motoko で実装）</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These three canisters are declared in the project&#8217;s <code>dfx.json</code> configuration file and compiled by running <code>dfx build</code>.</p>
+<p>これら3つの Canister はプロジェクトの設定ファイルである <code>dfx.json</code> で宣言され、<code>dfx build</code> を実行することでコンパイルされます。</p>
 </div>
 <div class="paragraph">
-<p>You can then use the following lines to import the <code>BigMap</code> and <code>Connectd</code> canisters as actors in the Motoko LinkedUp actor:</p>
+<p>次に、<code>BigMap</code> と <code>Connectd</code> Canister を Motoko LinkedUp Actor 内の Actor として以下のようにインポートすることができます。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1061,30 +1061,30 @@ import Connectd "canister:connectd";</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When importing canisters, it is important to note that the type for the imported canister corresponds to a <strong>Motoko actor</strong> instead of a <strong>Motoko module</strong>.
-This distinction can affect how some data structures are typed.</p>
+<p>Canister をインポートするとき、インポートされた Canister の型は <strong>Motoko モジュール</strong> ではなく <strong>Motoko Actor</strong> に対応することに注意することが重要です。
+この区別は、データ構造がどのように型付けされるかに影響を与えます。</p>
 </div>
 <div class="paragraph">
-<p>For the imported canister actor, types are derived from the Candid file — the <em>project-name</em>.did file — for the canister rather than from Motoko itself.</p>
+<p>インポートされた Canister の Actor では、型は Motoko からではなく、Canister 用の Candid ファイル（<em>プロジェクト名</em>.did ファイル）から与えられます。</p>
 </div>
 <div class="paragraph">
-<p>The translation from Motoko actor type to Candid service type is mostly, but not entirely, one-to-one, and there are some distinct Motoko types that map to the same Candid type. For example, the Motoko <code>Nat32</code> and <code>Char</code> types both exported as Candid type <code>nat32</code>, but <code>nat32</code> is canonically  imported as Motoko <code>Nat32</code>, not <code>Char</code>.</p>
+<p>Motoko の Actor 型から Candid のサービス（service）型への変換は、ほとんどの場合には 1 対 1 対応ですが、同じ Candid 型にマッピングするいくつかの異なる Motoko 型が存在します。例えば、Motoko の <code>Nat32</code> と <code>Char</code> 型は両方とも Candid の <code>nat32</code> 型としてエクスポートされますが、<code>nat32</code> は <code>Char</code> ではなく Motoko の <code>Nat32</code> として標準的（canonical）にインポートされます。</p>
 </div>
 <div class="paragraph">
-<p>The type of an imported canister function, therefore, might differ from the type of the original Motoko code that implements it.
-For example, if the Motoko function had type <code>shared Nat32 -&gt; async Char</code> in the implementation, its exported Candid type would be <code>(nat32) -&gt; (nat32)</code> but the Motoko type imported from this Candid type will actually be the correct—but perhaps unexpected—type  <code>shared Nat32 -&gt; async Nat32</code>.</p>
+<p>したがって、インポートされた Canister 関数の型は、それを実装している元の Motoko コードの型と異なる場合があります。
+例えば、Motoko の関数の実装で <code>shared Nat32 -&gt; async Char</code> という型があった場合、エクスポートされた Candid 型は <code>(nat32) -&gt; (nat32)</code> になりますが、この Candid 型からインポートされた Motoko の型は実際には（正しいのですがおそらく予想に反する）<code>shared Nat32 -&gt; async Nat32</code> になります。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_naming_imported_modules"><a class="anchor" href="#_naming_imported_modules"></a>Naming imported modules</h2>
+<h2 id="_インポートモジュールの命名"><a class="anchor" href="#_インポートモジュールの命名"></a>インポートモジュールの命名</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Although the most common convention is to identify imported modules by the module name as illustrated in the examples above, there&#8217;s no requirement for you to do so.
-For example, you might want to use different names to avoid naming conflicts or to simplify the naming scheme.</p>
+<p>上記の例のようにインポートモジュールをモジュール名で識別するのが最も一般的な慣習ですが、必ずしもそうする必要はありません。
+例えば、名前の衝突を避けるため、あるいは命名を簡単にするために、異なる名前を使用したい場合があります。</p>
 </div>
 <div class="paragraph">
-<p>The following examples illustrate different names you might use when importing the <code>List</code> base library module, avoiding a clash with another <code>List</code> library from a fictional <code>collections</code> package.</p>
+<p>標準ライブラリから <code>List</code> モジュールをインポートする際に、架空の <code>collections</code> パッケージの別の <code>List</code> ライブラリと名前が衝突しないように、異なる名前を使用する例を以下に示します。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">

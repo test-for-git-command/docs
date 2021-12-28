@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Manage canister smart contracts :: Dfinity 日本語ドキュメント</title>
+    <title>Canister スマートコントラクトを管理する :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/developers-guide/working-with-canisters.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -849,77 +849,77 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Manage canister smart contracts</h1>
+<h1 class="page">Canister スマートコントラクトを管理する</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you have experimented with using the DFINITY Canister Software Development Kit (SDK) by following the tutorials in the <a href="tutorials-intro.html">Tutorials</a> section or by cloning examples from the <a href="https://github.com/dfinity/examples">examples</a> repository, you are already familiar with how to build and deploy programs as <strong>canister smart contracts</strong>.
-This section provides additional information about the canister lifecycle and how to manage canisters.</p>
+<p><a href="tutorials-intro.html">チュートリアル</a> を行ったり、<a href="https://github.com/dfinity/examples">examples</a> リポジトリからサンプルをクローンしたりして、DFINITY Canister Software Development Kit (SDK) を使って実験したことがある方は、すでにプログラムを構築して<strong>Canister スマートコントラクト</strong>として展開する方法に慣れていることでしょう。
+このセクションでは、Canister のライフサイクルと管理方法について追加情報を提供します。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="create-canister"><a class="anchor" href="#create-canister"></a>Obtaining a canister smart contract identifier</h2>
+<h2 id="create-canister"><a class="anchor" href="#create-canister"></a>Canister スマートコントラクトの ID を取得する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Depending on your preferred development workflow, you can obtain a unique identifier for your canister smart contract, before or after you have a program ready to compile.
-For example, if you want to reserve a unique identifier for your canister smart contract on a subnet before you have written any code, you can do so by running the <code>dfx canister create</code> command.
-This command essentially creates an empty canister placeholder into which you can later install your code. The resulting canister will obtain a unique identifier.</p>
+<p>ご希望の開発ワークフローに応じて、プログラムをコンパイルする前または後に、Canister スマートコントラクト用の一意の ID を取得することができます。
+例えば、コードを書く前にサブネット上の Canister スマートコントラクトの一意な ID を確保したい場合、<code>dfx canister create</code> コマンドを実行することで可能です。
+このコマンドは基本的に空の Canister を確保し、そこに後でコードをインストールすることができます。作成された Canister は一意の ID を取得します。</p>
 </div>
 <div class="paragraph">
-<p>To obtain a unique identifier for a canister:</p>
+<p>Canister 用の一意の ID を取得するには、</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new terminal window or tab on your local computer.</p>
+<p>新しいターミナルウィンドウまたはタブを開きます。</p>
 </li>
 <li>
-<p>Create a new project for the canister you plan to create by running a command similar to the following:</p>
+<p>以下のコマンドを実行して、作成する予定の Canister の新規プロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new YOUR-PROJECT-NAME</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that the name you use for the project is also used as the canister name by default.</p>
+<p>プロジェクトに使用する名前は、デフォルトで Canister の名前としても使用されることに注意してください。</p>
 </div>
 </li>
 <li>
-<p>Change to your new project directory.</p>
+<p>新しいプロジェクト・ディレクトリに変更します。</p>
 </li>
 <li>
-<p>Open the <code>dfx.json</code> configuration file and set the host and port for the canister execution environment you want to use (e.g. the Internet Computer blockchain).</p>
+<p>設定ファイル <code>dfx.json</code> を開き、使用したい Canister 実行環境（例：Internet Computer ブロックチェーン）のホストとポートを設定します。</p>
 <div class="paragraph">
-<p>If you are using a local deployment, you can skip this step.</p>
+<p>ローカル環境を使用している場合は、この手順を省略できます。</p>
 </div>
 <div class="paragraph">
-<p>You can also optionally change the names of your canisters or add canister settings to the configuration file if you want to create identifiers for any additional canisters you think you will need before compiling code.</p>
+<p>またコードをコンパイルする前に、必要と思われる追加 Canister の ID を作成したい場合は、オプションで Canister の名前を変更したり、Canister の設定を設定ファイルに追加したりすることができます。</p>
 </div>
 </li>
 <li>
-<p>Start the local canister execution environment, if necessary, by running the following command:</p>
+<p>必要に応じて、以下のコマンドを実行して、ローカルの Canister 実行環境を起動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start --background</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In most cases, this step is only necessary if you are running the canisters locally.</p>
+<p>ほとんどの場合、このステップはローカルで Canister を動作させる場合にのみ必要です。</p>
 </div>
 <div class="paragraph">
-<p>If you were registering canisters to run on a remote execution environment, e.g. the Internet Computer blockchain, you would include the <code>--network</code> command-line option to perform tasks on the environment specified under this parameter.</p>
+<p>もし、リモート実行環境、例えば Internet Computer ブロックチェーン上で実行する Canister を登録する場合、このパラメータで指定された環境上でタスクを実行するために、<code>--network</code> コマンドラインオプションを含めることになります。</p>
 </div>
 </li>
 <li>
-<p>Register unique identifiers for the canisters defined in the <code>dfx.json</code> by running the following command:</p>
+<p>以下のコマンドを実行して、<code>dfx.json</code> で定義された Canister に一意の ID を登録します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister create --all</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The command creates the <code>.dfx/local</code> directory and adds the <code>canister_ids.json</code> file to that directory for the project.</p>
+<p>このコマンドは <code>.dfx/local</code> ディレクトリを作成し、そのディレクトリに <code>canister_ids.json</code> ファイルを追加します。</p>
 </div>
 </li>
 </ol>
@@ -927,37 +927,37 @@ This command essentially creates an empty canister placeholder into which you ca
 </div>
 </div>
 <div class="sect1">
-<h2 id="local-id"><a class="anchor" href="#local-id"></a>Build a canister smart contract with a local identifier</h2>
+<h2 id="local-id"><a class="anchor" href="#local-id"></a>ローカル ID を持つ Canister スマートコントラクトをビルドする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you have written source code for your project, you need to compile it into a WebAssembly module before deploying it as a canister.</p>
+<p>プロジェクトのソースコードを記述した後、それを WebAssembly モジュールにコンパイルしてから、Canister としてデプロイする必要があります。</p>
 </div>
 <div class="paragraph">
-<p>If you are only compiling your project for local debugging, you can generate a locally-defined identifier for your project.</p>
+<p>ローカルデバッグのためにのみプロジェクトをコンパイルする場合、プロジェクトのローカル定義 ID を生成することができます。</p>
 </div>
 <div class="paragraph">
-<p>To generate a locally-defined identifier:</p>
+<p>ローカル定義 ID を生成するには、</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a project with the configuration settings and program logic to suit your needs.</p>
+<p>必要な構成設定とプログラムロジックを持つプロジェクトを作成します。</p>
 </li>
 <li>
-<p>Start the local canister execution environment, if necessary.</p>
+<p>必要に応じて、ローカル Canister の実行環境を起動します。</p>
 <div class="paragraph">
-<p>If you were compiling canisters to run on a remote execution environment, e.g. the Internet Computer blockchain, you would include the <code>--network</code> command-line option to perform tasks on the environment specified under this parameter.</p>
+<p>もし、Internet Computer ブロックチェーンなどのリモート実行環境で実行するために Canister をコンパイルする場合は、<code>--network</code> コマンドラインオプションを含め、このパラメータで指定した環境上でタスクを実行することになるでしょう。</p>
 </div>
 </li>
 <li>
-<p>Generate hard-coded local identifiers for the canisters defined in the <code>dfx.json</code> by running the following command:</p>
+<p>以下のコマンドを実行して、<code>dfx.json</code> で定義された Canister のためのハードコードされたローカル ID を生成してください。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx build --check</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that you must register unique canister identifiers to replace your locally-defined identifier before you can deploy the project on the Internet Computer blockchain.</p>
+<p>Internet Computer ブロックチェーンにプロジェクトを展開する前に、ローカルで定義した ID を置き換えるために、一意の Canister ID を登録する必要があります。</p>
 </div>
 </li>
 </ol>
@@ -965,36 +965,36 @@ This command essentially creates an empty canister placeholder into which you ca
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploy-canister"><a class="anchor" href="#deploy-canister"></a>Deploy canister smart contracts</h2>
+<h2 id="deploy-canister"><a class="anchor" href="#deploy-canister"></a>Canister スマートコントラクトをデプロイする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you have compiled a program, you can install the compiled code in a canister smart contract running either on a local canister execution environment or on the Internet Computer blockchain.</p>
+<p>プログラムをコンパイルしたら、コンパイルしたコードを、ローカルの Canister 実行環境または Internet Computer ブロックチェーン上で動作する Canister スマートコントラクトにインストールできます。</p>
 </div>
 <div class="paragraph">
-<p>The canister identifier that was created in advance or during the build process determines where your code is installed during deployment.</p>
+<p>事前またはビルドプロセス中に作成された Canister ID が、デプロイ時にコードがインストールされる場所を決定します。</p>
 </div>
 <div class="paragraph">
-<p>To deploy the code for the first time:</p>
+<p>コードを初めてデプロイするには、</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new terminal and navigate to your project directory.</p>
+<p>新しいターミナルを開き、プロジェクトディレクトリに移動します。</p>
 </li>
 <li>
-<p>Start the local canister execution environment, if necessary.</p>
+<p>必要に応じて、ローカル Canister 実行環境を起動します。</p>
 <div class="paragraph">
-<p>In most cases, this step is only necessary if you are running the canisters locally.</p>
+<p>ほとんどの場合、このステップはローカルで Canister を動作させる場合にのみ必要です。</p>
 </div>
 <div class="paragraph">
-<p>If you were registering canisters to run on a remote execution environment, e.g. the Internet Computer blockchain, you would include the <code>--network</code> command-line option to perform tasks on the environment specified under this parameter.</p>
+<p>もし、Internet Computer ブロックチェーンなどのリモート実行環境で実行する Canister を登録する場合は、<code>--network</code> コマンドラインオプションを含め、このパラメータで指定した環境上でタスクを実行することになるでしょう。</p>
 </div>
 </li>
 <li>
-<p>Verify you have canister identifiers for all of the canisters you want to deploy.</p>
+<p>デプロイしたいすべての Canister に Canister ID があることを確認します。</p>
 </li>
 <li>
-<p>Deploy all of the canisters by running the following command:</p>
+<p>以下のコマンドを実行して、すべての Canister をデプロイします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister install --all</code></pre>
@@ -1006,20 +1006,20 @@ This command essentially creates an empty canister placeholder into which you ca
 </div>
 </div>
 <div class="sect1">
-<h2 id="lookup-id"><a class="anchor" href="#lookup-id"></a>Look up a canister smart contract identifier</h2>
+<h2 id="lookup-id"><a class="anchor" href="#lookup-id"></a>Canister のスマートコントラクト ID を調べる</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>All canisters have unique identifiers.
-You often need to use these identifiers to interact with the canister.
-For example, if you want to access the front-end canister for a dapp or interact with a service using the Candid web interface, you must specify the appropriate canister identifier.</p>
+<p>すべての Canister には一意の ID があります。
+Canister と対話するために、これらの ID を使用する必要がある場合がよくあります。
+たとえば、Dapp 用のフロントエンド Canister にアクセスしたり、Candid ウェブインターフェースを使用してサービスと対話する場合、適切な Canister ID を指定する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>Because the identifiers are specific to the environment where the canisters are deployed, the files used to store the information are in different directories.
-For example, identifiers for a canister deployed locally are located in the project&#8217;s <code>.dfx/local/canister_ids.json</code> file.</p>
+<p>ID は Canister が配置されている環境に固有なので、情報を保存するために使用されるファイルは異なるディレクトリにあります。
+例えば、ローカルに配置された Canister の ID は、プロジェクトの <code>.dfx/local/canister_ids.json</code> ファイルに格納されます。</p>
 </div>
 <div class="paragraph">
-<p>You can look up the canister identifier for any specific canister by running the <code>dfx canister id</code> command.
-For example, to look up the the canister identifier for the <code>lookup</code> canister deployed on the local canister execution environment, you could run the following command:</p>
+<p><code>dfx canister id</code> コマンドを実行することにより、特定の Canister の Canister IDを調べることができます。
+例えば、ローカルの Canister 実行環境に配置された <code>lookup</code> Canister の Canister ID を調べるには、次のコマンドを実行します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1027,7 +1027,7 @@ For example, to look up the the canister identifier for the <code>lookup</code> 
 </div>
 </div>
 <div class="paragraph">
-<p>To look up the canister identifier for the same canister deployed on the environment specified by the <code>ic</code> alias, you would run the following command:</p>
+<p>また、<code>ic</code> エイリアスで指定された環境に配置された同じ Canister の Canister ID を調べるには、以下のコマンドを実行します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1037,21 +1037,21 @@ For example, to look up the the canister identifier for the <code>lookup</code> 
 </div>
 </div>
 <div class="sect1">
-<h2 id="add-wallet"><a class="anchor" href="#add-wallet"></a>Add a wallet for existing canister smart contracts</h2>
+<h2 id="add-wallet"><a class="anchor" href="#add-wallet"></a>既存の Canister スマートコントラクト用のウォレットを追加</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When you are doing local development, creating a new project automatically creates a default wallet for you to use with the canisters in that project. If you want to add a wallet for projects with canisters that you have previously created, you can force <code>dfx</code> to generate one by taking a couple of manual steps.</p>
+<p>ローカルで開発を行っている場合、新しいプロジェクトを作成すると、そのプロジェクト内の Canister で使用するためのデフォルトのウォレットが自動的に作成されます。もし、以前に作成した Canister のプロジェクトにウォレットを追加したい場合は、いくつかの手動ステップを踏むことで、強制的に <code>dfx</code> にウォレットを生成させることができます。</p>
 </div>
 <div class="paragraph">
-<p>To add a wallet for use with an existing canister:</p>
+<p>既存の Canister で使用するためにウォレットを追加するには、</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal and navigate to your project directory.</p>
+<p>ターミナルを開いて、プロジェクトディレクトリに移動します。</p>
 </li>
 <li>
-<p>Stop the local canister execution environment, if necessary, by running the following command:</p>
+<p>必要であれば、以下のコマンドを実行して、ローカルの Canister 実行環境を停止します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>
@@ -1059,10 +1059,10 @@ For example, to look up the the canister identifier for the <code>lookup</code> 
 </div>
 </li>
 <li>
-<p>Delete the <code>.dfx</code> directory.</p>
+<p><code>.dfx</code> ディレクトリを削除します。</p>
 </li>
 <li>
-<p>Start the local canister execution environment network by running the following command:</p>
+<p>以下のコマンドを実行して、ローカル Canister 実行環境のネットワークを開始します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start --clean</code></pre>
@@ -1074,37 +1074,37 @@ For example, to look up the the canister identifier for the <code>lookup</code> 
 </div>
 </div>
 <div class="sect1">
-<h2 id="reinstall-canister"><a class="anchor" href="#reinstall-canister"></a>Reinstall a canister smart contract</h2>
+<h2 id="reinstall-canister"><a class="anchor" href="#reinstall-canister"></a>Canister スマートコントラクトを再インストールする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>During the development cycle, you might want to install, then replace your program as you debug and improve it.</p>
+<p>開発サイクルの中で、デバッグや改良をしながらプログラムをインストールし、その後入れ替えたいと思うことがあるかもしれません。</p>
 </div>
 <div class="paragraph">
-<p>In this scenario, you might want to keep the canister identifier you have registered but without preserving any of the canister code or state.
-For example, your canister might only have test data that you don&#8217;t want to keep or you might have decided to change the program altogether but want to reinstall under a canister identifier you used to install a previous program.</p>
+<p>このような場合、登録した Canister ID を保持したいが、Canister のコードや状態は保持したくないと考えるかもしれません。
+例えば、Canister には保存したくないテストデータしかない場合や、プログラムを完全に変更することを決定したが、以前のプログラムのインストールに使用した Canister ID の下で再インストールしたい場合などです。</p>
 </div>
 <div class="paragraph">
-<p>To reinstall a canister:</p>
+<p>Canister を再インストールするには、</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new terminal and navigate to your project directory.</p>
+<p>新しいターミナルを開き、プロジェクトのディレクトリに移動します。</p>
 </li>
 <li>
-<p>Start the local canister execution environment, if necessary.</p>
+<p>必要であれば、ローカル Canister の実行環境を起動します。</p>
 <div class="paragraph">
-<p>In most cases, this step is only necessary if you are running the canisters locally.</p>
+<p>ほとんどの場合、このステップはローカルで Canister を実行する場合にのみ必要です。</p>
 </div>
 <div class="paragraph">
-<p>If you were registering canisters to run on a remote execution environment, e.g. the Internet Computer blockchain, you would include the <code>--network</code> command-line option to perform tasks on the environment specified under this parameter.</p>
+<p>もし、Internet Computer ブロックチェーンなどのリモート実行環境で実行する Canister を登録する場合は、<code>--network</code> コマンドラインオプションを含め、このパラメータで指定した環境上でタスクを実行することになるでしょう。</p>
 </div>
 </li>
 <li>
-<p>Verify you have canister identifiers for all of the canisters you want to re-deploy.</p>
+<p>再デプロイしたいすべての Canister の Canister ID があることを確認します。</p>
 </li>
 <li>
-<p>Re-deploy all of the canisters by running the following command:</p>
+<p>次のコマンドを実行して、すべての Canister を再デプロイします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister install --all --mode reinstall</code></pre>
@@ -1114,29 +1114,29 @@ For example, your canister might only have test data that you don&#8217;t want t
 </ol>
 </div>
 <div class="paragraph">
-<p>Note that you can use the <code>reinstall</code> mode to replace any canister, regardless of whether the canister has code or state associated with it.</p>
+<p>なお、<code>reinstall</code> モードは、Canister にコードや状態が関連付けられているかどうかに関係なく、任意の Canister を交換するために使用できます。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="set-owner"><a class="anchor" href="#set-owner"></a>Set an identity to own a canister smart contract</h2>
+<h2 id="set-owner"><a class="anchor" href="#set-owner"></a>Canister スマートコントラクトを所有するための ID を設定する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In most cases, a <code>default</code> user identity is created for you automatically the first time you run the <code>dfx canister create</code> command.
-This default identity consists of the public and private key pair generated for your local user account.
-Typically, this <code>default</code> identity is also the default owner of all of the projects you create and all of the canisters you deploy.
-You can, however, proactively create and use identities of your choice to circumvent the <code>default</code> user identity from being used.</p>
+<p>ほとんどの場合、<code>dfx canister create</code> コマンドを初めて実行すると、<code>default</code> というユーザー ID が自動的に作成されます。
+このデフォルトの ID は、ローカルのユーザーアカウント用に生成された公開鍵と秘密鍵のペアで構成されています。
+通常、この <code>default</code> ID は、あなたが作成するすべてのプロジェクトと、デプロイするすべての Canister のデフォルトの所有者にもなります。
+しかし、<code>default</code> のユーザー ID が使用されないように、積極的に自分の好きな ID を作成し、使用することができます。</p>
 </div>
 <div class="paragraph">
-<p>As an example, the following scenario illustrates creating a <code>registered_owner</code> identity that is then used to register, build, deploy, and call the <code>pubs</code> project.</p>
+<p>例として、次のシナリオでは <code>registered_owner</code> という ID を作成し、それを使って <code>pubs</code> プロジェクトの登録、ビルド、デプロイ、コールを行う例を示しています。</p>
 </div>
 <div class="paragraph">
-<p>To set an identity for a project:</p>
+<p>プロジェクトに ID を設定するには、</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a new project by running the following command:</p>
+<p>以下のコマンドを実行し、新しいプロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new pubs</code></pre>
@@ -1144,7 +1144,7 @@ You can, however, proactively create and use identities of your choice to circum
 </div>
 </li>
 <li>
-<p>Change to the project directory by running the following command:</p>
+<p>以下のコマンドを実行して、プロジェクトディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd pubs</code></pre>
@@ -1152,7 +1152,7 @@ You can, however, proactively create and use identities of your choice to circum
 </div>
 </li>
 <li>
-<p>Start the local canister execution environment in the background by running the following command:</p>
+<p>以下のコマンドを実行して、ローカル Canister 実行環境をバックグラウンドで起動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start --background</code></pre>
@@ -1160,7 +1160,7 @@ You can, however, proactively create and use identities of your choice to circum
 </div>
 </li>
 <li>
-<p>Create a new <code>registered_owner</code> identity by running the following command:</p>
+<p>以下のコマンドを実行して、新しい <code>registered_owner</code> ID を作成します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx identity new registered_owner</code></pre>
@@ -1168,7 +1168,7 @@ You can, however, proactively create and use identities of your choice to circum
 </div>
 </li>
 <li>
-<p>Set the active user context to use the <code>registered_owner</code> identity by running the following command:</p>
+<p>以下のコマンドを実行して、アクティブユーザーコンテキストが <code>registered_owner</code> の ID を使用するように設定します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx identity use registered_owner</code></pre>
@@ -1176,7 +1176,7 @@ You can, however, proactively create and use identities of your choice to circum
 </div>
 </li>
 <li>
-<p>Register, build, and deploy canisters for the project by running the following commands:</p>
+<p>以下のコマンドを実行して、プロジェクトの Canister を登録、ビルド、デプロイします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister create --all
@@ -1185,11 +1185,11 @@ dfx canister install --all</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>These commands run using the <code>registered_owner</code> identity, making that user the owner of the canisters deployed.</p>
+<p>これらのコマンドは <code>registered_owner</code> という ID で実行され、そのユーザが配備された Canister のオーナーになります。</p>
 </div>
 </li>
 <li>
-<p>Call the <code>greet</code> function to verify a successful deployment by running the following command:</p>
+<p>以下のコマンドを実行して <code>greet</code> 関数を呼び出してデプロイが成功したことを確認します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call pubs greet '("Sam")'</code></pre>
@@ -1201,21 +1201,21 @@ dfx canister install --all</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="running-state"><a class="anchor" href="#running-state"></a>Managing the running state of a canister smart contract</h2>
+<h2 id="running-state"><a class="anchor" href="#running-state"></a>Canister スマートコントラクトの実行状態を管理する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you deploy a canister, it can begin receiving and processing requests from users and from other canisters.
-Canisters that are available to send requests and receive replies are considered in be in a <strong>Running</strong> state.</p>
+<p>Canister をデプロイすると、ユーザや他の Canister からのリクエストの受信と処理を開始することができるようになります。
+リクエストの送信と返信の受信が可能な Canister は、<strong>Running</strong> 状態であるとみなされます。</p>
 </div>
 <div class="paragraph">
-<p>Although canisters are normally placed in the Running state by default, there are cases where you might want to temporarily or permanently stop a canister.
-For example, you might want to stop a canister before upgrading it.
-Stopping a canister helps to ensure proper handling of any messages that are in progress and need to either run to completion or be rolled back.
-You might also want to stop a canister to clear its message queue cleanly as a prerequisite to deleting the canister.</p>
+<p>通常、Canister は既定で実行状態になりますが、Canister を一時的または恒久的に停止したい場合があります。
+たとえば、Canister をアップグレードする前に停止したい場合があります。
+Canister を停止すると、進行中のメッセージが適切に処理され、完了するまで実行するか、ロールバックする必要があることを確認できます。
+また、Canister を停止して、Canister の削除の前提条件として、そのメッセージキューをきれいにクリアしたい場合もあります。</p>
 </div>
 <div class="paragraph">
-<p>You can check the current status of all canisters or a specified canister by running the <code>dfx canister status</code> command.
-For example, to see the status for all canisters running on the local canister execution environment, you would run the following command:</p>
+<p><code>dfx canister status</code> コマンドを実行することで、全ての Canister 、または指定した Canister の現在の状態を確認することができます。
+例えば、ローカルの Canister 実行環境上で動作している全ての Canister の状態を見るには、以下のコマンドを実行します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1223,7 +1223,7 @@ For example, to see the status for all canisters running on the local canister e
 </div>
 </div>
 <div class="paragraph">
-<p>This command returns output similar to the following if canisters are currently running:</p>
+<p>このコマンドは、Canister が現在実行されている場合、次のような出力を返します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1232,7 +1232,7 @@ Canister status_check_assets's status is Running.</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can stop canisters that are currently running by running the <code>dfx canister stop</code> command.</p>
+<p><code>dfx canister stop</code> コマンドを実行することにより、現在実行中のCanister を停止することができます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1240,7 +1240,7 @@ Canister status_check_assets's status is Running.</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command displays output similar to the following:</p>
+<p>このコマンドは、次のような出力を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1249,11 +1249,11 @@ Stopping code for canister status_check_assets, with canister_id cxeji-wacaa-aaa
 </div>
 </div>
 <div class="paragraph">
-<p>If you were to rerun the <code>dfx canister status</code> command, you might see a status of <code>Stopped</code> indicating that there were no pending messages that needed to processed or a status of <code>Stopping</code> indicating that there were messages in-flight that needed to be addressed.</p>
+<p>もし、<code>dfx canister status</code> コマンドを再実行すると、<code>Stopped</code> というステータスが表示され、処理する必要のある保留中のメッセージはない、または <code>Stopping</code> というステータスが表示され、処理する必要のあるメッセージがあることがわかるかもしれません。</p>
 </div>
 <div class="paragraph">
-<p>To restart a canister-for example, after a successful canister upgrade—you can run the <code>dfx canister start</code> command.
-For example, to restart all of the canisters, you would run the following command:</p>
+<p>Canister を再起動するには、例えば Canister のアップグレードに成功した後、<code>dfx canister start</code> コマンドを実行します。
+たとえば、すべての Canister を再起動するには、次のコマンドを実行します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1261,7 +1261,7 @@ For example, to restart all of the canisters, you would run the following comman
 </div>
 </div>
 <div class="paragraph">
-<p>This command displays output similar to the following:</p>
+<p>このコマンドは、次のような出力を表示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1272,15 +1272,15 @@ Starting code for canister status_check_assets, with canister_id cxeji-wacaa-aaa
 </div>
 </div>
 <div class="sect1">
-<h2 id="upgrade-canister"><a class="anchor" href="#upgrade-canister"></a>Upgrade a canister smart contract</h2>
+<h2 id="upgrade-canister"><a class="anchor" href="#upgrade-canister"></a>Canister スマートコントラクトのアップグレード</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Unlike a canister reinstall that preserves the canister identifier but no state, a canister upgrade enables you to preserve the state of a deployed canister, and change the code.</p>
+<p>Canister の再インストールでは Canister の ID は保持されて、状態は保持されませんが、Canister のアップグレードでは、デプロイされた Canister の状態を保持し、コードを変更することができます。</p>
 </div>
 <div class="paragraph">
-<p>For example, assume you have a dapp that manages professional profiles and social connections.
-If you want to add a new feature to the dapp, you need to be able to update the canister code without losing any of the previously-stored data.
-A canister upgrade enables you to update existing canister identifiers with program changes without losing the program state.</p>
+<p>たとえば、履歴書とソーシャル接続を管理する Dapp があるとします。
+この Dapp に新しい機能を追加する場合、以前に保存されたデータを失うことなく、Canister のコードを更新できる必要があります。
+Canister のアップグレードにより、プログラムの状態を失うことなく、プログラムの変更に伴い既存の Canister ID を更新することができます。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1289,40 +1289,40 @@ A canister upgrade enables you to update existing canister identifiers with prog
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To preserve state when you are upgrading a canister written in Motoko, be sure to use the <code>stable</code> keyword to identify the variables you want to preserve. For more information about preserving variable state in Motoko, see <a href="../language-guide/upgrades.html">Stable variables and upgrade methods</a>.
-If you are upgrading a canister written in Rust, you should use <code>pre_upgrade</code> and <code>post_upgrade</code> functions as illustrated in the <a href="https://github.com/dfinity/cdk-rs/blob/master/examples/asset_storage/src/asset_storage_rs/lib.rs">Rust CDK asset storage</a> example to ensure data is properly preserved after a canister upgrade.
+Motoko で書かれた Canister をアップグレードするときに状態を保持するには、必ず <code>stable</code> キーワードを使用して、保持したい変数を特定します。Motoko で変数の状態を保持することについての詳しい情報は <a href="../language-guide/upgrades.html">Stable variables and upgrade methods</a> を参照してください。
+Rust で書かれた Canister をアップグレードする場合は、<a href="https://github.com/dfinity/cdk-rs/blob/master/examples/asset_storage/src/asset_storage_rs/lib.rs">Rust CDK asset storage</a> のサンプルにあるように <code>pre_upgrade</code> と <code>post_upgrade</code> 関数を使用して、Canister のアップグレード後にデータが適切に保存されるようにする必要があります。
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To upgrade a canister:</p>
+<p>Canister をアップグレードするには、</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new terminal and navigate to your project directory.</p>
+<p>新しいターミナルを開き、プロジェクトディレクトリに移動します。</p>
 </li>
 <li>
-<p>Start the local canister execution environment, if necessary.</p>
+<p>必要であれば、ローカルの Canister 実行環境を起動します。</p>
 <div class="paragraph">
-<p>In most cases, this step is only necessary if you are running the canisters locally.</p>
+<p>ほとんどの場合、このステップはローカルで Canister を実行する場合にのみ必要です。</p>
 </div>
 <div class="paragraph">
-<p>If you were registering canisters to run on a remote execution environment, e.g. the Internet Computer blockchain, you would include the <code>--network</code> command-line option to perform tasks on the environment specified under this parameter.</p>
-</div>
-</li>
-<li>
-<p>Verify you have canister identifiers for all of the canisters you want to upgrade.</p>
-<div class="paragraph">
-<p>Note that your program must identify the variables for which to maintain state by using the <code>stable</code> keyword in the variable declaration.</p>
-</div>
-<div class="paragraph">
-<p>For more information about declaring stable variables, see the <em>Motoko Programming Language Guide</em>.</p>
+<p>もし、Internet Computer ブロックチェーンなどのリモート実行環境で実行する Canister を登録する場合は、<code>--network</code> コマンドラインオプションを含め、このパラメータで指定した環境上でタスクを実行することになるでしょう。</p>
 </div>
 </li>
 <li>
-<p>Upgrade all of the canisters by running the following command:</p>
+<p>アップグレードしたいすべての Canister の Canister ID があることを確認します。</p>
+<div class="paragraph">
+<p>変数宣言で <code>stable</code> キーワードを使用し、状態を維持する変数を特定する必要があることに注意してください。</p>
+</div>
+<div class="paragraph">
+<p>stable 変数宣言の詳細については、<em>Motoko Programming Language Guide</em> を参照してください。</p>
+</div>
+</li>
+<li>
+<p>以下のコマンドを実行して、すべての Canister をアップグレードします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister install --all --mode upgrade</code></pre>
@@ -1334,34 +1334,34 @@ If you are upgrading a canister written in Rust, you should use <code>pre_upgrad
 </div>
 </div>
 <div class="sect1">
-<h2 id="delete-canister"><a class="anchor" href="#delete-canister"></a>Delete a canister smart contract</h2>
+<h2 id="delete-canister"><a class="anchor" href="#delete-canister"></a>Canister のスマートコントラクトを削除する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you want to permanently delete a specific canister or all canisters for a specific project on a given deployment (either local, or remote), you can do so by running the <code>dfx canister delete</code> command.</p>
+<p>特定のデプロイ環境（ローカル、リモートのいずれか）上の特定の Canister 、または特定のプロジェクトのすべての Canister を永久に削除したい場合、<code>dfx canister delete</code> コマンドを実行することで可能です。</p>
 </div>
 <div class="paragraph">
-<p>Deleting a canister removes the canister identifier, code, and state.
-Before you can delete a canister, however, you must first stop the canister to clear any pending message requests or replies.</p>
+<p>Canister を削除すると、Canister の ID、コード、およびステートが削除されます。
+ただし、Canister を削除する前に、まず Canister を停止して、保留中のメッセージ要求や返信をクリアする必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To delete all canisters for a project:</p>
+<p>プロジェクトのすべての Canister を削除するには、</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new terminal and navigate to your project directory.</p>
+<p>新しいターミナルを開き、プロジェクトディレクトリに移動します。</p>
 </li>
 <li>
-<p>Start the local canister execution environment, if necessary.</p>
+<p>必要であれば、ローカル Canister 実行環境を起動します。</p>
 <div class="paragraph">
-<p>In most cases, this step is only necessary if you are running the canisters locally.</p>
+<p>ほとんどの場合、このステップはローカルで Canister を実行する場合にのみ必要です。</p>
 </div>
 <div class="paragraph">
-<p>If you were deleting canisters to run on a remote execution environment, e.g. the Internet Computer blockchain, you would include the <code>--network</code> command-line option to perform tasks on the environment specified under this parameter.</p>
+<p>もし、Internet Computer ブロックチェーンなどのリモート実行環境で実行する Canister を削除する場合は、<code>--network</code> コマンドラインオプションを含めて、このパラメータで指定した環境上でタスクを実行することになるでしょう。</p>
 </div>
 </li>
 <li>
-<p>Check the status of the project canisters running on the local canister execution environment by running the following command:</p>
+<p>以下のコマンドを実行して、ローカルの Canister 実行環境上で実行されているプロジェクトの Canister の状態を確認します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister status --all</code></pre>
@@ -1369,7 +1369,7 @@ Before you can delete a canister, however, you must first stop the canister to c
 </div>
 </li>
 <li>
-<p>Stop all of the project canisters by running the following command:</p>
+<p>以下のコマンドを実行して、すべてのプロジェクトの Canister を停止します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister stop --all</code></pre>
@@ -1377,7 +1377,7 @@ Before you can delete a canister, however, you must first stop the canister to c
 </div>
 </li>
 <li>
-<p>Delete all of the project canisters by running the following command:</p>
+<p>以下のコマンドを実行して、すべてのプロジェクトの Canister を削除します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister delete --all</code></pre>
