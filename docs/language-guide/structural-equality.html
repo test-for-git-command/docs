@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Structural equality :: Dfinity 日本語ドキュメント</title>
+    <title>構造的等価性 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/language-guide/structural-equality.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -307,7 +307,7 @@
     
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../developers-guide/working-with-canisters.html">Manage canisters</a>
+    <a class="nav-link" href="../developers-guide/working-with-canisters.html">Canister を管理する</a>
     
   </li>
   <li class="nav-item" data-depth="4">
@@ -315,15 +315,15 @@
     
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../developers-guide/tutorials/explore-templates.html">Explore the default project</a>
+    <a class="nav-link" href="../developers-guide/tutorials/explore-templates.html">デフォルトプロジェクトを探索する</a>
     
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../developers-guide/tutorials/define-an-actor.html">Query using an actor</a>
+    <a class="nav-link" href="../developers-guide/tutorials/define-an-actor.html">Actor を使って処理を要求する</a>
     
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../developers-guide/tutorials/hello-location.html">Pass text arguments</a>
+    <a class="nav-link" href="../developers-guide/tutorials/hello-location.html">テキスト引数を渡す</a>
     
   </li>
   <li class="nav-item" data-depth="4">
@@ -416,7 +416,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="errors.html">Error handling</a>
+    <a class="nav-link" href="errors.html">エラーハンドリング</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -428,7 +428,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="modules-and-imports.html">Modules and imports</a>
+    <a class="nav-link" href="modules-and-imports.html">モジュールとインポート</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -436,7 +436,7 @@
     
   </li>
   <li class="nav-item is-current-page" data-depth="6">
-    <a class="nav-link" href="structural-equality.html">Structural equality</a>
+    <a class="nav-link" href="structural-equality.html">構造的等価性</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -444,7 +444,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="caller-id.html">Principals and caller identification</a>
+    <a class="nav-link" href="caller-id.html">プリンシパルと Caller の識別</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -468,7 +468,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="motoko-grammar.html">Motoko grammar</a>
+    <a class="nav-link" href="motoko-grammar.html">Motoko の文法</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -844,27 +844,27 @@
     <li>Explore our languages</li>
     <li><a href="motoko.html">Motoko</a></li>
     <li>Motoko Guide</li>
-    <li><a href="structural-equality.html">Structural equality</a></li>
+    <li><a href="structural-equality.html">構造的等価性</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/motoko/edit/master/doc/modules/language-guide/pages/structural-equality.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Structural equality</h1>
+<h1 class="page">構造的等価性</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Equality (<code>==</code>) — and by extension inequality (<code>!=</code>) — is <strong>structural</strong>: two values <code>a</code> and <code>b</code> are equal, <code>a == b</code>, whenever they have equal contents, regardless of the physical representation, or identity,  of those values in memory.</p>
+<p>等式 (<code>==</code>) と不等式 (<code>!=</code>) は <strong>構造的</strong> です。つまり、2 つの値 <code>a</code> と <code>b</code> が同じ内容であれば、メモリ上の値の物理的な表現（同一性）にかかわらず常に等価となり、 <code>a == b</code> です。</p>
 </div>
 <div class="paragraph">
-<p>For example, the strings <code>"hello world"</code>  and <code>"hello " #  "world"</code> are equal, even though they are most likely  represented by different objects in memory.</p>
+<p>例えば、文字列 <code>"hello world "</code> と <code>"hello " #"world "</code> は、メモリ上では異なるオブジェクトで表現されている可能性が高いですが等価とみなされます。</p>
 </div>
 <div class="paragraph">
-<p>Equality is defined only on <code>shared</code> types or on types that don&#8217;t contain mutable fields, mutable arrays, non-shared functions, or components of generic type.</p>
+<p>等価性は、<code>shared</code> 型か、あるいはミュータブルなフィールド・ミュータブルな配列・非 <code>shared</code> 関数・ジェネリクス型（総称型）のコンポーネントのいずれも含まない型に対してのみ定義されます。</p>
 </div>
 <div class="paragraph">
-<p>For example, we can compare arrays of objects.</p>
+<p>例えば、オブジェクトの配列を比較することができます。</p>
 </div>
 <div class="listingblock run">
 <div class="content">
@@ -874,21 +874,21 @@ a == b;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Importantly, this does <em>not</em> compare by reference, but by value.</p>
+<p>重要なのは、参照で比較しているのではなく、値で比較していることです。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_subtyping"><a class="anchor" href="#_subtyping"></a>Subtyping</h2>
+<h2 id="sub-typing"><a class="anchor" href="#sub-typing"></a>サブタイピング</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Equality respects subtyping so <code>{ x = 10 } == { x = 10; y = 20 }</code> returns <code>true</code>.</p>
+<p>等価性はサブタイピングを尊重するので、<code>{ x = 10 } == { x = 10; y = 20 }</code> は <code>true</code> を返します。</p>
 </div>
 <div class="paragraph">
-<p>To accommodate subtyping, two values of different types are equal if they are equal at their most specific, common supertype, meaning they agree on their common structure.
-The compiler will warn in cases where this might lead to subtle unwanted behaviour.
-For example: <code>{ x = 10 } == { y = 20 }</code> will return <code>true</code> because the two values get compared at the empty record type.
-That&#8217;s unlikely the intention, so the compiler will emit a warning here.</p>
+<p>サブタイピングに適応するために、異なる型の 2 つの値は、共通のスーパータイプが等しい場合、すなわち共通の構造が一致する場合に等しいとします。
+コンパイラは、これが微妙に望ましくない挙動をする可能性がある場合に警告します。
+例えば、<code>{ x = 10 } == { y = 20 }</code> は、2 つの値の共通構造である空のレコード型を比較することになるため、<code>true</code> を返します。
+これは意図していない可能性が高いため、コンパイラは警告を発します。</p>
 </div>
 <div class="listingblock run">
 <div class="content">
@@ -898,11 +898,11 @@ That&#8217;s unlikely the intention, so the compiler will emit a warning here.</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generic_types"><a class="anchor" href="#_generic_types"></a>Generic types</h2>
+<h2 id="generic-types"><a class="anchor" href="#generic-types"></a>ジェネリクス型</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is not possible to declare that a generic type variable is <code>shared</code>, so equality can only be used on non-generic types.
-For example, the following expression generates a warning like this:</p>
+<p>ジェネリクス型の変数が <code>shared</code> であることを宣言することはできないので、等号は非ジェネリクス型に対してのみ使用できます。
+例えば、次の式は警告を発します。</p>
 </div>
 <div class="listingblock run">
 <div class="content">
@@ -910,14 +910,14 @@ For example, the following expression generates a warning like this:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Comparing these two at the <code>Any</code> type means this comparison will return <code>true</code> no matter its arguments, so this doesn&#8217;t work as one might hope.</p>
+<p>この 2 つは <code>Any</code> 型で比較され、引数に関係なく <code>true</code> を返すため、期待したようには動作しません。</p>
 </div>
 <div class="paragraph">
-<p>If you run into this limitation in your code, you should accept a comparison function of type <code>(A, A) -&gt; Bool</code> as an argument, and use that to compare the values instead.</p>
+<p>もし、あなたのコードでこの制限に遭遇したら、比較のための <code>(A, A) -&gt; Bool</code> 型の関数を引数として受け取り、その関数を用いて値を比較するようにすべきです。</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s look at a list membership test for example.
-This first implementation <em>does not</em> work:</p>
+<p>例えば、リストのメンバ一覧を取得するテストを見てみましょう。
+この最初の実装は <em>うまく動きません</em>。</p>
 </div>
 <div class="listingblock run">
 <div class="content">
@@ -935,10 +935,10 @@ assert(not contains(1, ?(0, null)));</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This assertion will trap because the compiler compares the type <code>A</code> at <code>Any</code> which is always <code>true</code>. So as long as the list has at least one element, this version of <code>contains</code> will always return true.</p>
+<p>このアサーションは常にトラップされます。なぜなら、コンパイラは <code>A</code> 型を <code>Any</code> 型として比較し、これは常に <code>true</code> になるためです。したがって、リストに少なくとも 1 つの要素がある限り、<code>contains</code> は常に真を返します。</p>
 </div>
 <div class="paragraph">
-<p>This second implementation shows how to accept the comparison function explicitly instead:</p>
+<p>以下の 2 番目の実装では、比較のための関数を明示的に受け付ける方法を示しています。</p>
 </div>
 <div class="listingblock run">
 <div class="content">
