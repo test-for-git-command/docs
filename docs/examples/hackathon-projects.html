@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Hosting a Static Website on the Internet Computer :: Dfinity 日本語ドキュメント</title>
-    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/quickstart/host-a-website.html">
+    <title>Hackathon Projects :: Dfinity 日本語ドキュメント</title>
+    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/examples/hackathon-projects.html">
+    <meta name="description" content="Quick links to example code for common use-cases for your dapp">
+    <meta name="keywords" content="Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding,dapp,example,code,rust,Motoko">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
@@ -131,34 +133,34 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="quickstart-intro.html">クイックスタート</a>
+    <a class="nav-link" href="../quickstart/quickstart-intro.html">クイックスタート</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="newcomers.html">初めての人へ</a>
+    <a class="nav-link" href="../quickstart/newcomers.html">初めての人へ</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cycles-faucet.html">Claim Your Free Cycles</a>
-    
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="host-a-website.html">Host a Static Website</a>
+    <a class="nav-link" href="../quickstart/cycles-faucet.html">Claim Your Free Cycles</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="local-quickstart.html">ローカル開発</a>
+    <a class="nav-link" href="../quickstart/host-a-website.html">Host a Static Website</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="network-quickstart.html">ネットワークへのデプロイ</a>
+    <a class="nav-link" href="../quickstart/local-quickstart.html">ローカル開発</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/network-quickstart.html">ネットワークへのデプロイ</a>
     
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../examples/index.html">コードの例</a>
+    <a class="nav-link" href="index.html">コードの例</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -169,8 +171,8 @@
     <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Open-source Community Projects</a></span>
     
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/hackathon-projects.html">Hackathon Projects</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="hackathon-projects.html">Hackathon Projects</a>
     
   </li>
 </ul>
@@ -843,235 +845,119 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Developer Center</a></li>
-    <li><a href="quickstart-intro.html">クイックスタート</a></li>
-    <li><a href="host-a-website.html">Host a Static Website</a></li>
+    <li><a href="index.html">コードの例</a></li>
+    <li><a href="hackathon-projects.html">Hackathon Projects</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/quickstart/pages/host-a-website.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/examples/pages/hackathon-projects.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Hosting a Static Website on the Internet Computer</h1>
+<h1 class="page">Hackathon Projects</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you begin, make sure you are set up with our DFINITY Canister SDK (DFX) and a Cycles Wallet, either from the <a href="#quickstart:cycles-faucet.adoc">Faucet Quickstart</a> or by purchasing ICP and following our <a href="#quickstart:network-quickstart.adoc">Network Deployment</a> guide.</p>
+<p>Developers from around the world are participating in hackathons, building dapps, tools and other types of projects on the IC. Get inspired, and see the source code of some of the winning projects.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_set_up_your_project"><a class="anchor" href="#_set_up_your_project"></a>Set up your project</h2>
+<h2 id="dfinihack"><a class="anchor" href="#dfinihack"></a>DFINIHack</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s create a simple static website, and then set it up to deploy with dfx.</p>
+<p>Hackathons are a great way to learn, and that&#8217;s why we, in addition to external hackathons, run internal hackathons at DFINITY. Everyone from all departments can participate, with or without coding experience. The objective is to explore new use cases, assess the documentation and tools we provide developer, and to promote a builder&#8217;s culture internally.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Create a folder named <code>static-ic-website</code></p>
-</li>
-<li>
-<p>In <code>static-ic-website</code>, create a new folder, named <code>assets</code>.</p>
-</li>
-<li>
-<p>Inside your <code>assets</code> folder, create 4 files</p>
+<div class="sect2">
+<h3 id="_sidekick"><a class="anchor" href="#_sidekick"></a>Sidekick</h3>
+<div class="paragraph">
+<p>Sidekick is a dapp running on the Internet Computer that can build canister smart contracts from a few lines of code.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>index.html</code></p>
+<p><a href="https://github.com/blynn/sidekick">See code on GitHub</a></p>
 </li>
 <li>
-<p><code>page-2.html</code></p>
-</li>
-<li>
-<p><code>script.js</code></p>
-</li>
-<li>
-<p><code>style.css</code></p>
+<p><a href="https://ffgig-jyaaa-aaaae-aaaoa-cai.raw.ic0.app">Live Canister</a></p>
 </li>
 </ul>
 </div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_add_some_content"><a class="anchor" href="#_add_some_content"></a>Add some content</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Let&#8217;s start with <code>index.html</code>. Paste the following code into your file:</p>
-</div>
-<div class="listingblock">
-<div class="title">index.html</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-   &lt;meta charset="UTF-8"&gt;
-   &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-   &lt;title&gt;Static IC Website&lt;/title&gt;
-   &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-   &lt;h1&gt;My First IC Website&lt;/h1&gt;
-   &lt;p&gt;Styles are loaded from a stylesheet&lt;/p&gt;
-   &lt;p id="dynamic-content"&gt;&lt;/p&gt;
-   &lt;a href="page-2.html"&gt;Page 2&lt;/a&gt;
-   &lt;script src="script.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Next, open up <code>page-2.html</code> and add this content.</p>
-</div>
-<div class="listingblock">
-<div class="title">page-2.html</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-   &lt;meta charset="UTF-8"&gt;
-   &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-   &lt;title&gt;Page 2&lt;/title&gt;
-   &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-   &lt;h1&gt;This is page 2&lt;/h1&gt;
-   &lt;a href="/"&gt;Back to index&lt;/a&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then, add some simple logic to script.js.</p>
-</div>
-<div class="listingblock">
-<div class="title">script.js</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">document.querySelector("#dynamic-content").innerText =
- "This paragraph is dynamically rendered using JavaScript";</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And then add some styles to <code>style.css</code>.</p>
-</div>
-<div class="listingblock">
-<div class="title">style.css</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">body {
-   font-family: sans-serif;
-   font-size: 1.5rem;
-}
-
-p:first-of-type {
-   color: #ED1E79;
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_configure_dfx_to_deploy"><a class="anchor" href="#_configure_dfx_to_deploy"></a>Configure DFX to deploy</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To host and run this website live on the Internet Computer プラットフォーム, you will need to configure DFX to upload your files to a certified asset canister. In the root directory of your project, <code>static-ic-website</code>, create a new file, <code>dfx.json</code>. Then, add the following content:</p>
-</div>
-<div class="listingblock">
-<div class="title">dfx.json</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-   "canisters": {
-       "website": {
-           "type": "assets",
-           "source": ["assets"]
-       }
-   }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This tells DFX that you want to create an asset canister, and that it should upload the contents of the <code>asset</code> folder. If you want to upload additional static assets, you can add them to the <code>asset</code> folder or add additional folders to the <code>source</code> configuration.</p>
-</div>
-<div class="paragraph">
-<p>Now, your directory should look something like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>├── assets
-│   ├── index.html
-│   ├── page-2.html
-│   ├── script.js
-│   └── style.css
-└── dfx.json</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_deploy_your_website"><a class="anchor" href="#_deploy_your_website"></a>Deploy your website</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To deploy your website, ensure you are in your terminal at the root of the project, and run this command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">dfx deploy --network ic</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You should see some output in your console, and a success message looking something like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>...
-
-Uploading assets to asset canister...
-Starting batch.
-Staging contents of new and changed assets:
-  /index.html 1/1 (501 bytes)
-  /index.html (gzip) 1/1 (317 bytes)
-  /page-2.html 1/1 (373 bytes)
-  /page-2.html (gzip) 1/1 (258 bytes)
-  /script.js 1/1 (117 bytes)
-  /style.css 1/1 (102 bytes)
-Committing batch.
-Deployed canisters.</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_see_your_live_website"><a class="anchor" href="#_see_your_live_website"></a>See your live website</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Find your new canister&#8217;s ID by running</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">dfx canister --network ic id website</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Take that canister ID and visit <code><a href="https://&lt;canister-id&gt;.ic0.app" class="bare">https://&lt;canister-id&gt;.ic0.app</a></code>, inserting your own canister ID as the subdomain in the URL.</p>
-</div>
-<div class="paragraph">
-<p>You should see your live, multi-page website, looking like this!</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/static-website.png" alt="Static Website"></span></p>
 </div>
 <div class="sect2">
-<h3 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next steps</h3>
+<h3 id="_ic_vault"><a class="anchor" href="#_ic_vault"></a>IC Vault</h3>
 <div class="paragraph">
-<p>Looking to build a full-stack dapp? Check out the
-<a href="../developers-guide/tutorials/custom-frontend.html">Full-stack React Tutorial</a>!</p>
+<p>IC Vault ensures the secure synchronization of data between devices via the Internet Computer via end-to-end encryption (i.e., the Internet Computer cannot see any cleartext).</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/timohanke/hack13">See code on GitHub</a></p>
+</li>
+<li>
+<p><a href="https://xggrc-cyaaa-aaaaj-aaasq-cai.raw.ic0.app">Live Canister</a></p>
+</li>
+<li>
+<p><a href="https://youtu.be/16xxA8EKEhE">Presentation on YouTube</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_privic"><a class="anchor" href="#_privic"></a>PrivIC</h3>
 <div class="paragraph">
-<p>Visit our <a href="https://forum.dfinity.org">Developer Forum</a> for inspiration and support from Dfinity Foundation engineers and the developer community.</p>
+<p>PrivIC (pronounced “privacy”) provides identity management on the Internet Computer. Users can visit the PrivIC app directly to manage their identity, which consists of attributes such as name, date of birth, email, and phone number, or do so as part of the register/sign-in flow from an app.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/open-ic/priv-ic">See code on GitHub</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defind"><a class="anchor" href="#_defind"></a>DeFind</h3>
+<div class="paragraph">
+<p>DeFind is a staking-based search engine. With the internet today, search engines use web crawlers to feed data into secret algorithms. For advertisers, this creates the wrong incentives — they may be incentivized to trick the web crawler with invisible text, for example, or generate fake traffic through bots.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/IC-Search/ic-search">See code on GitHub</a></p>
+</li>
+<li>
+<p><a href="https://jbioa-siaaa-aaaai-qanfq-cai.ic0.app">Live Canister</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ic_notary"><a class="anchor" href="#_ic_notary"></a>IC Notary</h3>
+<div class="paragraph">
+<p>IC Notary is a timestamped notarization service that allows users to prove that they held a document (or an arbitrary file) at a certain point in time. The user can upload the file to IC Notary, and also search and download previously uploaded files.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/jplevyak/dfnhack7">See code on GitHub</a></p>
+</li>
+<li>
+<p><a href="https://jbxh5-eqaaa-aaaae-qaaoq-cai.ic0.app">Live Canister</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ic_netboot"><a class="anchor" href="#_ic_netboot"></a>IC Netboot</h3>
+<div class="paragraph">
+<p>IC Netboot allows developers to boot a virtual machine (VM) directly from a canister, making the boot infrastructure decentralized and unstoppable. Furthermore, it can be a failover for VM data for applications like zookeeper. Lastly, this is a proof of concept for talking to the Internet computer over legal protocols like TFTP/DHCP/iPXE.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/farazshaikh/team14">See code on GitHub</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
