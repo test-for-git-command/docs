@@ -428,7 +428,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="sharing.html">Sharing data and behavior</a>
+    <a class="nav-link" href="sharing.html">データと挙動を共有する</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -460,7 +460,7 @@
     
   </li>
   <li class="nav-item is-current-page" data-depth="6">
-    <a class="nav-link" href="compatibility.html">Upgrade compatibility</a>
+    <a class="nav-link" href="compatibility.html">アップグレード互換性</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -848,7 +848,7 @@
     <li>開発言語を探る</li>
     <li><a href="motoko.html">Motoko</a></li>
     <li>Motoko ガイド</li>
-    <li><a href="compatibility.html">Upgrade compatibility</a></li>
+    <li><a href="compatibility.html">アップグレード互換性</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/motoko/edit/master/doc/modules/language-guide/pages/compatibility.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
@@ -856,32 +856,31 @@
 <div class="main-content">
 <article class="doc">
 <div class="sect1">
-<h2 id="_verifying_upgrade_compatibility"><a class="anchor" href="#_verifying_upgrade_compatibility"></a>Verifying upgrade compatibility</h2>
+<h2 id="_アップグレード互換性の検証"><a class="anchor" href="#_アップグレード互換性の検証"></a>アップグレード互換性の検証</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Goal: we need to verify that an upgrade can proceed without:</p>
+<p>目標：以下が発生することなくアップグレードを進められることを検証する必要があります。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>breaking clients (due to a Candid interface change)</p>
+<p>クライアントの破壊（Candid インターフェースの変更に起因）</p>
 </li>
 <li>
-<p>discarding Motoko stable state (due to a change in stable declarations)</p>
+<p>Motoko のステーブルステートを破棄する（ステーブル宣言の変更に起因）</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>With Motoko, we promised to check these properties statically
-(before attempting the upgrade).</p>
+<p>Motokoでは、これらの性質を（アップグレードを試みる前に）静的にチェックすることを約束しています。</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s deliver on that promise.</p>
+<p>その約束が果たされる様子を見ていきましょう。</p>
 </div>
 <div class="sect2">
-<h3 id="_an_unstable_counter"><a class="anchor" href="#_an_unstable_counter"></a>An unstable counter</h3>
+<h3 id="_ステーブルでないカウンタ"><a class="anchor" href="#_ステーブルでないカウンタ"></a>ステーブルでないカウンタ</h3>
 <div class="paragraph">
-<p>The following is a simple example of how to declare a stateful counter.</p>
+<p>以下は、ステートフルなカウンタを宣言する簡単な例です。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -898,7 +897,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Unfortunately, when we upgrade this counter (say with itself), its state is lost.</p>
+<p>残念ながら、このカウンタを（例えば同じコードで）アップグレードすると、ステートが失われてしまいます。</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -909,10 +908,10 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">state</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">call</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バージョン</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ステート</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">成功</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">コール</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">v0</p></td>
@@ -948,9 +947,9 @@
 </table>
 </div>
 <div class="sect2">
-<h3 id="_a_stable_counter"><a class="anchor" href="#_a_stable_counter"></a>A stable counter</h3>
+<h3 id="_ステーブルなカウンタ"><a class="anchor" href="#_ステーブルなカウンタ"></a>ステーブルなカウンタ</h3>
 <div class="paragraph">
-<p>In Motoko, we can declare variables to be stable (across upgrades).</p>
+<p>Motoko では、変数を（アップグレードをまたいで）stable と宣言することができます。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -966,10 +965,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Because it&#8217;s <code>stable</code>, this counter&#8217;s <code>state</code> is <em>retained</em> across upgrades.</p>
+<p><code>stable</code> なので、このカウンタのステート（<code>state</code>）はアップグレードしても <em>保持</em> されます。</p>
 </div>
 <div class="paragraph">
-<p>(If not marked <code>stable</code>, <code>state</code> would restart from <code>0</code> on upgrade).</p>
+<p>（<code>stable</code> とマークされていない場合、アップグレード時に <code>state</code> は <code>0</code> に初期化されます。）</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -980,10 +979,10 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">state</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">call</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バージョン</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ステート</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">成功</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">コール</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">v1</p></td>
@@ -1019,10 +1018,10 @@
 </table>
 </div>
 <div class="sect2">
-<h3 id="_evolving_the_candid_interface"><a class="anchor" href="#_evolving_the_candid_interface"></a>Evolving the Candid interface:</h3>
+<h3 id="_candid_インターフェースを更新する"><a class="anchor" href="#_candid_インターフェースを更新する"></a>Candid インターフェースを更新する</h3>
 <div class="paragraph">
-<p>Let&#8217;s extend the API - old clients still satisfied, new ones get
-extra features (the <code>read</code> query).</p>
+<p>API を拡張しましょう。
+古いクライアントは引き続き動作するようにし、新しいクライアントは追加の機能（<code>read</code> クエリ）を獲得します。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1048,10 +1047,10 @@ extra features (the <code>read</code> query).</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">state</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">call</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バージョン</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ステート</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">成功</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">コール</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">v1</p></td>
@@ -1081,9 +1080,9 @@ extra features (the <code>read</code> query).</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_changing_the_stable_interface"><a class="anchor" href="#_changing_the_stable_interface"></a>Changing the stable interface</h3>
+<h3 id="_ステーブルインターフェースを更新する"><a class="anchor" href="#_ステーブルインターフェースを更新する"></a>ステーブルインターフェースを更新する</h3>
 <div class="paragraph">
-<p>Observation: the counter is always positive - let&#8217;s refactor <code>Int</code> to <code>Nat</code>!</p>
+<p>注目：カウンタは常に正の数です。<code>Int</code> を <code>Nat</code> にリファクタリングしましょう！</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1109,10 +1108,10 @@ extra features (the <code>read</code> query).</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">state</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">call</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バージョン</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ステート</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">成功</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">コール</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">v2</p></td>
@@ -1141,44 +1140,44 @@ extra features (the <code>read</code> query).</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>BOOM: code upgraded, but counter is back to <code>0</code>.</p>
+<p>ドーン：コードはアップグレードされましたが、カウンタが <code>0</code> に戻ってしまいました。</p>
 </div>
 <div class="paragraph">
-<p><em>The unthinkable has happened</em>: state was lost in an upgrade.</p>
+<p><em>考えられない事態が発生しました</em>。アップグレードでステートが失われたのです。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_what_gives"><a class="anchor" href="#_what_gives"></a>What gives?</h3>
+<h3 id="_何が起こった"><a class="anchor" href="#_何が起こった"></a>何が起こった？</h3>
 <div class="paragraph">
-<p>The Candid interface evolved safely &#8230;&#8203; but the stable types did not.</p>
+<p>Candid インターフェースは安全に更新されましたが… ステーブル型は安全に更新されませんでした。</p>
 </div>
 <div class="paragraph">
-<p>An upgrade must be able to:</p>
+<p>アップグレードは、以下を必ず実行しなければなりません。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>consume any stable variable value from its predecessor, or</p>
+<p>ステーブル変数の値をアップグレード前のものから受け取る。</p>
 </li>
 <li>
-<p>run the initializer for a new stable variable.</p>
+<p>新しいステーブル変数の初期化を実行する。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Since <code>Int &lt;/: Nat</code>, the upgrade logic discards the saved <code>Int</code> (what if it was <code>-1</code>?) and re-runs the initializer instead.</p>
+<p><code>Int &lt;/: Nat</code> なので、アップグレードのロジックは保存されていた <code>Int</code> を破棄し（例えばそれが <code>-1</code> だったらどうでしょう？）、代わりに初期化ロジックを再実行します。</p>
 </div>
 <div class="paragraph">
-<p>What&#8217;s worse, the upgrade silently "succeeded", resetting the counter to <code>0</code>.</p>
+<p>さらに悪いことに、アップグレードは静かに成功し、カウンタを <code>0</code> にリセットします。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_stable_type_signatures"><a class="anchor" href="#_stable_type_signatures"></a>Stable type signatures</h3>
+<h3 id="_ステーブル型のシグネチャ"><a class="anchor" href="#_ステーブル型のシグネチャ"></a>ステーブル型のシグネチャ</h3>
 <div class="paragraph">
-<p>A stable type signature looks like the "insides" of a Motoko actor type.</p>
+<p>ステーブル型のシグネチャは、Motoko の Actor 型の中身のようなものです。</p>
 </div>
 <div class="paragraph">
-<p>For example, <code>v2</code>'s stable types:</p>
+<p>例えば、<code>v2</code> のステーブル型は以下の通りです。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1188,7 +1187,7 @@ extra features (the <code>read</code> query).</p>
 </div>
 </div>
 <div class="paragraph">
-<p>An upgrade from <code>v2</code> to <code>v3</code>'s stable types:</p>
+<p><code>v2</code> からアップグレードされた <code>v3</code> のステーブル型は以下の通りです。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1198,21 +1197,21 @@ extra features (the <code>read</code> query).</p>
 </div>
 </div>
 <div class="paragraph">
-<p>requires consuming an <code>Int</code> as a <code>Nat</code>: a <mark><strong>type error</strong></mark>.</p>
+<p>上記は <code>Int</code> を <code>Nat</code> として受け取ることを要求されますが、これは <mark><strong>型エラー</strong></mark> です。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dual_interface_evolution"><a class="anchor" href="#_dual_interface_evolution"></a>Dual interface evolution</h3>
+<h3 id="_２_つのインターフェースの同時更新"><a class="anchor" href="#_２_つのインターフェースの同時更新"></a>２ つのインターフェースの同時更新</h3>
 <div class="paragraph">
-<p>An upgrade is safe provided:</p>
+<p>アップグレードが安全であることは、以下の条件が必要です。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>the candid interface evolves to a subtype; and</p>
+<p>Candid インターフェースがサブタイプに更新されること。</p>
 </li>
 <li>
-<p>the stable interface evolves to a compatible one (variable to supertype or new)</p>
+<p>ステーブルインターフェースが互換性のあるもの（スーパータイプまたは新規の変数）に更新されること。</p>
 </li>
 </ul>
 </div>
@@ -1224,9 +1223,9 @@ extra features (the <code>read</code> query).</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">candid interface</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">stable type interface</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バージョン</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Candid インターフェース</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ステーブル型インターフェース</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">v0</p></td>
@@ -1317,22 +1316,22 @@ extra features (the <code>read</code> query).</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_tooling"><a class="anchor" href="#_tooling"></a>Tooling</h3>
+<h3 id="_ツール"><a class="anchor" href="#_ツール"></a>ツール</h3>
 <div class="paragraph">
-<p>Motoko compiler (<code>moc</code>) now supports:</p>
+<p>Motoko コンパイラ (<code>moc</code>) は以下をサポートするようになりました。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>moc --stable-types &#8230;&#8203;</code> emits stable types to a <code>.most</code> file</p>
+<p><code>moc --stable-types &#8230;&#8203;</code> は、ステーブル型を <code>.most</code> ファイルに出力します。</p>
 </li>
 <li>
-<p><code>moc --stable-compatible &lt;pre&gt; &lt;post&gt;</code> checks two <code>.most</code> files for upgrade compatibility</p>
+<p><code>moc --stable-compatible &lt;pre&gt; &lt;post&gt;</code> は、2 つの <code>.most</code> ファイルをチェックし、アップグレードの互換性を確認します。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>To upgrade from <code>cur.wasm</code> to <code>nxt.wasm</code> we need check both Candid interface and stable variables are "compatible"</p>
+<p><code>cur.wasm</code> から <code>nxt.wasm</code> にアップグレードするには、Candid インターフェースと ステーブル変数の 両方 に互換性があることを確認する必要があります。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1341,7 +1340,7 @@ moc --stable-compatible cur.most nxt.most  // cur &lt;&lt;: nxt</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>E.g. the upgrade from <code>v2</code> to <code>v3</code> fails this check:</p>
+<p>例えば、<code>v2</code> から <code>v3</code> へのアップグレードは、チェックを行うと失敗します。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1354,7 +1353,7 @@ cannot be consumed at new type
 </div>
 </div>
 <div class="sect2">
-<h3 id="_examples_in_the_wild"><a class="anchor" href="#_examples_in_the_wild"></a>Examples in the wild</h3>
+<h3 id="_参考例"><a class="anchor" href="#_参考例"></a>参考例</h3>
 <div class="paragraph">
 <p><a href="https://forum.dfinity.org/t/questions-about-data-structures-and-migrations/822/12?u=claudio" class="bare">https://forum.dfinity.org/t/questions-about-data-structures-and-migrations/822/12?u=claudio</a></p>
 </div>
@@ -1394,57 +1393,57 @@ actor {
 </tbody>
 </table>
 <div class="paragraph">
-<p>Adding a new record field (to magic from nothing) is bad.</p>
+<p>（何もないところから魔法のように）新しいレコードフィールドを追加するのは悪いことです。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_metadata_sections"><a class="anchor" href="#_metadata_sections"></a>Metadata Sections</h3>
+<h3 id="_メタデータセクション"><a class="anchor" href="#_メタデータセクション"></a>メタデータセクション</h3>
 <div class="paragraph">
-<p>Motoko embeds <code>.did</code> and <code>.most</code> files as wasm <em>custom sections</em>, for use by other tools, e.g. dfx.</p>
+<p>Motoko は <code>.did</code> と <code>.most</code> ファイルを WASM の <em>カスタムセクション</em> として埋め込み、dfx などの他のツールで使用できるようにしています。</p>
 </div>
 <div class="paragraph">
-<p>In future, <code>dfx canister upgrade</code> will, by default:</p>
+<p>将来的には、<code>dfx canister upgrade</code> は、デフォルトで次のような動作を行うようになります。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>query the IC for a canister&#8217;s dual interfaces,</p>
+<p>Canister の 2 つのインターフェースについて IC に問い合わせる。</p>
 </li>
 <li>
-<p>check compatibility of the installed and new binary,</p>
+<p>インストールされたバイナリと新しいバイナリの互換性をチェックする。</p>
 </li>
 <li>
-<p>abort the upgrade when unsafe.</p>
+<p>安全でない場合はアップグレードを中止する。</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_why_are_we_seeing_data_loss_only_now"><a class="anchor" href="#_why_are_we_seeing_data_loss_only_now"></a>Why are we seeing data-loss only now?</h3>
+<h3 id="_なぜ今になってデータロスが発生しているのか"><a class="anchor" href="#_なぜ今になってデータロスが発生しているのか"></a>なぜ今になってデータロスが発生しているのか？</h3>
 <div class="paragraph">
-<p>A side-effect of a revision to Candid (used for stabilizing variables):</p>
+<p>（変数のステーブル化のための）Candid に対する改訂の副作用です。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Previously, upgrades from <code>v2.wasm</code> to <code>v3.wasm</code> would fail and roll-back (no data loss).</p>
+<p>以前は、<code>v2.wasm</code> から <code>v3.wasm</code> へのアップグレードは失敗してロールバックしていました（データ損失なし）。</p>
 </li>
 <li>
-<p>Candid revision meant upgrade would now "succeed", but <em>with</em> data loss.</p>
+<p>Candid の改訂によって、アップグレードが成功する代わりにデータ損失が生じるようになっています。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>("fail safe" vs "silent failure")</p>
+<p>（"フェイルセーフ" 対 "サイレント障害"）</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_right_solution"><a class="anchor" href="#_the_right_solution"></a>The right solution</h3>
+<h3 id="_正しい解決策"><a class="anchor" href="#_正しい解決策"></a>正しい解決策</h3>
 <div class="paragraph">
-<p>What if we really do want to change <code>state</code> to <code>Nat</code>.</p>
+<p>実際に <code>state</code> を <code>Nat</code> に変更したい場合はどうすればよいのでしょうか。</p>
 </div>
 <div class="paragraph">
-<p>Solution: introduce a new stable variable, <code>newState</code>, initialized from the old one:</p>
+<p>解決策：新しいステーブル変数 <code>newState</code> を導入し、古い変数を用いて初期化します。</p>
 </div>
 <div class="listingblock no-repl">
 <div class="content">
@@ -1473,7 +1472,7 @@ actor Counter_v4 {
 </div>
 </div>
 <div class="paragraph">
-<p>(Or use a variant from the start&#8230;&#8203;)</p>
+<p>（もしくは最初からバリアントを使いましょう…）</p>
 </div>
 </div>
 </div>

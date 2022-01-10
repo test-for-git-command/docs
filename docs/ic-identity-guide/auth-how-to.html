@@ -429,7 +429,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../language-guide/sharing.html">Sharing data and behavior</a>
+    <a class="nav-link" href="../language-guide/sharing.html">データと挙動を共有する</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -461,7 +461,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../language-guide/compatibility.html">Upgrade compatibility</a>
+    <a class="nav-link" href="../language-guide/compatibility.html">アップグレード互換性</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -861,6 +861,9 @@
 <p>Internet Identity とは何か、ということから学びたい方は <a href="what-is-ic-identity.html">Internet Identity とは？</a>をご覧ください。</p>
 </div>
 <div class="paragraph">
+<p>Internet Identity アンカーの作成やデバイスの管理を行いたい方は、<a href="https://identity.ic0.app">Internet Identity Page</a> をご覧ください。</p>
+</div>
+<div class="paragraph">
 <p>現在サポートされているすべての認証方法は、<em>WebAuthn</em> 規格に準拠しています。ただし、以下のような制限があります:</p>
 </div>
 <div class="ulist">
@@ -1088,30 +1091,12 @@ Windows Hello 認証をサポートしている Windows デバイス上でデバ
 <p>使用したい Identity Anchor を入力し、"<strong>Continue</strong>" をクリックします。</p>
 </li>
 <li>
-<p>使用している携帯電話によって "<strong>GET STARTED</strong>" か "<strong>Continue</strong>" のどちらかが表示されますのでクリックします。</p>
-</li>
-<li>
-<p>"<strong>Use this device with screen lock</strong>" を選択します。</p>
-<div class="paragraph">
-<p>デバイスをアンロックするように促されます。</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-画面ロックを認証方法として使用する場合、携帯電話側でスクリーンロックを有効化しておく必要があります。
-</td>
-</tr>
-</table>
-</div>
+<p>画面の指示に従って、お使いの携帯電話のロック解除方法（FaceID、TouchIDなど）をInternet Identity で設定してください。</p>
 </li>
 <li>
 <p>携帯電話を認証します。</p>
 <div class="paragraph">
-<p>ロックを解除すると、URL と QR コードが表示されます。URLやQRコードは、すでに認証されているパソコンのブラウザで使用する必要があります。例えば、URL をコピーしてメールで自分のパソコンに送り、ブラウザに貼り付けるといった手順を踏んでください。</p>
+<p>お使いの携帯電話のロック解除方法を II で行うと、URL と QR コードが表示されます。URL や QR コードは、すでに認証されているパソコンのブラウザで使用する必要があります。例えば、URL をコピーしてメールで自分のパソコンに送り、ブラウザに貼り付けるといった手順を踏んでください。</p>
 </div>
 </li>
 <li>
@@ -1170,16 +1155,40 @@ Windows Hello 認証をサポートしている Windows デバイス上でデバ
 </div>
 </div>
 <div class="sect1">
-<h2 id="_紛失した_identity_の復旧"><a class="anchor" href="#_紛失した_identity_の復旧"></a>紛失した Identity の復旧</h2>
+<h2 id="_紛失した_identity_の復旧方法"><a class="anchor" href="#_紛失した_identity_の復旧方法"></a>紛失した Identity の復旧方法</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Identity Anchor を作成する際には、暗号的に安全なシードフレーズをコピーするか、リカバリー方法として専用のセキュリティキーを追加するように画面上で促されます。</p>
+<p>Identity Anchor を作成する際には、シードフレーズをコピーするか、リカバリー方法として専用のセキュリティキーを追加するように画面上で促されます。</p>
 </div>
 <div class="paragraph">
 <p>これらの作業はいつ行っても良いですが、Identity Anchor を紛失した場合や、認証済みのデバイスにアクセスできなくなった場合には、Identity Anchor を復元するためのシードフレーズかセキュリティキーが必要になりますのでご注意ください。これらがないと、関連する Identity を必要とするすべての Dapps からロックアウトされてしまいます。</p>
 </div>
 <div class="paragraph">
-<p>Identity Anchor にリカバリーフレーズやセキュリティキーを設定していれば、Internet Identity のトップページで "<strong>Lost access and want to recover?</strong>" をクリックすることで、そのアンカーへのアクセスを復旧することができます。</p>
+<p>Identity Anchor にリカバリーフレーズやセキュリティキーを設定していれば、以下のステップによってアクセスを復旧することができます。</p>
+</div>
+<div class="paragraph">
+<p><strong>1. Internet Identity のランディングページから、 <strong>Lost access and want to recover?</strong> をクリックします。</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/auth-how-to/welcome-to-internet-identity.png" alt="welcome to internet identity">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>2. Identity アンカーを入力します。</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/auth-how-to/recover-identity-anchor.png" alt="recover identity anchor">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3. シードフレーズを入力します。</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/auth-how-to/your-seed-phrase.png" alt="your seed phrase">
+</div>
 </div>
 </div>
 </div>

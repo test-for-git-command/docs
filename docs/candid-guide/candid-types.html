@@ -428,7 +428,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../language-guide/sharing.html">Sharing data and behavior</a>
+    <a class="nav-link" href="../language-guide/sharing.html">データと挙動を共有する</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -460,7 +460,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="../language-guide/compatibility.html">Upgrade compatibility</a>
+    <a class="nav-link" href="../language-guide/compatibility.html">アップグレード互換性</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -1026,7 +1026,7 @@
 </dd>
 <dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p><code>bignumber.js</code> npm パッケージに含まれる <code>new BigNumber("10000")</code></p>
+<p><code>BigInt(10000)</code> または <code>10000n</code></p>
 </dd>
 </dl>
 </div>
@@ -1076,7 +1076,7 @@
 </dd>
 <dt class="hdlist1">対応する JavaScript の値</dt>
 <dd>
-<p><code>bignumber.js</code> npm パッケージに含まれる <code>new BigNumber("-10000")</code></p>
+<p><code>BigInt(-10000)</code> または <code>-10000n</code></p>
 </dd>
 </dl>
 </div>
@@ -1168,7 +1168,7 @@
 <dd>
 <p>8-bit, 16-bit, 32-bit は number 型に翻訳されます。</p>
 <div class="paragraph">
-<p><code>int64</code> と <code>nat64</code> は <code>bignumber.js</code> の <code>BigNumber</code> オブジェクトに翻訳されます。</p>
+<p><code>int64</code> と <code>nat64</code> は JavaScript の <code>BigInt</code> プリミティブに翻訳されます。</p>
 </div>
 </dd>
 </dl>
