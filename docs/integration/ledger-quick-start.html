@@ -162,16 +162,23 @@
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../examples/hello.html">Hello Example</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Dfinity Examples</a></span>
     
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Open-source Community Projects</a></span>
     
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../examples/hackathon-projects.html">Hackathon Projects</a>
     
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -199,6 +206,10 @@
     <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.9.0-rn.html">0.9.0</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../release-notes/0.8.4-rn.html">0.8.4</a>
     
@@ -461,6 +472,14 @@
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../language-guide/compatibility.html">アップグレード互換性</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/stablememory.html">The ExperimentalStableMemory library</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:heartbeats.adoc">Heartbeats</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -1179,7 +1198,7 @@ However, the integration software only prompts for transactions to be signed usi
 <div class="sect2">
 <h3 id="_the_rosetta_node"><a class="anchor" href="#_the_rosetta_node"></a>The Rosetta node</h3>
 <div class="sect3">
-<h4 id="_how_to_i_run_an_instance_of_the_rosetta_node"><a class="anchor" href="#_how_to_i_run_an_instance_of_the_rosetta_node"></a>How to I run an instance of the Rosetta node?</h4>
+<h4 id="_how_do_i_run_an_instance_of_the_rosetta_node"><a class="anchor" href="#_how_do_i_run_an_instance_of_the_rosetta_node"></a>How do I run an instance of the Rosetta node?</h4>
 <div class="paragraph">
 <p>An easy way to accomplish this is to use the <a href="https://hub.docker.com/r/dfinity/rosetta-api/tags?page=1&amp;ordering=last_updated"><code>dfinity/rosetta-api</code></a> Docker image. Once the node initializes and syncs all blocks, you can perform queries and submit transactions by invoking the Rosetta API on the node. The node listens on the <code>8080</code> port.</p>
 </div>

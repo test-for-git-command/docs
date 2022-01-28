@@ -162,16 +162,23 @@
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../examples/hello.html">Hello Example</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Dfinity Examples</a></span>
     
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Open-source Community Projects</a></span>
     
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../examples/hackathon-projects.html">Hackathon Projects</a>
     
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -199,6 +206,10 @@
     <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.9.0-rn.html">0.9.0</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../release-notes/0.8.4-rn.html">0.8.4</a>
     
@@ -461,6 +472,14 @@
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="compatibility.html">アップグレード互換性</a>
+    
+  </li>
+  <li class="nav-item is-current-page" data-depth="6">
+    <a class="nav-link" href="stablememory.html">The ExperimentalStableMemory library</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:heartbeats.adoc">Heartbeats</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -843,7 +862,12 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Developer Center</a></li>
-    <li><a href="stablememory.html">The <code>ExperimentalStableMemory</code> library</a></li>
+    <li>開発者ドキュメント</li>
+    <li>Internet Computer で開発する</li>
+    <li>開発言語を探る</li>
+    <li><a href="motoko.html">Motoko</a></li>
+    <li>Motoko ガイド</li>
+    <li><a href="stablememory.html">The ExperimentalStableMemory library</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/motoko/edit/master/doc/modules/language-guide/pages/stablememory.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>

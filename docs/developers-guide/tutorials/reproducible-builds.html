@@ -162,16 +162,23 @@
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../examples/hello.html">Hello Example</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Dfinity Examples</a></span>
     
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Open-source Community Projects</a></span>
     
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../examples/hackathon-projects.html">Hackathon Projects</a>
     
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -199,6 +206,10 @@
     <a class="nav-link" href="../../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.9.0-rn.html">0.9.0</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../release-notes/0.8.4-rn.html">0.8.4</a>
     
@@ -461,6 +472,14 @@
   </li>
   <li class="nav-item" data-depth="6">
     <a class="nav-link" href="../../language-guide/compatibility.html">アップグレード互換性</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/stablememory.html">The ExperimentalStableMemory library</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="#language-guide:heartbeats.adoc">Heartbeats</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -1048,7 +1067,7 @@ RUN curl --fail https://sh.rustup.rs -sSf \
     rustup target add wasm32-unknown-unknown
 
 # Install dfx; the version is picked up from the DFX_VERSION environment variable
-ENV DFX_VERSION=0.8.4
+ENV DFX_VERSION=0.9.0
 RUN sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 COPY . /canister
@@ -1194,7 +1213,7 @@ RUN curl --fail https://sh.rustup.rs -sSf \
     rustup target add wasm32-unknown-unknown
 
 # Install dfx; the version is picked up the DFX_VERSION environment variable
-ENV DFX_VERSION=0.8.4
+ENV DFX_VERSION=0.9.0
 RUN sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 RUN apt -yqq install --no-install-recommends reprotest disorderfs faketime sudo wabt
