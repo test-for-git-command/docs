@@ -479,7 +479,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="#language-guide:heartbeats.adoc">Heartbeats</a>
+    <a class="nav-link" href="../language-guide/heartbeats.html">Heartbeats</a>
     
   </li>
   <li class="nav-item" data-depth="6">
@@ -897,8 +897,30 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="troubleshoot-node"><a class="anchor" href="#troubleshoot-node"></a>Ensuring node is available in a project</h2>
+<h2 id="troubleshoot-node"><a class="anchor" href="#troubleshoot-node"></a>ノードがプロジェクトで利用可能であることを確認する</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>プロジェクトは、デフォルトのフロントエンドのフレームワークを提供するためにwebpackに依存しているので、開発環境に <code>node.js</code> がインストールされ、プロジェクトディレクトリにアクセスできる必要があります。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>デフォルトの webpack 設定と Canister のエイリアスを使用せずにプロジェクトを開発したい場合は、<code>dfx.json</code> ファイルから <code>assets</code> Canister を削除するか、特定の Canister 名を使用してプロジェクトをビルドすることができます。例えば、以下のコマンドを実行すると、フロントエンドのアセットを使わずに hello プログラムだけをビルドすることができます。</p>
+<div class="literalblock">
+<div class="content">
+<pre>dfx build hello</pre>
+</div>
+</div>
+</li>
+<li>
+<p>デフォルトの webpack 構成を使用していて、<code>dfx build</code> の実行に失敗する場合は、プロジェクトディレクトリで <code>npm install</code> を実行してから、<code>dfx build</code> を再実行してください。</p>
+</li>
+<li>
+<p>プロジェクトディレクトリで <code>npm install</code> を実行しても問題が解決しない場合は、<code>webpack.config.js</code> ファイルの設定にシンタックスエラーがないか確認してください。
+=== Ensuring node is available in a project</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>Because projects rely on webpack to provide the framework for the default front-end, you must have <code>node.js</code> installed in your development environment and accessible in the project directory.</p>
 </div>

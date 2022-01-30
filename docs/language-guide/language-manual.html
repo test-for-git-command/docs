@@ -479,7 +479,7 @@
     
   </li>
   <li class="nav-item" data-depth="6">
-    <a class="nav-link" href="#language-guide:heartbeats.adoc">Heartbeats</a>
+    <a class="nav-link" href="heartbeats.html">Heartbeats</a>
     
   </li>
   <li class="nav-item is-current-page" data-depth="6">
@@ -1132,8 +1132,8 @@ They are only recognized in front of <code>public</code> declarations.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bnf hljs" data-lang="bnf">actor and assert assert await break case
-catch class continue debug debug_show else flexible
+<pre class="highlightjs highlight"><code class="language-bnf hljs" data-lang="bnf">actor and assert await break case
+catch class continue debug debug_show do else flexible
 false for func if ignore in import not null object or
 label let loop private public query return
 shared stable system switch true try
@@ -3154,6 +3154,11 @@ Note that stable variables may be removed across upgrades, or may simply be depr
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>heartbeat</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>() -&gt; async ()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">heartbeat action</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>preupgrade</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>() -&gt; ()</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">pre upgrade action</p></td>
@@ -3168,6 +3173,13 @@ Note that stable variables may be removed across upgrades, or may simply be depr
 <div class="ulist">
 <ul>
 <li>
+<p><code>heartbeat</code>, when declared, is called on every Internet Computer subnet <strong>heartbeat</strong>,
+scheduling an asynchronous call to the <code>heartbeat</code> function. Due to its <code>async</code> return type, a heartbeat function may send messages and await results. The result of a heartbeat call, including
+any trap or thrown error, is ignored. The implicit context switch means that
+the time the heartbeat body is executed may be later than the time the
+heartbeat was issued by the subnet.</p>
+</li>
+<li>
 <p><code>preupgrade</code>, when declared, is called during an upgrade, immediately <em>before</em> the (current) values of the (retired) actor&#8217;s stable variables are transferred to the replacement actor.</p>
 </li>
 <li>
@@ -3177,7 +3189,7 @@ Note that stable variables may be removed across upgrades, or may simply be depr
 </ul>
 </div>
 <div class="paragraph">
-<p>These system methods provide the opportunity to save and restore in-flight data structures (e.g. caches) that are better represented using non-stable types.</p>
+<p>These <code>preupgrade</code> and <code>postupgrade</code> system methods provide the opportunity to save and restore in-flight data structures (e.g. caches) that are better represented using non-stable types.</p>
 </div>
 <div class="paragraph">
 <p>During an upgrade, a trap occuring in the implicit call to <code>preupgrade()</code> or <code>postupgrade()</code> causes the entire upgrade to trap, preserving the pre-upgrade actor.</p>
