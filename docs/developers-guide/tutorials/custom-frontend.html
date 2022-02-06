@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Customize the front-end :: Dfinity 日本語ドキュメント</title>
+    <title>フロントエンドをカスタマイズする :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/developers-guide/tutorials/custom-frontend.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../../_/css/site.css">
@@ -877,15 +877,15 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Customize the front-end</h1>
+<h1 class="page">フロントエンドをカスタマイズする</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now that you have a basic understanding of how to create, build, and deploy a simple dapp and are familiar with the default project files and sample front-end, you might want to start experimenting with different ways to customize the front-end user experience for your project.</p>
+<p>シンプルな Dapp の作成、ビルド、デプロイの基本的な方法を理解しデフォルトのプロジェクトファイルとサンプルのフロントエンドにも慣れたところで、プロジェクトのフロントエンドのユーザーエクスペリエンスをカスタマイズするさまざまな方法を試してみたくなったのではないでしょうか。</p>
 </div>
 <div class="paragraph">
-<p>This tutorial illustrates using the React framework to create a new front-end for the default sample dapp and guides you through some basic modifications to customize the interface displayed.
-Later tutorials expand on the techniques introduced here, but if you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.</p>
+<p>このチュートリアルでは、 React フレームワークを使って、デフォルトのサンプル Dapp の新しいフロントエンドを作成し、表示されるインターフェイスをカスタマイズするための基本的な修正方法を説明します。
+後のチュートリアルでは、ここで紹介したテクニックをさらに発展させていきますが、CSS 、HTML 、JavaScript 、React や他のフレームワークを使ってユーザーインターフェースを構築する方法をすでに知っている場合は、このチュートリアルを読み飛ばしても構いません。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -894,8 +894,8 @@ Later tutorials expand on the techniques introduced here, but if you already kno
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister smart contract.
-Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see <a href="https://reactjs.org/docs/getting-started.html">Getting started</a> on the <a href="https://reactjs.org/">React website</a>.
+このチュートリアルでは、React フレームワークを使用して、 Canister スマートコントラクトの Document Object Model (DOM) を管理する方法を説明します。
+React には独自のカスタム DOM 構文があるため、 JSX で書かれたフロントエンドコードをコンパイルするためには、 webpack の設定を変更する必要があります。React と JSX の使い方の学習については、 <a href="https://reactjs.org/">React のウェブサイト</a> の <a href="https://reactjs.org/docs/getting-started.html">Getting start</a> を参照してください。
 </td>
 </tr>
 </table>
@@ -903,26 +903,25 @@ Because React has its own custom DOM syntax, you need to modify the webpack conf
 </div>
 </div>
 <div class="sect1">
-<h2 id="_before_you_begin"><a class="anchor" href="#_before_you_begin"></a>Before you begin</h2>
+<h2 id="_始める前に"><a class="anchor" href="#_始める前に"></a>始める前に</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before starting the tutorial, verify the following:</p>
+<p>チュートリアルを始める前に、以下のことを確認してください：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You have <code>node.js</code> installed for front-end development and can install packages using <code>npm install</code> in your project.
-For information about installing node for your local operating system and package manager, see the <a href="https://nodejs.org/en/">Node</a> website.</p>
+<p>フロントエンド開発のために <code>node.js</code> がインストールされており、プロジェクトで <code>npm install</code> を使用してパッケージをインストールすることができること。
+ローカルのオペレーティングシステムやパッケージマネージャに node をインストールする方法については、<a href="https://nodejs.org/en/">Node</a> のウェブサイトを参照してください。</p>
 </li>
 <li>
-<p>You have downloaded and installed the DFINITY Canister SDK package as described in <a href="../../quickstart/local-quickstart.html#download-and-install">Download and install</a>.</p>
+<p>DFINITY Canister SDK パッケージを <a href="../../quickstart/local-quickstart.html#download-and-install">ダウンロード＆インストール</a> からダウンロードしてインストールする。</p>
 </li>
 <li>
-<p>You have installed the Visual Studio Code plugin for Motoko as described in <a href="../../quickstart/local-quickstart.html#install-vscode">Install the language editor plug-in</a> if you are using Visual Studio Code as your IDE.</p>
+<p>IDE として Visual Studio Code を使用している場合、 <a href="./../quickstart/local-quickstart.html#install-vscode">言語編集プラグインのインストール</a> で説明されているように、Motoko の Visual Studio Code プラグインがインストールされていること。</p>
 </li>
 <li>
-<p>You have stopped any DFINITY Canister SDK processes running on the local
-computer.</p>
+<p>ローカルコンピュータ上で実行されている DFINITY Canister SDK プロセスをすべて停止していること。</p>
 </li>
 </ul>
 </div>
@@ -933,32 +932,32 @@ computer.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This tutorial requires you to use the DFINITY Canister SDK version <code>0.8.0</code> or later.
+このチュートリアルでは、 DFINITY Canister SDK のバージョン <code>0.8.0</code> 以降を使用する必要があります。
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>This tutorial takes approximately 30 minutes to complete.</p>
+<p>このチュートリアルは約30分で終了します。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_a_new_project"><a class="anchor" href="#_create_a_new_project"></a>Create a new project</h2>
+<h2 id="_新しいプロジェクト生成"><a class="anchor" href="#_新しいプロジェクト生成"></a>新しいプロジェクト生成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a new project directory for your custom front-end dapp:</p>
+<p>カスタムフロントエンド Dapp 用の新しいプロジェクトディレクトリを作成する：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal shell on your local computer, if you don’t already have one open.</p>
+<p>ローカルコンピューターでターミナルシェルを開きます（まだ開いていない場合）。</p>
 </li>
 <li>
-<p>Change to the folder you are using for your Internet Computer projects, if you are using one.</p>
+<p>Internet Computer プロジェクトで使用しているフォルダがあれば、そのフォルダに変更します。</p>
 </li>
 <li>
-<p>Check that you have <code>node.js</code> installed locally by running the following commands:</p>
+<p>以下のコマンドを実行して、ローカルに <code>node.js</code> がインストールされていることを確認します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">which node
@@ -966,23 +965,23 @@ which npm</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If you don&#8217;t have <code>node.js</code> installed, you should download and install it before continuing to the next step.
-For information about installing node for your local operating system and package manager, see the <a href="https://nodejs.org/en/">Node</a> website.</p>
+<p>もし <code>node.js</code> がインストールされていない場合は、次のステップに進む前にダウンロードしてインストールする必要があります。
+お使いのローカル OS やパッケージマネージャーに合わせて node をインストールする方法については、 <a href="https://nodejs.org/en/">Node</a> のウェブサイトをご覧ください。</p>
 </div>
 </li>
 <li>
-<p>Create a new project by running the following command:</p>
+<p>次のコマンドを実行して、新しいプロジェクトを作成します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new custom_greeting</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>dfx new custom_greeting</code> command creates a new <code>custom_greeting</code> project.</p>
+<p><code>+ dfx new custom_greeting+</code> コマンドは、新しい <code>custom_greeting</code> プロジェクトを作成します。</p>
 </div>
 </li>
 <li>
-<p>Change to your project directory by running the following command:</p>
+<p>以下のコマンドを実行して、プロジェクト・ディレクトリに移動します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd custom_greeting</code></pre>
@@ -994,18 +993,18 @@ For information about installing node for your local operating system and packag
 </div>
 </div>
 <div class="sect1">
-<h2 id="_install_the_react_framework"><a class="anchor" href="#_install_the_react_framework"></a>Install the React framework</h2>
+<h2 id="_react_フレームワークのインストール"><a class="anchor" href="#_react_フレームワークのインストール"></a>React フレームワークのインストール</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you&#8217;ve never used React before, you might want to explore the <a href="https://reactjs.org/tutorial/tutorial.html">Intro to React</a> tutorial or the <a href="https://reactjs.org/">React website</a> before editing the front-end code.</p>
+<p>これまで React を使ったことがない場合は、フロントエンドのコードを編集する前に、<a href="https://reactjs.org/tutorial/tutorial.html">Reactイントロダクション</a> チュートリアルや <a href="https://reactjs.org/">React ウェブサイト</a> を調べてみるといいでしょう。</p>
 </div>
 <div class="paragraph">
-<p>To install required framework modules:</p>
+<p>必要なフレームワークモジュールをインストールする：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Install the React module by running the following command:</p>
+<p>以下のコマンドを実行して、 React モジュールをインストールします：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install --save react react-dom</code></pre>
@@ -1013,7 +1012,7 @@ For information about installing node for your local operating system and packag
 </div>
 </li>
 <li>
-<p>Install the required TypeScript language compiler loader by running the following command:</p>
+<p>以下のコマンドを実行して、必要な TypeScript 言語のコンパイラ・ローダをインストールします：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install --save-dev typescript ts-loader</code></pre>
@@ -1026,7 +1025,7 @@ For information about installing node for your local operating system and packag
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As an alternative to installing these modules, you can edit the default <code>package.json</code> file to add dependencies for your project.
+これらのモジュールをインストールする代わりに、デフォルトの <code>package.json</code> ファイルを編集して、プロジェクトの依存関係を追加することができます。
 </td>
 </tr>
 </table>
@@ -1088,21 +1087,21 @@ As an alternative to installing these modules, you can edit the default <code>pa
 </div>
 </div>
 <div class="sect1">
-<h2 id="_review_the_default_configuration"><a class="anchor" href="#_review_the_default_configuration"></a>Review the default configuration</h2>
+<h2 id="_初期設定の確認"><a class="anchor" href="#_初期設定の確認"></a>初期設定の確認</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before we make any changes to use React for this tutorial, let&#8217;s review the default front-end settings in the <code>dfx.json</code> configuration file for your project.</p>
+<p>このチュートリアルで React を使用するための変更を行う前に、プロジェクトの <code>dfx.json</code> 設定ファイルにあるデフォルトのフロントエンド設定を確認しましょう。</p>
 </div>
 <div class="paragraph">
-<p>To review the default <code>dfx.json</code> configuration file:</p>
+<p>デフォルトの <code>dfx.json</code> 設定ファイルを確認するには以下の様にします：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <code>dfx.json</code> configuration file in a text editor.</p>
+<p>設定ファイル <code>dfx.json</code> をテキストエディターで開きます。</p>
 </li>
 <li>
-<p>Notice that the <code>canisters</code> key includes settings for a <code>custom_greeting_assets</code> canister.</p>
+<p>また、 <code>canisters</code> キーには、 <code>custom_greeting_assets</code> Canister の設定が含まれています。</p>
 <div class="literalblock">
 <div class="content">
 <pre>{
@@ -1127,79 +1126,79 @@ As an alternative to installing these modules, you can edit the default <code>pa
 </div>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s take a look at the settings in this section.</p>
+<p>このセクションの設定を見てみましょう。</p>
 </div>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Front-end assets for your project are compiled into their own canister, in this case, a canister named <code>custom_greeting_assets</code>.</p>
+<p>プロジェクトのフロントエンドアセットは、独自の Canister にコンパイルされます。ここでは、 <code>custom_greeting_assets</code> という名前の Canister になります。</p>
 </li>
 <li>
-<p>The assets canister has a default dependency on the main canister for the project.</p>
+<p>アセット Canister は、プロジェクトの メイン Canister にデフォルトで依存しています。</p>
 </li>
 <li>
-<p>The <code>frontend.entrypoint</code> setting specifies the path to a file—in this case, the <code>index.html</code> file—to use as your dapp entry point.
-If you had a different starting point—for example, a custom <code>first-page.html</code> file—you would modify this setting.</p>
+<p><code>frontend.entrypoint</code> は、 Dapp のエントリーポイントとして使用するファイル（ここでは、 <code>index.html</code> ファイル）のパスを指定します。
+たとえば、カスタムの  <code>first-page.html</code> ファイルのように、別のエントリーポイントがある場合には、この設定を変更します。</p>
 </li>
 <li>
-<p>The <code>source</code> settings specify the path to your <code>src</code> and <code>dist</code> directories. The <code>src</code> setting specifies the directory to use for static assets that will be included in your assets canister when you build your project.
-If you have custom cascading stylesheet (CSS) or JavaScript files, you would include them in the folder specified by this path.
-After building the project, the project assets are served from the directory specified by the <code>dist</code> setting.</p>
+<p><code>source</code> の設定では、 <code>src</code> と <code>dist</code> のディレクトリのパスを指定します。 <code>src</code> 設定は、プロジェクトをビルドするアセット Canister に含まれる静的アセットに使用するディレクトリを指定します。
+カスケードスタイルシート (CSS ) や JavaScript のカスタムファイルがある場合は、このパスで指定されたフォルダにインクルードします。
+プロジェクトをビルドすると、 <code>dist</code> の設定で指定したディレクトリからプロジェクトのアセットが提供されます。</p>
 </li>
 <li>
-<p>The <code>type</code> setting specifies that the <code>custom_greeting_assets</code> should use the <a href="https://github.com/dfinity/certified-assets">certified asset canister</a>, which comes with everything you need to host static assets on the Internet Computer プラットフォーム.</p>
+<p><code>type</code> の設定は、 <code>custom_greeting_assets</code> が、 <a href="https://github.com/dfinity/certified-assets">認証済みアセット Canister</a> を使用することを指定します。この Canister には、 Internet Computer プラットフォーム 上で静的アセットをホストするために必要なものがすべて付属しています。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>For this tutorial, we are going to add React JavaScript in an <code>index.jsx</code> file, but that won&#8217;t require any changes to the default settings in the <code>dfx.json</code> file.</p>
+<p>このチュートリアルでは、 React の JavaScript を <code>index.jsx</code> ファイルに追加しますが、そのためには <code>dfx.json</code> ファイルのデフォルト設定を変更する必要はありません。</p>
 </div>
 </li>
 <li>
-<p>Close the <code>dfx.json</code> file to continue.</p>
+<p>続けるには、 <code>dfx.json</code> ファイルを閉じてください。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_review_the_default_front_end_files"><a class="anchor" href="#_review_the_default_front_end_files"></a>Review the default front-end files</h2>
+<h2 id="_デフォルトのフロントエンドファイルの確認"><a class="anchor" href="#_デフォルトのフロントエンドファイルの確認"></a>デフォルトのフロントエンドファイルの確認</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For this tutorial, you are going to make calls to the default <code>main.mo</code> canister through a custom front-end.
-Before you make any changes, though, let&#8217;s take a look at what&#8217;s in the default front-end files for a project.</p>
+<p>このチュートリアルでは、カスタムフロントエンドを使って、デフォルトの  <code>main.mo</code> Canister を呼び出すことになっています。
+しかし、変更を加える前に、プロジェクトのデフォルトのフロントエンドファイルに何があるかを見てみましょう。</p>
 </div>
 <div class="paragraph">
-<p>To review the default front-end files:</p>
+<p>デフォルトのデフォルトのフロントエンドファイルを確認するには以下のようにします：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <code>src/custom_greeting_assets/src/index.html</code> file in a text editor.</p>
+<p>テキストエディタで <code>src/custom_greeting_assets/src/index.html</code> ファイルを開きます。</p>
 <div class="paragraph">
-<p>This template file is the default front-end entry point for the dapp as specified by the <code>frontend.entrypoint</code> setting in the <code>dfx.json</code> file.</p>
+<p>このテンプレートファイルは、 <code>dfx.json</code> ファイルの <code>frontend.entrypoint</code> 設定で指定された  Dapp のデフォルトのフロントエンドエントリーポイントとなります。</p>
 </div>
 <div class="paragraph">
-<p>This file contains standard HTML with references to a CSS file and an image that are located in the <code>src/custom_greeting_assets/assets</code> directory.
-The default <code>index.html</code> file also includes standard HTML syntax for displaying an input field for the <code>name</code> argument and a clickable button.</p>
+<p>このファイルは標準的な HTML で、 <code>src/custom_greeting_assets/assets</code> ディレクトリにある CSS ファイルと画像への参照を含んでいます。
+デフォルトの <code>index.html</code> ファイルには、 <code>name</code> 引数の入力フィールドとクリック可能なボタンを表示するための標準的な HTML 構文も含まれています。</p>
 </div>
 <div class="paragraph">
-<p>This is the same default front-end you saw in <a href="explore-templates.html#default-frontend">Viewing the default front-end</a>.</p>
+<p>これは、 <a href="explore-templates.html#default-frontend">デフォルトのフロントエンドを確認する</a> で見たのと同じデフォルトのフロントエンドです。</p>
 </div>
 </li>
 <li>
-<p>Open the <code>src/custom_greeting_assets/src/index.js</code> file in a text editor.</p>
+<p>テキストエディターで、 <code>src/custom_greeting_assets/src/index.js</code> ファイルを開きます。</p>
 <div class="literalblock">
 <div class="content">
 <pre>import { custom_greeting } from "../../declarations/custom_greeting";
 
 document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
   const name = document.getElementById("name").value.toString();
-  // Interact with custom_greeting actor, calling the greet method
+  // custom_greetingアクターを動かしてgreetメソッドを呼び出す
   const greeting = await custom_greeting.greet(name);
 
   document.getElementById("greeting").innerText = greeting;
@@ -1211,10 +1210,10 @@ document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>import</code> statement points to an actor that will allow us to make calls to our <code>custom_greeting</code> canister from <code>"../declarations"</code></p>
+<p><code>import</code> ステートメントは、 <code>”../declarations"</code> から <code>custom_greeting</code> Canister への呼び出しを可能にする Actor を指しています。</p>
 </li>
 <li>
-<p>The declarations haven&#8217;t been created yet, but we will come back to that.</p>
+<p>declarations はまだ作成されていませんが、それについてはまた改めて説明します。</p>
 </li>
 </ul>
 </div>
@@ -1222,40 +1221,40 @@ document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
 </div>
 </li>
 <li>
-<p>Close the <code>index.js</code> file to continue.</p>
+<p>続けるには <code>index.js</code> ファイルを閉じてください。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_front_end_files"><a class="anchor" href="#_modify_the_front_end_files"></a>Modify the front-end files</h2>
+<h2 id="_フロントエンドファイルの修正"><a class="anchor" href="#_フロントエンドファイルの修正"></a>フロントエンドファイルの修正</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You are now ready to create a new front-end for the default dapp.</p>
+<p>これで、デフォルトの Dapps に新しいフロントエンドを作成する準備が整いました。</p>
 </div>
 <div class="paragraph">
-<p>To prepare the front-end files:</p>
+<p>フロントエンドのファイルを準備するために：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the webpack configuration file (<code>webpack.config.js</code>) in a text editor.</p>
+<p>テキストエディターで、 webpack の設定ファイル (<code>webpack.config.js</code>) を開きます。</p>
 </li>
 <li>
-<p>Modify the front-end entry to replace the default <code>index.html</code> with <code>index.jsx</code>.</p>
+<p>フロントエンドのエントリーを変更して、デフォルトの <code>index.html</code> を <code>index.jsx</code> に置き換えます。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">entry: {
-  // The frontend.entrypoint points to the HTML file for this build, so we need
-  // to replace the extension to `.js`.
+  //frontend.entrypoint は、このビルドの HTML ファイルを指しているので
+  //拡張子を `.js` に変更する必要があります。
   index: path.join(__dirname, asset_entry).replace(/\.html$/, ".jsx"),
 },</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Add the following <code>module</code> key above the <code>plugins</code> section:</p>
+<p>以下の <code>module</code> キーを <code>plugins</code> セクションの上に追加します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">module: {
@@ -1266,15 +1265,15 @@ document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
 </div>
 </div>
 <div class="paragraph">
-<p>This setting enables the project to use the <code>ts-loader</code> compiler for a React JavaScript <code>index.jsx</code> file.
-Note that there&#8217;s a commented section in the default <code>webpack.config.js</code> file that you can modify to add the <code>module</code> key.</p>
+<p>この設定は、プロジェクトが React JavaScript の <code>index.jsx</code> ファイルに <code>ts-loader</code> コンパイラーを使用することを可能にします。
+デフォルトの <code>webpack.config.js</code> ファイルにはコメントされたセクションがあり、これを修正して <code>module</code> キーを追加することができることに注意してください。</p>
 </div>
 </li>
 <li>
-<p>Create a new file named <code>tsconfig.json</code> in the root directory for your project.</p>
+<p>プロジェクトのルートディレクトリに、 <code>tsconfig.json</code> という名前の新規ファイルを作成します。</p>
 </li>
 <li>
-<p>Open the <code>tsconfig.json</code> file in a text editor, then copy and paste the following into the file:</p>
+<p>テキストエディターで <code>tsconfig.json</code> ファイルを開き、以下をコピーしてファイルに貼り付けます：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
@@ -1290,13 +1289,13 @@ Note that there&#8217;s a commented section in the default <code>webpack.config.
 </div>
 </li>
 <li>
-<p>Save your changes and close the <code>tsconfig.json</code> file to continue.</p>
+<p>変更内容を保存し、 <code>tsconfig.json</code> ファイルを閉じて次に進みます。</p>
 </li>
 <li>
-<p>Open the default <code>src/custom_greeting_assets/src/index.js</code> file in a text editor and delete lines 2 to 9.</p>
+<p>デフォルトの <code>src/custom_greeting_assets/src/index.js</code> ファイルをテキストエディターで開き、2行目から9行目までを削除します。</p>
 </li>
 <li>
-<p>Copy and paste the following sample code into the <code>index.js</code> file:</p>
+<p>以下のサンプルコードをコピーして、 <code>index.js</code> ファイルに貼り付けてください：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-react hljs" data-lang="react">import * as React from "react";
@@ -1343,7 +1342,7 @@ render(&lt;MyHello /&gt;, document.getElementById("app"));</code></pre>
 </div>
 </li>
 <li>
-<p>Rename the modified <code>index.js</code> file as <code>index.jsx</code> by running the following command:</p>
+<p>以下のコマンドを実行して、修正した <code>index.js</code> ファイルの名前を <code>index.jsx</code> に変更します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mv src/custom_greeting_assets/src/index.js src/custom_greeting_assets/src/index.jsx</code></pre>
@@ -1351,9 +1350,9 @@ render(&lt;MyHello /&gt;, document.getElementById("app"));</code></pre>
 </div>
 </li>
 <li>
-<p>Open the default <code>src/custom_greeting_assets/src/index.html</code> file in a text editor, then replace the body contents with <code>&lt;div id="app"&gt;&lt;/div&gt;</code>.</p>
+<p>デフォルトの <code>src/custom_greeting_assets/src/index.html</code> ファイルをテキストエディタで開き、 body の内容を <code>&lt;div id="app"&gt;&lt;/div&gt;</code> で置き換えます。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1378,31 +1377,31 @@ render(&lt;MyHello /&gt;, document.getElementById("app"));</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_start_the_local_canister_execution_environment"><a class="anchor" href="#_start_the_local_canister_execution_environment"></a>Start the local canister execution environment</h2>
+<h2 id="_ローカル_canister_実行環境の起動"><a class="anchor" href="#_ローカル_canister_実行環境の起動"></a>ローカル Canister 実行環境の起動</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you can build the <code>custom_greeting</code> project, you need to connect to either the live Internet Computer プラットフォーム, or a canister execution environment running locally in your development environment.</p>
+<p><code>custom_greeting</code> プロジェクトをビルドする前に、ライブの Internet Computer プラットフォーム か、開発環境でローカルに実行されている Canister 実行環境に接続する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>To start the environment locally:</p>
+<p>実行環境をローカルで起動する：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new terminal window or tab on your local computer.</p>
+<p>ローカルコンピュータで新しいターミナルウィンドウまたはタブを開きます。</p>
 </li>
 <li>
-<p>Navigate to the root directory for your project, if necessary.</p>
+<p>必要に応じて、プロジェクトのルートディレクトリに移動します。</p>
 </li>
 <li>
-<p>Start the local canister execution environment on your local computer by running the following command:</p>
+<p>次のコマンドを実行して、ローカルコンピュータ上でローカル Canister 実行環境を起動します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start --background</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>After the local canister execution environment completes its startup operations, you can continue to the next step.</p>
+<p>ローカル Canister 実行環境の起動操作が完了したら、次のステップに進みます。</p>
 </div>
 </li>
 </ol>
@@ -1410,28 +1409,28 @@ render(&lt;MyHello /&gt;, document.getElementById("app"));</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_register_build_and_deploy_the_dapp"><a class="anchor" href="#_register_build_and_deploy_the_dapp"></a>Register, build, and deploy the dapp</h2>
+<h2 id="_dapp_の登録ビルドデプロイ"><a class="anchor" href="#_dapp_の登録ビルドデプロイ"></a>Dapp の登録、ビルド、デプロイ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you connect to the local canister execution environment, you can register, build, and deploy your dapp locally.</p>
+<p>ローカル Canister 実行環境に接続すると、ローカルで Dapp の登録、ビルド、デプロイを行うことができます。</p>
 </div>
 <div class="paragraph">
-<p>To deploy the dapp locally:</p>
+<p>Dapp をローカルにデプロイする：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>必要に応じて、プロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Register, build, and deploy your dapp by running the following command:</p>
+<p>以下のコマンドを実行して、 Dapp の登録、ビルド、デプロイを行います：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx deploy</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>dfx deploy</code> command output displays information about the operations it performs.</p>
+<p><code>dfx deploy</code> コマンドの出力には、実行した操作に関する情報が表示されます。</p>
 </div>
 </li>
 </ol>
@@ -1439,18 +1438,18 @@ render(&lt;MyHello /&gt;, document.getElementById("app"));</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_view_the_new_front_end"><a class="anchor" href="#_view_the_new_front_end"></a>View the new front-end</h2>
+<h2 id="_新しいフロントエンドを確認する"><a class="anchor" href="#_新しいフロントエンドを確認する"></a>新しいフロントエンドを確認する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can now access the new front-end for the default dapp by entering the canister identifier for the assets canister in a browser.</p>
+<p>ブラウザで アセット Canister の Canister 識別子を入力すると、デフォルトの Dapp の新しいフロントエンドにアクセスできるようになりました。</p>
 </div>
 <div class="paragraph">
-<p>To view the custom front-end:</p>
+<p>カスタム・フロントエンドを確認する：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new tab or window of your terminal and run</p>
+<p>ターミナルの新しいタブまたはウィンドウを開き、以下を実行します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm start</code></pre>
@@ -1458,21 +1457,21 @@ render(&lt;MyHello /&gt;, document.getElementById("app"));</code></pre>
 </div>
 </li>
 <li>
-<p>Open a browser and navigate to <a href="http://localhost:8080" class="bare">http://localhost:8080</a>.</p>
+<p>ブラウザを開き、 <a href="http://localhost:8080" class="bare">http://localhost:8080</a> に移動します。</p>
 </li>
 <li>
-<p>Verify that you are prompted to type a greeting.</p>
+<p>greeting を入力するプロンプトが表示されていることを確認します。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例：</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../_images/react-greeting.png" alt="Sample front-end"></span></p>
 </div>
 </li>
 <li>
-<p>Replace <strong>Name</strong> in the input field with the text you want to display, then click <strong>Get Greeting</strong> to see the result.</p>
+<p>入力フィールドの <strong>Name</strong> を表示したいテキストに置き換えて、 <strong>Get Greeting</strong> をクリックすると、結果が表示されます。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例：</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../_images/greeting-response.png" alt="Greeting result"></span></p>
@@ -1483,19 +1482,19 @@ render(&lt;MyHello /&gt;, document.getElementById("app"));</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_revise_the_front_end_and_test_your_changes"><a class="anchor" href="#_revise_the_front_end_and_test_your_changes"></a>Revise the front-end and test your changes</h2>
+<h2 id="_フロントエンドを修正し変更点をテストする"><a class="anchor" href="#_フロントエンドを修正し変更点をテストする"></a>フロントエンドを修正し、変更点をテストする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After viewing the front-end, you might want to make some changes.</p>
+<p>フロントエンドを見た後に、いくつかの変更を加えたいと思うかもしれません。</p>
 </div>
 <div class="paragraph">
-<p>To modify the front-end:</p>
+<p>フロントエンドを変更するには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <code>index.jsx</code> file in a text editor and modify its style settings.
-For example, you might want to change the font family and use a placeholder for the input field by making changes similar to the following:</p>
+<p>テキストエディタで  <code>index.jsx</code>  ファイルを開き，そのスタイル設定を変更します。
+例えば、フォントファミリーを変更したり、入力フィールドにプレースホルダーを使用したりするには、以下のように変更します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-react hljs" data-lang="react">import * as React from "react";
@@ -1543,17 +1542,16 @@ render(&lt;MyHello /&gt;, document.getElementById("app"));</code></pre>
 </div>
 </li>
 <li>
-<p>Save the file and view the updated page in your browser.</p>
+<p>ファイルを保存し、更新されたページをブラウザで表示してください。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例：</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../_images/revised-greeting.png" alt="Modified styles on your entry page"></span></p>
 </div>
 </li>
 <li>
-<p>Type a new message and see your new greeting.
-For example:</p>
+<p>新しいメッセージを入力すると、新しい greeting 表示されます。例：</p>
 <div class="paragraph">
 <p><span class="image"><img src="../_images/modified-result.png" alt="Modified greeting result"></span></p>
 </div>
@@ -1563,24 +1561,22 @@ For example:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_stop_the_local_canister_execution_environment"><a class="anchor" href="#_stop_the_local_canister_execution_environment"></a>Stop the local canister execution environment</h2>
+<h2 id="_ローカル_caninster_の実行環境の停止"><a class="anchor" href="#_ローカル_caninster_の実行環境の停止"></a>ローカル Caninster の実行環境の停止</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you finish experimenting with the front-end for your dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.</p>
-</div>
-<div class="paragraph">
-<p>To stop the local network:</p>
+<p>Dapp のフロントエンドのテストが終わったら、ローカルの Canister 実行環境を停止して、バックグラウンドでの実行が続かないようにします。
+ローカルネットワーク停止するには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the terminal that displays the webpack development server, press Control-C to interrupt the dev-server.</p>
+<p>webpack の開発サーバーが表示されているターミナルで、 Control-C を押して dev-server を中断します。</p>
 </li>
 <li>
-<p>In the terminal that displays network operations, press Control-C to interrupt the local network process.</p>
+<p>ネットワーク操作を表示する端末で Control-C を押して、ローカルネットワークの処理を中断する。</p>
 </li>
 <li>
-<p>Stop the local canister execution environment by running the following command:</p>
+<p>以下のコマンドを実行して、ローカル Canister 実行環境を停止します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>
