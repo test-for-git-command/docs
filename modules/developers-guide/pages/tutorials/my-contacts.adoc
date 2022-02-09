@@ -16,14 +16,14 @@ React には独自のカスタム DOM 構文があるため、 JSX で書かれ�
 
 チュートリアルを始める前に、以下のことを確認してください。
 
-* フロントエンド開発のために `+node.js+` がインストールされており、プロジェクトで `+npm install+` を使用してパッケージをインストールすることができます。
+* フロントエンド開発のために `+node.js+` がインストールされており、プロジェクトで `+npm install+` を使用してパッケージをインストールできること。
 ローカルのオペレーティングシステムやパッケージマネージャに node をインストールする方法については、 link:https://nodejs.org/en/[Node] のウェブサイトを参照してください。
 
-* link:.../.../quickstart/local-quickstart{outfilesuffix}#download-and-install[ダウンロードとインストール] で説明されている通り、 {sdk-short-name} パッケージをダウンロードしてインストールします。
+* link:.../.../quickstart/local-quickstart{outfilesuffix}#download-and-install[ダウンロードとインストール] で説明されている通り、 {sdk-short-name} パッケージをダウンロードしてインストールしていること。
 
-* IDE として Visual Studio Code を使用している場合、 link:./../quickstart/local-quickstart{outfilesuffix}#install-vscode[language editor plug-inのインストール] で説明されているように、 {proglang} の Visual Studio Code プラグインがインストールされています。
+* IDE として Visual Studio Code を使用している場合、 link:./../quickstart/local-quickstart{outfilesuffix}#install-vscode[language editor plug-inのインストール] で説明されているように、 {proglang} の Visual Studio Code プラグインをインストールしていること。
 
-* ローカルコンピュータ上で実行されているローカルキャニスターの実行環境プロセスを停止します。
+* ローカルコンピュータ上で実行されているローカルキャニスターの実行環境プロセスを停止していること。
 
 NOTE: このチュートリアルでは、 {sdk-short-name} のバージョン `+0.8.0+` 以降を使用する必要があります。
 
@@ -49,9 +49,9 @@ cd contacts
 
 == React フレームワークのインストール
 
-React を使ったことがない方は、フロントエンドのコードを編集する前に、 link:https://reactjs.org/tutorial/tutorial.html[React 紹介] チュートリアルや、 link:https://reactjs.org/[React ウエブサイト] をご覧になるとよいでしょう。
+React を使ったことがない方は、フロントエンドのコードを編集する前に、 link:https://reactjs.org/tutorial/tutorial.html[React 紹介] チュートリアルや、 link:https://reactjs.org/[React ウェブサイト] をご覧になるとよいでしょう。
 
-必要なフレームワークモジュールをインストールする：
+必要なフレームワークモジュールをインストールするには：
 
 . 以下のコマンドを実行して、Reactモジュールをインストールします：
 +
@@ -86,7 +86,7 @@ include::example$add-stylesheet-package.json[]
 
 このチュートリアルでは、メインプログラムを修正して、連絡先情報を保存したり検索したりするコードを追加します。
 
-デフォルトプログラムの変更するには：
+デフォルトプログラムを変更するには：
 
 . テキストエディタで `+src/contacts/main.mo+` ファイルを開き、既存のコンテンツを削除します。
 . 以下のサンプルコードをコピーして、ファイルに貼り付けます：
