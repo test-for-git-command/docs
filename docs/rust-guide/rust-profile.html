@@ -599,11 +599,11 @@
     
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../developers-guide/tutorials/custom-frontend.html">Customize the front-end</a>
+    <a class="nav-link" href="../developers-guide/tutorials/custom-frontend.html">フロントエンドのカスタマイズ</a>
     
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">Add a stylesheet</a>
+    <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">スタイルシートの追加</a>
     
   </li>
 </ul>
@@ -926,7 +926,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_はじめる前に"><a class="anchor" href="#_はじめる前に"></a>はじめる前に</h2>
+<h2 id="Before-you-begin"><a class="anchor" href="#Before-you-begin"></a>はじめる前に</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>プロジェクトをはじめる前に、以下をご確認ください:</p>
@@ -990,7 +990,7 @@
 <p>以下のコマンドを実行して新しいプロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new rust_profile</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new --type=rust rust_profile</code></pre>
 </div>
 </div>
 </li>
@@ -1007,41 +1007,31 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_デフォルト設定の変更"><a class="anchor" href="#_デフォルト設定の変更"></a>デフォルト設定の変更</h2>
+<h2 id="Modify-the-default-project"><a class="anchor" href="#Modify-the-default-project"></a>デフォルトプロジェクトの変更</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="rust-quickstart.html">Hello World! Rust CDK クイックスタート</a>では、（ちょうど <code>cargo new</code> で Rust の新しいパッケージを作るのと同じように）<code>dfx new</code> コマンドで新しいプロジェクトを作るとプロジェクトディレクトリにいくつかのテンプレートファイルが生成されることを学びました。
-Internet Computer 上で動作する Canister スマートコントラクトを構築する前に、いくつか Rust 固有のファイルをプロジェクトに追加する必要があります。</p>
+<p><a href="rust-quickstart.html">Hello World! Rust CDK クイックスタート</a>では、Rust Canister のデフォルトプロジェクトのファイルを確認しました。</p>
 </div>
 <div class="paragraph">
-<p>Motoko プロジェクトのデフォルト設定を変更するには、以下の手順を踏みます。</p>
+<p>このチュートリアルを完了するには、以下の手順を踏みます。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#edit-the-default-canister-settings">Canister の初期設定の変更</a></p>
+<p><a href="#Replace-the-default-dapp">デフォルト Dapp の置き換え</a></p>
 </li>
 <li>
-<p><a href="#add-a-cargotoml-file-to-the-project">Cargo.toml ファイルの追加</a></p>
-</li>
-<li>
-<p><a href="#add-Rust-files-to-the-source-directory">src ディレクトリへの Rust ファイルの追加</a></p>
-</li>
-<li>
-<p><a href="#replace-the-default-dapp">デフォルト Dapp の置き換え</a></p>
+<p><a href="#Update-interface-description-file">インターフェース記述ファイルの更新</a></p>
 </li>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="edit-the-default-canister-settings"><a class="anchor" href="#edit-the-default-canister-settings"></a>Canister の初期設定の変更</h3>
+<h3 id="Replace-the-default-dapp"><a class="anchor" href="#Replace-the-default-dapp"></a>デフォルト Dapp の置き換え</h3>
 <div class="paragraph">
-<p>プロジェクトディレクトリに含まれるテンプレートファイルの一つに、<code>dfx.json</code> 設定ファイルがあります。
-このファイルには Internet Computer で動かすプロジェクトをビルドするために必要な設定が含まれています。
-これは <code>Cargo.toml</code> ファイルが Rust プログラムのビルドやパッケージ管理の設定を含んでいるのと同じです。
-Canister スマートコントラクトとして Rust の Dapps をビルドするには、<code>dfx.json</code> のデフォルト設定を変更する必要があります。</p>
+<p>Rust Dapp 用のファイルが揃ったので、テンプレートの <code>lib.rs</code> Dapp を Internet Computer にデプロイしたい Rust Dapp に置き換えていきます。</p>
 </div>
 <div class="paragraph">
-<p><code>dfx.json</code> を変更するには、以下のようにします:</p>
+<p>デフォルトのプログラムを置き換えるには、以下のようにします。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1049,185 +1039,18 @@ Canister スマートコントラクトとして Rust の Dapps をビルドす�
 <p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>テキストエディタで <code>dfx.json</code> を開きます。</p>
-</li>
-<li>
-<p><code>canisters.rust_profile</code> の設定を、<code>cargo build</code> コマンドを使って Canister をビルドする設定に置き換えます。</p>
-<div class="paragraph">
-<p>例えば、<code>rust_profile</code> キーの下で、<code>main</code> と <code>type</code> を以下のように設定します:</p>
-</div>
+<p>テキストエディタで <code>src/rust_profile/Cargo.toml</code> ファイルを開き、依存関係に <code>serde</code> を追加します。</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"build": "cargo build --target wasm32-unknown-unknown --package  rust_profile --release",
-"candid": "src/rust_profile/src/profile.did",
-"wasm": "target/wasm32-unknown-unknown/release/rust_profile.wasm",
-"type": "custom"
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><code>rust_profile_assets</code> の設定をすべて削除します。</p>
-<div class="paragraph">
-<p>このチュートリアルの Dapp では、フロントエンドの <code>asset</code> を使用していないので、設定ファイルからこれらの設定を削除することができます。
-また、このチュートリアルでは <code>defaults</code> と <code>dfx</code> のキーも削除することができます。</p>
-</div>
-<div class="paragraph">
-<p>これらの不要な設定を削除した後の設定ファイルは次のようになります:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Unresolved include directive in modules/rust-guide/pages/rust-profile.adoc - include::example$profile-tutorial/profile-dfx.json[]</pre>
-</div>
-</div>
-</li>
-<li>
-<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="add-a-cargotoml-file-to-the-project"><a class="anchor" href="#add-a-cargotoml-file-to-the-project"></a>Cargo.toml ファイルの追加</h3>
-<div class="paragraph">
-<p>Internet Computer で動かすために DFINITY Canister SDK を使って新しい Rust プロジェクトを作っているので、プロジェクトディレクトリ内の特定の場所に Rust 固有のファイルを手動で作成する必要があります。
-まず、プロジェクトのパッケージ情報を書くための <code>Cargo.toml</code> ファイルを作成しましょう。</p>
-</div>
-<div class="paragraph">
-<p>プロジェクトに <code>Cargo.toml</code> ファイルを追加するには、以下のようにします：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
-</li>
-<li>
-<p>カレントディレクトリに <code>Cargo.toml</code> という名前のファイルを作成します。</p>
-</li>
-<li>
-<p>テキストエディタで <code>Cargo.toml</code> を開きます。</p>
-</li>
-<li>
-<p><code>[workspace]</code> キーを使って Dapp のソースファイルのディレクトリを指定します:</p>
-<div class="paragraph">
-<p>For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[workspace]
-members = [
-  "src/rust_profile",
-]</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="add-Rust-files-to-the-source-directory"><a class="anchor" href="#add-Rust-files-to-the-source-directory"></a>src ディレクトリへの Rust ファイルの追加</h3>
-<div class="paragraph">
-<p>新しいプロジェクトを作成すると、<code>src/rust_profile</code> ディレクトリが作成され、テンプレートとして <code>main.mo</code> が作成されます。
-このデフォルトの Dapp を、Rust の <code>lib.rs</code> パッケージと <code>Cargo.toml</code> ファイルで置き換えていきます。</p>
-</div>
-<div class="paragraph">
-<p><code>src</code> ディレクトリに Rust ファイルを用意するのは、以下の手順となります:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>自分がルートディレクトリにいることを確認します。</p>
-</li>
-<li>
-<p>以下のコマンドを実行して、ライブラリテンプレートを使用した新しい Cargo パッケージを作成します:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cargo init --lib src/rust_profile</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>このコマンドは <code>src/rust_profile/src</code> ディレクトリに、ライブラリ(<code>lib.rs</code>)パッケージと、<code>Cargo.toml</code> ファイルを作成します。</p>
-</div>
-</li>
-<li>
-<p><code>src/rust_counter/Cargo.toml</code> ファイルをテキストエディタで開きます。</p>
-<div class="paragraph">
-<p>このファイルを使って、Rust パッケージのビルドに関する詳細を設定します。
-最小限の構成として、パッケージ名・クレートタイプ・使用する DFINITY Rust CDK ライブラリのバージョンなどの基本情報を設定する必要があります:</p>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>[lib]</code></p>
-</li>
-<li>
-<p><code>[dependencies]</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>既存の <code>[dependencies]</code> セクションを削除して、以下のように置き換えます:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[lib]
-crate-type = ["cdylib"]
-
-[dependencies]
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[dependencies]
 ic-cdk = "0.3"
 ic-cdk-macros = "0.3"
-serde = "1.0.111"</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-このあとのチュートリアルでアプリを実際にデプロイする際に、パッケージの依存関係が間違っているというエラーメッセージが表示されることがあります。もし新しいバージョンの DFINITY Rust CDK がある場合は、<code>src/rust_profile/Cargo.toml</code> ファイルの依存関係を最新バージョンに合わせて更新してください。
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>変更を保存してファイルを閉じ、次に進みます。</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="replace-the-default-dapp"><a class="anchor" href="#replace-the-default-dapp"></a>デフォルトの Dapp を置き換え</h3>
-<div class="paragraph">
-<p>これで Rust Dapp 用のファイルが揃ったので、<code>main.mo</code> Dapp を Rust Dapp に置き換えていきます。</p>
-</div>
-<div class="paragraph">
-<p>既存の Dapp を置き換えるには以下のようにします：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>自分がルートディレクトリにいることを確認します。</p>
-</li>
-<li>
-<p><code>src/rust_profile/main.mo</code> ファイルを以下のコマンドによって削除します:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rm src/rust_profile/main.mo</code></pre>
+serde = "1.0"</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p><code>src/rust_profile/src/lib.rs</code> ファイルをテキストエディタで開き、既存の内容を削除します。</p>
+<p><code>src/rust_profile/lib.rs</code> ファイルをテキストエディタで開き、既存の内容を削除します。</p>
 <div class="paragraph">
 <p>次に、<code>getSelf</code>、<code>update</code>、<code>get</code>、<code>search</code> 関数を Rust プログラムで実装していきます。</p>
 </div>
@@ -1314,7 +1137,7 @@ fn search(text: String) -&gt; Option&lt;&amp;'static Profile&gt; {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_インターフェイス記述ファイルの追加"><a class="anchor" href="#_インターフェイス記述ファイルの追加"></a>インターフェイス記述ファイルの追加</h2>
+<h2 id="Update-interface-description-file"><a class="anchor" href="#Update-interface-description-file"></a>インターフェイス記述ファイルの更新</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Candid は、Internet Computer で動作する Canister と対話するためのインターフェース記述言語（IDL）です。
@@ -1327,7 +1150,7 @@ Candid ファイルは、Canister が定義する各関数の名前・引数・�
 <p>Candid インターフェース記述言語の構文の詳細は <a href="../candid-guide/candid-intro.html"><em>Candid ガイド</em></a>か <a href="https://docs.rs/candid/">Candid クレートのドキュメント</a>をご覧ください。</p>
 </div>
 <div class="paragraph">
-<p>Candid ファイルを追加するには、以下のようにします:</p>
+<p>Candid ファイルを更新するには、以下のようにします:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1335,10 +1158,7 @@ Candid ファイルは、Canister が定義する各関数の名前・引数・�
 <p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p><code>src/rust_profile/src/</code> ディレクトリに、<code>profile.did</code> という名前でファイルを作成します。</p>
-</li>
-<li>
-<p><code>src/rust_profile/src/profile.did</code> ファイルをテキストエディタで開いてください。</p>
+<p><code>src/rust_profile/rust_profile.did</code> ファイルをテキストエディタで開いてください。</p>
 </li>
 <li>
 <p><code>getSelf</code>、<code>update</code>、<code>get</code>、<code>search</code> 関数のために以下の <code>service</code> の定義をコピー＆ペーストして書き込んでください：</p>
@@ -1361,7 +1181,7 @@ service : {
 </div>
 </li>
 <li>
-<p>変更を保存して <code>profile.did</code> ファイルを閉じ、次に進んでください。</p>
+<p>変更を保存してファイルを閉じ、次に進んでください。</p>
 </li>
 </ol>
 </div>
@@ -1424,19 +1244,23 @@ service : {
 <div class="literalblock">
 <div class="content">
 <pre>Creating a wallet canister on the local network.
-The wallet canister on the "local" network for user "pubs_user_id" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 Deploying all canisters.
 Creating canisters...
 Creating canister "rust_profile"...
 "rust_profile" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Creating canister "rust_profile_assets"...
+"rust_profile_assets" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
 Building canisters...
-Executing 'cargo build --target wasm32-unknown-unknown --package  rust_profile --release'
-   Compiling rust_profile v0.1.0 (/Users/pubs/rust_profile/src/rust_profile)
-    Finished release [optimized] target(s) in 2.83s
+Executing: "cargo" "build" "--target" "wasm32-unknown-unknown" "--release" "-p" "rust_profile"
+...
+    Finished release [optimized] target(s) in 6.31s
+Building frontend...
 Installing canisters...
 Creating UI canister on the local network.
-The UI canister on the "local" network is "ryjl3-tyaaa-aaaaa-aaaba-cai"
+The UI canister on the "local" network is "r7inp-6aaaa-aaaaa-aaabq-cai"
 Installing code for canister rust_profile, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+...
 Deployed canisters.</pre>
 </div>
 </div>
@@ -1446,7 +1270,7 @@ Deployed canisters.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_デプロイした_canister_の関数を呼ぶ"><a class="anchor" href="#_デプロイした_canister_の関数を呼ぶ"></a>デプロイした Canister の関数を呼ぶ</h2>
+<h2 id="Call-functions-on-the-deployed-canister"><a class="anchor" href="#Call-functions-on-the-deployed-canister"></a>デプロイした Canister の関数を呼ぶ</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Canister のデプロイが成功すると、Canister の関数を呼ぶことでテストできるようになります。</p>
@@ -1540,7 +1364,7 @@ Deployed canisters.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_新しい_id_に対するプロフィールの追加"><a class="anchor" href="#_新しい_id_に対するプロフィールの追加"></a>新しい ID に対するプロフィールの追加</h2>
+<h2 id="Adding-profiles-for-new-identities"><a class="anchor" href="#Adding-profiles-for-new-identities"></a>新しい ID に対するプロフィールの追加</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>いまのところ、この Dapp はコマンドを実行したプリンシパルに関連付けられた１つのプロフィールしか保存しません。
@@ -1672,7 +1496,7 @@ Created identity: "Miles".</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_サンプル_dapp_の拡張"><a class="anchor" href="#_サンプル_dapp_の拡張"></a>サンプル Dapp の拡張</h2>
+<h2 id="Extending-the-sample-dapp"><a class="anchor" href="#Extending-the-sample-dapp"></a>サンプル Dapp の拡張</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>このサンプル Dapp は、ユーザー ID ごとに１つのプロフィールを保存するだけです。
@@ -1681,7 +1505,7 @@ Created identity: "Miles".</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ローカル実行環境_を止める"><a class="anchor" href="#_ローカル実行環境_を止める"></a>ローカル実行環境 を止める</h2>
+<h2 id="Stop-the-LEE"><a class="anchor" href="#Stop-the-LEE"></a>ローカル実行環境 を止める</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>アプリケーションのテストをした後は、ローカル実行環境 がバックグラウンドで稼働し続けないように、以下の手順で停止します：</p>

@@ -599,11 +599,11 @@
     
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../developers-guide/tutorials/custom-frontend.html">Customize the front-end</a>
+    <a class="nav-link" href="../developers-guide/tutorials/custom-frontend.html">フロントエンドのカスタマイズ</a>
     
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">Add a stylesheet</a>
+    <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">スタイルシートの追加</a>
     
   </li>
 </ul>
@@ -898,14 +898,14 @@
 <p><code>mul</code> 関数は自然数を入力として受け取り、入力値を３倍にして、結果を <code>cell</code> 変数に格納します。</p>
 </li>
 <li>
-<p>Rust Canister は <code>cell</code> 変数の現在の値を返す <code>read</code> 関数を持ちます。</p>
+<p>Rust Canister は <code>cell</code> 変数の現在の値を返すシンプルな <code>read</code> 関数を持ちます。呼び出されるメソッドが <code>query</code> であっても、Canister 間の呼び出しを行う関数は <code>update</code> メソッドであるべきであることに注意してください。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_はじめる前に"><a class="anchor" href="#_はじめる前に"></a>はじめる前に</h2>
+<h2 id="Before-you-begin"><a class="anchor" href="#Before-you-begin"></a>はじめる前に</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>プロジェクトをはじめる前に、以下を確認してください:</p>
@@ -966,10 +966,10 @@
 <p>ローカル PC でターミナルを開きます。</p>
 </li>
 <li>
-<p>以下のコマンドを実行し、<code>multiply_deps</code> という名前の新しいプロジェクトを作成します。</p>
+<p>以下のコマンドを実行し、新しいプロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new multiply_deps</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new --type=rust rust_deps</code></pre>
 </div>
 </div>
 </li>
@@ -977,7 +977,7 @@
 <p>以下のコマンドで、プロジェクトディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd multiply_deps</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd rust_deps</code></pre>
 </div>
 </div>
 </li>
@@ -986,14 +986,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_デフォルト設定の変更"><a class="anchor" href="#_デフォルト設定の変更"></a>デフォルト設定の変更</h2>
+<h2 id="Modify-the-default-project"><a class="anchor" href="#Modify-the-default-project"></a>デフォルトプロジェクトの変更</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>新しいプロジェクトを作成すると、<code>cargo new</code> コマンドを使ったときと同じように、いくつかのテンプレートファイルがプロジェクトディレクトリに追加されます。
-Internet Computer 上で動作する Canister スマートコントラクトを構築する前に、いくつか Rust 固有のファイルをプロジェクトに追加する必要があります。</p>
-</div>
-<div class="paragraph">
-<p>Motoko プロジェクトのデフォルト設定を変更するには、以下の手順を踏みます。</p>
+<p>このチュートリアルを完了するためには、以下の手順を踏む必要があります。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1001,16 +997,13 @@ Internet Computer 上で動作する Canister スマートコントラクトを�
 <p><a href="#edit-the-default-canister-settings">Canister の初期設定の変更</a></p>
 </li>
 <li>
-<p><a href="#add-a-cargotoml-file-to-the-project">Cargo.toml ファイルの追加</a></p>
+<p><a href="#Implement-Motoko-canister-smart-contract">Motoko Canister スマートコントラクトの実装</a></p>
 </li>
 <li>
-<p><a href="#add-Rust-files-to-the-source-directory">src ディレクトリへの Rust ファイルの追加</a></p>
+<p><a href="#Replace-the-default-Rust-canister-smart-contract">デフォルトの Rust Canister スマートコントラクトの置き換え</a></p>
 </li>
 <li>
-<p><a href="#replace-the-default-motoko-canister">デフォルトの Motoko Canister の置き換え</a></p>
-</li>
-<li>
-<p><a href="#replace-the-default-rust-canister">デフォルトの Rust Canister の置き換え</a></p>
+<p><a href="#Update-interface-description-file">インターフェース記述ファイルの更新</a></p>
 </li>
 </ul>
 </div>
@@ -1031,28 +1024,39 @@ Internet Computer 上で動作する Canister スマートコントラクトを�
 <p>テキストエディタで <code>dfx.json</code> を開きます。</p>
 </li>
 <li>
-<p><code>canisters.multiply_deps</code> セクションの下に、 <code>cargo build</code> コマンドを使って Rust プログラムをビルドするための設定を挿入します。</p>
+<p><code>canisters.rust_deps</code> セクションの上に、Motoko プログラムをビルドするための設定を挿入します。</p>
 <div class="paragraph">
-<p>例えば、<code>canisters</code> セクションの中で、新しい <code>rust_deps</code> キーを以下のように追加します：</p>
+<p>例えば、<code>canisters</code> セクションの中で、新しい <code>multiply_deps</code> キーを以下のように追加します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"rust_deps": {
-  "build": "cargo build --target wasm32-unknown-unknown --package  rust_deps --release",
-  "candid": "src/rust_deps/src/deps.did",
-  "wasm": "target/wasm32-unknown-unknown/release/rust_deps.wasm",
-  "type": "custom"
-  }</code></pre>
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"multiply_deps": {
+  "main": "src/multiply_deps/main.mo",
+  "type": "motoko"
+}</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p><code>multiply_deps_assets</code> のセクションから <code>dependencies</code> の設定をコピーし、Rust Canister の設定に追加します。
+<p><code>rust_deps</code> に <code>dependencies</code> の設定を追加します。
 <code>dependencies</code> の設定では、ある Canister から関数をインポートし、別の Canister で使用することができます。
-このチュートリアルでは、Motoko で書かれた <code>multiply_deps</code> Canister から関数をインポートし、Rust で書かれた <code>rust_deps</code> Canister から使用することを考えます。</p>
+このチュートリアルでは、Motoko で書かれた <code>multiply_deps</code> Canister から関数をインポートし、Rust で書かれた <code>rust_deps</code> Canister から使用することを考えます。
+<code>+rust_deps</code> のフィールドは以下のようになります。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"rust_deps": {
+  "candid": "src/rust_deps/rust_deps.did",
+  "package": "rust_deps",
+  "type": "rust",
+  "dependencies": [
+    "multiply_deps"
+  ]
+}</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>ファイルから <code>multiply_deps_assets</code> の設定をすべて削除します。</p>
+<p>ファイルから <code>rust_deps_assets</code> の設定をすべて削除します。</p>
 <div class="paragraph">
 <p>このチュートリアルの Dapp では、フロントエンドの <code>asset</code> を使用していないので、設定ファイルからこれらの設定を削除することができます。</p>
 </div>
@@ -1097,143 +1101,28 @@ Internet Computer 上で動作する Canister スマートコントラクトを�
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-a-cargotoml-file-to-the-project"><a class="anchor" href="#add-a-cargotoml-file-to-the-project"></a>Cargo.toml ファイルの追加</h3>
+<h3 id="Implement-Motoko-canister-smart-contract"><a class="anchor" href="#Implement-Motoko-canister-smart-contract"></a>Motoko Canister スマートコントラクトの実装</h3>
 <div class="paragraph">
-<p><code>cargo build</code> コマンドを使って Rust Canister をビルドするために、プロジェクトディレクトリに <code>Cargo.toml</code> ファイルを追加する必要があります。</p>
+<p>次のステップでは、<code>src/multiply_deps/main.mo</code> にファイルを作成して、<code>mul</code> と <code>read</code> 関数を実装するコードを作成します。</p>
 </div>
 <div class="paragraph">
-<p>プロジェクトに <code>Cargo.toml</code> ファイルを追加するには、以下のようにします：</p>
+<p>Motoko のソースコードを書くには以下のようにします。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
-</li>
-<li>
-<p>カレントディレクトリに <code>Cargo.toml</code> という名前のファイルを作成します.</p>
-</li>
-<li>
-<p>テキストエディタで <code>Cargo.toml</code> を開きます。</p>
-</li>
-<li>
-<p><code>[workspace]</code> キーを使って Dapp のソースファイルのディレクトリを指定します:</p>
+<p>Motoko Canister のためのディレクトリを作成します。</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[workspace]
-members = [
-    "src/rust_deps",
-]</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir multiply_deps</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>変更内容を保存し、<code>Cargo.toml</code> ファイルを閉じて次に進みます。</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="add-Rust-files-to-the-source-directory"><a class="anchor" href="#add-Rust-files-to-the-source-directory"></a>src ディレクトリへの Rust ファイルの追加</h3>
-<div class="paragraph">
-<p>新しいプロジェクトを作成すると、<code>src/multiply_deps</code> ディレクトリが作成され、テンプレートとして <code>main.mo</code> が Motoko Canister のために作成されます。</p>
-</div>
-<div class="paragraph">
-<p>ここでは、Rust Canister をビルドするためのファイルを追加していきます。</p>
-</div>
-<div class="paragraph">
-<p><code>src</code> ディレクトリに Rust ファイルを用意するのは、以下の手順となります:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>自分がルートディレクトリにいることを確認します。</p>
+<p><code>src/multiply_deps/main.mo</code> ファイルを作成し、テキストエディタで開きます。</p>
 </li>
 <li>
-<p>以下のコマンドを実行して、ライブラリテンプレートを使用した新しい Cargo パッケージを作成します:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cargo init --lib src/rust_deps</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>このコマンドは <code>src/rust_deps/src</code> ディレクトリに、ライブラリ(<code>lib.rs</code>)パッケージと、<code>Cargo.toml</code> ファイルを作成します。</p>
-</div>
-</li>
-<li>
-<p><code>src/rust_deps/Cargo.toml</code> ファイルをテキストエディタで開きます。</p>
-<div class="paragraph">
-<p>このファイルを使って、Rustパッケージのビルドに関する詳細を設定します。</p>
-</div>
-<div class="paragraph">
-<p>最小限の構成として、パッケージ名・クレートタイプ・使用する DFINITY Rust CDK ライブラリのバージョンなどの基本情報を以下のように設定する必要があります:</p>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>[package]</code></p>
-</li>
-<li>
-<p><code>[lib]</code></p>
-</li>
-<li>
-<p><code>[dependencies]</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>既存の <code>[dependencies]</code> セクションを削除して、以下のように置き換えます:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[lib]
-crate-type = ["cdylib"]
-
-[dependencies]
-ic-cdk = "0.3"
-ic-cdk-macros = "0.3"</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-このあとのチュートリアルでアプリを実際にデプロイする際に、パッケージの依存関係が間違っているというエラーメッセージが表示されることがあります。もし新しいバージョンの DFINITY Rust CDK がある場合は、<code>src/rust_deps/Cargo.toml</code> ファイルの依存関係を最新バージョンに合わせて更新してください。
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>変更を保存してファイルを閉じ、次に進みます。</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="replace-the-default-motoko-canister"><a class="anchor" href="#replace-the-default-motoko-canister"></a>デフォルトの Motoko Canister の置き換え</h3>
-<div class="paragraph">
-<p>次のステップは、<code>src/multiply_deps/main.mo</code> ファイル内のソースコードを、<code>mul</code> と <code>read</code> の関数を実装したコードに置き換えることです。</p>
-</div>
-<div class="paragraph">
-<p>デフォルトの Motoko ソースコードを修正するには以下のようにします：</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>自分がルートディレクトリにいることを確認します。</p>
-</li>
-<li>
-<p><code>src/multiply_deps/main.mo</code> ファイルをテキストエディタで開き、既存のコードを削除します。</p>
-</li>
-<li>
-<p>以下のサンプルコードを <code>main.mo</code> ファイル内にコピー＆ペーストします：</p>
+<p>以下のサンプルコードを <code>main.mo</code> ファイル内にコピー＆ペーストします。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">actor Multiply {
@@ -1256,7 +1145,7 @@ ic-cdk-macros = "0.3"</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="replace-the-default-rust-canister"><a class="anchor" href="#replace-the-default-rust-canister"></a>デフォルトの Rust Canister の置き換え</h3>
+<h3 id="Replace-the-default-Rust-canister-smart-contract"><a class="anchor" href="#Replace-the-default-Rust-canister-smart-contract"></a>デフォルトの Rust Canister スマートコントラクトの置き換え</h3>
 <div class="paragraph">
 <p>これで Rust Canister が依存する Motoko Canister ができたので、Rust Canister をプロジェクトに追加してみましょう。</p>
 </div>
@@ -1269,7 +1158,7 @@ ic-cdk-macros = "0.3"</code></pre>
 <p>自分がルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p><code>src/rust_deps/src/lib.rs</code> ファイルをテキストエディタで開き、内容を削除します。</p>
+<p><code>src/rust_deps/lib.rs</code> ファイルをテキストエディタで開き、内容を削除します。</p>
 <div class="paragraph">
 <p>次のステップは、Motoko Canister をインポートし、<code>read</code> 関数を実装した Rust プログラムを書くことです。</p>
 </div>
@@ -1292,16 +1181,13 @@ async fn read() -&gt; candid::Nat {
 </div>
 </li>
 <li>
-<p><code>src/rust_deps/src/lib.rs</code> を保存して閉じ、先に進みます。</p>
+<p><code>src/rust_deps/lib.rs</code> を保存して閉じ、先に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_インターフェイス記述ファイルの追加"><a class="anchor" href="#_インターフェイス記述ファイルの追加"></a>インターフェイス記述ファイルの追加</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="Update-interface-description-file"><a class="anchor" href="#Update-interface-description-file"></a>インターフェース記述ファイルの更新</h3>
 <div class="paragraph">
 <p>Candid は、Internet Computer で動作する Canister と対話するためのインターフェース記述言語（IDL）です。
 Candid ファイルは、Canister が定義する各関数の名前・引数・返し値のフォーマットやデータ型など、Canister のインターフェースを言語に依存しないように記述したものです。</p>
@@ -1313,7 +1199,7 @@ Candid ファイルは、Canister が定義する各関数の名前・引数・�
 <p>Candid インターフェース記述言語の構文の詳細は <a href="../candid-guide/candid-intro.html"><em>Candid ガイド</em></a>か <a href="https://docs.rs/candid/">Candid クレートのドキュメント</a>をご覧ください。</p>
 </div>
 <div class="paragraph">
-<p>Candid ファイルを追加するには、以下のようにします:</p>
+<p>Candid ファイルを更新するには、以下のようにします。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1321,17 +1207,14 @@ Candid ファイルは、Canister が定義する各関数の名前・引数・�
 <p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p><code>src/rust_deps/src</code>　ディレクトリに、<code>deps.did</code> という名前のファイルを作成します。</p>
-</li>
-<li>
-<p><code>src/rust_deps/src/deps.did</code> ファイルをテキストエディタで開きます。</p>
+<p><code>src/rust_deps/rust_deps.did</code> ファイルをテキストエディタで開きます。</p>
 </li>
 <li>
 <p><code>read</code> 関数のために、以下のように <code>service</code> を定義します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-did hljs" data-lang="did">service : {
-  "read": () -&gt; (nat) query;
+  "read": () -&gt; (nat);
 }</code></pre>
 </div>
 </div>
@@ -1343,8 +1226,9 @@ Candid ファイルは、Canister が定義する各関数の名前・引数・�
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="_ローカル_canister_実行環境_を立ち上げる"><a class="anchor" href="#_ローカル_canister_実行環境_を立ち上げる"></a>ローカル Canister 実行環境 を立ち上げる</h2>
+<h2 id="Start-the-LEE"><a class="anchor" href="#Start-the-LEE"></a>ローカル Canister 実行環境 を立ち上げる</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>プロジェクトをビルドする前に、ローカル Canister 実行環境 か、Internet Computer メインネットに接続する必要があります。</p>
@@ -1374,7 +1258,7 @@ Candid ファイルは、Canister が定義する各関数の名前・引数・�
 </div>
 </div>
 <div class="sect1">
-<h2 id="_プロジェクトの登録ビルドデプロイ"><a class="anchor" href="#_プロジェクトの登録ビルドデプロイ"></a>プロジェクトの登録・ビルド・デプロイ</h2>
+<h2 id="Register-build-and-deploy-your-project"><a class="anchor" href="#Register-build-and-deploy-your-project"></a>プロジェクトの登録・ビルド・デプロイ</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>開発環境で立ち上がっている ローカル Canister 実行環境 に接続した後に、プロジェクトの登録・ビルド・デプロイをローカル環境で行うことができます。
@@ -1398,7 +1282,7 @@ Candid ファイルは、Canister が定義する各関数の名前・引数・�
 <div class="literalblock">
 <div class="content">
 <pre>Creating a wallet canister on the local network.
-The wallet canister on the "local" network for user "pubs_user_id" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 Deploying all canisters.
 Creating canisters...
 Creating canister "multiply_deps"...
@@ -1406,11 +1290,10 @@ Creating canister "multiply_deps"...
 Creating canister "rust_deps"...
 "rust_deps" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
 Building canisters...
-Executing 'cargo build --target wasm32-unknown-unknown --package  rust_deps --release'
-   Compiling ic-cdk v0.3
-   Compiling ic-cdk-macros v0.3
-   Compiling rust_deps v0.1.0 (/Users/pubs/multiply_deps/src/rust_deps)
-    Finished release [optimized] target(s) in 2m 09s
+Executing: "cargo" "build" "--target" "wasm32-unknown-unknown" "--release" "-p" "rust_deps"
+...
+    Finished release [optimized] target(s) in 5.26s
+Executing: ic-cdk-optimizer -o target/wasm32-unknown-unknown/release/rust_deps.wasm target/wasm32-unknown-unknown/release/rust_deps.wasm
 Installing canisters...
 Creating UI canister on the local network.
 The UI canister on the "local" network is "r7inp-6aaaa-aaaaa-aaabq-cai"
@@ -1425,7 +1308,7 @@ Deployed canisters.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_デプロイした_canister_の関数を呼ぶ"><a class="anchor" href="#_デプロイした_canister_の関数を呼ぶ"></a>デプロイした Canister の関数を呼ぶ</h2>
+<h2 id="Call-functions-on-the-deployed-canister"><a class="anchor" href="#Call-functions-on-the-deployed-canister"></a>デプロイした Canister の関数を呼ぶ</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Canister のデプロイが成功すると、Canister の関数を呼ぶことでテストできるようになります。</p>
@@ -1460,7 +1343,7 @@ Deployed canisters.</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>(1)</pre>
+<pre>(1 : nat)</pre>
 </div>
 </div>
 </li>
@@ -1476,7 +1359,7 @@ Deployed canisters.</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>(9)</pre>
+<pre>(9 : nat)</pre>
 </div>
 </div>
 </li>
@@ -1492,7 +1375,7 @@ Deployed canisters.</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>(9)</pre>
+<pre>(9 : nat)</pre>
 </div>
 </div>
 </li>
@@ -1501,7 +1384,7 @@ Deployed canisters.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ローカル_canister_実行環境_を止める"><a class="anchor" href="#_ローカル_canister_実行環境_を止める"></a>ローカル Canister 実行環境 を止める</h2>
+<h2 id="Stop-the-LEE"><a class="anchor" href="#Stop-the-LEE"></a>ローカル Canister 実行環境 を止める</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>アプリケーションのテストをした後は、ローカル Canister 実行環境 がバックグラウンドで稼働し続けないように、以下の手順で停止します：</p>

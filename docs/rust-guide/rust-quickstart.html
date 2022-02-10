@@ -599,11 +599,11 @@
     
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../developers-guide/tutorials/custom-frontend.html">Customize the front-end</a>
+    <a class="nav-link" href="../developers-guide/tutorials/custom-frontend.html">フロントエンドのカスタマイズ</a>
     
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">Add a stylesheet</a>
+    <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">スタイルシートの追加</a>
     
   </li>
 </ul>
@@ -943,19 +943,8 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>Internet Computer 用のアプリケーション開発は <strong>プロジェクト</strong> の作成から始まります。
-Cargo と DFINITY Canister SDK のどちらかを使用して Internet Computer の新しいプロジェクトを作成します。
-Internet Computer にデプロイするプロジェクトを作成するため、本チュートリアルでは、親コマンドである <code>dfx</code> とそのサブコマンドを使って Rust プログラムを作成・ビルド・デプロイする方法を中心に説明します。
-ただし、<code>cargo new</code> で新規プロジェクトを作成した場合には、開発環境で必要となる <code>Cargo.lock</code> や <code>Cargo.toml</code> などのデフォルトファイルがプロジェクトのディレクトリ構造に追加されます。</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>プロジェクトの作成に Cargo を使用する場合は、DFINITY Canister Development Kit (CDK) for Rust が必要とするファイルをいくつか手動で追加する必要があります。</p>
-</li>
-<li>
-<p>プロジェクトの作成に DFINITY Canister SDK を使用する場合は、Cargo が必要とするファイルをいくつか手動で追加する必要があります。</p>
-</li>
-</ul>
+DFINITY Canister SDK を使用して Internet Computer の新しいプロジェクトを作成することができます。
+Internet Computer にデプロイするプロジェクトを作成するため、本チュートリアルでは、親コマンドである <code>dfx</code> とそのサブコマンドを使って Rust プログラムを作成・ビルド・デプロイする方法を中心に説明します。</p>
 </div>
 <div class="paragraph">
 <p>DFINITY Canister SDK を使って新しいプロジェクトを作成する手順は以下になります:</p>
@@ -966,14 +955,14 @@ Internet Computer にデプロイするプロジェクトを作成するため�
 <p>ローカル PC でターミナルを開きます。</p>
 </li>
 <li>
-<p>以下のコマンドを実行し、<code>rust_hello</code> という名前の新しいプロジェクトを作成します。</p>
+<p>以下のコマンドを実行し、<code>rust_hello</code> という名前の Rust Canister を持つ新しいプロジェクトを作成します。</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new rust_hello</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new --type=rust rust_hello</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>dfx new rust_hello</code> コマンドは <code>rust_hello</code> プロジェクトのディレクトリとテンプレートファイルと <code>rust_hello</code> の Git リポジトリを新たに生成します。</p>
+<p><code>dfx new --type=rust rust_hello</code> コマンドは <code>rust_hello</code> プロジェクトのディレクトリとテンプレートファイルと <code>rust_hello</code> の Git リポジトリを新たに生成します。</p>
 </div>
 </li>
 <li>
@@ -989,95 +978,21 @@ Internet Computer にデプロイするプロジェクトを作成するため�
 </div>
 </div>
 <div class="sect1">
-<h2 id="_デフォルト設定の変更"><a class="anchor" href="#_デフォルト設定の変更"></a>デフォルト設定の変更</h2>
+<h2 id="Take-a-look-at-the-project"><a class="anchor" href="#Take-a-look-at-the-project"></a>プロジェクトファイルを一通り確認する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>新しいプロジェクトを作成すると、<code>cargo new</code> コマンドを使ったときと同じように、いくつかのテンプレートファイルがプロジェクトディレクトリに追加されます。
-Internet Computer 上で動作する Canister スマートコントラクトを構築する前に、いくつか Rust 固有のファイルをプロジェクトに追加する必要があります。</p>
-</div>
-<div class="paragraph">
-<p>Motoko プロジェクトのデフォルト設定を変更するには、以下の手順を踏みます。</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#edit-the-default-canister-settings">Canister の初期設定の変更</a></p>
-</li>
-<li>
-<p><a href="#add-a-cargotoml-file-to-the-project">Cargo.toml ファイルの追加</a></p>
-</li>
-<li>
-<p><a href="#add-Rust-files-to-the-source-directory">src ディレクトリへの Rust ファイルの追加</a></p>
-</li>
-<li>
-<p><a href="#replace-the-default-dapp">デフォルト Dapp の置き換え</a></p>
-</li>
-</ul>
+<p>プロジェクトをコンパイルし、Internet Computer にデプロイする準備ができました。
+デプロイする前に、プロジェクトファイルを見てみましょう。</p>
 </div>
 <div class="sect2">
-<h3 id="edit-the-default-canister-settings"><a class="anchor" href="#edit-the-default-canister-settings"></a>Canister の初期設定の変更</h3>
+<h3 id="_dfx_json"><a class="anchor" href="#_dfx_json"></a><code>dfx.json</code></h3>
 <div class="paragraph">
 <p>プロジェクトディレクトリに含まれるテンプレートファイルの一つに、<code>dfx.json</code> 設定ファイルがあります。
 このファイルには Internet Computer で動かすプロジェクトをビルドするために必要な設定が含まれています。
-これは <code>Cargo.toml</code> ファイルが Rust プログラムのビルドやパッケージ管理の設定を含んでいるのと同じです。
-Canister スマートコントラクトとして Rust の Dapps をビルドするには、<code>dfx.json</code> のデフォルト設定を変更する必要があります。</p>
+これは <code>Cargo.toml</code> ファイルが Rust プログラムのビルドやパッケージ管理の設定を含んでいるのと同じです。</p>
 </div>
 <div class="paragraph">
-<p><code>dfx.json</code> を変更するには、以下のようにします:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
-</li>
-<li>
-<p>テキストエディタで <code>dfx.json</code> を開きます。</p>
-</li>
-<li>
-<p><code>canisters</code> キーの下に、<code>rust_hello</code> Canister のデフォルト設定があることにお気づきでしょうか。メインの Dapp ファイルへのデフォルトパスや、<code>type</code> が <code>motoko</code> になっていることなどがわかると思います。</p>
-</li>
-<li>
-<p><code>canisters.rust_hello.main</code> のキーと設定を、 <code>canisters.rust_hello.build</code> のキーに置き換え、実行する <code>cargo build</code> コマンドを以下のように指定します:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"build": "cargo build --target wasm32-unknown-unknown --package rust_hello --release",</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><code>canisters.rust_hello.candid</code> キーを追加し、Canister に使用する Candid インターフェース記述ファイルの場所を以下のように指定します:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"candid": "src/rust_hello/src/rust_hello.did",</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><code>canisters.rust_hello.wasm</code> のキーを追加し、Canister に使用するコンパイル済みの WebAssembly ファイルの場所を以下のように指定します:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"wasm": "target/wasm32-unknown-unknown/release/rust_hello.wasm",</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><code>canisters.rust_hello.type</code> のキーを変更し、Canister の <code>type</code> として <code>custom</code> を指定します:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"type": "custom"</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><code>rust_hello_assets</code> の設定をすべて削除します。</p>
-<div class="paragraph">
-<p>このチュートリアルの Dapp では、フロントエンドの <code>asset</code> を使用していないので、設定ファイルからこれらの設定を削除することができます。</p>
-</div>
-<div class="paragraph">
-<p>また、このチュートリアルでは <code>defaults</code> と <code>dfx</code> のキーも削除することができます。</p>
-</div>
-<div class="paragraph">
-<p>これらの不要な設定を削除した後の設定ファイルは次のようになります:</p>
+<p>設定ファイルは次のようなものです。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1118,35 +1033,33 @@ Canister スマートコントラクトとして Rust の Dapps をビルドす�
 }</pre>
 </div>
 </div>
+<div class="paragraph">
+<p><code>canisters</code> キーの下に、<code>rust_hello</code> Canister のデフォルト設定があることに注意してください。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>"type": "rust "</code> は <code>rust_hello</code> が <code>rust</code> タイプの Canister であることを指定します。</p>
 </li>
 <li>
-<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
+<p><code>"candid": "src/rust_hello/rust_hello.did "</code> は、Canister に使用する Candid インターフェース記述ファイルの場所を指定します。</p>
+</li>
+<li>
+<p><code>"package": "rust_hello "</code> は、Rust クレートのパッケージ名を指定します。<code>Cargo.toml</code> ファイルに記述されているものと同じである必要があります。</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-a-cargotoml-file-to-the-project"><a class="anchor" href="#add-a-cargotoml-file-to-the-project"></a>Cargo.toml ファイルの追加</h3>
+<h3 id="_cargo_toml"><a class="anchor" href="#_cargo_toml"></a><code>Cargo.toml</code></h3>
 <div class="paragraph">
-<p>Internet Computer で動かすために DFINITY Canister SDK を使って新しい Rust プロジェクトを作っているので、プロジェクトディレクトリ内の特定の場所に Rust 固有のファイルを手動で作成する必要があります。
-まず、プロジェクトのパッケージ情報を書くための <code>Cargo.toml</code> ファイルを作成しましょう。</p>
+<p>ルートディレクトリには、<code>Cargo.toml</code> というファイルがあります。</p>
 </div>
 <div class="paragraph">
-<p>プロジェクトに <code>Cargo.toml</code> ファイルを追加するには、以下のようにします：</p>
+<p>これは、各 Rust クレートのパスを指定することで、Rust ワークスペースを定義しています。
+Rust タイプの Canister は、WebAssembly にコンパイルされた Rust クレートにすぎません。
+ここでは、<code>src/rust_hello</code> に一つのメンバーを持っており、これが唯一の Rust Canister です。</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
-</li>
-<li>
-<p>カレントディレクトリに <code>Cargo.toml</code> という名前のファイルを作成します.</p>
-</li>
-<li>
-<p>テキストエディタで <code>Cargo.toml</code> を開きます。</p>
-</li>
-<li>
-<p><code>[workspace]</code> キーを使って Dapp のソースファイルのディレクトリを指定します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[workspace]
@@ -1155,69 +1068,23 @@ members = [
 ]</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>変更内容を保存し、ファイルを閉じて次に進みます。</p>
-</li>
-</ol>
-</div>
 </div>
 <div class="sect2">
-<h3 id="add-Rust-files-to-the-source-directory"><a class="anchor" href="#add-Rust-files-to-the-source-directory"></a>src ディレクトリへの Rust ファイルの追加</h3>
+<h3 id="_srcrust_hello"><a class="anchor" href="#_srcrust_hello"></a><code>src/rust_hello/</code></h3>
 <div class="paragraph">
-<p>新しいプロジェクトを作成すると、<code>src/rust_hello</code> ディレクトリが作成され、テンプレートとして <code>main.mo</code> が作成されます。
-このデフォルトの Dapp を、Rust の <code>lib.rs</code> パッケージと <code>Cargo.toml</code> ファイルで置き換えていきます。</p>
+<p>さて、Rust Canister を見ていきましょう。標準的な Rust クレートと同様に <code>Cargo.toml</code> ファイルがあり、Rust クレートをビルドするための詳細な設定をしています。</p>
 </div>
-<div class="paragraph">
-<p><code>src</code> ディレクトリに Rust ファイルを用意するのは、以下の手順となります:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>自分がルートディレクトリにいることを確認します。</p>
-</li>
-<li>
-<p>以下のコマンドを実行して、ライブラリテンプレートを使用した新しい Cargo パッケージを作成します:</p>
+<div class="sect3">
+<h4 id="_srcrust_hellocargo_toml"><a class="anchor" href="#_srcrust_hellocargo_toml"></a><code>src/rust_hello/Cargo.toml</code></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cargo init --lib src/rust_hello</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>このコマンドは <code>src/rust_hello/src</code> ディレクトリに、ライブラリ(<code>lib.rs</code>)パッケージと、<code>Cargo.toml</code> ファイルを作成します。</p>
-</div>
-</li>
-<li>
-<p><code>src/rust_hello/Cargo.toml</code> ファイルをテキストエディタで開きます。</p>
-<div class="paragraph">
-<p>このファイルを使って、Rustパッケージのビルドに関する詳細を設定します。</p>
-</div>
-<div class="paragraph">
-<p>最小限の構成として、パッケージ名・クレートタイプ・使用する DFINITY Rust CDK ライブラリのバージョンなどの基本情報を以下のように設定する必要があります:</p>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>[package]</code></p>
-</li>
-<li>
-<p><code>[lib]</code></p>
-</li>
-<li>
-<p><code>[dependencies]</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>既存の <code>[dependencies]</code> セクションを削除して、以下のように置き換えます:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[lib]
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[package]
+name = "rust_hello"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+path = "lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
@@ -1225,71 +1092,26 @@ ic-cdk = "0.3"
 ic-cdk-macros = "0.3"</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-このあとのチュートリアルでアプリを実際にデプロイする際に、パッケージの依存関係が間違っているというエラーメッセージが表示されることがあります。もし新しいバージョンの DFINITY Rust CDK がある場合は、<code>src/rust_hello/Cargo.toml</code> ファイルの依存関係を最新バージョンに合わせて更新してください。
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>変更を保存してファイルを閉じ、次に進みます。</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="replace-the-default-dapp"><a class="anchor" href="#replace-the-default-dapp"></a>デフォルトの Dapp を置き換え</h3>
 <div class="paragraph">
-<p>これで Rust Dapp 用のファイルが揃ったので、<code>main.mo</code> Dapp を Rust Dapp に置き換えていきます。</p>
+<p><code>crate-type = ["cdylib"]</code> の行に注目してください。これは、この Rust プログラムを WebAssembly モジュールにコンパイルするために必要なものです。</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_srcrust_hellolib_rs"><a class="anchor" href="#_srcrust_hellolib_rs"></a><code>src/rust_hello/lib.rs</code></h4>
 <div class="paragraph">
-<p>既存の Dapp を置き換えるには以下のようにします：</p>
+<p>デフォルトのプロジェクトでは、DFINITY Rust CDK <code>query</code> マクロを使用したシンプルな <code>greet</code> 関数が用意されています。</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>自分がルートディレクトリにいることを確認します。</p>
-</li>
-<li>
-<p><code>src/rust_hello/main.mo</code> ファイルを以下のコマンドによって削除します:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rm src/rust_hello/main.mo</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><code>src/rust_hello/src/lib.rs</code> ファイルをテキストエディタで開き、既存の内容を削除します。</p>
-</li>
-<li>
-<p>DFINITY Rust CDK の <code>query</code> マクロを使った、シンプルな <code>print</code> 関数を以下のように書いてみましょう:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#[ic_cdk_macros::query]
-fn print() {
-    ic_cdk::print("Hello World from DFINITY!");
+fn greet(name: String) -&gt; String {
+    format!("Hello, {}!", name)
 }</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>変更を保存してファイルを閉じ、次に進みます。</p>
-</li>
-</ol>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_インターフェイス記述ファイルの追加"><a class="anchor" href="#_インターフェイス記述ファイルの追加"></a>インターフェイス記述ファイルの追加</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="_srcrust_hellorust_hello_did"><a class="anchor" href="#_srcrust_hellorust_hello_did"></a><code>src/rust_hello/rust_hello.did</code></h4>
 <div class="paragraph">
 <p>Candid は、Internet Computer で動作する Canister と対話するためのインターフェース記述言語（IDL）です。
 Candid ファイルは、Canister が定義する各関数の名前・引数・返し値のフォーマットやデータ型など、Canister のインターフェースを言語に依存しないように記述したものです。</p>
@@ -1300,37 +1122,17 @@ Candid ファイルは、Canister が定義する各関数の名前・引数・�
 <div class="paragraph">
 <p>Candid インターフェース記述言語の構文の詳細は <a href="../candid-guide/candid-intro.html"><em>Candid ガイド</em></a>か <a href="https://docs.rs/candid/">Candid クレートのドキュメント</a>をご覧ください。</p>
 </div>
-<div class="paragraph">
-<p>Candid ファイルを追加するには、以下のようにします:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>自分がプロジェクトのルートディレクトリにいることを確認します。</p>
-</li>
-<li>
-<p><code>src/rust_hello/src/</code> ディレクトリに、<code>rust_hello.did</code> という名前でファイルを作成します。</p>
-</li>
-<li>
-<p><code>src/rust_hello/src/rust_hello.did</code> ファイルをテキストエディタで開きます。</p>
-</li>
-<li>
-<p><code>print</code> 関数のために、以下のように <code>service</code> を定義します:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-did hljs" data-lang="did">service : {
-    "print": () -&gt; () query;
+    "greet": (text) -&gt; (text) query;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>これは、<code>print</code> 関数に渡されたデータが、変更されずに <code>query</code> として返されることを表しています。</p>
+<p>これは、<code>greet</code> 関数が <code>text</code> データを入力として受け取り <code>text</code> データを返す <code>query</code> メソッドであることを指定します。</p>
 </div>
-</li>
-<li>
-<p>変更を保存してファイルを閉じ、次に進んでください。</p>
-</li>
-</ol>
+</div>
 </div>
 </div>
 </div>
@@ -1397,24 +1199,24 @@ Candid ファイルは、Canister が定義する各関数の名前・引数・�
 <div class="literalblock">
 <div class="content">
 <pre>Creating a wallet canister on the local network.
-The wallet canister on the "local" network for user "pubs_user_id" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 Deploying all canisters.
 Creating canisters...
 Creating canister "rust_hello"...
 "rust_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Creating canister "rust_hello_assets"...
+"rust_hello_assets" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
 Building canisters...
-Executing 'cargo build --target wasm32-unknown-unknown --package rust_hello --release'
+Executing: "cargo" "build" "--target" "wasm32-unknown-unknown" "--release" "-p" "rust_hello"
     Updating crates.io index
    Compiling unicode-xid v0.2.2
    ...
-Building canisters...
-Executing 'cargo build --target wasm32-unknown-unknown --package rust_hello --release'
-   Compiling rust_hello v0.1.0 (/Users/lisagunn/CDK-RS-APR-2021/rust_hello/src/rust_hello)
-    Finished release [optimized] target(s) in 1.26s
+Building frontend...
 Installing canisters...
 Creating UI canister on the local network.
-The UI canister on the "local" network is "rkp4c-7iaaa-aaaaa-aaaca-cai"
-Installing code for canister rust_hello, with canister_id r7inp-6aaaa-aaaaa-aaabq-cai
+The UI canister on the "local" network is "r7inp-6aaaa-aaaaa-aaabq-cai"
+Installing code for canister rust_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+...
 Deployed canisters.</pre>
 </div>
 </div>
@@ -1424,7 +1226,7 @@ Deployed canisters.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_dapp_のテスト"><a class="anchor" href="#_dapp_のテスト"></a>Dapp のテスト</h2>
+<h2 id="Test-the-dapp"><a class="anchor" href="#Test-the-dapp"></a>Dapp のテスト</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>ローカルでデプロイした Dapp をテストするには、以下のようにします:</p>
@@ -1435,28 +1237,22 @@ Deployed canisters.</pre>
 <p>プロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Dpp の <code>print</code> 関数を以下のコマンドで呼び出します:</p>
+<p>Dpp の <code>greet</code> 関数を以下のコマンドで呼び出します:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call rust_hello print</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call rust_hello greet world</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p><code>rust_hello</code> Canister の <code>print</code> 関数を呼び出した結果、以下のように <code>Hello World from DFINITY!</code> の挨拶が表示されることを確認します:</p>
-<div class="literalblock">
-<div class="content">
-<pre>[Canister ryjl3-tyaaa-aaaaa-aaaba-cai] Hello World from DFINITY!
-()</pre>
-</div>
-</div>
+<p>rust_hello+` Canister の <code>greet</code> 関数の呼び出しがテキストメッセージである <code>("Hello, world!")</code> を返すことを確認します。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ローカル実行環境_を止める"><a class="anchor" href="#_ローカル実行環境_を止める"></a>ローカル実行環境 を止める</h2>
+<h2 id="Stop-the-LEE"><a class="anchor" href="#Stop-the-LEE"></a>ローカル実行環境 を止める</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>アプリケーションのテストをした後は、ローカル実行環境 がバックグラウンドで稼働し続けないように、以下の手順で停止します:</p>
