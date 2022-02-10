@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Add a stylesheet :: Dfinity 日本語ドキュメント</title>
+    <title>スタイルシートの追加 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/developers-guide/tutorials/my-contacts.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../../_/css/site.css">
@@ -877,13 +877,13 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Add a stylesheet</h1>
+<h1 class="page">スタイルシートの追加</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cascading stylesheets are an important part of any front-end user interface. The default starter is configured to import a <code>main.css</code> file that you can edit, but you may prefer to import your stylesheet into a JavaScript file, or to use an alternate format such as Syntactically Awesome Style Sheets, aka SCSS.
-This tutorial illustrates how to configure webpack to import a stylesheet by walking through building a contact dapp.
-If you already know how to add cascading stylesheets (CSS) to a webpack-based project, you can skip this tutorial.</p>
+<p>カスケードスタイルシートは、フロントエンドのユーザーインターフェースの重要な部分です。デフォルトのスターターでは、編集可能な <code>main.css</code> ファイルをインポートするように設定されていますが、スタイルシートを JavaScript ファイルにインポートしたり、 Syntactically Awesome Style Sheets (SCSS) のような代替フォーマットを使用したりすることもできます。
+このチュートリアルでは、"Contacts" Dapp の構築を通じて、スタイルシートをインポートするように webpack を設定する方法を説明します。
+webpack ベースのプロジェクトにカスケーディング・スタイルシート（CSS）を追加する方法をすでにご存知の方は、このチュートリアルを読み飛ばしていただいて構いません。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -892,8 +892,8 @@ If you already know how to add cascading stylesheets (CSS) to a webpack-based pr
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your front-end.
-Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see <a href="https://reactjs.org/docs/getting-started.html">Getting started</a> on the <a href="https://reactjs.org/">React website</a>.
+このチュートリアルでは、 React フレームワークを使ってフロントエンドの DOM（Document Object Model）を管理する方法を説明します。
+React には独自のカスタム DOM 構文があるため、 JSX で書かれたフロントエンドコードをコンパイルするためには、 webpack の設定を変更する必要があります。React と JSX の使い方の学習については、 <a href="https://reactjs.org/">Reactのウェブサイト</a> の <a href="https://reactjs.org/docs/getting-started.html">Getting started</a> を参照してください。
 </td>
 </tr>
 </table>
@@ -901,26 +901,25 @@ Because React has its own custom DOM syntax, you need to modify the webpack conf
 </div>
 </div>
 <div class="sect1">
-<h2 id="_before_you_begin"><a class="anchor" href="#_before_you_begin"></a>Before you begin</h2>
+<h2 id="_始める前に"><a class="anchor" href="#_始める前に"></a>始める前に</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before starting the tutorial, verify the following:</p>
+<p>チュートリアルを始める前に、以下のことを確認してください。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You have <code>node.js</code> installed for front-end development and can install packages using <code>npm install</code> in your project.
-For information about installing node for your local operating system and package manager, see the <a href="https://nodejs.org/en/">Node</a> website.</p>
+<p>フロントエンド開発のために <code>node.js</code> がインストールされており、プロジェクトで <code>npm install</code> を使用してパッケージをインストールできること。
+ローカルのオペレーティングシステムやパッケージマネージャに node をインストールする方法については、 <a href="https://nodejs.org/en/">Node</a> のウェブサイトを参照してください。</p>
 </li>
 <li>
-<p>You have downloaded and installed the DFINITY Canister SDK package as described in <a href="../../quickstart/local-quickstart.html#download-and-install">Download and install</a>.</p>
+<p><a href="&#8230;&#8203;/&#8230;&#8203;/quickstart/local-quickstart.html#download-and-install">ダウンロードとインストール</a> で説明されている通り、 DFINITY Canister SDK パッケージをダウンロードしてインストールしていること。</p>
 </li>
 <li>
-<p>You have installed the Visual Studio Code plugin for Motoko as described in <a href="../../quickstart/local-quickstart.html#install-vscode">Install the language editor plug-in</a> if you are using Visual Studio Code as your IDE.</p>
+<p>IDE として Visual Studio Code を使用している場合、 <a href="./../quickstart/local-quickstart.html#install-vscode">language editor plug-inのインストール</a> で説明されているように、 Motoko の Visual Studio Code プラグインをインストールしていること。</p>
 </li>
 <li>
-<p>You have stopped any local canister execution environment processes running on the local
-computer.</p>
+<p>ローカルコンピュータ上で実行されているローカルキャニスターの実行環境プロセスを停止していること。</p>
 </li>
 </ul>
 </div>
@@ -931,7 +930,7 @@ computer.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This tutorial requires you to use the DFINITY Canister SDK version <code>0.8.0</code> or later.
+このチュートリアルでは、 DFINITY Canister SDK のバージョン <code>0.8.0</code> 以降を使用する必要があります。
 </td>
 </tr>
 </table>
@@ -939,24 +938,24 @@ This tutorial requires you to use the DFINITY Canister SDK version <code>0.8.0</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_a_new_project"><a class="anchor" href="#_create_a_new_project"></a>Create a new project</h2>
+<h2 id="_新しいプロジェクトを生成"><a class="anchor" href="#_新しいプロジェクトを生成"></a>新しいプロジェクトを生成</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a new project directory for your custom front-end dapp:</p>
+<p>カスタムフロントエンド Dapp 用の新しいプロジェクトディレクトリを作成するには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a terminal shell on your local computer, if you don’t already have one open.</p>
+<p>ローカルコンピューターでターミナルシェルを開きます（まだ開いていない場合）。</p>
 </li>
 <li>
-<p>Change to the folder you are using for your Internet Computer projects, if you are using one.</p>
+<p>Internet Computer プロジェクトで使用しているフォルダがあれば、そのフォルダに変更します。</p>
 </li>
 <li>
-<p>Verify that you have <code>node.js</code> installed locally, if necessary.</p>
+<p>必要に応じて、ローカルに <code>node.js</code> がインストールされていることを確認します。</p>
 </li>
 <li>
-<p>Create a new project by running the following command:</p>
+<p>次のコマンドを実行して、新しいプロジェクトを作成します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx new contacts</code></pre>
@@ -964,7 +963,7 @@ This tutorial requires you to use the DFINITY Canister SDK version <code>0.8.0</
 </div>
 </li>
 <li>
-<p>Change to your project directory by running the following command:</p>
+<p>以下のコマンドを実行して、プロジェクト・ディレクトリに変更します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd contacts</code></pre>
@@ -976,18 +975,18 @@ This tutorial requires you to use the DFINITY Canister SDK version <code>0.8.0</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_install_the_react_framework"><a class="anchor" href="#_install_the_react_framework"></a>Install the React framework</h2>
+<h2 id="_react_フレームワークのインストール"><a class="anchor" href="#_react_フレームワークのインストール"></a>React フレームワークのインストール</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>if you&#8217;ve never used React before, you might want to explore the <a href="https://reactjs.org/tutorial/tutorial.html">Intro to React</a> tutorial or the <a href="https://reactjs.org/">React website</a> before editing the front-end code.</p>
+<p>React を使ったことがない方は、フロントエンドのコードを編集する前に、 <a href="https://reactjs.org/tutorial/tutorial.html">React 紹介</a> チュートリアルや、 <a href="https://reactjs.org/">React ウェブサイト</a> をご覧になるとよいでしょう。</p>
 </div>
 <div class="paragraph">
-<p>To install required framework modules:</p>
+<p>必要なフレームワークモジュールをインストールするには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Install the React module by running the following command:</p>
+<p>以下のコマンドを実行して、Reactモジュールをインストールします：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install --save react react-dom</code></pre>
@@ -995,7 +994,7 @@ This tutorial requires you to use the DFINITY Canister SDK version <code>0.8.0</
 </div>
 </li>
 <li>
-<p>Install the required TypeScript language compiler loader by running the following command:</p>
+<p>以下のコマンドを実行して、必要な TypeScript 言語のコンパイラ・ローダをインストールします：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install --save-dev typescript ts-loader</code></pre>
@@ -1003,14 +1002,14 @@ This tutorial requires you to use the DFINITY Canister SDK version <code>0.8.0</
 </div>
 </li>
 <li>
-<p>Install the required style loaders by running the following command:</p>
+<p>以下のコマンドを実行して、必要なスタイルローダーをインストールします：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install --save-dev style-loader css-loader</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If the <code>npm install</code> command reports a vulnerability, you might also want to run the <code>npm audit fix</code> command to attempt to fix the vulnerability reported before continuing.</p>
+<p>また、 <code>npm install</code> コマンドで脆弱性が報告された場合は、 <code>npm audit fix</code> コマンドを実行して、報告された脆弱性の修正を試みてから続行するとよいでしょう。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1019,7 +1018,7 @@ This tutorial requires you to use the DFINITY Canister SDK version <code>0.8.0</
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As an alternative to installing these modules, you can edit the default <code>package.json</code> file to add dependencies for your project.
+これらのモジュールをインストールする代わりに、デフォルトの <code>package.json</code> ファイルを編集して、プロジェクトの依存関係を追加することができます。
 </td>
 </tr>
 </table>
@@ -1061,7 +1060,7 @@ As an alternative to installing these modules, you can edit the default <code>pa
 </div>
 </div>
 <div class="paragraph">
-<p>The version of the JavaScript agent in this example <code>package.json</code> file is <code>0.10.0</code>. In most cases, however, you would want to use the latest version of the agent available. When you create a new project, the <code>dfx new</code> command automatically retrieves the latest version of the JavaScript agent for you. You can also manually retrieve the latest version after creating a project by running the <code>npm install --save @dfinity/agent</code> command.</p>
+<p>この例の <code>package.json</code> ファイルに含まれている JavaScript エージェントのバージョンは <code>0.10.0</code> です。しかし、ほとんどの場合、利用可能な最新バージョンのエージェントを使用することをお勧めします。新しいプロジェクトを作成すると、 <code>dfx new</code> コマンドが自動的に最新バージョンの JavaScript エージェントを取得します。また、プロジェクトを作成した後に <code>npm install --save @dfinity/agent</code> コマンドを実行して、手動で最新バージョンを取得することもできます。</p>
 </div>
 </li>
 </ol>
@@ -1069,21 +1068,21 @@ As an alternative to installing these modules, you can edit the default <code>pa
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_default_program"><a class="anchor" href="#_modify_the_default_program"></a>Modify the default program</h2>
+<h2 id="_デフォルトプログラムの変更"><a class="anchor" href="#_デフォルトプログラムの変更"></a>デフォルトプログラムの変更</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For this tutorial, you are going to modify the main program to with code that allows you to store and look up contact information.</p>
+<p>このチュートリアルでは、メインプログラムを修正して、連絡先情報を保存したり検索したりするコードを追加します。</p>
 </div>
 <div class="paragraph">
-<p>To modify the default program:</p>
+<p>デフォルトプログラムを変更するには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <code>src/contacts/main.mo</code> file in a text editor and delete the existing content.</p>
+<p>テキストエディタで <code>src/contacts/main.mo</code> ファイルを開き、既存のコンテンツを削除します。</p>
 </li>
 <li>
-<p>Copy and paste the following sample code into the file:</p>
+<p>以下のサンプルコードをコピーして、ファイルに貼り付けます：</p>
 <div class="listingblock copy">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-motoko hljs" data-lang="motoko">import List "mo:base/List";
@@ -1136,37 +1135,37 @@ actor Contact {
 </div>
 </li>
 <li>
-<p>Save your changes and close the <code>main.mo</code> file to continue.</p>
+<p>変更を保存し、 <code>main.mo</code> ファイルを閉じて次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_front_end_files"><a class="anchor" href="#_modify_the_front_end_files"></a>Modify the front-end files</h2>
+<h2 id="_フロントエンドファイルの変更"><a class="anchor" href="#_フロントエンドファイルの変更"></a>フロントエンドファイルの変更</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You are now ready to create a new front-end for your program.</p>
+<p>これで、プログラムの新しいフロントエンドを作成する準備が整いました。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the webpack configuration file (<code>webpack.config.js</code>) in a text editor.</p>
+<p>テキストエディターで、 webpack の設定ファイル( <code>webpack.config.js</code> )を開きます。</p>
 </li>
 <li>
-<p>Modify the front-end entry to replace the default index.html with index.jsx.</p>
+<p>フロントエンドのエントリーを修正し、デフォルトの index.html を index.jsx に置き換えます。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">entry: {
-  // The frontend.entrypoint points to the HTML file for this build, so we need
-  // to replace the extension to `.js`.
+  // フロントエンド・エンドポイントは、このビルドのHTMLファイルを指しているので
+  // 拡張子を `.js` に変更する必要があります。
   index: path.join(__dirname, asset_entry).replace(/\.html$/, ".jsx"),
 },</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Locate the commented example for the <code>module</code> key above the <code>plugins</code> section, then uncomment the following lines:</p>
+<p>コメントされた <code>module</code> キーの例を <code>plugins</code> セクションの上に見つけて、次の行をアンコメントしてください。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">module: {
@@ -1179,9 +1178,9 @@ actor Contact {
 </div>
 </li>
 <li>
-<p>These settings enable your program to use the <code>ts-loader</code> compiler and to import CSS files.</p>
+<p>これらの設定により、プログラムが <code>ts-loader</code> コンパイラを使用したり、CSS ファイルをインポートしたりすることができます。</p>
 <div class="paragraph">
-<p>Note: if you want to add support for <code>.scss</code> or <code>.sass</code> files, you should install <code>sass-loader</code> with:</p>
+<p>Note: <code>.scss</code> や <code>.sass</code> ファイルのサポートを追加したい場合は、 <code>sass-loader</code> を一緒にインストールしてください。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1189,7 +1188,7 @@ actor Contact {
 </div>
 </div>
 <div class="paragraph">
-<p>and then add this additional rule beneath the <code>css-loader</code> rule in <code>webpack.config.js</code>:</p>
+<p>それから、 <code>webpack.config.js</code> の <code>css-loader</code> ルールの下にこの追加ルールを追加します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1199,11 +1198,11 @@ actor Contact {
     {
       test: /\.s[ac]ss$/i,
       use: [
-        // Creates `style` nodes from JS strings
+        // `style` ノードをJS文字列から生成
         "style-loader",
-        // Translates CSS into CommonJS
+        // CSS を CommonJS に翻訳する
         "css-loader",
-        // Compiles Sass to CSS
+        // Sass を CSS にコンパイルする
         "sass-loader",
       ],
     },
@@ -1213,13 +1212,13 @@ actor Contact {
 </div>
 </li>
 <li>
-<p>Save your changes and close the <code>webpack.config.js</code> file to continue.</p>
+<p>変更内容を保存し、 <code>webpack.config.js</code> ファイルを閉じて次に進みます。</p>
 </li>
 <li>
-<p>Create a new file named <code>tsconfig.json</code> in the root directory for your project.</p>
+<p>プロジェクトのルートディレクトリに、 <code>tsconfig.json</code> という名前の新規ファイルを作成します。</p>
 </li>
 <li>
-<p>Open the <code>tsconfig.json</code> file in a text editor, then copy and paste the following into the file:</p>
+<p>テキストエディターで <code>tsconfig.json</code> ファイルを開き、以下をコピーしてファイルに貼り付けます：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
@@ -1235,25 +1234,25 @@ actor Contact {
 </div>
 </li>
 <li>
-<p>Save your changes and close the <code>tsconfig.json</code> file to continue.</p>
+<p>変更内容を保存し、 <code>tsconfig.json</code> ファイルを閉じて次に進みます。</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_add_a_stylesheet_to_your_project"><a class="anchor" href="#_add_a_stylesheet_to_your_project"></a>Add a stylesheet to your project</h2>
+<h2 id="_スタイルシートをプロジェクトに追加"><a class="anchor" href="#_スタイルシートをプロジェクトに追加"></a>スタイルシートをプロジェクトに追加</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You are now ready to create a new cascading stylesheet and add it to your project.</p>
+<p>これで、新しいカスケードスタイルシートを作成し、プロジェクトに追加する準備が整いました。</p>
 </div>
 <div class="paragraph">
-<p>To add a stylesheet:</p>
+<p>スタイルシートをプロジェクトに追加するには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Change to the <code>src/contacts_assets/assets</code> directory.</p>
+<p><code>src/contacts_assets/assets</code> ディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd src/contacts_assets/assets/</code></pre>
@@ -1261,12 +1260,12 @@ actor Contact {
 </div>
 </li>
 <li>
-<p>Open the <code>main.css</code> file in a text editor and delete the existing content.</p>
+<p>テキストエディターで <code>main.css</code> ファイルを開き、既存の内容を削除します。</p>
 </li>
 <li>
-<p>Define some style properties for the front-end.</p>
+<p>フロントエンド用にいくつかのスタイルプロパティを定義します。</p>
 <div class="paragraph">
-<p>For example, copy and paste the following sample styles into the file:</p>
+<p>例えば、以下のサンプルスタイルをコピーして、ファイルに貼り付けます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1314,10 +1313,10 @@ button {
 </div>
 </li>
 <li>
-<p>Save your changes and close the <code>main.css</code> file to continue.</p>
+<p>変更内容を保存し、 <code>main.css</code> ファイルを閉じて次に進みます。</p>
 </li>
 <li>
-<p>Change to the <code>src/contacts_assets/src</code> directory.</p>
+<p><code>src/contacts_assets/src</code> ディレクトリに移動します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ../src</code></pre>
@@ -1325,10 +1324,10 @@ button {
 </div>
 </li>
 <li>
-<p>Open the default <code>index.js</code> file in a text editor and delete the existing content.</p>
+<p>デフォルトの <code>index.js</code> ファイルをテキストエディターで開き、既存のコンテンツを削除します。</p>
 </li>
 <li>
-<p>Copy and paste the following sample code into the <code>index.js</code> file:</p>
+<p>以下のサンプルコードをコピーして、 <code>index.js</code> ファイルに貼り付けてください：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-react hljs" data-lang="react">import * as React from "react";
@@ -1426,7 +1425,7 @@ render(&lt;Contact /&gt;, document.getElementById("contacts"));</code></pre>
 </div>
 </li>
 <li>
-<p>Rename the modified <code>index.js</code> file as <code>index.jsx</code> by running the following command:</p>
+<p>以下のコマンドを実行して、修正した <code>index.js</code> ファイルの名前を <code>index.jsx</code> に変更します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mv index.js index.jsx</code></pre>
@@ -1434,9 +1433,9 @@ render(&lt;Contact /&gt;, document.getElementById("contacts"));</code></pre>
 </div>
 </li>
 <li>
-<p>Open the default <code>src/contacts_assets/src/index.html</code> file in a text editor, then remove the <code>main.css</code> link and update the <code>body</code> contents with <code>&lt;div id="contacts"&gt;&lt;/div&gt;</code>.</p>
+<p>デフォルトの <code>src/contacts_assets/src/index.html</code> ファイルをテキストエディターで開き、 <code>main.css</code> のリンクを削除して、 <code>body</code> の内容を <code>&lt;div id="contacts"&gt;&lt;/div&gt;</code> で更新します。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例えば：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1458,9 +1457,9 @@ render(&lt;Contact /&gt;, document.getElementById("contacts"));</code></pre>
 </div>
 </li>
 <li>
-<p>Navigate back to the root of your project directory.</p>
+<p>プロジェクトディレクトリのルートに戻ってください。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例えば：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1473,28 +1472,26 @@ render(&lt;Contact /&gt;, document.getElementById("contacts"));</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_start_the_local_network"><a class="anchor" href="#_start_the_local_network"></a>Start the local network</h2>
+<h2 id="_ローカルネットワークをスタート"><a class="anchor" href="#_ローカルネットワークをスタート"></a>ローカルネットワークをスタート</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you can build the <code>contacts</code> project, you need to connect to the local canister execution environment.</p>
-</div>
-<div class="paragraph">
-<p>To start the environment locally:</p>
+<p><code>contacts</code> プロジェクトをビルドする前に、ローカルの Canister 実行環境に接続する必要があります。
+ローカル実行環境をスタートするには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new terminal window or tab on your local computer.</p>
+<p>ローカルコンピュータで新しいターミナルウィンドウまたはタブを開きます。</p>
 </li>
 <li>
-<p>Start the local canister execution environment on your local computer by running the following command:</p>
+<p>次のコマンドを実行して、ローカルコンピュータ上でローカルキャニスター実行環境を起動します：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start --background</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>After the environment completes its startup operations, you can continue to the next step.</p>
+<p>環境の起動操作が完了したら、次のステップに進みます。</p>
 </div>
 </li>
 </ol>
@@ -1502,34 +1499,34 @@ render(&lt;Contact /&gt;, document.getElementById("contacts"));</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_register_build_and_deploy_the_dapp"><a class="anchor" href="#_register_build_and_deploy_the_dapp"></a>Register, build, and deploy the dapp</h2>
+<h2 id="_dapp_の登録ビルドデプロイ"><a class="anchor" href="#_dapp_の登録ビルドデプロイ"></a>Dapp の登録、ビルド、デプロイ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you connect to the local canister execution environment in your development environment, you can register, build, and deploy your dapp for testing.</p>
+<p>開発環境のローカル Canister 実行環境に接続した後、テスト用の Dapp を登録、ビルド、デプロイすることができます。</p>
 </div>
 <div class="paragraph">
-<p>To deploy the dapp:</p>
+<p>Dapp をデプロイするには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
+<p>必要に応じて、プロジェクトのルートディレクトリにいることを確認します。</p>
 </li>
 <li>
-<p>Register, build, and deploy your dapp by running the following command:</p>
+<p>以下のコマンドを実行して、 Dapp の登録、ビルド、デプロイを行います：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx deploy</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>dfx deploy</code> command output displays information about the operations it performs.</p>
+<p><code>dfx deploy</code> コマンドの出力には、実行した操作に関する情報が表示されます。</p>
 </div>
 <div class="paragraph">
-<p>Keep in mind that because you are running the canister execution environment locally, the identifiers displayed when you run the <code>dfx deploy</code> command are only valid on your machine.</p>
+<p>なお、Canister の実行環境はローカルで動作しているため、 <code>dfx deploy</code> コマンドを実行したときに表示される識別子は、自分のマシンでのみ有効であることに注意してください。</p>
 </div>
 <div class="paragraph">
-<p>To deploy canisters on the Internet Computer プラットフォーム, you must specify that you are deploying to the Internet Computer and not your local environment by using the <code>--network</code> command-line option:</p>
+<p>Internet Computer プラットフォーム にキャニスターをデプロイするには、 <code>--network</code> コマンドラインオプションを使用して、ローカル環境ではなく Internet Computer にデプロイすることを指定する必要があります。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1538,7 +1535,7 @@ render(&lt;Contact /&gt;, document.getElementById("contacts"));</code></pre>
 </div>
 </li>
 <li>
-<p>Start the Webpack development server:</p>
+<p>Webpack development server を起動する：</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm start</code></pre>
@@ -1550,35 +1547,35 @@ render(&lt;Contact /&gt;, document.getElementById("contacts"));</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_view_the_front_end"><a class="anchor" href="#_view_the_front_end"></a>View the front-end</h2>
+<h2 id="_フロントエンドを確認する"><a class="anchor" href="#_フロントエンドを確認する"></a>フロントエンドを確認する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can now access the front-end for the <code>contacts</code> dapp.</p>
+<p>これで、 <code>contacts</code> Dapp のフロントエンドにアクセス出来ます。</p>
 </div>
 <div class="paragraph">
-<p>To view the front-end:</p>
+<p>フロントエンドを確認するには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a browser and navigate to the <code><a href="http://localhost:8080" class="bare">http://localhost:8080</a></code>.</p>
+<p>ブラウザを開き、 <code><a href="http://localhost:8080" class="bare">http://localhost:8080</a></code> に移動します。</p>
 </li>
 <li>
-<p>Verify that you are prompted with a <strong>My Contacts</strong> form.</p>
+<p><strong>My Contacts</strong> フォームが表示されていることを確認します。</p>
 <div class="paragraph">
-<p>For example:</p>
+<p>例えば：</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../_images/mycontacts-form.png" alt="Sample front-end"></span></p>
 </div>
 </li>
 <li>
-<p>Create one or more test records by entering text in the Name, Address, and Email input fields and a number in the Phone input field, then clicking <strong>Add Contact</strong>.</p>
+<p>"Name" 、"Address" 、"Mail" の各入力欄にテキストを入力し、 "Phone" の入力欄に数字を入力して"Add Contact" をクリックして、1つまたは複数のテストレコードを作成します。</p>
 </li>
 <li>
-<p>Clear the form fields and type a contact name in the Lookup name field, then click <strong>Lookup</strong> to see the stored contact information.</p>
+<p>フォームフィールドをクリアして、 "Lookup name" フィールドに連絡先の名前を入力し、 <strong>Lookup</strong> をクリックすると、保存されている連絡先情報が表示されます。</p>
 <div class="paragraph">
-<p>Keep in mind that the <strong>Lookup name</strong> you type must be an exact match for the name of a contact you added.</p>
+<p>なお、入力する "Lookup" は、追加した連絡先の名前と完全に一致している必要があります。</p>
 </div>
 </li>
 </ol>
@@ -1586,23 +1583,23 @@ render(&lt;Contact /&gt;, document.getElementById("contacts"));</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_stylesheet_and_test_your_changes"><a class="anchor" href="#_modify_the_stylesheet_and_test_your_changes"></a>Modify the stylesheet and test your changes</h2>
+<h2 id="_スタイルシートを変更し変更内容をテストする"><a class="anchor" href="#_スタイルシートを変更し変更内容をテストする"></a>スタイルシートを変更し、変更内容をテストする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After viewing the Contacts dapp, you might want to make some changes.</p>
+<p>Contacts Dapp を見た後、いくつかの変更を加えたいと思うかもしれません</p>
 </div>
 <div class="paragraph">
-<p>To change stylesheet properties:</p>
+<p>スタイルシートのプロパティを変更するには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <code>src/contacts_assets/assets/mycontacts.css</code> file in a text editor and modify its style settings.</p>
+<p>テキストエディターで <code>src/contacts_assets/assets/mycontacts.css</code> ファイルを開き、そのスタイル設定を修正します。</p>
 <div class="paragraph">
-<p>For example, you might want to change the background color or style the input form.</p>
+<p>例えば、背景色を変更したり、入力フォームのスタイルを変更したりすることができます。</p>
 </div>
 <div class="paragraph">
-<p>You should see the changes update immediately in your open browser window.</p>
+<p>開いているブラウザウィンドウに変更がすぐに反映されるはずです。</p>
 </div>
 </li>
 </ol>
@@ -1610,43 +1607,43 @@ render(&lt;Contact /&gt;, document.getElementById("contacts"));</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_modify_the_front_end_or_back_end_code"><a class="anchor" href="#_modify_the_front_end_or_back_end_code"></a>Modify the front-end or back-end code</h2>
+<h2 id="_フロントエンドやバックエンドのコードを変更する"><a class="anchor" href="#_フロントエンドやバックエンドのコードを変更する"></a>フロントエンドやバックエンドのコードを変更する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you want to explore further, you might want to experiment with modifying the front-end or back-end code for this tutorial.
-For example, you might want try modifying the tutorial to do the following:</p>
+<p>さらに詳しく知りたい場合は、このチュートリアルのフロントエンドやバックエンドのコードを変更してみるとよいでしょう。
+例えば、以下のように変更してみてはいかがでしょうか。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Change the front-end code to clear the input fields after adding a new contact, for example, as part of an <code>onClick</code> event.</p>
+<p>新しい連絡先を追加した後に入力フィールドをクリアするように、フロントエンドのコードを変更しましょう。例えば、 <code>onClick</code> イベントの一部として。</p>
 </li>
 <li>
-<p>Change the Motoko program functions to do partial instead of exact string matching on the <code>Name</code> field. (You will need to run <code>dfx deploy</code> to test your changes on the local environment)</p>
+<p>プログラムの Motoko 関数を変更して、 <code>Name</code> フィールドで正確な文字列マッチングではなく、部分的な文字列マッチングを行うようにしましょう。（変更内容をローカル環境でテストするには、 <code>dfx deploy</code> を実行する必要があります）</p>
 </li>
 <li>
-<p>Change the Motoko program to allow lookups based on a different field.</p>
+<p>異なるフィールドに基づいて検索できるように Motoko プログラムを変更しましょう。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_stop_the_local_canister_execution_environment"><a class="anchor" href="#_stop_the_local_canister_execution_environment"></a>Stop the local canister execution environment</h2>
+<h2 id="_canister_ローカル実行環境の停止"><a class="anchor" href="#_canister_ローカル実行環境の停止"></a>Canister ローカル実行環境の停止</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you finish experimenting with your program, you can stop the local environment so that it doesn’t continue running in the background.</p>
+<p>プログラムの実験が終わったら、ローカル環境を停止して、バックグラウンドで実行し続けないようにすることができます。</p>
 </div>
 <div class="paragraph">
-<p>To stop the local development environment:</p>
+<p>Canister ローカル実行環境の停止するには：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the terminal that displays your webpack dev server, press Control-C to interrupt the development server.</p>
+<p>webpack の開発サーバーが表示されているターミナルで、 Control-C を押して開発サーバーを中断します。</p>
 </li>
 <li>
-<p>Stop the Internet Computer network by running the following command:</p>
+<p>以下のコマンドを実行して Internet Computer ネットワークを停止します。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>
