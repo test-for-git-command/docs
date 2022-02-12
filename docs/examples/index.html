@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Example Code :: Dfinity 日本語ドキュメント</title>
+    <title>コード例 :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/examples/index.html">
     <meta name="description" content="Quick links to example code for common use-cases for your dapp">
     <meta name="keywords" content="Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding,dapp,example,code,rust,Motoko">
@@ -876,156 +876,134 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Example Code</h1>
+<h1 class="page">コード例</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div id="example-code-intro" class="paragraph">
-<p>In addition to our tutorials section, here are some quick references! You can also check out our <a href="https://github.com/dfinity/examples">Examples Repo</a>, <a href="https://github.com/dfinity/awesome-dfinity">Awesome Dfinity</a>, a curated set of open-source projects and examples from our community, or <a href="./hackathon-projects.html">Hackathon Projects</a>!</p>
+<p>チュートリアルに加えて、簡単な参考文献をいくつかご紹介します。また、 <a href="https://github.com/dfinity/examples">Examples Repo</a> や <a href="https://github.com/dfinity/awesome-dfinity">Awesome Dfinity</a> は、私たちのコミュニティから集められたオープンソースプロジェクトや事例を集めたものです！</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="motoko-rust"><a class="anchor" href="#motoko-rust"></a>Motoko and Rust Examples</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>We first list the examples that are available in both Motoko <em>and</em> Rust:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="hello.html">Hello</a>: the dapp equivalent of <em>hello world</em>, with a separate backend and frontend canister serving a web page.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="motoko"><a class="anchor" href="#motoko"></a>Motoko Examples</h2>
+<h2 id="motoko"><a class="anchor" href="#motoko"></a>Motoko の例</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="motoko-playground"><a class="anchor" href="#motoko-playground"></a>Motoko Playground</h3>
 <div class="paragraph">
-<p>Some (but not all) of the following Motoko examples are available via the <a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/">Motoko Playground</a>. The playground provides the simplest enviromnent for trying out pure Motoko examples without having to download and learn to use the SDK, but does not support applications with frontends.</p>
+<p>以下の Motoko の例の一部（すべてではありません）は、 <a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/">Motoko Playground</a> で入手できます。Playground は、 SDK をダウンロードして使い方を学ぶことなく、純粋な Motoko のサンプルを試すための最もシンプルな環境を提供しますが、フロントエンドを持つアプリケーションはサポートしません。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_basic"><a class="anchor" href="#_basic"></a>Basic</h3>
-<div class="paragraph">
-<p>This is collection of basic getting-started Motoko examples, which demonstrate basic concepts of the IC and the Motoko language.</p>
-</div>
+<h3 id="_基礎"><a class="anchor" href="#_基礎"></a>基礎</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/actor_reference">actor_reference</a>&#8201;&#8212;&#8201;IC management canister as an actor (reference).</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/actor_reference">actor_reference</a>&#8201;&#8212;&#8201;Actor （参照）としての IC マネジメント Canister</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/counter">counter</a>&#8201;&#8212;&#8201;basic (stable) variable demo.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/counter">counter</a>&#8201;&#8212;&#8201;基本的な （静的） 変数のデモ</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/echo">echo</a>&#8201;&#8212;&#8201;basic query function demo.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/echo">echo</a>&#8201;&#8212;&#8201;基本的なクエリ関数のデモ</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/factorial">factorial</a>&#8201;&#8212;&#8201;basic factorial demo.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/factorial">factorial</a>&#8201;&#8212;&#8201;基本的な階乗のデモ</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/hello-world">hello-world</a>&#8201;&#8212;&#8201;basic hello world demo.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/hello-world">hello-world</a>&#8201;&#8212;&#8201;基本的な hello world のデモ</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/hello_cycles">hello_cycles</a>&#8201;&#8212;&#8201;Receive and transfer cycles and check your balance.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/hello_cycles">hello_cycles</a>&#8201;&#8212;&#8201;Cycles の受信と転送、残高の確認</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/whoami">whoami</a>&#8201;&#8212;&#8201;a simple canister that reports the Principal of its caller.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/whoami">whoami</a>&#8201;&#8212;&#8201;呼び出し元の Principal を報告する単純な Canister</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_intermediate"><a class="anchor" href="#_intermediate"></a>Intermediate</h3>
-<div class="paragraph">
-<p>The intermediate examples demonstrate how to use some of the basic concepts in common use cases. The examples show how to build simple backend functionalities in Motoko.</p>
-</div>
+<h3 id="_中級"><a class="anchor" href="#_中級"></a>中級</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/classes">classes</a>&#8201;&#8212;&#8201;dynamic actor (class) instantiation.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/classes">classes</a>&#8201;&#8212;&#8201;動的な Actor（クラス）のインスタンス化</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/pub-sub">pub-sub</a>-- multiple canisters, with publisher-subscriber inter-canister calls.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/pub-sub">pub-sub</a>-- 複数の Canisters で、パブリッシャーとサブスクライバーの Canister 間通話を行う</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">quicksort</a>&#8201;&#8212;&#8201;sorting an array, via Quick Sort, in Motoko.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">quicksort</a>&#8201;&#8212;&#8201;Motoko のクイックソートによる配列のソート</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/simple-to-do">simple-to-do</a>&#8201;&#8212;&#8201;CRUD-like demo service, sans a front end; see also: phone-book and superheroes.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/simple-to-do">simple-to-do</a>&#8201;&#8212;&#8201;CRUD 的なデモサービスで、フロントエンドはありません。phone-book と superheroes もご覧ください</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/calc">calc</a>&#8201;&#8212;&#8201;more advanced version of counter demo.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/calc">calc</a>&#8201;&#8212;&#8201;counter demo の発展型</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_minimal_front_end"><a class="anchor" href="#_minimal_front_end"></a>Minimal front end.</h3>
+<h3 id="_最小限のフロントエンド"><a class="anchor" href="#_最小限のフロントエンド"></a>最小限のフロントエンド</h3>
 <div class="paragraph">
-<p>These two examples show how to create simple frontends in JavaScript. Where the previous examples did not provide a frontend, these two examples provide both a frontend and a backend.</p>
+<p>これらの例では、最小限のフロントエンドコンポーネントを使用しています。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/random_maze">random_maze</a>&#8201;&#8212;&#8201;random maze generation, with IC-based randomness.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/random_maze">random_maze</a>&#8201;&#8212;&#8201;IC ベースのランダムな迷路生成</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/cert-var">cert_var</a>&#8201;&#8212;&#8201;simple certified variable (a single 32-bit number), with client-side certificate validation.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/cert-var">cert_var</a>&#8201;&#8212;&#8201;単純な認証済み変数（単一の32ビット）で、クライアントサイドの証明書検証を行う</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_full_stack"><a class="anchor" href="#_full_stack"></a>Full stack.</h3>
+<h3 id="_フルスタック"><a class="anchor" href="#_フルスタック"></a>フルスタック</h3>
 <div class="paragraph">
-<p>These examples demonstrates how to build dapps on the IC, with frontends based on React and TypeScript.</p>
+<p>これらの例では、（ <code>React.Component</code> を介してを介して）"従来の" フロントエンドコンポーネントを使用しています。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/life">life</a>&#8201;&#8212;&#8201;Conway&#8217;s <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a>, running in a Motoko Canister. Demonstrates upgrades among three versions and state migration using stable variables.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/life">life</a>&#8201;&#8212;&#8201;Motoko Canister で動作する Conway の <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a>。3つのバージョン間のアップグレードと、ステーブル変数を使った状態の移行のデモンストレーションを行う</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/phone-book">phone-book</a>&#8201;&#8212;&#8201;CRUD-like demo service.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/phone-book">phone-book</a>&#8201;&#8212;&#8201;CRUD ようなデモサービス</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/superheroes">superheroes</a>&#8201;&#8212;&#8201;a simple CRUD dapp.</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/superheroes">superheroes</a>&#8201;&#8212;&#8201;シンプルな CRUD Dapp</p>
 </li>
 <li>
-<p><a href="https://github.com/krpeacock/auth-client-demo">Auth Client Demo</a> - simple authentication with Internet Identity.</p>
+<p><a href="https://github.com/krpeacock/auth-client-demo">Auth Client Demo</a> - Internet Identity を使った単純な認証</p>
 </li>
 <li>
-<p><a href="https://github.com/krpeacock/ic-avatar">IC-Avatar</a> - full-stack Motoko + React with more advanced authentication, image uploads, and optimistic updates.</p>
+<p><a href="https://github.com/krpeacock/ic-avatar">IC-Avatar</a> - Motoko + React のフルスタックで、より高度な認証、画像アップロード、楽観的な更新が可能</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="motoko-advanced"><a class="anchor" href="#motoko-advanced"></a>Advanced Examples</h3>
+<h3 id="motoko-advanced"><a class="anchor" href="#motoko-advanced"></a>高度な例</h3>
 <div class="paragraph">
-<p>Large examples contributed by the community and not necessarily up-to-date:</p>
+<p>コミュニティから寄稿された大規模な例で、必ずしも最新のものではありません。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Reversi game, in Motoko <a href="https://github.com/ninegua/reversi">src</a> accompanying <a href="https://ninegua.github.io/reversi">Blog post</a>.</p>
+<p>Motoko でのリバーシゲーム <a href="https://github.com/ninegua/reversi">src</a> （ <a href="https://ninegua.github.io/reversi">Blog post</a> 付属）</p>
 </li>
 <li>
-<p>QR code generator in Motoko <a href="https://github.com/enzoh/motoko-qr">src</a> accompanying
-<a href="https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865b">Medium article</a>.</p>
+<p>Motoko での QR コードジェネレータ <a href="https://github.com/enzoh/motoko-qr">src</a> （
+<a href="https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865b">Medium article</a> 付属）</p>
 </li>
 <li>
-<p><a href="https://github.com/timohanke/icvault">IC Vault</a> - end-to-end Encryption.</p>
+<p><a href="https://github.com/timohanke/icvault">IC Vault</a> - E2E 暗号化</p>
 </li>
 <li>
-<p>Certified asset canister in Motoko
-<a href="https://github.com/nomeata/motoko-certified-http">src</a>
-<a href="https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263">forum post</a> - demonstrating a larger application of Internet Computer certified variables.</p>
+<p>Motoko での認証アセット Canister
+<a href="https://github.com/nomeata/motoko-certified-http">src</a> - Internet Computer 認証変数の大きなアプリケーションのデモ（ <a href="https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263">forum post</a> 付属）</p>
 </li>
 </ul>
 </div>
@@ -1033,13 +1011,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="rust"><a class="anchor" href="#rust"></a>Rust Examples</h2>
+<h2 id="rust"><a class="anchor" href="#rust"></a>Rust 例</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="rust-beginner"><a class="anchor" href="#rust-beginner"></a>Beginner</h3>
-<div class="paragraph">
-<p>This Rust example is similar to the intermediate Motoko pub-sub example.</p>
-</div>
+<h3 id="rust-beginner"><a class="anchor" href="#rust-beginner"></a>初心者</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1050,9 +1025,6 @@
 </div>
 <div class="sect2">
 <h3 id="rust-videos"><a class="anchor" href="#rust-videos"></a>Videos</h3>
-<div class="paragraph">
-<p>These videos from our Community Conversations series cover an introduction to building dapps in Rust, and best practices for building dapps in Rust.</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1064,7 +1036,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>More Rust examples coming soon!</p>
+<p>Rustのサンプルは近日公開予定です！</p>
 </div>
 </div>
 </div>
@@ -1073,7 +1045,7 @@
 <h2 id="_c"><a class="anchor" href="#_c"></a>C</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For examples of projects written in the C programming language for the Internet Computer, see <a href="https://github.com/dfinity/examples/tree/master/c">C++ sample projects</a>.</p>
+<p>Internet Computer 用のC言語で書かれたプロジェクトの例については、 <a href="https://github.com/dfinity/examples/tree/master/c">C++ sample projects</a> を参照してください。</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1082,7 +1054,7 @@
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-these examples are likely to bit-rot and may need updating and are provided for illustration only.
+これらの例は、ビット腐敗する可能性があり、更新が必要な場合があり、説明のためにのみ提供されています。
 </td>
 </tr>
 </table>
@@ -1103,10 +1075,10 @@ these examples are likely to bit-rot and may need updating and are provided for 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_wat_wasm_textual_format"><a class="anchor" href="#_wat_wasm_textual_format"></a>Wat (Wasm textual format)</h2>
+<h2 id="_watwasm_テキスト形式"><a class="anchor" href="#_watwasm_テキスト形式"></a>Wat（Wasm テキスト形式）</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Just for fun, we also have a simple example written in pure Wasm textual format:</p>
+<p>単なる遊びで、純粋に Wasm のテキスト形式で書かれた簡単な例もあります。</p>
 </div>
 <div class="ulist">
 <ul>
