@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Hosting a Static Website on the Internet Computer :: Dfinity 日本語ドキュメント</title>
+    <title>Internet Computer で静的なウェブサイトをホストする :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/quickstart/host-a-website.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
@@ -875,43 +875,43 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Hosting a Static Website on the Internet Computer</h1>
+<h1 class="page">Internet Computer で静的なウェブサイトをホストする</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before you begin, make sure you are set up with our DFINITY Canister SDK (DFX) and a Cycles Wallet, either from the <a href="#quickstart:cycles-faucet.adoc">Faucet Quickstart</a> or by purchasing ICP and following our <a href="#quickstart:network-quickstart.adoc">Network Deployment</a> guide.</p>
+<p>始める前に、私たちの DFINITY Canister SDK (DFX) と Cycle ウォレットがセットアップされていることを確認してください。 Cycle ウォレットをセットアップするには、<a href="cycles-faucet.html" class="page">Fauset クイックスタート</a> を見るか、または ICP を購入して <a href="network-quickstart.html" class="page">Network Deployment</a> ガイドに従ってください。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_set_up_your_project"><a class="anchor" href="#_set_up_your_project"></a>Set up your project</h2>
+<h2 id="_プロジェクトのセットアップ"><a class="anchor" href="#_プロジェクトのセットアップ"></a>プロジェクトのセットアップ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s create a simple static website, and then set it up to deploy with dfx.</p>
+<p>簡単な静的ウェブサイトを作成し、それを dfx でデプロイするように設定してみましょう。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a folder named <code>static-ic-website</code></p>
+<p>static-ic-website という名前のフォルダを作成しましょう</p>
 </li>
 <li>
-<p>In <code>static-ic-website</code>, create a new folder, named <code>assets</code>.</p>
+<p>assets という名前の新しいフォルダを static-ic-website に作成しましょう</p>
 </li>
 <li>
-<p>Inside your <code>assets</code> folder, create 4 files</p>
+<p>assets フォルダに以下の４つのファイルを作成しましょう</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>index.html</code></p>
+<p>index.html</p>
 </li>
 <li>
-<p><code>page-2.html</code></p>
+<p>page-2.html</p>
 </li>
 <li>
-<p><code>script.js</code></p>
+<p>script.js</p>
 </li>
 <li>
-<p><code>style.css</code></p>
+<p>style.css</p>
 </li>
 </ul>
 </div>
@@ -921,10 +921,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_add_some_content"><a class="anchor" href="#_add_some_content"></a>Add some content</h2>
+<h2 id="_ファイルにコンテントを追加する"><a class="anchor" href="#_ファイルにコンテントを追加する"></a>ファイルにコンテントを追加する</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s start with <code>index.html</code>. Paste the following code into your file:</p>
+<p>index.html から始めましょう。以下のコードをファイルにペーストします：</p>
 </div>
 <div class="listingblock">
 <div class="title">index.html</div>
@@ -949,7 +949,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Next, open up <code>page-2.html</code> and add this content.</p>
+<p>次に page-2.html を開き、以下の内容を追加します。</p>
 </div>
 <div class="listingblock">
 <div class="title">page-2.html</div>
@@ -971,7 +971,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Then, add some simple logic to script.js.</p>
+<p>それから script.js に簡単なロジックを追加します。</p>
 </div>
 <div class="listingblock">
 <div class="title">script.js</div>
@@ -981,7 +981,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>And then add some styles to <code>style.css</code>.</p>
+<p>そして style.css にスタイルを追加します。</p>
 </div>
 <div class="listingblock">
 <div class="title">style.css</div>
@@ -999,10 +999,10 @@ p:first-of-type {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configure_dfx_to_deploy"><a class="anchor" href="#_configure_dfx_to_deploy"></a>Configure DFX to deploy</h2>
+<h2 id="_dfx_のデプロイ設定"><a class="anchor" href="#_dfx_のデプロイ設定"></a>DFX のデプロイ設定</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To host and run this website live on the Internet Computer プラットフォーム, you will need to configure DFX to upload your files to a certified asset canister. In the root directory of your project, <code>static-ic-website</code>, create a new file, <code>dfx.json</code>. Then, add the following content:</p>
+<p>このウェブサイトを Internet Computer プラットフォーム 上にホストして見れる状態にするには、ファイルを認証済みのアセット Canister にアップロードするように DFX を設定する必要があります。プロジェクトのルートディレクトリ (static-ic-website) に、新しいファイル (dfx.json) を作成します。そして、以下の内容を追加します。</p>
 </div>
 <div class="listingblock">
 <div class="title">dfx.json</div>
@@ -1018,10 +1018,10 @@ p:first-of-type {
 </div>
 </div>
 <div class="paragraph">
-<p>This tells DFX that you want to create an asset canister, and that it should upload the contents of the <code>asset</code> folder. If you want to upload additional static assets, you can add them to the <code>asset</code> folder or add additional folders to the <code>source</code> configuration.</p>
+<p>これにより、 DFX はアセット Canister を作成し、 asset フォルダの内容をアップロードするように指示します。追加の静的アセットをアップロードしたい場合は、 asset フォルダに追加するか、 source 構成に追加フォルダを追加します。</p>
 </div>
 <div class="paragraph">
-<p>Now, your directory should look something like this:</p>
+<p>ディレクトリは以下のようになっているはずです：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1036,10 +1036,10 @@ p:first-of-type {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploy_your_website"><a class="anchor" href="#_deploy_your_website"></a>Deploy your website</h2>
+<h2 id="_ウェブサイトをデプロイする"><a class="anchor" href="#_ウェブサイトをデプロイする"></a>ウェブサイトをデプロイする</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To deploy your website, ensure you are in your terminal at the root of the project, and run this command:</p>
+<p>ウェブサイトをデプロイするには、プロジェクトのルートにあるターミナルで、次のコマンドを実行します：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1047,7 +1047,7 @@ p:first-of-type {
 </div>
 </div>
 <div class="paragraph">
-<p>You should see some output in your console, and a success message looking something like this:</p>
+<p>コンソールに出力が表示され、次のような成功メッセージが表示されます：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1069,10 +1069,10 @@ Deployed canisters.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_see_your_live_website"><a class="anchor" href="#_see_your_live_website"></a>See your live website</h2>
+<h2 id="_動作中のウェブサイトを見る"><a class="anchor" href="#_動作中のウェブサイトを見る"></a>動作中のウェブサイトを見る</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Find your new canister&#8217;s ID by running</p>
+<p>以下を実行して新しい Canister ID を見つけます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1080,22 +1080,22 @@ Deployed canisters.</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Take that canister ID and visit <code><a href="https://&lt;canister-id&gt;.ic0.app" class="bare">https://&lt;canister-id&gt;.ic0.app</a></code>, inserting your own canister ID as the subdomain in the URL.</p>
+<p>その Canister ID を使って、 https://&lt;Canister ID&gt;.ic0.app にアクセスし、 URL のサブドメインに自分の Canister IDを挿入します。</p>
 </div>
 <div class="paragraph">
-<p>You should see your live, multi-page website, looking like this!</p>
+<p>以下のような複数のページで構成されたライブウェブサイトを見ることができます：</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/static-website.png" alt="Static Website"></span></p>
 </div>
 <div class="sect2">
-<h3 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next steps</h3>
+<h3 id="_次のステップ"><a class="anchor" href="#_次のステップ"></a>次のステップ</h3>
 <div class="paragraph">
-<p>Looking to build a full-stack dapp? Check out the
-<a href="../developers-guide/tutorials/custom-frontend.html">Full-stack React Tutorial</a>!</p>
+<p>フルスタックの Dapp 構築を考えていますか？
+<a href="../developers-guide/tutorials/custom-frontend.html">フルスタック React チュートリアル</a> をご覧ください。</p>
 </div>
 <div class="paragraph">
-<p>Visit our <a href="https://forum.dfinity.org">Developer Forum</a> for inspiration and support from Dfinity Foundation engineers and the developer community.</p>
+<p><a href="https://forum.dfinity.org">Developer Forum</a> では、Dfinity Foundationのエンジニアや開発者コミュニティからのインスピレーションやサポートを受けることができます。</p>
 </div>
 </div>
 </div>
