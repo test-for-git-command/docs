@@ -1,22 +1,22 @@
-= インターネットコンピュータで静的なウェブサイトをホストする
+= Internet Computer で静的なウェブサイトをホストする
 =================================================
 
 
-始める前に、当社の {sdk-short-name} (DFX) と Cycle ウォレットがセットアップされていることを確認してください。 xref:quickstart:cycles-faucet.adoc[Fauset クイックスタート] から、または ICP を購入して xref:quickstart:network-quickstart.adoc[Network Deployment] ガイドに従ってください。
+始める前に、私たちの {sdk-short-name} (DFX) と Cycle ウォレットがセットアップされていることを確認してください。 Cycle ウォレットをセットアップするには、xref:quickstart:cycles-faucet.adoc[Fauset クイックスタート] を見るか、または ICP を購入して xref:quickstart:network-quickstart.adoc[Network Deployment] ガイドに従ってください。
 
 == プロジェクトのセットアップ
 
 簡単な静的ウェブサイトを作成し、それを dfx でデプロイするように設定してみましょう。
 
-. フォルダ名 +static-ic-website+ を作成
-. +assets+ という名前の新しいフォルダを +static-ic-website+ に作成
-. +assets+ フォルダに以下の４つのファイルを作成
+. +static-ic-website+ という名前のフォルダを作成しましょう
+. +assets+ という名前の新しいフォルダを +static-ic-website+ に作成しましょう
+. +assets+ フォルダに以下の４つのファイルを作成しましょう
     - +index.html+
     - +page-2.html+
     - +script.js+
     - +style.css+
 
-== ファイルにコンテントを追加します
+== ファイルにコンテントを追加する
 
 +index.html+ から始めましょう。以下のコードをファイルにペーストします：
 
@@ -42,7 +42,7 @@
 </html>
 ----
 
-次に +page-2.html+ を開き、以下のコンテントを追加します。
+次に +page-2.html+ を開き、以下の内容を追加します。
 
 .page-2.html
 [source,html]
@@ -89,7 +89,7 @@ p:first-of-type {
 
 == DFX のデプロイ設定
 
-このウェブサイトを {platform} 上でライブでホストして実行するには、ファイルを認証済みのアセット Canister にアップロードするように DFX を設定する必要があります。プロジェクトのルートディレクトリ (+static-ic-website+) に、新しいファイル (+dfx.json+) を作成します。そして、以下の内容を追加します。
+このウェブサイトを {platform} 上にホストして見れる状態にするには、ファイルを認証済みのアセット Canister にアップロードするように DFX を設定する必要があります。プロジェクトのルートディレクトリ (+static-ic-website+) に、新しいファイル (+dfx.json+) を作成します。そして、以下の内容を追加します。
 
 .dfx.json
 [source,json]
@@ -144,7 +144,7 @@ Deployed canisters.
 
 ----
 
-== ライブウェブサイトを見る
+== 動作中のウェブサイトを見る
 
 以下を実行して新しい Canister ID を見つけます。
 
@@ -153,7 +153,7 @@ Deployed canisters.
 dfx canister --network ic id website
 ----
 
-その Canister IDを持って、 +https://<Canister ID>.ic0.app+ にアクセスし、 URL のサブドメインに自分の Canister IDを挿入します。
+その Canister ID を使って、 +https://<Canister ID>.ic0.app+ にアクセスし、 URL のサブドメインに自分の Canister IDを挿入します。
 
 
 以下のような複数のページで構成されたライブウェブサイトを見ることができます：
@@ -162,9 +162,8 @@ image:static-website.png[Static Website]
 
 === 次のステップ
 
-Looking to build a full-stack dapp? Check out the 
-フルスタックの Dapp 構築を考えていますか？以下で見れます。
-link:../developers-guide/tutorials/custom-frontend.html[フルスタック React チュートリアル]
+フルスタックの Dapp 構築を考えていますか？
+link:../developers-guide/tutorials/custom-frontend.html[フルスタック React チュートリアル] をご覧ください。
 
 link:https://forum.dfinity.org[Developer Forum] では、Dfinity Foundationのエンジニアや開発者コミュニティからのインスピレーションやサポートを受けることができます。
 
@@ -173,7 +172,7 @@ link:https://forum.dfinity.org[Developer Forum] では、Dfinity Foundationの�
 
 ////
 
-= Hosting a Static Website on the Internet Computer
+Hosting a Static Website on the Internet Computer
 =================================================
 
 Before you begin, make sure you are set up with our {sdk-short-name} (DFX) and a Cycles Wallet, either from the xref:quickstart:cycles-faucet.adoc[Faucet Quickstart] or by purchasing ICP and following our xref:quickstart:network-quickstart.adoc[Network Deployment] guide.
