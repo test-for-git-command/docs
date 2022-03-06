@@ -1,3 +1,56 @@
+= Cycle フォーセット、クイックスタート
+========================
+
+Internet Computer のブロックチェーン上に最初のスマートコントラクトをデプロイする準備はできましたか？私たちの Cycle フォーセットを使って、わずか数分で20ドルの無料の Cycle をセットアップすることができます。
+
+始める前に、 {sdk-short-name} (DFX)がインストールされていることを、次のコマンドで確認します。
+[source,sh]
+----
+sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
+----
+
+または、 link:https://smartcontracts.org[] にある説明に従ってください。
+
+== Cycles Walletを登録する
+
+=== Step 1: 認証
+
+まず、 link:https://faucet.dfinity.org[] に移動する必要があります。続行するには、アクティブな GitHub アカウントで接続します。アカウントが対象外の場合は、 xref:quickstart:network-quickstart.html[ネットワーク デプロイ] のガイドに従ってください。
+
+image:cycles-faucet/faucet_step_1.png[Connecting to GitHub]
+
+=== Step 2: Principal ID
+
+ログインしたら、ターミナルウィンドウを開き、 +dfx identity get-principal+ というコマンドを実行します。その出力を Step 2 の画面のテキスト入力に貼り付けます。この Principal は、あなたのコンピューターを一意に識別し、あなたの Cycle ウォレットと、それを使ってデプロイする Canister スマートコントラクトにアクセスするために使用されます。 Principal は、ハイフンで区切られた一連の長い数字と文字からなります。
+
+image:cycles-faucet/faucet_step_2.png[Enter a Principal ID]
+
+=== Step 3: デポジット方法
+
+3番目の画面では、既存の Cycle ウォレットを使用するか、新しい Cycle ウォレットを生成するかを選択します。すでに作成済みの場合は、最初のオプションを選択すると、フォーセットは既存の Canister に20ドル相当の Cycle を送信します。
+
+初めて使用する場合は、 *Generate New Cycles Wallet* を選択し、 *Continue* を押してください。
+
+image:cycles-faucet/faucet_step_4.png[Generate New Cycles Wallet]
+
+== DFXでウォレットを設定する
+
+ウォレットの請求が完了すると、以下のような画面が表示されます：
+
+image:cycles-faucet/faucet_step_6.png[Configure DFX Wallet]
+
+Cycles ウォレットが作成され、使用できるようになりました。あとは最終画面の +set-wallet+ コマンドをコピーして、ターミナルで実行するだけです。これで DFX が自動的にウォレットと無料の Cycle を使用するように設定され、 {platform} に最初のいくつかの Dapp や Web サイトをデプロイすることができます！
+
+これで、 IC 上でウェブサイトをホストする、あるいは Dapp チュートリアルのいずれかに従う準備が整いました。
+
+=== 次に、このようなガイドがよく見られます。
+
+* link:./host-a-website.html[Host a Static Website]
+* link:./local-quickstart.html[Local Development]
+* link:./network-quickstart.html[Network Deployment]
+
+
+////
 Cycles Faucet Quickstart
 ========================
 
@@ -48,3 +101,4 @@ Now you are ready to host a website on the IC or follow one of our dapp tutorial
 * link:./host-a-website.html[Host a Static Website]
 * link:./local-quickstart.html[Local Development]
 * link:./network-quickstart.html[Network Deployment]
+////
