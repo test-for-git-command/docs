@@ -7,98 +7,143 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[example-code-intro]]
-チュートリアルに加えて、簡単な参考文献をいくつかご紹介します。また、 https://github.com/dfinity/examples[Examples Repo] や https://github.com/dfinity/awesome-dfinity[Awesome Dfinity] は、私たちのコミュニティから集められたオープンソースプロジェクトや事例を集めたものです！
+以下のサンプルアプリをご覧いただき、IC を利用したアプリで何ができるかご確認ください。すべてのサンプルとその他のプロジェクトは https://github.com/dfinity/examples[Examples Repo] で見つけることができます。 https://github.com/dfinity/awesome-dfinity[Awesome Dfinity] （私たちのコミュニティから集められたオープンソースプロジェクトや事例を集めたもの）や link:./hackathon-projects.html[Hackathon projects] でさらなる事例を見つけることができます。
 
-[[motoko]]
-== Motoko の例
+=== Hello world 
+_hello world_ に相当する Dapp で、バックエンドとフロントエンドの Canister に分かれて Web ページを提供します。 +
+https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko] • https://github.com/dfinity/examples/tree/master/rust/hello[Rust] • https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/[See running] • link:hello{outfilesuffix}[Technical docs]
+
+=== 静的なウェブサイト
+このチュートリアルでは、静的な Web サイトの構造を設定し、コンテンツと基本的なスタイルを追加して IC にデプロイする方法を紹介します。 + 
+link:host-a-website{outfilesuffix}[Technical docs] • https://www.youtube.com/watch?v=JAQ1dkFvfPI[Video guide]
+
+=== ベーシックな DEX
+IC 上で Defi アプリケーションを実現するために、Canister はトークン Canister や Ladger Canister とインタラクションする必要があります。このサンプルアプリでは、取引所が資金を預かり、ユーザーの取引に応じて残高を更新し、資金が引き出されると預金をユーザーに返す方法を通じてこれらのインタラクションを説明します。 +
+https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] • https://github.com/dfinity/examples/tree/master/rust/defi[Rust] • https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/[See running] • link:dex{outfilesuffix}[Technical docs]
+
+=== NFT のミント
+この NFT ミント Dapp は、ユーザーが生成した NFT を簡単に作成し、それを共有することができることを紹介しています。このアプリは、https://github.com/Psychedelic/DIP721[DIP721] NFT スタンダードを使用しています。 +
+https://github.com/dfinity/examples/tree/master/rust/dip721-nft-container[Rust] • xref:examples:nft.adoc[Technical docs]
+
+=== ベーシックな DAO
+分散型ガバナンスは IC のハイライトであり、以下のベーシックな DAO のサンプルコードによって説明されています。これは、アカウントと対応するトークンのセットを初期化する方法、アカウントの所有者が他のアカウントの所有者に投票するための提案を提出する方法、および十分な賛成票を得た提案が実行される方法を示しています。 + 
+https://github.com/dfinity/examples/tree/master/motoko/basic_dao[Motoko] • https://github.com/dfinity/examples/tree/master/rust/basic_dao[Rust] • link:dao{outfilesuffix}[Technical docs]
+
+=== 暗号化されたノート
+https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity] サービスとエンドツーエンドの暗号化を用いて、複数のデバイスから秘密のメモを作成/アクセス/変更することができます。このサンプルコードは、ICの _ウェブサービス機能_ と _ストレージ機能_ に依存しており、(1）クライアントサイドのエンドツーエンド暗号化、（2）マルチユーザーおよびマルチデバイスのサポート、の 2 つの重要な機能をハイライトしています。 +
+https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_motoko[Motoko] •
+https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_rust[Rust] • https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[See running] • link:encrypted-notes{outfilesuffix}[Technical docs]
+
+=== トークンの送金
+このサンプルコードは、Dapp が最もアクティブなユーザーにトークンを転送する方法を示しています。 +
+https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] • https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Rust] • link:tokentransfer{outfilesuffix}[Technical docs]
+
 
 [[motoko-playground]]
 === Motoko Playground
 
-以下の Motoko の例の一部（すべてではありません）は、 https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground] で入手できます。Playground は、 SDK をダウンロードして使い方を学ぶことなく、純粋な Motoko のサンプルを試すための最もシンプルな環境を提供しますが、フロントエンドを持つアプリケーションはサポートしません。
+Motoko で書かれたコードサンプルのレリポジトリへのリンク集です。ほとんどは https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko playground] でも公開されています。Playground は、SDKをダウンロードして使い方を学ぶことなく Motoko のサンプルを試すことができる最もシンプルな環境ですが、フロントエンドを持つ Dapp はサポートしません。
 
 === 基礎
 
-- https://github.com/dfinity/examples/tree/master/motoko/actor_reference[actor_reference] -- Actor （参照）としての IC マネジメント Canister
-- https://github.com/dfinity/examples/tree/master/motoko/counter[counter] -- 基本的な （静的） 変数のデモ 
-- https://github.com/dfinity/examples/tree/master/motoko/echo[echo] -- 基本的なクエリ関数のデモ
-- https://github.com/dfinity/examples/tree/master/motoko/factorial[factorial] -- 基本的な階乗のデモ
-- https://github.com/dfinity/examples/tree/master/motoko/hello-world[hello-world] -- 基本的な hello world のデモ
-- https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[hello_cycles] -- Cycles の受信と転送、残高の確認
-- https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami] -- 呼び出し元の Principal を報告する単純な Canister
+IC と Motoko の基本的な概念を示す、入門用サンプル集です。
+
+- https://github.com/dfinity/examples/tree/master/motoko/actor_reference[Actor_reference] では Actor（参照）としての IC マネジメント Canister を紹介します。
+- https://github.com/dfinity/examples/tree/master/motoko/counter[Counter] では基本的な （静的） 変数のデモを紹介します。
+- https://github.com/dfinity/examples/tree/master/motoko/echo[Echo] では基本的なクエリ関数のデモを紹介します。
+- https://github.com/dfinity/examples/tree/master/motoko/factorial[Factorial] では基本的な階乗のデモを紹介します。
+- https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[Hello_cycles] では Cycles の受信と転送、残高の確認を紹介します。
+- https://github.com/dfinity/examples/tree/master/motoko/whoami[Whoami] では呼び出し元の Principal を報告する単純な Canister を紹介します。
 
 === 中級
 
-- https://github.com/dfinity/examples/tree/master/motoko/classes[classes] -- 動的な Actor（クラス）のインスタンス化
-- https://github.com/dfinity/examples/tree/master/motoko/pub-sub[pub-sub]-- 複数の Canisters で、パブリッシャーとサブスクライバーの Canister 間通話を行う
-- https://github.com/dfinity/examples/tree/master/motoko/quicksort[quicksort] -- Motoko のクイックソートによる配列のソート
-- https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[simple-to-do] -- CRUD 的なデモサービスで、フロントエンドはありません。phone-book と superheroes もご覧ください
-- https://github.com/dfinity/examples/tree/master/motoko/calc[calc] -- counter demo の発展型
+中級編のサンプルでは、基本的なコンセプトを一般的なユースケースでどう使うかを紹介しています。このサンプルでは、Motoko で簡単なバックエンド機能を構築する方法を紹介します。
+
+- https://github.com/dfinity/examples/tree/master/motoko/classes[Classes] では動的な Actor（クラス）のインスタンス化について紹介します。
+- https://github.com/dfinity/examples/tree/master/motoko/pub-sub[Pub-sub] では複数の Canisters で、パブリッシャーとサブスクライバーの Canister 間通話を行う方法について紹介します。
+- https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort] では Motoko のクイックソートによる配列のソートの方法を紹介します。
+- https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[Simple-to-do] は CRUD 的なデモサービスで、フロントエンドはありません。phone-book と superheroes もご覧ください.
+
+- https://github.com/dfinity/examples/tree/master/motoko/calc[Calc] は counter demo の発展型です。
 
 === 最小限のフロントエンド
 
 これらの例では、最小限のフロントエンドコンポーネントを使用しています。
 
-- https://github.com/dfinity/examples/tree/master/motoko/random_maze[random_maze] -- IC ベースのランダムな迷路生成
-- https://github.com/dfinity/examples/tree/master/motoko/cert-var[cert_var] -- 単純な認証済み変数（単一の32ビット）で、クライアントサイドの証明書検証を行う
+- https://github.com/dfinity/examples/tree/master/motoko/random_maze[Random_maze] は IC ベースのランダムな迷路生成です。
+- https://github.com/dfinity/examples/tree/master/motoko/cert-var[Cert_var] は単純な認証済み変数（単一の32ビット）で、クライアントサイドの証明書検証を行うものです。
 
 === フルスタック
 
 これらの例では、（ `React.Component` を介してを介して）"従来の" フロントエンドコンポーネントを使用しています。
 
-- https://github.com/dfinity/examples/tree/master/motoko/life[life] -- Motoko Canister で動作する Conway の https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life[Game of Life]。3つのバージョン間のアップグレードと、ステーブル変数を使った状態の移行のデモンストレーションを行う
-- https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] -- CRUD ようなデモサービス
-- https://github.com/dfinity/examples/tree/master/motoko/superheroes[superheroes] -- シンプルな CRUD Dapp
-- https://github.com/krpeacock/auth-client-demo[Auth Client Demo] - Internet Identity を使った単純な認証
-- https://github.com/krpeacock/ic-avatar[IC-Avatar] - Motoko + React のフルスタックで、より高度な認証、画像アップロード、楽観的な更新が可能
+- https://github.com/dfinity/examples/tree/master/motoko/life[Life] では Motoko Canister で動作する Conway の https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life[Game of Life] のデモンストレーションをおこないます。3つのバージョン間のアップグレードと、ステーブル変数を使った状態の移行のデモンストレーションを行う
+- https://github.com/dfinity/examples/tree/master/motoko/phone-book[Phone-book] は CRUD ライクなデモサービスです。
+- https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes] はシンプルな CRUD Dapp です。
+- https://github.com/krpeacock/auth-client-demo[Auth Client Demo] は Internet Identity を使った単純な認証のデモです。
+- https://github.com/krpeacock/ic-avatar[IC-Avatar] は Motoko + React のフルスタックアプリで、より高度な認証、画像アップロード、楽観的更新（Optimistic updates）が可能です。
 
 [[motoko-advanced]]
-=== 高度な例
+=== アドバンス
 
-コミュニティから寄稿された大規模な例で、必ずしも最新のものではありません。
+コミュニティから寄稿された大規模なサンプルで、必ずしも最新のものではありません。
 
--  Motoko でのリバーシゲーム https://github.com/ninegua/reversi[src] （ https://ninegua.github.io/reversi[Blog post] 付属）
+- Motoko での https://github.com/ninegua/reversi[リバーシゲーム] （ https://ninegua.github.io/reversi[Blog post] 付属）
 
-- Motoko での QR コードジェネレータ https://github.com/enzoh/motoko-qr[src] （
+- Motoko での https://github.com/enzoh/motoko-qr[QR コードジェネレータ] （
   https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865b[Medium article] 付属）
 
-- https://github.com/timohanke/icvault[IC Vault] - E2E 暗号化
+- https://github.com/timohanke/icvault[IC Vault] は E2E のコンテンツ暗号化のデモです。
 
-- Motoko での認証アセット Canister
-  https://github.com/nomeata/motoko-certified-http[src] - {IC} 認証変数の大きなアプリケーションのデモ（ https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263[forum post] 付属）
+- Motoko での https://github.com/nomeata/motoko-certified-http[認証アセット Canister] と https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263[フォーラムへのポスト] は {IC} に認証された変数の大規模なアプリケーションのデモです。
 
-[[rust]]
-== Rust 例
+// - xref:examples:encrypted-notes.adoc[Encrypted Notes dapp] -- create/access/modify confidential notes from multiple devices using https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity] service and end-to-end encryption.
 
-[[rust-beginner]]
-=== 初心者
+// [[rust]]
+// == Rust Examples
 
-- https://github.com/dfinity/examples/tree/master/rust/pub-sub[Pub Sub]
+// [[rust-beginner]]
+// === Beginner
+
+// Simple examples written in Rust
+
+// - https://github.com/dfinity/examples/tree/master/rust/pub-sub[Pub Sub] -- This example is similar to the intermediate Motoko pub-sub example.
+// - https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Tokens Transfer] -- demonstrates how to make ledger transfers and query account balance from a Rust canister.
+// - https://github.com/dfinity/examples/tree/master/rust/basic_dao[Basic DAO] -- demonstrates a basic Decentralized Autonomous Organization 
+
 
 [[rust-videos]]
-=== Videos
+== Dapps 構築のためのビデオガイド
 
-- https://www.youtube.com/watch?v=6wyIhzsFbKw[Community Conversations | Overview of Building a Dapp in Rust]
-- https://www.youtube.com/watch?v=36L33S_DYHY&ab_channel=DFINITY[Community Conversations | Best Practices for Canisters in Rust]
+https://www.youtube.com/playlist?list=PLuhDt1vhGcrez-f3I0_hvbwGZHZzkZ7Ng[community conversations]シリーズは、Rust で Dappsを作るためのインストラクションと、Rust で Dapps を作るためのベストプラクティスを紹介するビデオです。
 
+- https://www.youtube.com/watch?v=6wyIhzsFbKw[Community conversations | overview of building a dapp in Rust]
+- https://www.youtube.com/watch?v=36L33S_DYHY&ab_channel=DFINITY[Community conversations | best practices for canisters in Rust]
 
-Rustのサンプルは近日公開予定です！
+その他の有用なビデオシリーズとしては、https://www.youtube.com/watch?v=M2XnywvwxFM&list=PLuhDt1vhGcrfQGLWqhUo9-DFD5JaHqCh1[Coding with Kyle] があります。
 
-== C
+// More Rust examples coming soon!
 
-{IC} 用のC言語で書かれたプロジェクトの例については、 link:https://github.com/dfinity/examples/tree/master/c[C++ sample projects] を参照してください。
+// [[rust-advanced]]
+// === Advanced Examples
 
-WARNING: これらの例は、ビット腐敗する可能性があり、更新が必要な場合があり、説明のためにのみ提供されています。
+// - xref:examples:encrypted-notes.adoc[Encrypted Notes dapp] -- create/access/modify confidential notes from multiple devices using https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity] service and end-to-end encryption.
 
-* link:https://github.com/dfinity/examples/tree/master/c/adventure[Adventure game]
-* link:https://github.com/dfinity/examples/tree/master/c/qr[QR code generator]
-* link:https://github.com/dfinity/examples/tree/master/c/reverse[Reverse game]
+// == C
 
-== Wat（Wasm テキスト形式）
+// For examples of projects written in the C programming language for the {IC}, see link:https://github.com/dfinity/examples/tree/master/c[C++ sample projects].
 
-単なる遊びで、純粋に Wasm のテキスト形式で書かれた簡単な例もあります。
+// WARNING: these examples are likely to bit-rot and may need updating and are provided for illustration only.
 
-* link:https://github.com/dfinity/examples/tree/master/wasm/counter[counter]
+// * link:https://github.com/dfinity/examples/tree/master/c/adventure[Adventure game]
+// * link:https://github.com/dfinity/examples/tree/master/c/qr[QR code generator]
+// * link:https://github.com/dfinity/examples/tree/master/c/reverse[Reverse game]
+
+// == Wat (Wasm textual format)
+
+// Just for fun, we also have a simple example written in pure Wasm textual format:
+
+// * link:https://github.com/dfinity/examples/tree/master/wasm/counter[counter]
 
 ////
 = Sample Code
