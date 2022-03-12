@@ -81,12 +81,12 @@ Homebrewが インストールされていない場合は、以下のコマン�
 node --version
 ----
 +
-サポートされている node.js の最低バージョンは 12 です。バージョン情報が返ってきて、node のバージョンが 12 以上であれば、そのまま <<working-folder, 作業フォルダの作成>> に進みます。
+サポートされている node.js の最低バージョンは 12 であり、長期的にサポートされるバージョンのみをサポートしています（これらはバージョン番号が偶数になります）。バージョン情報が返ってきて、node のバージョンが 12 以上であれば、そのまま <<working-folder, 作業フォルダの作成>> に進みます。
 もし `node.js` がインストールされていないか、バージョンが 12 より古い場合には、以下のコマンドをコピーしてターミナルに貼り付けます。
 +
 [source,bash]
 ----
-brew install node
+brew install node@16
 ----
 
 [[working-folder]]
@@ -231,12 +231,12 @@ If Homebrew isn't installed, copy and paste the following command in your termin
 node --version
 ----
 +
-The minumum version of node.js we support is 12. If the command returns version information and your node version is at least 12, continue to <<Create a working folder>>.
+The minumum version of node.js we support is 12, and we only support node versions with long-term support. (These will have even version numbers). If the command returns version information and your node version is at least 12, continue to <<Create a working folder>>.
 If `node.js` isn't installed, or if your installation is out of date, copy and paste the following command in your terminal:
 +
 [source,bash]
 ----
-brew install node
+brew install node@16
 ----
 
 [[working-folder]]
