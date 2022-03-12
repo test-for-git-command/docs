@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Rosetta staking tutorial :: Dfinity 日本語ドキュメント</title>
+    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/rosetta-api/staking-tutorial.html">
+    <meta name="generator" content="Antora 2.3.4">
+<link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:title" content="Internet Computer | Documentation" />
+<meta property="og:description" content="Documentation for the internet computer." />
+<meta property="og:image" content="../../_/img/share.jpg" />
+<meta property="og:image:url" content="../../_/img/share.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DFINITYDev" />
+<meta name="twitter:image" content="../../_/img/logo-RGB.png" />
+<meta name="twitter:image:alt" content="DFINITY Logo" />
+    <!-- Appzi: Capture Insightful Feedback -->
+    <script async src="https://w.appzi.io/w.js?token=Zrf92"></script>
+    <!-- End Appzi -->
+
+    <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<script>
+  function switchToLightMode(persist) {
+    document.querySelector("body").classList.remove("dark-mode");
+    if (persist) {
+      localStorage.setItem("theme-preference", "light");
+    }
+  }
+  function switchToDarkMode(persist) {
+    document.querySelector("body").classList.add("dark-mode");
+    if (persist) {
+      localStorage.setItem("theme-preference", "dark");
+    }
+  }
+
+  var themePreference = localStorage.getItem("theme-preference");
+
+  if (themePreference == "dark") {
+    switchToDarkMode(false);
+  } else if (themePreference == "light") {
+    switchToLightMode(false);
+  } else {
+    // dark mode by default
+    switchToDarkMode(false);
+
+    // uncomment to enable setting the defult by user preference
+    // try {
+    //   if (
+    //     window.matchMedia &&
+    //     window.matchMedia("(prefers-color-scheme: dark)").matches
+    //   ) {
+    //     switchToDarkMode(false);
+    //   }
+    // } catch {}
+  }
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="logo-container" href="/docs/introduction/welcome.html">
+        <img class="header-logo" src="../../_/img/logo.svg">
+        <img class="header-logo dark" src="../../_/img/logo-dark.svg">
+        <h1 class="header-title">Dfinity 日本語ドキュメント</h1>
+      </a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+          <a class="navbar-item" target="blank" href="https://dfinity.org/">DFINITY.org</a>
+          <a class="navbar-item" target="blank" href="https://forum.dfinity.org/">Forum</a>
+          <!--<a class="navbar-item" target="blank" href="mailto:support@dfinity.org?subject=Feedback - SDK Developer Center">Email us</a>-->
+          <a class="navbar-item" target="blank" href="https://support.dfinity.org/">Support</a>          
+          <a class="navbar-item" target="blank" href="https://www.twitter.com/dfinitydev">
+            <img class="light-only" src="../../_/img/social/twitter-icon.svg">
+            <img class="dark-only" src="../../_/img/social/twitter-icon-dark.svg">
+          </a>
+      </div>
+    <div class="nav-items-wrapper">
+      <button class="to-light-mode dark-only" aria-label="switch to light mode" onclick="switchToLightMode(true)"></button>
+      <button class="to-dark-mode light-only" aria-label="switch to dark mode" onclick="switchToDarkMode(true)"></button>
+      <div class="search-container">
+  <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M11.8654 12.5892C10.8213 13.4695 9.47259 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.47209 13.4699 10.8204 12.5901 11.8643L17.3625 16.6367L16.6377 17.3615L11.8654 12.5892ZM12.9333 8C12.9333 10.7246 10.7246 12.9333 8 12.9333C5.2754 12.9333 3.06667 10.7246 3.06667 8C3.06667 5.2754 5.2754 3.06667 8 3.06667C10.7246 3.06667 12.9333 5.2754 12.9333 8Z"
+      fill="black" />
+  </svg>
+
+
+  <input class="search-input" placeholder="Search" type="search" />
+</div>      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      </div>
+      
+    <div class="gradient-decoration"></div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="docs" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title">Docs</h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../introduction/welcome.html"><strong>はじめに</strong></a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-first-timers">はじめての方へ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-developers">開発者の方へ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/welcome.html#for-protocol-enthusiasts">プロトコル愛好家の方へ</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstart/quickstart-intro.html">クイックスタート</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/newcomers.html">初めての人へ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/cycles-faucet.html">Claim Your Free Cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/host-a-website.html">Host a Static Website</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/local-quickstart.html">ローカル開発</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/network-quickstart.html">ネットワークへのデプロイ</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../examples/index.html">コードの例</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../examples/hello.html">Hello Example</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Dfinity Examples</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Open-source Community Projects</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../examples/hackathon-projects.html">Hackathon Projects</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../examples/codelabs.html">CodeLabs</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">開発者ドキュメント</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">はじめる</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">SDK の紹介</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/install-upgrade-remove.html">ソフトウェアのインストール・アップグレード・削除</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.9.0-rn.html">0.9.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.4-rn.html">0.8.4</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.3-rn.html">0.8.3</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.2-rn.html">0.8.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.1-rn.html">0.8.1</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.8.0-rn.html">0.8.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.7-rn.html">0.7.7</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.2-rn.html">0.7.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.1-rn.html">0.7.1</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.7.0-rn.html">0.7.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.26-rn.html">0.6.26</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.25-rn.html">0.6.25</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.24-rn.html">0.6.24</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.23-rn.html">0.6.23</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.22-rn.html">0.6.22</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.21-rn.html">0.6.21</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.6.20-rn.html">0.6.20</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">DFX の紹介</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/cli-reference.html">DFX commands</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/cli-reference/dfx-envars.html">DFX environment variables</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/glossary.html">用語集</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Internet Computer で開発する</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">開発方法を学習する</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/sdk-guide.html">IC 上でのスマートコントラクト開発</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/design-apps.html">Design apps</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/customize-projects.html">Manage projects</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/working-with-canisters.html">Canister を管理する</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/default-wallet.html">Use the default cycles wallet</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/explore-templates.html">デフォルトプロジェクトを探索する</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/define-an-actor.html">Actor を使って処理を要求する</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/hello-location.html">テキスト引数を渡す</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/counter-tutorial.html">Increment a natural number</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/calculator.html">Use integers in calculator functions</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/phonebook.html">Import library modules</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/multiple-actors.html">Use multiple actors</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/intercanister-calls.html">Make inter-canister calls</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/access-control.html">Add access control with identities</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/simple-cycles.html">Accept cycles from a wallet</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/reproducible-builds.html">Build canisters reproducibly</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/troubleshooting.html">Troubleshoot issues</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">開発言語を探る</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/work-with-languages.html">さまざまな言語での開発</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../language-guide/motoko.html">Motoko</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../base-libraries/stdlib-intro.html">Motoko 標準ライブラリ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Motoko ガイド</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/about-this-guide.html">言語ガイドについて</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/motoko-introduction.html">イントロダクション</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/basic-concepts.html">基本的なコンセプトと用語</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/mutable-state.html">ミュータブルなステート</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/local-objects-classes.html">ローカルオブジェクトとクラス</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/actors-async.html">Actor と async データ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/errors.html">エラーハンドリング</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/pattern-matching.html">パターンマッチング</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/sharing.html">データと挙動を共有する</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/modules-and-imports.html">モジュールとインポート</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/control-flow.html">命令的制御フロー</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/structural-equality.html">構造的等価性</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/actor-classes.html">Actor クラス</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/caller-id.html">プリンシパルと Caller の識別</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/cycles.html">Cycle を管理する</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/upgrades.html">ステーブル（Stable）変数とアップグレード方法</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/compatibility.html">アップグレード互換性</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/stablememory.html">The ExperimentalStableMemory library</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/heartbeats.html">Heartbeats</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/language-manual.html">Language quick reference</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/compiler-ref.html">コンパイラリファレンス</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/motoko-grammar.html">Motoko の文法</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/overview.html">Concise overview of Motoko</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../language-guide/style.html">Motoko style guidelines</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../rust-guide/rust-intro.html">Rust</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../rust-guide/rust-quickstart.html">Hello World! クイックスタート</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../rust-guide/rust-counter.html">シンプルなカウンターのチュートリアル</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../rust-guide/multiply-dependency.html">基本的な依存関係のチュートリアル</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../rust-guide/rust-profile.html">プロフィールのチュートリアル</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../rust-guide/rust-optimize.html">Rust プログラムの最適化</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../candid-guide/candid-intro.html">Candid</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../candid-guide/candid-concepts.html">Candid とは？</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../candid-guide/candid-howto.html">Candid の使い方</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../candid-guide/candid-ref.html">リファレンス</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../candid-guide/candid-types.html">サポートされている型</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text"><a href="https://github.com/dfinity/candid" target="_blank" rel="noopener">Candid の仕様</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text"><a href="https://docs.rs/candid" target="_blank" rel="noopener">Candid Rust クレート</a></span>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Internet Identity の紹介</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ic-identity-guide/what-is-ic-identity.html">Internet Identity とは</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ic-identity-guide/auth-how-to.html">Internet Identity の使い方</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ic-identity-guide/hello-guide.html">Windows Hello ガイド</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Frontend development</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/webpack-config.html">Add frontend assets</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/custom-frontend.html">フロントエンドのカスタマイズ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">スタイルシートの追加</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">プロトコルドキュメント</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developers-guide/concepts/concepts-intro.html">概念</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/what-is-IC.html">Internet Computer とは</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#interface-spec:index.adoc">Internet Computer Interface Specification</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/nodes-subnets.html">ノードとサブネット</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/data-centers.html">分散型データセンター</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/canisters-code.html">Canisters and code</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/trust-in-canisters.html">Trust in canisters</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/tokens-cycles.html">トークンと Cycle</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/governance.html">Neurons and governance</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developers-guide/concepts/bitcoin-integration.html">Bitcoin integration</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">一般ドキュメント</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of self-custody</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../token-holders/custody-options-intro.html">Choosing self-custody for digital assets</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../token-holders/self-custody-quickstart.html">Self-custody quick start</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of ledger</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integration/ledger-quick-start.html">Ledger quick start</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of the NNS App</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../token-holders/nns-app-quickstart.html">NNS App quick start</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Additional Resources</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer videos</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=oxEr8UzGeBo&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=11&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Internet Identity</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=4eSceDOS-Ms&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=21&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Motoko</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=GzkRsbqPaA0&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Building a multiplayer game for the Internet Computer</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=b_nc6yx5_DQ&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=7&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Deploying static sites to the Internet Computer</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=2miweY9-vZc&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=6&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Zero to fullstack: web apps on the Internet Computer </a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Protocol videos</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://dfinity.org/technicals/" target="_blank" rel="noopener">Technical library</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer tooling</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../download.html">DFINITY Canister SDK</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cdk-rs" target="_blank" rel="noopener">Rust CDK</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/kritzcreek/vessel" target="_blank" rel="noopener">Vessel Package Manager</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko" target="_blank" rel="noopener">Motoko VS Code Extension</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/agent-js" target="_blank" rel="noopener">Agent JS</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/sudograph/sudograph" target="_blank" rel="noopener">Sudograph</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cycles-wallet" target="_blank" rel="noopener">Cycles Wallet</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/quill" target="_blank" rel="noopener">Quill</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Community created resources</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://ic.rocks/" target="_blank" rel="noopener">ic.rocks (Block explorer)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://plugwallet.ooo/" target="_blank" rel="noopener">Plug (Browser-based wallet extension)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://fleek.co/" target="_blank" rel="noopener">Fleek (Netlify for the open web)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="http://faucet.dfinity.org/" target="_blank" rel="noopener">Cycles Faucet</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developers-guide/computation-and-storage-costs.html">Computation and Storage Costs</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Community</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://discord.gg/cA7y6ezyE2" target="_blank" rel="noopener">Developer Discord</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://forum.dfinity.org/" target="_blank" rel="noopener">Developer Forum</a></span>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Financial integration</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Rosetta API documentation</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="transfers.html">Transfer ICP</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="neuron-lifecycle.html">Intoduction: neuron lifecycle</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="staking-support.html">Stake ICP and manage neurons</a>
+    
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="staking-tutorial.html">Tutorial: ICP staking workflow</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Ledger canister smart contract</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ledger-local-setup.html">Setup Ledger locally</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="deploy-new-token.html">Deploy your own token</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ledger.html">Ledger specification</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Developer Center</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Developer Center</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle">Table of contents</button>
+  <a href="../introduction/welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Developer Center</a></li>
+    <li>Financial integration</li>
+    <li>Rosetta API documentation</li>
+    <li><a href="staking-tutorial.html">Tutorial: ICP staking workflow</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/ic/edit/master/rs/rosetta-api/docs/modules/rosetta-api/pages/staking-tutorial.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  </div>
+<div class="main-content">
+<article class="doc">
+<h1 class="page">Rosetta staking tutorial</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document will walk you through the process of creating a neuron using the Internet Computer implementation of the <a href="https://rosetta-api.org">Rosetta API</a>.
+We will transfer funds to the Governance canister smart contract, create a neuron, and configure the newly created neuron.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;ll need the following to complete the tutorial:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A running Rosetta node, you can use the latest docker image from <a href="https://hub.docker.com/r/dfinity/rosetta-api" class="bare">https://hub.docker.com/r/dfinity/rosetta-api</a>.
+This tutorial assumes that the Rosetta node runs on address <code>localhost:8080</code>.</p>
+</li>
+<li>
+<p><a href="https://curl.se/">curl</a>.</p>
+</li>
+<li>
+<p>An ed25519 key and your favorite tools to sign messages using that key.</p>
+</li>
+<li>
+<p>At least 2 ICP on the ledger account controlled by your key (see <a href="#_compute_the_ledger_account_for_staking">Compute the ledger account for staking</a> section).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the Internet Computer point of view, creating a neuron is a multi-step operation:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make a call to the Ledger canister smart contract to transfer tokens to the Governance canister for staking purposes.</p>
+</li>
+<li>
+<p>Notify the Governance about the transfer.
+At this step, the Governance canister smart contract allocates a new neuron.</p>
+</li>
+<li>
+<p>Configure the newly created neuron: set a dissolve delay and start dissolving.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Rosetta API represents these steps as <a href="https://www.rosetta-api.org/docs/models/Operation.html">operations</a> of a transaction.
+The execution of those operations must follow <a href="https://www.rosetta-api.org/docs/flow.html#construction-api">the Construction API flow</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deriving_account_identifiers"><a class="anchor" href="#_deriving_account_identifiers"></a>Deriving account identifiers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Staking requires transferring tokens to a sub-account of the Governance canister smart contract.
+To complete the transfer, you need to know both your ledger account identifier (source of the transfer) and the account identifier of the Governance sub-account (destination of the transfer).</p>
+</div>
+<div class="paragraph">
+<p>Call the <code>/construction/derive</code> endpoint to get the default ledger account controlled by your public key and the account of the neuron controlled by that key.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compute_the_source_ledger_account"><a class="anchor" href="#_compute_the_source_ledger_account"></a>Compute the source ledger account</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+replace <code>hex_bytes</code> in the request below with bytes of your public key.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -0 -X POST http://localhost:8080/construction/derive \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --data-binary @- &lt;&lt;EOF
+{
+  "network_identifier": { "blockchain": "Internet Computer", "network": "00000000000000020101" },
+  "public_key": {
+    "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+    "curve_type": "edwards25519"
+  }
+}
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The expected response should look like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "account_identifier": {
+    "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compute_the_ledger_account_for_staking"><a class="anchor" href="#_compute_the_ledger_account_for_staking"></a>Compute the ledger account for staking</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+replace <code>hex_bytes</code> in the request below with bytes of your public key.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -0 -X POST http://localhost:8080/construction/derive \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --data-binary @- &lt;&lt;EOF
+{
+  "network_identifier": { "blockchain": "Internet Computer", "network": "00000000000000020101" },
+  "public_key": {
+    "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+    "curve_type": "edwards25519"
+  },
+  "metadata": {
+    "account_type": "neuron",
+    "neuron_index": 0
+  }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We set <code>account_type</code> to <code>neuron</code> in the request metadata to tell the Rosetta node that we want to get the account for staking.
+The <code>neuron_index</code> parameter is an arbitrary 64-bit unsigned integer that the caller chooses to identify the neuron.
+A single user can control multiple neurons and differentiate them by specifying different values of <code>neuron_index</code>.
+<code>neuron_index</code> is optional and is equal to 0 by default.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The response should look like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "account_identifier": {
+    "address": "92bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc6"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_obtain_payloads_to_sign"><a class="anchor" href="#_obtain_payloads_to_sign"></a>Obtain payloads to sign</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Notes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code>address</code> fields below with addresses you got on the previous steps.
+Only the second <code>TRANSACTION</code> operation (with index 1 in the snippet below) should use the ledger address of the neuron.
+All other operations should use the ledger address of the controller of the neuron.</p>
+</li>
+<li>
+<p>The amount in the <code>TRANSACTION</code> operation is the amount you stake.
+In this example, the amount is 1 ICP.</p>
+</li>
+<li>
+<p>Adjust the <code>dissolve_time_utc_seconds</code> metadata field of the <code>SET_DISSOLVE_TIMESTAMP</code> operation.
+The current timestamp plus 31,557,600 seconds corresponds to a one-year stake.</p>
+</li>
+<li>
+<p>All neuron management operations support the optional <code>neuron_index</code> metadata field.
+You should use the same value of <code>neuron_index</code> that you specified at the <a href="#_compute_the_ledger_account_for_staking">Compute the ledger account for staking</a> step.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -0 -X POST http://localhost:8080/construction/payloads \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --data-binary @- &lt;&lt;EOF
+{
+  "network_identifier": { "blockchain": "Internet Computer", "network": "00000000000000020101" },
+  "operations": [
+    {
+      "operation_identifier": { "index": 0 },
+      "type": "TRANSACTION",
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "amount": {
+        "value": "-100000000",
+        "currency": { "symbol": "ICP", "decimals": 8 }
+      }
+    },
+    {
+      "operation_identifier": { "index": 1 },
+      "type": "TRANSACTION",
+      "account": {
+        "address": "92bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc6"
+      },
+      "amount": {
+        "value": "100000000",
+        "currency": { "symbol": "ICP", "decimals": 8 }
+      }
+    },
+    {
+      "operation_identifier": { "index": 2 },
+      "type": "FEE",
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "amount": {
+        "value": "-10000",
+        "currency": { "symbol": "ICP", "decimals": 8 }
+      }
+    },
+    {
+      "operation_identifier": { "index": 3 },
+      "type": "STAKE",
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "metadata": {
+        "neuron_index": 0
+      }
+    },
+    {
+      "operation_identifier": { "index": 4 },
+      "type": "SET_DISSOLVE_TIMESTAMP",
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "metadata": {
+        "neuron_index": 0,
+        "dissolve_time_utc_seconds": 1879939507
+      }
+    },
+    {
+      "operation_identifier": { "index": 5 },
+      "type": "START_DISSOLVE",
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "metadata": {
+        "neuron_index": 0
+      }
+    }
+  ],
+  "public_keys": [
+    {
+      "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+      "curve_type": "edwards25519"
+    }
+  ]
+}
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response should look like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "unsigned_transaction": "a2677570646174657384826b5452414e53414354494f4ea56b63616e69737465725f69644a000000000000000201016b6d6574686f645f6e616d656773656e645f706263617267584b0a0b089a8fa881d7d8b4b0c50112070a050880c2d72f1a0308904e2a220a2092bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc63a0a08a8edf6e0fd928cdf166673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972790082a1655354414b45a1716e6575726f6e5f6964656e74696669657200a66b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d657824636c61696d5f6f725f726566726573685f6e6575726f6e5f66726f6d5f6163636f756e7463617267581f4449444c026c029cb1fa2501ba89e5c204786e6801000000000000000000006673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f65787069727900656e6f6e63654f4449444c000178000000000000000082a1765345545f444953534f4c56455f54494d455354414d50a1716e6575726f6e5f6964656e74696669657200a66b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902bc4449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d3080201000001040106b3990d70000000000100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f65787069727900656e6f6e63654f4449444c000178000000000000000082a16e53544152545f444953534f4c5645a1716e6575726f6e5f6964656e74696669657200a66b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902b44449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d30802010000010401030100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f65787069727900656e6f6e63654f4449444c000178000000000000000070696e67726573735f6578706972696573811b16be30cfbd3b16a8",
+  "payloads": [
+    {
+      "account_identifier": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "hex_bytes": "0a69632d72657175657374e5f2ad1ffc1c7136c7dc59a183b9dc85af38c620d46492676eb016bb2c7b9a56",
+      "signature_type": "ed25519"
+    },
+    {
+      "account_identifier": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "hex_bytes": "0a69632d726571756573742eae2f191b885b6ed7238b2e67001569ce1f789873ebf312e84a8e5dbc9a38d0",
+      "signature_type": "ed25519"
+    },
+    {
+      "account_identifier": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "hex_bytes": "0a69632d72657175657374788935ee98703620ec63813b2036daa46989ead54a6b940264d44a9fc0241fae",
+      "signature_type": "ed25519"
+    },
+    {
+      "account_identifier": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "hex_bytes": "0a69632d7265717565737463166a6d97d170f9a4a49c779cc032b376b441bbb56346730ec92e3033eebe9f",
+      "signature_type": "ed25519"
+    },
+    {
+      "account_identifier": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "hex_bytes": "0a69632d726571756573743652695a86832a2bb361f3ba21418f461ca5f604c2d43b47d05eeb5ba77f114f",
+      "signature_type": "ed25519"
+    },
+    {
+      "account_identifier": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "hex_bytes": "0a69632d72657175657374f80fa04953de2944d8d8a0c1ec24fd43008f9636ccb2eaa3e4163145a4071e60",
+      "signature_type": "ed25519"
+    },
+    {
+      "account_identifier": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "hex_bytes": "0a69632d72657175657374f79dc941816eb5744a48e0ba6ed493442c4089ac5430de5b3e11d925db436a20",
+      "signature_type": "ed25519"
+    },
+    {
+      "account_identifier": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "hex_bytes": "0a69632d726571756573748a67e5347e053335269988ff1a00b19b426ea389ad1b9f17e38a698b21f9884a",
+      "signature_type": "ed25519"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>payloads</code> field of the response contains the list of payloads that need to be signed before the transaction can be submitted.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+According to the Rosetta API specification (<a href="https://www.rosetta-api.org/docs/construction_api_introduction.html#flow-of-operations">Flow of Operations</a>), the client should call <code>/construction/preprocess</code> and <code>/construction/metadata</code> before calling <code>/construction/payloads</code> because there might be some metadata that needs to be attached to the payloads request.
+Currently, there is no need to do it for the ICP Rosetta node implementation, so we skipped these unnecessary steps.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_check_the_contents_of_the_transaction_youre_about_to_sign"><a class="anchor" href="#_check_the_contents_of_the_transaction_youre_about_to_sign"></a>Check the contents of the transaction you&#8217;re about to sign</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Call <code>/construction/parse</code> endpoint to decode the contents of a transaction.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Replace the value of the <code>transaction</code> field below with the value of the <code>unsigned_transaction</code> field that you got from the previous step.
+Note that the <code>signed</code> field is set to <code>false</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -0 -X POST http://localhost:8080/construction/parse \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --data-binary @- &lt;&lt;EOF
+{
+  "network_identifier": { "blockchain": "Internet Computer", "network": "00000000000000020101" },
+  "signed": false,
+  "transaction": "a2677570646174657384826b5452414e53414354494f4ea56b63616e69737465725f69644a000000000000000201016b6d6574686f645f6e616d656773656e645f706263617267584b0a0b089a8fa881d7d8b4b0c50112070a050880c2d72f1a0308904e2a220a2092bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc63a0a08a8edf6e0fd928cdf166673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972790082a1655354414b45a1716e6575726f6e5f6964656e74696669657200a66b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d657824636c61696d5f6f725f726566726573685f6e6575726f6e5f66726f6d5f6163636f756e7463617267581f4449444c026c029cb1fa2501ba89e5c204786e6801000000000000000000006673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f65787069727900656e6f6e63654f4449444c000178000000000000000082a1765345545f444953534f4c56455f54494d455354414d50a1716e6575726f6e5f6964656e74696669657200a66b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902bc4449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d3080201000001040106b3990d70000000000100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f65787069727900656e6f6e63654f4449444c000178000000000000000082a16e53544152545f444953534f4c5645a1716e6575726f6e5f6964656e74696669657200a66b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902b44449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d30802010000010401030100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f65787069727900656e6f6e63654f4449444c000178000000000000000070696e67726573735f6578706972696573811b16be30cfbd3b16a8"
+}
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response must match the transaction intent.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "operations": [
+    {
+      "operation_identifier": {"index": 0},
+      "type": "TRANSACTION",
+      "status": null,
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "amount": {
+        "value": "-100000000",
+        "currency": {"symbol": "ICP", "decimals": 8}
+      }
+    },
+    {
+      "operation_identifier": {"index": 1},
+      "type": "TRANSACTION",
+      "status": null,
+      "account": {
+        "address": "92bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc6"
+      },
+      "amount": {
+        "value": "100000000",
+        "currency": {"symbol": "ICP", "decimals": 8}
+      }
+    },
+    {
+      "operation_identifier": {"index": 2},
+      "type": "FEE",
+      "status": null,
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "amount": {
+        "value": "-10000",
+        "currency": {"symbol": "ICP", "decimals": 8}
+      }
+    },
+    {
+      "operation_identifier": {"index": 3},
+      "type": "STAKE",
+      "status": null,
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "metadata": {
+        "neuron_index": 0
+      }
+    },
+    {
+      "operation_identifier": {"index": 4},
+      "type": "SET_DISSOLVE_TIMESTAMP",
+      "status": null,
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "metadata": {
+        "dissolve_time_utc_seconds": 1879939507,
+        "neuron_index": 0
+      }
+    },
+    {
+      "operation_identifier": {"index": 5},
+      "type": "START_DISSOLVE",
+      "status": null,
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "metadata": {
+        "neuron_index": 0
+      }
+    }
+  ],
+  "account_identifier_signers": []
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sign_payloads_and_construct_a_signed_transaction"><a class="anchor" href="#_sign_payloads_and_construct_a_signed_transaction"></a>Sign payloads and construct a signed transaction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sign the payloads from the <code>/construction/payloads</code> response using the tool of your choice.
+Include the signatures into a <code>/construction/combine</code> request as demonstrated in the command below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -0 -X POST http://localhost:8080/construction/combine \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --data-binary @- &lt;&lt;EOF
+{
+  "network_identifier": { "blockchain": "Internet Computer", "network": "00000000000000020101" },
+  "signatures": [
+    {
+      "signing_payload": {
+        "account_identifier": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "hex_bytes": "0a69632d72657175657374e5f2ad1ffc1c7136c7dc59a183b9dc85af38c620d46492676eb016bb2c7b9a56",
+        "signature_type": "ed25519"
+      },
+      "public_key": {
+        "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+        "curve_type": "edwards25519"
+      },
+      "signature_type": "ed25519",
+      "hex_bytes": "5a5297f7555df2d98bd945ecff7afb11456164621da2439f665900abaaa17655e2e4801284c458639fc0e648037cc70116bfafe0315338897f63f9c3bb8b150b"
+    },
+    {
+      "signing_payload": {
+        "account_identifier": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "hex_bytes": "0a69632d726571756573742eae2f191b885b6ed7238b2e67001569ce1f789873ebf312e84a8e5dbc9a38d0",
+        "signature_type": "ed25519"
+      },
+      "public_key": {
+        "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+        "curve_type": "edwards25519"
+      },
+      "signature_type": "ed25519",
+      "hex_bytes": "ab973292cdcbe1c3f54d07a7a822d3c48616abfd9067987e105d8901d0ab946a4b2b6ea038a28e4c8af66e4aecaf503909d67c8dd4153625a5dd121ea45fa301"
+    },
+    {
+      "signing_payload": {
+        "account_identifier": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "hex_bytes": "0a69632d72657175657374788935ee98703620ec63813b2036daa46989ead54a6b940264d44a9fc0241fae",
+        "signature_type": "ed25519"
+      },
+      "public_key": {
+        "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+        "curve_type": "edwards25519"
+      },
+      "signature_type": "ed25519",
+      "hex_bytes": "adc30181799a4474ad03c3a909dcd1d8ee08fe9d23f74314a031ebeb69a340a87680d9549ed6632956130d9e62ee3fa487402c7ab1dd3497aeaf83d36bedec05"
+    },
+    {
+      "signing_payload": {
+        "account_identifier": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "hex_bytes": "0a69632d7265717565737463166a6d97d170f9a4a49c779cc032b376b441bbb56346730ec92e3033eebe9f",
+        "signature_type": "ed25519"
+      },
+      "public_key": {
+        "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+        "curve_type": "edwards25519"
+      },
+      "signature_type": "ed25519",
+      "hex_bytes": "e5a4c7bdd8a17e6581f05c25d9532fd322ea18b1fdd03b06ea40f886c50a74e6adfa530dc9a5a6a0754535004eaa4cf2dbf3fab9684e0d495f3b4eb4ff449b0e"
+    },
+    {
+      "signing_payload": {
+        "account_identifier": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "hex_bytes": "0a69632d726571756573743652695a86832a2bb361f3ba21418f461ca5f604c2d43b47d05eeb5ba77f114f",
+        "signature_type": "ed25519"
+      },
+      "public_key": {
+        "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+        "curve_type": "edwards25519"
+      },
+      "signature_type": "ed25519",
+      "hex_bytes": "e2ada2cf653ebbba2a93d1b013415c5102881ae6a5c58e9abf8683a33aa624e404d2958e1b47e0e98f9e37092221fd816fc13b965ca98fc1e61c4653a279640f"
+    },
+    {
+      "signing_payload": {
+        "account_identifier": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "hex_bytes": "0a69632d72657175657374f80fa04953de2944d8d8a0c1ec24fd43008f9636ccb2eaa3e4163145a4071e60",
+        "signature_type": "ed25519"
+      },
+      "public_key": {
+        "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+        "curve_type": "edwards25519"
+      },
+      "signature_type": "ed25519",
+      "hex_bytes": "0dc0bce4b86c0fd6a1b21ddaa5380b432a637bc5084c1b77356188308618bd9f97513ae5d351a2067c6e8ae8ce7f022ded21f21c3aaaf030a2f47040df1db90b"
+    },
+    {
+      "signing_payload": {
+        "account_identifier": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "hex_bytes": "0a69632d72657175657374f79dc941816eb5744a48e0ba6ed493442c4089ac5430de5b3e11d925db436a20",
+        "signature_type": "ed25519"
+      },
+      "public_key": {
+        "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+        "curve_type": "edwards25519"
+      },
+      "signature_type": "ed25519",
+      "hex_bytes": "fb216f00ff6540e9759e8b6095487a7ea258f4d3fa459f30bb58816932082a14df78c22924941ff3a1897bf3dc468ceefe0e83d94580cdd2ec21ba3a51380e05"
+    },
+    {
+      "signing_payload": {
+        "account_identifier": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "hex_bytes": "0a69632d726571756573748a67e5347e053335269988ff1a00b19b426ea389ad1b9f17e38a698b21f9884a",
+        "signature_type": "ed25519"
+      },
+      "public_key": {
+        "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+        "curve_type": "edwards25519"
+      },
+      "signature_type": "ed25519",
+      "hex_bytes": "b120ab9da353f23cbc854f09df28e8a59a9227a4e9d615dbe102ea0f7f6991a34f109accd03d9c8ac3e30ecf2f22fdcea2019424c851bd8a3d68bcd2dba6fc00"
+    }
+  ],
+  "unsigned_transaction": "a2677570646174657384826b5452414e53414354494f4ea56b63616e69737465725f69644a000000000000000201016b6d6574686f645f6e616d656773656e645f706263617267584b0a0b089a8fa881d7d8b4b0c50112070a050880c2d72f1a0308904e2a220a2092bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc63a0a08a8edf6e0fd928cdf166673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972790082a1655354414b45a1716e6575726f6e5f6964656e74696669657200a66b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d657824636c61696d5f6f725f726566726573685f6e6575726f6e5f66726f6d5f6163636f756e7463617267581f4449444c026c029cb1fa2501ba89e5c204786e6801000000000000000000006673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f65787069727900656e6f6e63654f4449444c000178000000000000000082a1765345545f444953534f4c56455f54494d455354414d50a1716e6575726f6e5f6964656e74696669657200a66b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902bc4449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d3080201000001040106b3990d70000000000100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f65787069727900656e6f6e63654f4449444c000178000000000000000082a16e53544152545f444953534f4c5645a1716e6575726f6e5f6964656e74696669657200a66b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902b44449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d30802010000010401030100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f65787069727900656e6f6e63654f4449444c000178000000000000000070696e67726573735f6578706972696573811b16be30cfbd3b16a8"
+}
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response should look like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "signed_transaction": "84826b5452414e53414354494f4e81a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000201016b6d6574686f645f6e616d656773656e645f706263617267584b0a0b089a8fa881d7d8b4b0c50112070a050880c2d72f1a0308904e2a220a2092bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc63a0a08a8edf6e0fd928cdf166673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f73696758405a5297f7555df2d98bd945ecff7afb11456164621da2439f665900abaaa17655e2e4801284c458639fc0e648037cc70116bfafe0315338897f63f9c3bb8b150b6a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f7374617475735820e5f2ad1ffc1c7136c7dc59a183b9dc85af38c620d46492676eb016bb2c7b9a566e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840ab973292cdcbe1c3f54d07a7a822d3c48616abfd9067987e105d8901d0ab946a4b2b6ea038a28e4c8af66e4aecaf503909d67c8dd4153625a5dd121ea45fa30182a1655354414b45a1716e6575726f6e5f6964656e7469666965720081a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d657824636c61696d5f6f725f726566726573685f6e6575726f6e5f66726f6d5f6163636f756e7463617267581f4449444c026c029cb1fa2501ba89e5c204786e6801000000000000000000006673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8656e6f6e63654f4449444c0001780000000000000000ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840adc30181799a4474ad03c3a909dcd1d8ee08fe9d23f74314a031ebeb69a340a87680d9549ed6632956130d9e62ee3fa487402c7ab1dd3497aeaf83d36bedec056a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f7374617475735820788935ee98703620ec63813b2036daa46989ead54a6b940264d44a9fc0241fae6e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840e5a4c7bdd8a17e6581f05c25d9532fd322ea18b1fdd03b06ea40f886c50a74e6adfa530dc9a5a6a0754535004eaa4cf2dbf3fab9684e0d495f3b4eb4ff449b0e82a1765345545f444953534f4c56455f54494d455354414d50a1716e6575726f6e5f6964656e7469666965720081a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902bc4449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d3080201000001040106b3990d70000000000100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8656e6f6e63654f4449444c0001780000000000000000ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840e2ada2cf653ebbba2a93d1b013415c5102881ae6a5c58e9abf8683a33aa624e404d2958e1b47e0e98f9e37092221fd816fc13b965ca98fc1e61c4653a279640f6a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f73746174757358203652695a86832a2bb361f3ba21418f461ca5f604c2d43b47d05eeb5ba77f114f6e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f73696758400dc0bce4b86c0fd6a1b21ddaa5380b432a637bc5084c1b77356188308618bd9f97513ae5d351a2067c6e8ae8ce7f022ded21f21c3aaaf030a2f47040df1db90b82a16e53544152545f444953534f4c5645a1716e6575726f6e5f6964656e7469666965720081a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902b44449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d30802010000010401030100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8656e6f6e63654f4449444c0001780000000000000000ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840fb216f00ff6540e9759e8b6095487a7ea258f4d3fa459f30bb58816932082a14df78c22924941ff3a1897bf3dc468ceefe0e83d94580cdd2ec21ba3a51380e056a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f7374617475735820f79dc941816eb5744a48e0ba6ed493442c4089ac5430de5b3e11d925db436a206e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840b120ab9da353f23cbc854f09df28e8a59a9227a4e9d615dbe102ea0f7f6991a34f109accd03d9c8ac3e30ecf2f22fdcea2019424c851bd8a3d68bcd2dba6fc00"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_check_the_contents_of_the_transaction_youre_about_to_submit"><a class="anchor" href="#_check_the_contents_of_the_transaction_youre_about_to_submit"></a>Check the contents of the transaction you&#8217;re about to submit</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Call <code>/construction/parse</code> endpoint to decode the contents of a transaction.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Replace the value of the <code>transaction</code> field below with the value of the <code>signed_transaction</code> field that you got from the previous step.
+Note that the <code>signed</code> field is set to <code>true</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -0 -X POST http://localhost:8080/construction/parse \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --data-binary @- &lt;&lt;EOF
+{
+  "network_identifier": { "blockchain": "Internet Computer", "network": "00000000000000020101" },
+  "signed": true,
+  "transaction": "84826b5452414e53414354494f4e81a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000201016b6d6574686f645f6e616d656773656e645f706263617267584b0a0b089a8fa881d7d8b4b0c50112070a050880c2d72f1a0308904e2a220a2092bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc63a0a08a8edf6e0fd928cdf166673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f73696758405a5297f7555df2d98bd945ecff7afb11456164621da2439f665900abaaa17655e2e4801284c458639fc0e648037cc70116bfafe0315338897f63f9c3bb8b150b6a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f7374617475735820e5f2ad1ffc1c7136c7dc59a183b9dc85af38c620d46492676eb016bb2c7b9a566e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840ab973292cdcbe1c3f54d07a7a822d3c48616abfd9067987e105d8901d0ab946a4b2b6ea038a28e4c8af66e4aecaf503909d67c8dd4153625a5dd121ea45fa30182a1655354414b45a1716e6575726f6e5f6964656e7469666965720081a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d657824636c61696d5f6f725f726566726573685f6e6575726f6e5f66726f6d5f6163636f756e7463617267581f4449444c026c029cb1fa2501ba89e5c204786e6801000000000000000000006673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8656e6f6e63654f4449444c0001780000000000000000ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840adc30181799a4474ad03c3a909dcd1d8ee08fe9d23f74314a031ebeb69a340a87680d9549ed6632956130d9e62ee3fa487402c7ab1dd3497aeaf83d36bedec056a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f7374617475735820788935ee98703620ec63813b2036daa46989ead54a6b940264d44a9fc0241fae6e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840e5a4c7bdd8a17e6581f05c25d9532fd322ea18b1fdd03b06ea40f886c50a74e6adfa530dc9a5a6a0754535004eaa4cf2dbf3fab9684e0d495f3b4eb4ff449b0e82a1765345545f444953534f4c56455f54494d455354414d50a1716e6575726f6e5f6964656e7469666965720081a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902bc4449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d3080201000001040106b3990d70000000000100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8656e6f6e63654f4449444c0001780000000000000000ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840e2ada2cf653ebbba2a93d1b013415c5102881ae6a5c58e9abf8683a33aa624e404d2958e1b47e0e98f9e37092221fd816fc13b965ca98fc1e61c4653a279640f6a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f73746174757358203652695a86832a2bb361f3ba21418f461ca5f604c2d43b47d05eeb5ba77f114f6e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f73696758400dc0bce4b86c0fd6a1b21ddaa5380b432a637bc5084c1b77356188308618bd9f97513ae5d351a2067c6e8ae8ce7f022ded21f21c3aaaf030a2f47040df1db90b82a16e53544152545f444953534f4c5645a1716e6575726f6e5f6964656e7469666965720081a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902b44449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d30802010000010401030100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8656e6f6e63654f4449444c0001780000000000000000ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840fb216f00ff6540e9759e8b6095487a7ea258f4d3fa459f30bb58816932082a14df78c22924941ff3a1897bf3dc468ceefe0e83d94580cdd2ec21ba3a51380e056a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f7374617475735820f79dc941816eb5744a48e0ba6ed493442c4089ac5430de5b3e11d925db436a206e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840b120ab9da353f23cbc854f09df28e8a59a9227a4e9d615dbe102ea0f7f6991a34f109accd03d9c8ac3e30ecf2f22fdcea2019424c851bd8a3d68bcd2dba6fc00"
+}
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response must match the transaction intent.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "operations": [
+    {
+      "operation_identifier": {"index": 0},
+      "type": "TRANSACTION",
+      "status": null,
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "amount": {
+        "value": "-100000000",
+        "currency": {"symbol": "ICP", "decimals": 8}
+      }
+    },
+    {
+      "operation_identifier": {"index": 1},
+      "type": "TRANSACTION",
+      "status": null,
+      "account": {
+        "address": "92bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc6"
+      },
+      "amount": {
+        "value": "100000000",
+        "currency": {"symbol": "ICP", "decimals": 8}
+      }
+    },
+    {
+      "operation_identifier": {"index": 2},
+      "type": "FEE",
+      "status": null,
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "amount": {
+        "value": "-10000",
+        "currency": {"symbol": "ICP", "decimals": 8}
+      }
+    },
+    {
+      "operation_identifier": {"index": 3},
+      "type": "STAKE",
+      "status": null,
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "metadata": {
+        "neuron_index": 0
+      }
+    },
+    {
+      "operation_identifier": {"index": 4},
+      "type": "SET_DISSOLVE_TIMESTAMP",
+      "status": null,
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "metadata": {
+        "dissolve_time_utc_seconds": 1879939507,
+        "neuron_index": 0
+      }
+    },
+    {
+      "operation_identifier": {"index": 5},
+      "type": "START_DISSOLVE",
+      "status": null,
+      "account": {
+        "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+      },
+      "metadata": {
+        "neuron_index": 0
+      }
+    }
+  ],
+  "account_identifier_signers": [
+    {
+      "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_submit_the_transaction"><a class="anchor" href="#_submit_the_transaction"></a>Submit the transaction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Call <code>/construction/submit</code> endpoint to submit a signed transaction.
+Replace the <code>signed_transaction</code> field in the request below with the value of the <code>signed_transaction</code> field you got from the <code>/construction/combine</code> endpoint.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -0 -X POST http://localhost:8080/construction/submit \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --data-binary @- &lt;&lt;EOF
+{
+  "network_identifier": { "blockchain": "Internet Computer", "network": "00000000000000020101" },
+  "signed_transaction": "84826b5452414e53414354494f4e81a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000201016b6d6574686f645f6e616d656773656e645f706263617267584b0a0b089a8fa881d7d8b4b0c50112070a050880c2d72f1a0308904e2a220a2092bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc63a0a08a8edf6e0fd928cdf166673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f73696758405a5297f7555df2d98bd945ecff7afb11456164621da2439f665900abaaa17655e2e4801284c458639fc0e648037cc70116bfafe0315338897f63f9c3bb8b150b6a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f7374617475735820e5f2ad1ffc1c7136c7dc59a183b9dc85af38c620d46492676eb016bb2c7b9a566e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840ab973292cdcbe1c3f54d07a7a822d3c48616abfd9067987e105d8901d0ab946a4b2b6ea038a28e4c8af66e4aecaf503909d67c8dd4153625a5dd121ea45fa30182a1655354414b45a1716e6575726f6e5f6964656e7469666965720081a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d657824636c61696d5f6f725f726566726573685f6e6575726f6e5f66726f6d5f6163636f756e7463617267581f4449444c026c029cb1fa2501ba89e5c204786e6801000000000000000000006673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8656e6f6e63654f4449444c0001780000000000000000ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840adc30181799a4474ad03c3a909dcd1d8ee08fe9d23f74314a031ebeb69a340a87680d9549ed6632956130d9e62ee3fa487402c7ab1dd3497aeaf83d36bedec056a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f7374617475735820788935ee98703620ec63813b2036daa46989ead54a6b940264d44a9fc0241fae6e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840e5a4c7bdd8a17e6581f05c25d9532fd322ea18b1fdd03b06ea40f886c50a74e6adfa530dc9a5a6a0754535004eaa4cf2dbf3fab9684e0d495f3b4eb4ff449b0e82a1765345545f444953534f4c56455f54494d455354414d50a1716e6575726f6e5f6964656e7469666965720081a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902bc4449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d3080201000001040106b3990d70000000000100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8656e6f6e63654f4449444c0001780000000000000000ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840e2ada2cf653ebbba2a93d1b013415c5102881ae6a5c58e9abf8683a33aa624e404d2958e1b47e0e98f9e37092221fd816fc13b965ca98fc1e61c4653a279640f6a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f73746174757358203652695a86832a2bb361f3ba21418f461ca5f604c2d43b47d05eeb5ba77f114f6e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f73696758400dc0bce4b86c0fd6a1b21ddaa5380b432a637bc5084c1b77356188308618bd9f97513ae5d351a2067c6e8ae8ce7f022ded21f21c3aaaf030a2f47040df1db90b82a16e53544152545f444953534f4c5645a1716e6575726f6e5f6964656e7469666965720081a266757064617465a367636f6e74656e74bf6c726571756573745f747970656463616c6c6b63616e69737465725f69644a000000000000000101016b6d6574686f645f6e616d656d6d616e6167655f6e6575726f6e636172675902b44449444c3a6c03dbb70101cbe2b58b0803f1bb8b880d386e026c01dbb701786e046b0a9b9cd0a40105bab5f1a40107918bacf10208fc9fc683050ac6b3bb91060f8db2d592091691b2fab80a17e0f8fffd0b1889b8b3b30e34a3f3c0ad0f356c01dbe2be9509066e686c01b9ef938008786c02afa3bda10175c2cee0d80c096d026c01d7ab010b6e0c6b039ef5cc0f0d9992ccd0010edae1c99903786c006c029cb1fa2506ba89e5c204786c01a78882820a106e116b0796a7f71512f381d4ab0213b09b9ba4070dd0fb87af070d90f29afe0714e4ac938d0c0dc3a2f6c90e156c01f6b0989a08066c018eddc3a60d066c018dc3b2b303796c01c88ecad50a786c02ea99cff20475b2b8d4960b016c05f5bbe3900178d2bbf0d9017eb9ef93800878dbe2be950906ef9999fe09786c04efd6e4027198abec810119b6f798b2011aa696a48708716e716e1b6b09d881c9c40300d69ce79d0a1c82ffcfaa0c1ee3c3c5990e27b1a5aea10e2bf5d9d7a50e2dfad5ddf40e2edb9cebf70e30d6f4c7ff0f336c02e4d7bee905758effd6e90e1d6d7b6c03ce9ca6ce011ff382ccb30723b9ef938008786e206c02dbb701069df1afe707216e226c01cedfa0a8041d6e246b02fdf59aec0b25e3b586ff0c266c01f5bbe39001786c01a9ddf49b07216c0184aead33286d296c020075012a6c01c2cee0d80c096c01a4ccf7dd0a2c6d1e6c089eb493cf0378befa8dd40479be8fe6e30478ce89be97067886f998bc0978c5cae3d40a7893a190e00c78f5e1d0e70d786c018594e2c50b2f6d686c01f0a2cabb0b316e326b02bf80e42b20c6a6e4b90a206c0196bdb4e904716c01b99d9da50b796c02a9ddf49b0721d8a38ca80d366e376c01e0a9b302786e396b02cd8e8eb9041dcebee1d30802010000010401030100201c76a1738350f93180d6b6f170b573d0862d574d5a69ae3c0aeb74315494b3ca6673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e026e696e67726573735f6578706972791b16be30cfbd3b16a8656e6f6e63654f4449444c0001780000000000000000ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840fb216f00ff6540e9759e8b6095487a7ea258f4d3fa459f30bb58816932082a14df78c22924941ff3a1897bf3dc468ceefe0e83d94580cdd2ec21ba3a51380e056a726561645f7374617465a367636f6e74656e74bf6c726571756573745f747970656a726561645f73746174656673656e646572581d48c5a6e93d9a3d10c4ba3c7927c97c18df4b0fcdac3a38ad3f08106e0265706174687381824e726571756573745f7374617475735820f79dc941816eb5744a48e0ba6ed493442c4089ac5430de5b3e11d925db436a206e696e67726573735f6578706972791b16be30cfbd3b16a8ff6d73656e6465725f7075626b6579582c302a300506032b6570032100ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d6a73656e6465725f7369675840b120ab9da353f23cbc854f09df28e8a59a9227a4e9d615dbe102ea0f7f6991a34f109accd03d9c8ac3e30ecf2f22fdcea2019424c851bd8a3d68bcd2dba6fc00"
+}
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response should look like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "transaction_identifier": {
+    "hash": "aa0de8d73d930e49f6e3fd4db66cb34360710ee57b9aef5ef66e2c1cb0513b65"
+  },
+  "metadata": {
+    "operations": [
+      {
+        "operation_identifier": { "index": 0 },
+        "status": "COMPLETED",
+        "type": "TRANSACTION",
+        "account": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "amount": {
+          "value": "-100000000",
+          "currency": { "symbol": "ICP", "decimals": 8 }
+        }
+      },
+      {
+        "operation_identifier": { "index": 1 },
+        "status": "COMPLETED",
+        "type": "TRANSACTION",
+        "account": {
+          "address": "92bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc6"
+        },
+        "amount": {
+          "value": "100000000",
+          "currency": { "symbol": "ICP", "decimals": 8 }
+        }
+      },
+      {
+        "operation_identifier": { "index": 2 },
+        "status": "COMPLETED",
+        "type": "FEE",
+        "account": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "amount": {
+          "value": "-10000",
+          "currency": { "symbol": "ICP", "decimals": 8 }
+        }
+      },
+      {
+        "operation_identifier": { "index": 3 },
+        "status": "COMPLETED",
+        "type": "STAKE",
+        "account": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "metadata": {
+          "neuron_index": 0,
+          "neuron_id": 8654960738044813476
+        }
+      },
+      {
+        "operation_identifier": { "index": 4 },
+        "status": "COMPLETED",
+        "type": "SET_DISSOLVE_TIMESTAMP",
+        "account": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "metadata": {
+          "neuron_index": 0,
+          "dissolve_time_utc_seconds": 1879939507
+        }
+      },
+      {
+        "operation_identifier": { "index": 5 },
+        "status": "COMPLETED",
+        "type": "START_DISSOLVE",
+        "account": {
+          "address": "8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8"
+        },
+        "metadata": {
+          "neuron_index": 0
+        }
+      }
+    ]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Neuron management operations don&#8217;t strictly adhere to the Rosetta specification.
+If you look up the transaction above by hash using the <code>/block/transaction</code> endpoint, it will only contain the ledger transfer.
+Furthermore, if the transaction only contains the neuron management operations, the returned transaction hash won&#8217;t be on the ledger chain at all.
+That&#8217;s why the response <code>metadata</code> field includes statuses of all the operations in the same format <code>/block/transaction</code> would return them.</p>
+</li>
+<li>
+<p>The <code>STAKE</code> operation returns the unique identifier of the neuron that the Governance smart contract created.
+You can use this identifier to find the neuron in the NNS dapp or on <a href="https://ic.rocks" class="bare">https://ic.rocks</a>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_check_the_status_of_the_neuron"><a class="anchor" href="#_check_the_status_of_the_neuron"></a>Check the status of the neuron</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let us now check the status of the newly created neuron.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code>address</code> fields below with addresses of the neuron that you got at step <a href="#_compute_the_ledger_account_for_staking">Compute the ledger account for staking</a>.</p>
+</li>
+<li>
+<p>Replace <code>public_key.hex_bytes</code> with the hex of your public key.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">curl -0 -X POST http://localhost:8080/account/balance \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --data-binary @- &lt;&lt;EOF
+{
+  "network_identifier": { "blockchain": "Internet Computer", "network": "00000000000000020101" },
+  "account_identifier": {
+    "address": "92bfc8dd46076c46de4444f15afbb8f7a5050af240384a8a2d115b359f100fc6"
+  },
+  "metadata": {
+    "account_type": "neuron",
+    "neuron_index": 0,
+    "public_key": {
+      "hex_bytes": "ba5242d02642aede88a5f9fe82482a9fd0b6dc25f38c729253116c6865384a9d",
+      "curve_type": "edwards25519"
+    }
+  }
+}
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response should look like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "block_identifier": {
+    "index": 1157,
+    "hash": "04012aff1447b92589ccafab3c45243db4aa4b7c36c93fc5d22a7cac15ce7797"
+  },
+  "balances": [
+    {
+      "value": "100000000",
+      "currency": { "symbol": "ICP", "decimals": 8 }
+    }
+  ],
+  "metadata": {
+    "verified_query": false,
+    "retrieved_at_timestamp_seconds": 1640273314,
+    "state": "DISSOLVING",
+    "age_seconds": 0,
+    "dissolve_delay_seconds": 239666197,
+    "voting_power": 779728174,
+    "created_timestamp_seconds": 1638799843
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar">
+  
+  <div class="toc-menu"></div>
+</aside></div>
+</main></div>
+<footer class="footer">
+  <div class="footer-container">
+    <a href="http://www.dfinity.org"><img class="footer-logo" src="../../_/img/logo.svg"></a>
+    <nav class="footer-nav">
+      <div class="col1">
+        <h5 class="footer-header">Developers</h5>
+        <a class="footer-link" href="http://www.dfinity.org/faq">
+          FAQ
+        </a>
+        <a class="footer-link" href="#">
+          Developers
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/data-centers">
+          Data Centers
+        </a>
+        <a class="footer-link" href="https://support.dfinity.org">
+          Support
+        </a>
+      </div>
+
+      <div class="col2">
+        <h5 class="footer-header">Team</h5>
+        <a class="footer-link" href="http://www.dfinity.org/foundation">
+          Foundation
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/foundation#events">
+          Events
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/careers">
+          Careers
+        </a>
+      </div>
+
+
+      <div class="col3">
+        <h5 class="footer-header">Media</h5>
+        <a class="footer-link" href="http://www.dfinity.org/media">
+          Featured Videos
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/media#featured-stories">
+          Featured Stories
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/newsletter">
+          Newsletter
+        </a>
+      </div>
+
+      <div class="social-icons">
+
+        <a class="social-icon-link" target="blank" href="https://github.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 0C5.3625 0 0 5.3625 0 12C0 17.2875 3.45 21.7875 8.2125 23.4C8.8125 23.5125 9.0375 23.1375 9.0375 22.8375C9.0375 22.5375 9.0375 21.7875 9.0375 20.8125C5.7 21.525 4.9875 19.2 4.9875 19.2C4.425 17.8125 3.6375 17.4375 3.6375 17.4375C2.55 16.6875 3.7125 16.725 3.7125 16.725C4.9125 16.8 5.55 17.9625 5.55 17.9625C6.6375 19.8 8.3625 19.275 9.0375 18.975C9.15 18.1875 9.45 17.6625 9.7875 17.3625C7.125 17.0625 4.3125 16.0125 4.3125 11.4375C4.3125 10.125 4.7625 9.075 5.55 8.2125C5.4375 7.9125 5.025 6.675 5.6625 5.025C5.6625 5.025 6.675 4.6875 8.9625 6.2625C9.9375 6 10.95 5.85 11.9625 5.85C12.975 5.85 14.025 6 14.9625 6.2625C17.25 4.725 18.2625 5.025 18.2625 5.025C18.9 6.675 18.4875 7.9125 18.375 8.2125C19.1625 9.0375 19.6125 10.125 19.6125 11.4375C19.6125 16.05 16.8 17.0625 14.1375 17.3625C14.55 17.7375 14.9625 18.45 14.9625 19.575C14.9625 21.1875 14.9625 22.4625 14.9625 22.875C14.9625 23.2125 15.1875 23.5875 15.7875 23.4375C20.55 21.7875 24 17.2875 24 12C24 5.3625 18.6375 0 12 0Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+        <a class="social-icon-link" target="blank" href="https://medium.com/dfinity-network-blog">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M22.3125 1H1.6875C1.50516 1 1.3303 1.07243 1.20136 1.20136C1.07243 1.3303 1 1.50516 1 1.6875L1 22.3125C1 22.4948 1.07243 22.6697 1.20136 22.7986C1.3303 22.9276 1.50516 23 1.6875 23H22.3125C22.4948 23 22.6697 22.9276 22.7986 22.7986C22.9276 22.6697 23 22.4948 23 22.3125V1.6875C23 1.50516 22.9276 1.3303 22.7986 1.20136C22.6697 1.07243 22.4948 1 22.3125 1V1ZM19.2768 6.21228L18.0971 7.34356C18.0471 7.38153 18.0085 7.43245 17.9854 7.4908C17.9623 7.54916 17.9557 7.61272 17.9661 7.67459V15.9875C17.9557 16.0494 17.9623 16.1129 17.9854 16.1713C18.0085 16.2296 18.0471 16.2806 18.0971 16.3185L19.2493 17.4498V17.698H13.4534V17.4498L14.6469 16.2903C14.7641 16.1731 14.7641 16.1388 14.7641 15.9593V9.24072L11.4455 17.6698H10.9987L7.13319 9.24072V14.8899C7.11729 15.0071 7.12828 15.1264 7.16533 15.2387C7.20237 15.351 7.2645 15.4535 7.347 15.5382L8.89937 17.4213V17.6695H4.49731V17.4213L6.04969 15.5382C6.13152 15.4534 6.19226 15.3505 6.22701 15.2379C6.26177 15.1253 6.26956 15.0061 6.24975 14.8899V8.35866C6.25855 8.26945 6.24627 8.17943 6.21391 8.09584C6.18155 8.01225 6.13001 7.93743 6.06344 7.87741L4.68362 6.21503V5.96684H8.96847L12.2805 13.2303L15.1924 5.96684H19.2768V6.21228Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+        <a class="social-icon-link" target="blank" href="https://twitter.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23 5.33654C22.175 5.67308 21.3156 5.94231 20.4219 6.04327C21.35 5.50481 22.0719 4.62981 22.4156 3.58654C21.5562 4.09135 20.5938 4.46154 19.5625 4.66346C18.7031 3.78846 17.5344 3.25 16.2281 3.25C13.7187 3.25 11.725 5.23558 11.725 7.65865C11.725 7.99519 11.7594 8.33173 11.8281 8.66827C8.08125 8.5 4.74688 6.71635 2.54688 4.05769C2.16875 4.69712 1.92813 5.47115 1.92813 6.27885C1.92813 7.82692 2.71875 9.17308 3.92188 9.94712C3.16562 9.91346 2.47812 9.71154 1.89375 9.40865C1.89375 9.44231 1.89375 9.44231 1.89375 9.47596C1.89375 11.6298 3.44063 13.4135 5.50313 13.8173C5.125 13.9183 4.7125 13.9856 4.3 13.9856C4.025 13.9856 3.71562 13.9519 3.44062 13.9183C4.025 15.6683 5.675 16.9471 7.66875 16.9808C6.12187 18.1587 4.1625 18.8654 2.06562 18.8654C1.6875 18.8654 1.34375 18.8317 1 18.7981C2.99375 20.0096 5.36563 20.75 7.90938 20.75C16.2281 20.75 20.7656 14.0192 20.7656 8.16346C20.7656 7.96154 20.7656 7.79327 20.7656 7.59135C21.625 6.98558 22.3813 6.21154 23 5.33654Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://forum.dfinity.org/">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12.0932 1C6.0727 1 1 5.83706 1 11.8085C1 12 1.00488 23 1.00488 23L12.0933 22.9901C18.1188 22.9901 23 17.9666 23 11.9951C23 6.02373 18.1188 1 12.0932 1ZM12 18.2857C11.0473 18.2857 10.1388 18.0745 9.32853 17.6916L5.34597 18.6786L6.47047 14.9956C5.98926 14.1067 5.71423 13.0853 5.71423 12C5.71423 8.52815 8.52811 5.71428 12 5.71428C15.4719 5.71428 18.2857 8.52815 18.2857 12C18.2857 15.472 15.4719 18.2857 12 18.2857Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://www.linkedin.com/company/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M1 4.35878C1 3.01688 2.03589 2 3.61924 2C5.20139 2 6.17406 3.01448 6.20507 4.35519C6.20507 5.67205 5.20139 6.71456 3.58942 6.71456H3.55841C2.00666 6.71456 1 5.67562 1 4.35878ZM17.5581 8.28158C15.1017 8.28158 13.5625 9.61217 13.278 10.5449V8.41225H8.46122C8.52324 9.54475 8.46122 21.9995 8.46122 21.9995H13.278V14.647C13.278 14.5987 13.2778 14.5505 13.2775 14.5025C13.2756 14.1436 13.2736 13.7952 13.383 13.5365C13.714 12.7194 14.4255 11.8719 15.7046 11.8719C17.3775 11.8719 18.1378 13.128 18.1378 14.9685V21.9995H23V14.4448C23 10.236 20.6056 8.28158 17.5581 8.28158ZM1.55371 8.41275H5.84157V22H1.55371V8.41275Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://youtube.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23.775 7.6375C23.775 7.6375 23.55 5.9875 22.8375 5.2375C21.9375 4.3 20.8875 4.2625 20.4375 4.225C17.025 4 12 4 12 4C12 4 6.975 4 3.6 4.225C3.1125 4.2625 2.1 4.3 1.2 5.2375C0.4875 5.95 0.2625 7.6375 0.2625 7.6375C0.2625 7.6375 0 9.5875 0 11.5375V13.375C0 15.325 0.225 17.275 0.225 17.275C0.225 17.275 0.45 18.925 1.1625 19.675C2.0625 20.6125 3.2625 20.6125 3.825 20.6875C5.7375 20.875 12 20.9125 12 20.9125C12 20.9125 17.025 20.9125 20.4 20.65C20.8875 20.6125 21.9 20.575 22.8 19.6375C23.5125 18.925 23.7375 17.2375 23.7375 17.2375C23.7375 17.2375 24 15.2875 24 13.3375V11.5C24 9.5875 23.775 7.6375 23.775 7.6375ZM9.525 15.55V8.8L16.0125 12.175L9.525 15.55Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+      </div>
+    </nav>
+
+    <div class="legal-container">
+      <span class="legal" id="year">
+        © 2020 DFINITY
+      </span>
+      <a class="legal footer-link" href="http://www.dfinity.org/terms-of-use">
+        Terms of Use
+      </a>
+      <a class="legal footer-link" href="http://www.dfinity.org/cookie-policy">
+        Cookie Policy
+      </a>
+      <a class="legal footer-link" href="http://www.dfinity.org/privacy-policy">
+        Privacy Policy
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+  var today = new Date();
+  var year = today.getFullYear();
+  document.getElementById("year").innerHTML = `© ${year} DFINITY`;
+</script><script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+    apiKey: 'b93d56cc4b00b0afbcdaacab04dcf25b',
+    indexName: 'dfinity_sdk',
+    inputSelector: '.search-input',
+    debug: false // Set debug to true if you want to inspect the dropdown
+  });
+</script>
+
+<!-- Start of dfinity Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=53121947-c10a-484c-b99b-f89a9fb6f63e"> </script>
+<!-- End of dfinity Zendesk Widget script -->
+
+<script src="../../_/js/vendor/run_repl.js"></script>
+<script type="module">
+  import {CodeJar} from 'https://cdn.jsdelivr.net/npm/codejar@3.2.3/codejar.min.js';
+  import {withLineNumbers} from 'https://cdn.jsdelivr.net/npm/codejar@3.2.3/linenumbers.js';
+  window.CodeJar = CodeJar;
+  window.withLineNumbers = withLineNumbers;
+</script> 
+<script type="text/javascript">
+async function addPackage(name, repo, version, dir) {
+  const meta_url = `https://data.jsdelivr.com/v1/package/gh/${repo}@${version}/flat`;
+  const base_url = `https://cdn.jsdelivr.net/gh/${repo}@${version}`;
+  const response = await fetch(meta_url);
+  const json = await response.json()
+  const promises = [];
+  const fetchedFiles = [];
+  for (const f of json.files) {
+    if (f.name.startsWith(`/${dir}/`) && /\.mo$/.test(f.name)) {
+      const promise = (async () => {
+        const content = await (await fetch(base_url + f.name)).text();
+        const stripped = name + f.name.slice(dir.length + 1);
+        fetchedFiles.push(stripped);
+        Motoko.saveFile(stripped, content);
+      })();
+      promises.push(promise);
+    }
+  }
+  Promise.all(promises).then(() => {
+    Motoko.addPackage(name, name + '/');
+    console.log(`Loaded motoko library "${name}"`);
+    changeCodeBlock(); // from run_repl.js
+  });
+}
+function loadBase() {
+  addPackage('base', 'dfinity/motoko-base', '', 'src');
+}
+</script>
+<script async src="https://download.dfinity.systems/motoko//js/moc-interpreter-.js" onload="loadBase()">
+</script>
+  </body>
+</html>
