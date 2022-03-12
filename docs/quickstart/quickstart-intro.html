@@ -137,23 +137,11 @@
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="newcomers.html">初めての人へ</a>
+    <a class="nav-link" href="how-to-deploy-hello-world-smart-contract.html">Deploy your first dapp in 20 minutes</a>
     
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="cycles-faucet.html">Claim Your Free Cycles</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="host-a-website.html">Host a Static Website</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="local-quickstart.html">ローカル開発</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="network-quickstart.html">ネットワークへのデプロイ</a>
     
   </li>
 </ul>
@@ -168,19 +156,27 @@
     
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Dfinity Examples</a></span>
+    <a class="nav-link" href="../examples/host-a-website.html">Host a Static Website</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Open-source Community Projects</a></span>
+    <a class="nav-link" href="../examples/dex.html">Basic DEX</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/hackathon-projects.html">Hackathon Projects</a>
+    <a class="nav-link" href="../examples/nft.html">NFT Minting</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/codelabs.html">CodeLabs</a>
+    <a class="nav-link" href="../examples/dao.html">Basic DAO</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../examples/encrypted-notes.html">Encrypted Note-taking</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../examples/tokentransfer.html">Token Transfer</a>
     
   </li>
 </ul>
@@ -209,6 +205,10 @@
     <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.9.2-rn.html">0.9.2</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../release-notes/0.9.0-rn.html">0.9.0</a>
     
@@ -546,12 +546,8 @@
     
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../candid-guide/candid-howto.html">Candid の使い方</a>
-    
-  </li>
-  <li class="nav-item" data-depth="5">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../candid-guide/candid-ref.html">リファレンス</a>
+    <a class="nav-link" href="../candid-guide/candid-howto.html">Candid の使い方</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
@@ -606,6 +602,29 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">スタイルシートの追加</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Security Best Practices</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/introduction.html">Introduction</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/general-security-best-practices.html">General Security Best Practices</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/web-app-development-security-best-practices.html">Web App Development Security Best Practices</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/rust-canister-development-security-best-practices.html">Rust Canister Development Security Best Practices</a>
     
   </li>
 </ul>
@@ -936,57 +955,24 @@
 <p>この DFINITY Canister Software Development Kit (SDK) は、Canister スマートコントラクトのアプリケーションを作成し、Internet Computer ブロックチェーンのメインネットにデプロイするためのツール、サンプルコード、ドキュメントを提供しています。
 <em>クイックスタート</em> チュートリアルでは、DFINITY Canister SDK を初めてインストールする方のために、最初のアプリケーションを作成、ビルド、デプロイする方法を説明します。</p>
 </div>
-<div class="paragraph">
-<p>説明をシンプルにして作業に集中できるように、 <em>クイックスタート</em> は2つのシナリオに分かれています。</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="local-quickstart.html">ローカル環境での開発</a> シナリオでは、 <em>ローカルの Canister 実行環境</em> で実行するサンプルアプリケーションを作成してデプロイします。</p>
-</li>
-<li>
-<p><a href="network-quickstart.html">オンチェーンへのデプロイ</a> シナリオでは、ローカルでサンプルアプリケーションを作成しますが、独立したデータセンターのノードマシン上で稼働している <em>Internet Computer プラットフォーム に接続</em> し、そこにアプリケーションをデプロイします。</p>
-</li>
-</ul>
+</div>
+<div class="sect1">
+<h2 id="_はじめに"><a class="anchor" href="#_はじめに"></a>はじめに</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>説明をシンプルにして作業に集中できるように、 <em>クイックスタート</em> は最初のスマートコントラクトや Dapp を 20 分以内にデプロイできるよう、意図的に説明をフォーカスしています。</p>
 </div>
 <div class="paragraph">
-<p>開発環境のセットアップにヘルプが必要な場合、例えば、新しいターミナルの開き方、パッケージのインストール方法、フォルダの作成やディレクトリ間の移動方法などがわからない場合は、<a href="newcomers.html">初めての方の為の予備知識</a>から始めるとよいでしょう。</p>
+<p><a href="how-to-deploy-hello-world-smart-contract.html">How to deploy hello world smart contract in 20 minutes</a> をご覧ください。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="default-app"><a class="anchor" href="#default-app"></a>デフォルトの Dapp</h2>
+<h2 id="_追加のコードサンプル"><a class="anchor" href="#_追加のコードサンプル"></a>追加のコードサンプル</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>どちらのシナリオでも、シンプルな Hello Canister のスマートコントラクトを構築してデプロイしますが、このスマートコントラクトには <code>greet</code> という関数が1つだけ存在します。この <code>greet</code> 関数は1つのテキスト引数を受け入れ、その結果として <strong>Hello,&#160;everyone!</strong> のような挨拶を返します。コマンドラインで Canister を実行した場合はターミナルに、ブラウザでアプリケーションにアクセスした場合はポップアップウィンドウに表示されます。</p>
-</div>
-<div class="paragraph">
-<p>デフォルトの Dapp は、Internet Computer 向けに特別に設計されたプログラミング言語である Motoko で書かれたバックエンドコードと、シンプルな Webpack ベースのフロントエンドで構成されています。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_icp_トークンと_cycle_の取得"><a class="anchor" href="#_icp_トークンと_cycle_の取得"></a>ICP トークンと Cycle の取得</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="../developers-guide/concepts/tokens-cycles.html">トークンと Cycle</a> で説明したように、 Internet Computer プラットフォーム 上で動作するアプリケーションである Canister スマートコントラクトを動かすためには <strong>Cycle</strong> が必要です。
-開発者はアプリケーションを動作させるために Cycle を取得・管理する必要がありますが、それにはいくつかの方法があります。</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>ICP トークンを取り扱っている取引所で購入し、<a href="network-quickstart.html#convert-tokens">DFINITY Canister SDK コマンドラインインターフェイス</a>または <a href="https://nns.ic0.app/#/auth">Network Nervous System アプリケーション</a>を使用して、トークンを Cycle に変換します。</p>
-</li>
-<li>
-<p>Cycle を配布するサービスを提供しているプロバイダーに、アカウントや <a href="../developers-guide/default-wallet.html#wallet-create-wallets">Cycle ウォレット</a>を登録して、Cycle を取得します。</p>
-</li>
-<li>
-<p>他の開発者と連携し、Cycle ウォレットや Canister を使って Canister 間で Cycle を直接 <a href="../developers-guide/default-wallet.html#wallet-send">送信</a>または <a href="../developers-guide/default-wallet.html#wallet-receive">受信</a>します。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Cycle を必要とし消費するのは Canister だけであり、それらはオペレーションやリソースの支払いのために使用されます。Cycle は通常、Canister 同士でやり取りされ、ユーザーや開発者には転送されません。ただし、Cycle を配布したりする際には、自分用に作成された Cycle ウォレットや同様のアプリケーションで Cycle を管理することができます。</p>
+<p>最初の Dapp が完成したら、<a href="../examples/index.html">Sample code and dapps</a> で、よりロバストな例（DAO、NFT など）を参照すると良いでしょう。</p>
 </div>
 </div>
 </div>

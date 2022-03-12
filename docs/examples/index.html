@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>コード例 :: Dfinity 日本語ドキュメント</title>
+    <title>コードサンプル :: Dfinity 日本語ドキュメント</title>
     <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/examples/index.html">
     <meta name="description" content="Quick links to example code for common use-cases for your dapp">
     <meta name="keywords" content="Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding,dapp,example,code,rust,Motoko">
@@ -137,23 +137,11 @@
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstart/newcomers.html">初めての人へ</a>
+    <a class="nav-link" href="../quickstart/how-to-deploy-hello-world-smart-contract.html">Deploy your first dapp in 20 minutes</a>
     
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstart/cycles-faucet.html">Claim Your Free Cycles</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstart/host-a-website.html">Host a Static Website</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstart/local-quickstart.html">ローカル開発</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstart/network-quickstart.html">ネットワークへのデプロイ</a>
     
   </li>
 </ul>
@@ -168,19 +156,27 @@
     
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Dfinity Examples</a></span>
+    <a class="nav-link" href="host-a-website.html">Host a Static Website</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Open-source Community Projects</a></span>
+    <a class="nav-link" href="dex.html">Basic DEX</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="hackathon-projects.html">Hackathon Projects</a>
+    <a class="nav-link" href="nft.html">NFT Minting</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="codelabs.html">CodeLabs</a>
+    <a class="nav-link" href="dao.html">Basic DAO</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="encrypted-notes.html">Encrypted Note-taking</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tokentransfer.html">Token Transfer</a>
     
   </li>
 </ul>
@@ -209,6 +205,10 @@
     <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.9.2-rn.html">0.9.2</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../release-notes/0.9.0-rn.html">0.9.0</a>
     
@@ -546,12 +546,8 @@
     
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../candid-guide/candid-howto.html">Candid の使い方</a>
-    
-  </li>
-  <li class="nav-item" data-depth="5">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../candid-guide/candid-ref.html">リファレンス</a>
+    <a class="nav-link" href="../candid-guide/candid-howto.html">Candid の使い方</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
@@ -606,6 +602,29 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">スタイルシートの追加</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Security Best Practices</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/introduction.html">Introduction</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/general-security-best-practices.html">General Security Best Practices</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/web-app-development-security-best-practices.html">Web App Development Security Best Practices</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/rust-canister-development-security-best-practices.html">Rust Canister Development Security Best Practices</a>
     
   </li>
 </ul>
@@ -929,69 +948,119 @@
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">コード例</h1>
+<h1 class="page">コードサンプル</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div id="example-code-intro" class="paragraph">
-<p>チュートリアルに加えて、簡単な参考文献をいくつかご紹介します。また、 <a href="https://github.com/dfinity/examples">Examples Repo</a> や <a href="https://github.com/dfinity/awesome-dfinity">Awesome Dfinity</a> は、私たちのコミュニティから集められたオープンソースプロジェクトや事例を集めたものです！</p>
+<p>以下のサンプルアプリをご覧いただき、IC を利用したアプリで何ができるかご確認ください。すべてのサンプルとその他のプロジェクトは <a href="https://github.com/dfinity/examples">Examples Repo</a> で見つけることができます。 <a href="https://github.com/dfinity/awesome-dfinity">Awesome Dfinity</a> （私たちのコミュニティから集められたオープンソースプロジェクトや事例を集めたもの）や <a href="./hackathon-projects.html">Hackathon projects</a> でさらなる事例を見つけることができます。</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="motoko"><a class="anchor" href="#motoko"></a>Motoko の例</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_hello_world"><a class="anchor" href="#_hello_world"></a>Hello world</h3>
+<div class="paragraph">
+<p><em>hello world</em> に相当する Dapp で、バックエンドとフロントエンドの Canister に分かれて Web ページを提供します。<br>
+<a href="https://github.com/dfinity/examples/tree/master/motoko/hello">Motoko</a> • <a href="https://github.com/dfinity/examples/tree/master/rust/hello">Rust</a> • <a href="https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/">See running</a> • <a href="hello.html">Technical docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_静的なウェブサイト"><a class="anchor" href="#_静的なウェブサイト"></a>静的なウェブサイト</h3>
+<div class="paragraph">
+<p>このチュートリアルでは、静的な Web サイトの構造を設定し、コンテンツと基本的なスタイルを追加して IC にデプロイする方法を紹介します。<br>
+<a href="host-a-website.html">Technical docs</a> • <a href="https://www.youtube.com/watch?v=JAQ1dkFvfPI">Video guide</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ベーシックな_dex"><a class="anchor" href="#_ベーシックな_dex"></a>ベーシックな DEX</h3>
+<div class="paragraph">
+<p>IC 上で Defi アプリケーションを実現するために、Canister はトークン Canister や Ladger Canister とインタラクションする必要があります。このサンプルアプリでは、取引所が資金を預かり、ユーザーの取引に応じて残高を更新し、資金が引き出されると預金をユーザーに返す方法を通じてこれらのインタラクションを説明します。<br>
+<a href="https://github.com/dfinity/examples/tree/master/motoko/defi">Motoko</a> • <a href="https://github.com/dfinity/examples/tree/master/rust/defi">Rust</a> • <a href="https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/">See running</a> • <a href="dex.html">Technical docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nft_のミント"><a class="anchor" href="#_nft_のミント"></a>NFT のミント</h3>
+<div class="paragraph">
+<p>この NFT ミント Dapp は、ユーザーが生成した NFT を簡単に作成し、それを共有することができることを紹介しています。このアプリは、https://github.com/Psychedelic/DIP721[DIP721] NFT スタンダードを使用しています。<br>
+<a href="https://github.com/dfinity/examples/tree/master/rust/dip721-nft-container">Rust</a> • <a href="nft.html" class="page">Technical docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ベーシックな_dao"><a class="anchor" href="#_ベーシックな_dao"></a>ベーシックな DAO</h3>
+<div class="paragraph">
+<p>分散型ガバナンスは IC のハイライトであり、以下のベーシックな DAO のサンプルコードによって説明されています。これは、アカウントと対応するトークンのセットを初期化する方法、アカウントの所有者が他のアカウントの所有者に投票するための提案を提出する方法、および十分な賛成票を得た提案が実行される方法を示しています。<br>
+<a href="https://github.com/dfinity/examples/tree/master/motoko/basic_dao">Motoko</a> • <a href="https://github.com/dfinity/examples/tree/master/rust/basic_dao">Rust</a> • <a href="dao.html">Technical docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_暗号化されたノート"><a class="anchor" href="#_暗号化されたノート"></a>暗号化されたノート</h3>
+<div class="paragraph">
+<p><a href="https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html">Internet Identity</a> サービスとエンドツーエンドの暗号化を用いて、複数のデバイスから秘密のメモを作成/アクセス/変更することができます。このサンプルコードは、ICの <em>ウェブサービス機能</em> と <em>ストレージ機能</em> に依存しており、(1）クライアントサイドのエンドツーエンド暗号化、（2）マルチユーザーおよびマルチデバイスのサポート、の 2 つの重要な機能をハイライトしています。<br>
+<a href="https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_motoko">Motoko</a> •
+<a href="https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_rust">Rust</a> • <a href="https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/">See running</a> • <a href="encrypted-notes.html">Technical docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_トークンの送金"><a class="anchor" href="#_トークンの送金"></a>トークンの送金</h3>
+<div class="paragraph">
+<p>このサンプルコードは、Dapp が最もアクティブなユーザーにトークンを転送する方法を示しています。<br>
+<a href="https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer">Motoko</a> • <a href="https://github.com/dfinity/examples/tree/master/rust/tokens_transfer">Rust</a> • <a href="tokentransfer.html">Technical docs</a></p>
+</div>
+</div>
 <div class="sect2">
 <h3 id="motoko-playground"><a class="anchor" href="#motoko-playground"></a>Motoko Playground</h3>
 <div class="paragraph">
-<p>以下の Motoko の例の一部（すべてではありません）は、 <a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/">Motoko Playground</a> で入手できます。Playground は、 SDK をダウンロードして使い方を学ぶことなく、純粋な Motoko のサンプルを試すための最もシンプルな環境を提供しますが、フロントエンドを持つアプリケーションはサポートしません。</p>
+<p>Motoko で書かれたコードサンプルのレリポジトリへのリンク集です。ほとんどは <a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/">Motoko playground</a> でも公開されています。Playground は、SDKをダウンロードして使い方を学ぶことなく Motoko のサンプルを試すことができる最もシンプルな環境ですが、フロントエンドを持つ Dapp はサポートしません。</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_基礎"><a class="anchor" href="#_基礎"></a>基礎</h3>
+<div class="paragraph">
+<p>IC と Motoko の基本的な概念を示す、入門用サンプル集です。</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/actor_reference">actor_reference</a>&#8201;&#8212;&#8201;Actor （参照）としての IC マネジメント Canister</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/actor_reference">Actor_reference</a> では Actor（参照）としての IC マネジメント Canister を紹介します。</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/counter">counter</a>&#8201;&#8212;&#8201;基本的な （静的） 変数のデモ</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/counter">Counter</a> では基本的な （静的） 変数のデモを紹介します。</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/echo">echo</a>&#8201;&#8212;&#8201;基本的なクエリ関数のデモ</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/echo">Echo</a> では基本的なクエリ関数のデモを紹介します。</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/factorial">factorial</a>&#8201;&#8212;&#8201;基本的な階乗のデモ</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/factorial">Factorial</a> では基本的な階乗のデモを紹介します。</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/hello-world">hello-world</a>&#8201;&#8212;&#8201;基本的な hello world のデモ</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/hello_cycles">Hello_cycles</a> では Cycles の受信と転送、残高の確認を紹介します。</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/hello_cycles">hello_cycles</a>&#8201;&#8212;&#8201;Cycles の受信と転送、残高の確認</p>
-</li>
-<li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/whoami">whoami</a>&#8201;&#8212;&#8201;呼び出し元の Principal を報告する単純な Canister</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/whoami">Whoami</a> では呼び出し元の Principal を報告する単純な Canister を紹介します。</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_中級"><a class="anchor" href="#_中級"></a>中級</h3>
+<div class="paragraph">
+<p>中級編のサンプルでは、基本的なコンセプトを一般的なユースケースでどう使うかを紹介しています。このサンプルでは、Motoko で簡単なバックエンド機能を構築する方法を紹介します。</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/classes">classes</a>&#8201;&#8212;&#8201;動的な Actor（クラス）のインスタンス化</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/classes">Classes</a> では動的な Actor（クラス）のインスタンス化について紹介します。</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/pub-sub">pub-sub</a>-- 複数の Canisters で、パブリッシャーとサブスクライバーの Canister 間通話を行う</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/pub-sub">Pub-sub</a> では複数の Canisters で、パブリッシャーとサブスクライバーの Canister 間通話を行う方法について紹介します。</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">quicksort</a>&#8201;&#8212;&#8201;Motoko のクイックソートによる配列のソート</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">Quicksort</a> では Motoko のクイックソートによる配列のソートの方法を紹介します。</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/simple-to-do">simple-to-do</a>&#8201;&#8212;&#8201;CRUD 的なデモサービスで、フロントエンドはありません。phone-book と superheroes もご覧ください</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/simple-to-do">Simple-to-do</a> は CRUD 的なデモサービスで、フロントエンドはありません。phone-book と superheroes もご覧ください.</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/calc">calc</a>&#8201;&#8212;&#8201;counter demo の発展型</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/calc">Calc</a> は counter demo の発展型です。</p>
 </li>
 </ul>
 </div>
@@ -1004,10 +1073,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/random_maze">random_maze</a>&#8201;&#8212;&#8201;IC ベースのランダムな迷路生成</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/random_maze">Random_maze</a> は IC ベースのランダムな迷路生成です。</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/cert-var">cert_var</a>&#8201;&#8212;&#8201;単純な認証済み変数（単一の32ビット）で、クライアントサイドの証明書検証を行う</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/cert-var">Cert_var</a> は単純な認証済み変数（単一の32ビット）で、クライアントサイドの証明書検証を行うものです。</p>
 </li>
 </ul>
 </div>
@@ -1020,125 +1089,64 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/life">life</a>&#8201;&#8212;&#8201;Motoko Canister で動作する Conway の <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a>。3つのバージョン間のアップグレードと、ステーブル変数を使った状態の移行のデモンストレーションを行う</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/life">Life</a> では Motoko Canister で動作する Conway の <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a> のデモンストレーションをおこないます。3つのバージョン間のアップグレードと、ステーブル変数を使った状態の移行のデモンストレーションを行う</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/phone-book">phone-book</a>&#8201;&#8212;&#8201;CRUD ようなデモサービス</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/phone-book">Phone-book</a> は CRUD ライクなデモサービスです。</p>
 </li>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/superheroes">superheroes</a>&#8201;&#8212;&#8201;シンプルな CRUD Dapp</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/superheroes">Superheroes</a> はシンプルな CRUD Dapp です。</p>
 </li>
 <li>
-<p><a href="https://github.com/krpeacock/auth-client-demo">Auth Client Demo</a> - Internet Identity を使った単純な認証</p>
+<p><a href="https://github.com/krpeacock/auth-client-demo">Auth Client Demo</a> は Internet Identity を使った単純な認証のデモです。</p>
 </li>
 <li>
-<p><a href="https://github.com/krpeacock/ic-avatar">IC-Avatar</a> - Motoko + React のフルスタックで、より高度な認証、画像アップロード、楽観的な更新が可能</p>
+<p><a href="https://github.com/krpeacock/ic-avatar">IC-Avatar</a> は Motoko + React のフルスタックアプリで、より高度な認証、画像アップロード、楽観的更新（Optimistic updates）が可能です。</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="motoko-advanced"><a class="anchor" href="#motoko-advanced"></a>高度な例</h3>
+<h3 id="motoko-advanced"><a class="anchor" href="#motoko-advanced"></a>アドバンス</h3>
 <div class="paragraph">
-<p>コミュニティから寄稿された大規模な例で、必ずしも最新のものではありません。</p>
+<p>コミュニティから寄稿された大規模なサンプルで、必ずしも最新のものではありません。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Motoko でのリバーシゲーム <a href="https://github.com/ninegua/reversi">src</a> （ <a href="https://ninegua.github.io/reversi">Blog post</a> 付属）</p>
+<p>Motoko での <a href="https://github.com/ninegua/reversi">リバーシゲーム</a> （ <a href="https://ninegua.github.io/reversi">Blog post</a> 付属）</p>
 </li>
 <li>
-<p>Motoko での QR コードジェネレータ <a href="https://github.com/enzoh/motoko-qr">src</a> （
+<p>Motoko での <a href="https://github.com/enzoh/motoko-qr">QR コードジェネレータ</a> （
 <a href="https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865b">Medium article</a> 付属）</p>
 </li>
 <li>
-<p><a href="https://github.com/timohanke/icvault">IC Vault</a> - E2E 暗号化</p>
+<p><a href="https://github.com/timohanke/icvault">IC Vault</a> は E2E のコンテンツ暗号化のデモです。</p>
 </li>
 <li>
-<p>Motoko での認証アセット Canister
-<a href="https://github.com/nomeata/motoko-certified-http">src</a> - Internet Computer 認証変数の大きなアプリケーションのデモ（ <a href="https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263">forum post</a> 付属）</p>
+<p>Motoko での <a href="https://github.com/nomeata/motoko-certified-http">認証アセット Canister</a> と <a href="https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263">フォーラムへのポスト</a> は Internet Computer に認証された変数の大規模なアプリケーションのデモです。</p>
 </li>
 </ul>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="rust"><a class="anchor" href="#rust"></a>Rust 例</h2>
+<h2 id="rust-videos"><a class="anchor" href="#rust-videos"></a>Dapps 構築のためのビデオガイド</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="rust-beginner"><a class="anchor" href="#rust-beginner"></a>初心者</h3>
+<div class="paragraph">
+<p><a href="https://www.youtube.com/playlist?list=PLuhDt1vhGcrez-f3I0_hvbwGZHZzkZ7Ng">community conversations</a>シリーズは、Rust で Dappsを作るためのインストラクションと、Rust で Dapps を作るためのベストプラクティスを紹介するビデオです。</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/dfinity/examples/tree/master/rust/pub-sub">Pub Sub</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="rust-videos"><a class="anchor" href="#rust-videos"></a>Videos</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://www.youtube.com/watch?v=6wyIhzsFbKw">Community Conversations | Overview of Building a Dapp in Rust</a></p>
+<p><a href="https://www.youtube.com/watch?v=6wyIhzsFbKw">Community conversations | overview of building a dapp in Rust</a></p>
 </li>
 <li>
-<p><a href="https://www.youtube.com/watch?v=36L33S_DYHY&amp;ab_channel=DFINITY">Community Conversations | Best Practices for Canisters in Rust</a></p>
+<p><a href="https://www.youtube.com/watch?v=36L33S_DYHY&amp;ab_channel=DFINITY">Community conversations | best practices for canisters in Rust</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Rustのサンプルは近日公開予定です！</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_c"><a class="anchor" href="#_c"></a>C</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Internet Computer 用のC言語で書かれたプロジェクトの例については、 <a href="https://github.com/dfinity/examples/tree/master/c">C++ sample projects</a> を参照してください。</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-これらの例は、ビット腐敗する可能性があり、更新が必要な場合があり、説明のためにのみ提供されています。
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/dfinity/examples/tree/master/c/adventure">Adventure game</a></p>
-</li>
-<li>
-<p><a href="https://github.com/dfinity/examples/tree/master/c/qr">QR code generator</a></p>
-</li>
-<li>
-<p><a href="https://github.com/dfinity/examples/tree/master/c/reverse">Reverse game</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_watwasm_テキスト形式"><a class="anchor" href="#_watwasm_テキスト形式"></a>Wat（Wasm テキスト形式）</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>単なる遊びで、純粋に Wasm のテキスト形式で書かれた簡単な例もあります。</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/dfinity/examples/tree/master/wasm/counter">counter</a></p>
-</li>
-</ul>
+<p>その他の有用なビデオシリーズとしては、https://www.youtube.com/watch?v=M2XnywvwxFM&amp;list=PLuhDt1vhGcrfQGLWqhUo9-DFD5JaHqCh1[Coding with Kyle] があります。</p>
 </div>
 </div>
 </div>

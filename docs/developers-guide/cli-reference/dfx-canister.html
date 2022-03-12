@@ -135,23 +135,11 @@
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../quickstart/newcomers.html">初めての人へ</a>
+    <a class="nav-link" href="../../quickstart/how-to-deploy-hello-world-smart-contract.html">Deploy your first dapp in 20 minutes</a>
     
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../quickstart/cycles-faucet.html">Claim Your Free Cycles</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../quickstart/host-a-website.html">Host a Static Website</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../quickstart/local-quickstart.html">ローカル開発</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../quickstart/network-quickstart.html">ネットワークへのデプロイ</a>
     
   </li>
 </ul>
@@ -166,19 +154,27 @@
     
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Dfinity Examples</a></span>
+    <a class="nav-link" href="../../examples/host-a-website.html">Host a Static Website</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Open-source Community Projects</a></span>
+    <a class="nav-link" href="../../examples/dex.html">Basic DEX</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../examples/hackathon-projects.html">Hackathon Projects</a>
+    <a class="nav-link" href="../../examples/nft.html">NFT Minting</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../examples/codelabs.html">CodeLabs</a>
+    <a class="nav-link" href="../../examples/dao.html">Basic DAO</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../examples/encrypted-notes.html">Encrypted Note-taking</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../examples/tokentransfer.html">Token Transfer</a>
     
   </li>
 </ul>
@@ -207,6 +203,10 @@
     <a class="nav-link" href="../../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.9.2-rn.html">0.9.2</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../../release-notes/0.9.0-rn.html">0.9.0</a>
     
@@ -544,12 +544,8 @@
     
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../../candid-guide/candid-howto.html">Candid の使い方</a>
-    
-  </li>
-  <li class="nav-item" data-depth="5">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../candid-guide/candid-ref.html">リファレンス</a>
+    <a class="nav-link" href="../../candid-guide/candid-howto.html">Candid の使い方</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
@@ -604,6 +600,29 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../tutorials/my-contacts.html">スタイルシートの追加</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Security Best Practices</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../security-best-practices/introduction.html">Introduction</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../security-best-practices/general-security-best-practices.html">General Security Best Practices</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../security-best-practices/web-app-development-security-best-practices.html">Web App Development Security Best Practices</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../security-best-practices/rust-canister-development-security-best-practices.html">Rust Canister Development Security Best Practices</a>
     
   </li>
 </ul>
@@ -2246,10 +2265,7 @@ You can use <code>raw</code> as the argument type if you want to pass raw bytes.
 <p>Use the <code>dfx canister sign</code> command to create a signed <code>message.json</code> file using the principal associated with the identity you created using the Privacy Enhanced Mail (PEM) file by running a command similar to the following:</p>
 </div>
 <div class="paragraph">
-<p><code>dfx canister --no-wallet --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’</code></p>
-</div>
-<div class="paragraph">
-<p>Currently, the <code>--no-wallet</code> command must be used to execute the command using the user identity instead of the cycles wallet canister identifier.</p>
+<p><code>dfx canister --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’</code></p>
 </div>
 <div class="paragraph">
 <p>This command illustrates how to creates a <code>message.json</code> file to create neurons on the Internet Computer プラットフォーム specified by the <code>ic</code> alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.</p>

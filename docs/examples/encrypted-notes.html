@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Internet Computer で静的なウェブサイトをホストする :: Dfinity 日本語ドキュメント</title>
-    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/quickstart/host-a-website.html">
+    <title>Encrypted Notes Dapp :: Dfinity 日本語ドキュメント</title>
+    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/examples/encrypted-notes.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
@@ -131,54 +131,50 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="quickstart-intro.html">クイックスタート</a>
+    <a class="nav-link" href="../quickstart/quickstart-intro.html">クイックスタート</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="newcomers.html">初めての人へ</a>
+    <a class="nav-link" href="../quickstart/how-to-deploy-hello-world-smart-contract.html">Deploy your first dapp in 20 minutes</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cycles-faucet.html">Claim Your Free Cycles</a>
-    
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="host-a-website.html">Host a Static Website</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="local-quickstart.html">ローカル開発</a>
-    
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="network-quickstart.html">ネットワークへのデプロイ</a>
+    <a class="nav-link" href="../quickstart/cycles-faucet.html">Claim Your Free Cycles</a>
     
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../examples/index.html">コードの例</a>
+    <a class="nav-link" href="index.html">コードの例</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/hello.html">Hello Example</a>
+    <a class="nav-link" href="hello.html">Hello Example</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text"><a href="https://github.com/dfinity/examples" target="_blank" rel="noopener">Dfinity Examples</a></span>
+    <a class="nav-link" href="host-a-website.html">Host a Static Website</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text"><a href="https://github.com/dfinity/awesome-dfinity" target="_blank" rel="noopener">Open-source Community Projects</a></span>
+    <a class="nav-link" href="dex.html">Basic DEX</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/hackathon-projects.html">Hackathon Projects</a>
+    <a class="nav-link" href="nft.html">NFT Minting</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/codelabs.html">CodeLabs</a>
+    <a class="nav-link" href="dao.html">Basic DAO</a>
+    
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="encrypted-notes.html">Encrypted Note-taking</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tokentransfer.html">Token Transfer</a>
     
   </li>
 </ul>
@@ -207,6 +203,10 @@
     <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.9.2-rn.html">0.9.2</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../release-notes/0.9.0-rn.html">0.9.0</a>
     
@@ -544,12 +544,8 @@
     
   </li>
   <li class="nav-item" data-depth="5">
-    <a class="nav-link" href="../candid-guide/candid-howto.html">Candid の使い方</a>
-    
-  </li>
-  <li class="nav-item" data-depth="5">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../candid-guide/candid-ref.html">リファレンス</a>
+    <a class="nav-link" href="../candid-guide/candid-howto.html">Candid の使い方</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="6">
@@ -604,6 +600,29 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../developers-guide/tutorials/my-contacts.html">スタイルシートの追加</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Security Best Practices</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/introduction.html">Introduction</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/general-security-best-practices.html">General Security Best Practices</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/web-app-development-security-best-practices.html">Web App Development Security Best Practices</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../security-best-practices/rust-canister-development-security-best-practices.html">Rust Canister Development Security Best Practices</a>
     
   </li>
 </ul>
@@ -920,235 +939,171 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Developer Center</a></li>
-    <li><a href="quickstart-intro.html">クイックスタート</a></li>
-    <li><a href="host-a-website.html">Host a Static Website</a></li>
+    <li><a href="index.html">コードの例</a></li>
+    <li><a href="encrypted-notes.html">Encrypted Note-taking</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/quickstart/pages/host-a-website.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/examples/pages/encrypted-notes.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Internet Computer で静的なウェブサイトをホストする</h1>
+<h1 class="page">Encrypted Notes Dapp</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>始める前に、私たちの DFINITY Canister SDK (DFX) と Cycle ウォレットがセットアップされていることを確認してください。 Cycle ウォレットをセットアップするには、<a href="cycles-faucet.html" class="page">Fauset クイックスタート</a> を見るか、または ICP を購入して <a href="network-quickstart.html" class="page">Network Deployment</a> ガイドに従ってください。</p>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp">Encrypted Notes</a> is an experimental dapp for authoring and storing confidential information in the form of short pieces of text. The user can access their notes via any number of automatically synchronized devices authenticated via <a href="https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html">Internet Identity</a>. Thanks to the end-to-end encryption performed by the dapp’s frontend, the user does not need to trust the dapp’s backend.</p>
+</div>
+<div class="paragraph">
+<p>You can play around with the <a href="https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/">dapp deployed on the IC</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_プロジェクトのセットアップ"><a class="anchor" href="#_プロジェクトのセットアップ"></a>プロジェクトのセットアップ</h2>
+<h2 id="_idea"><a class="anchor" href="#_idea"></a>Idea</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>簡単な静的ウェブサイトを作成し、それを dfx でデプロイするように設定してみましょう。</p>
+<p>We wanted to build an example of a simple (but not too simple) dapp running purely on the IC. This example relies upon the <em>web-serving</em> and <em>storage capabilities</em> of the IC. We focused on the following two key features for our example dapp: (1) client-side, <em>end-to-end encryption</em> and (2) <em>multi-user</em> and <em>multi-device</em> support.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>static-ic-website という名前のフォルダを作成しましょう</p>
-</li>
-<li>
-<p>assets という名前の新しいフォルダを static-ic-website に作成しましょう</p>
-</li>
-<li>
-<p>assets フォルダに以下の４つのファイルを作成しましょう</p>
+<div class="paragraph">
+<p>To demonstrate the potential of the IC as a platform for developing such dapps, we implemented this example using two distinct Canister Development Kits (CDKs). The Motoko CDK allows developers to implement actor-based dapps using the <a href="https://smartcontracts.org/docs/language-guide/motoko.html">Motoko</a> language. The Rust CDK allows implementing dapps in <a href="https://smartcontracts.org/docs/rust-guide/rust-intro.html">Rust</a>. In both cases, canisters are compiled into WebAssembly files that are then deployed onto the IC.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_approach"><a class="anchor" href="#_approach"></a>Approach</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The basic functionality of Encrypted Notes consists of two main components.</p>
+</div>
+<div class="paragraph">
+<p>First, we re-used the code of a (non-encrypted) dapp called <a href="https://github.com/pattad/ic_notes">IC-Notes</a>. In particular IC-Notes relies on the <a href="https://smartcontracts.org/docs/ic-identity-guide/auth-how-to.html">Internet Identity</a> (II) canister for user authentication, an approach that is also inherited by Encrypted Notes. For development purposes, we deploy a local instance of the II canister (along with a local instance of Encrypted Notes); when deploying Encrypted Notes onto the mainnet, the real-world instance of II is used for authentication.</p>
+</div>
+<div class="paragraph">
+<p>Second, we enabled client-side, end-to-end encryption for the note contents, borrowing the solution from another existing dapp called <a href="https://github.com/timohanke/icvault">IC-Vault</a>. Our Encrypted Notes dapp follows the approach of IC-Vault to support managing multiple devices.</p>
+</div>
+<div class="paragraph">
+<p>In the context of the canisters discussed in this document, a device is not necessarily a separate physical device but a logical instance device, e.g., a web browser, with its own local data storage. For example, we consider two web browsers running on the same laptop as two independent devices; these browsers generate their own encryption keys. In contrast, the II canister relies on hardware-generated encryption keys, distinguishing only hardware devices.</p>
+</div>
+<div class="paragraph">
+<p>To support multiple devices per user, IC-Vault employs a device manager, a canister that securely synchronizes device-specific keys across all the devices that are associated with a user. The remainder of this document focuses on the Encrypted Notes canister that implements a device manager in a similar way but as part of its main canister.</p>
+</div>
+<div class="paragraph">
+<p>For further details and user stories, please refer to the <a href="https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md">README file</a>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/encrypted-notes-arch.png" alt="High-level architecture overview diagram of the Encrypted Notes dapp"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_note_management"><a class="anchor" href="#_note_management"></a>Note management</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>index.html</p>
+<p>Users are linked to II in the frontend, getting the user a principal that can be used for calling API queries and updates.</p>
 </li>
 <li>
-<p>page-2.html</p>
+<p>Internally, we store the map of the form <code>Principal → [Notes]</code>
+and a <code>counter</code>.</p>
 </li>
 <li>
-<p>script.js</p>
+<p><code>counter</code> stores the number of notes the canister has created (across all principals).</p>
 </li>
 <li>
-<p>style.css</p>
+<p>Method <code>create</code> adds a note to its principal’s entry (if it exists),
+or adds the principal to the map with the <code>note_id == counter</code>,
+and then increments <code>counter</code>.</p>
+</li>
+<li>
+<p>Method <code>update</code> pulls a note, for the caller’s Principal and for the provided <code>note_id</code> and replaces it with the provided <code>text</code> (this <code>text</code> is assumed to be encrypted by the frontend).</p>
+</li>
+<li>
+<p>Method <code>delete</code> finds the note with the given <code>note_id</code> in the map and removes it. To ensure that note IDs are always globally unique, we do not decrease <code>counter</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cryptography"><a class="anchor" href="#_cryptography"></a>Cryptography</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Encryption of notes is entirely client-side. However, our example dapp is still not protected against potentially data-revealing attacks by a possibly malicious node provider. For example, the attacker can infer how many notes a particular user has, user activity statistics, etc. Therefore, please carefully read the <a href="https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md#disclaimer-please-read-carefully">disclaimer</a> before using any of the code or patterns from this dapp.</p>
+</li>
+<li>
+<p>Recall that, in our definition, a device is not necessarily a separate physical device but simply a web browser instance with an independent local storage.</p>
+</li>
+<li>
+<p>The dapp uses three different kinds of keys:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Symmetric AES-GCM <em>secret key</em>: used to encrypt the notes of a given principal. The notes of a principal are stored in the Encrypted Notes canister encrypted with this secret key. Thus the frontend of the dapp needs to know this secret key to decrypt notes from this user and to send encrypted notes to be stored in the Encrypted Notes canister.</p>
+</li>
+<li>
+<p>Device RSA-OAEP <em>public key</em>: used to encrypt the symmetric AES <em>secret key</em> of the principal. The encrypted secret key is stored in the canister for each device registered to the principal. The same key is used for different principals using that device.</p>
+</li>
+<li>
+<p>Device RSA-OAEP <em>private key</em>: used to decrypt the symmetric AES <em>secret key</em> stored in the Encrypted Notes canister for a given principal. Once the frontend  decrypts the secret key, it can use this key for decrypting the notes stored in the Encrypted Notes canister.</p>
 </li>
 </ul>
 </div>
 </li>
-</ol>
+<li>
+<p>We store a map of the form:</p>
+<div class="literalblock">
+<div class="content">
+<pre>Principal → (DeviceAlias → PublicKey,
+             DeviceAlias → CipherText)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>This map is used for managing user devices, as explained next.</p>
+</li>
+<li>
+<p>To register a device, the frontend generates a device alias, a public key, and a private key (held in its local storage).</p>
+</li>
+<li>
+<p>Adding a device:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Device registration:</strong> If this identity is already known, a new device will remain unsynced at first; at this time, only the <code>alias</code> and <code>publickey</code> of this device will be added to the Encrypted Notes canister.</p>
+</li>
+<li>
+<p><strong>Device synchronization:</strong> Once an unsynced device obtains the list of all unsynced devices for this II, it will encrypt the symmetric AES <em>secret key</em> under each unsynced device&#8217;s public key. Afterwards, the unsynced device obtains the encrypted symmetric AES <em>secret key</em>, decrypts it, and then uses it to decrypt the existing notes stored in the Encrypted Notes canister.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Once authenticated with II:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If this identity is not known, then the frontend generates a symmetric AES <em>secret key</em> and encrypts it with its own public key. Then the frontend calls <code>seed(publickey, ciphertext)</code>, adding that ciphertext and its associated <code>publickey</code> to the map.</p>
+</li>
+<li>
+<p>If a user wants to register a subsequent device, the frontend calls <code>register_device</code>, passing in the <code>alias</code> and <code>publickey</code> of that device. The frontend then calls <code>submit_ciphertexts([publickey, ciphertext])</code> for all the devices it needs to register. This allows the registered devices to pull and decrypt the AES key to encrypt and decrypt the user notes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ファイルにコンテントを追加する"><a class="anchor" href="#_ファイルにコンテントを追加する"></a>ファイルにコンテントを追加する</h2>
+<h2 id="_sequence_diagrams"><a class="anchor" href="#_sequence_diagrams"></a>Sequence Diagrams</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>index.html から始めましょう。以下のコードをファイルにペーストします：</p>
-</div>
-<div class="listingblock">
-<div class="title">index.html</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-   &lt;meta charset="UTF-8"&gt;
-   &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-   &lt;title&gt;Static IC Website&lt;/title&gt;
-   &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-   &lt;h1&gt;My First IC Website&lt;/h1&gt;
-   &lt;p&gt;Styles are loaded from a stylesheet&lt;/p&gt;
-   &lt;p id="dynamic-content"&gt;&lt;/p&gt;
-   &lt;a href="page-2.html"&gt;Page 2&lt;/a&gt;
-   &lt;script src="script.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>次に page-2.html を開き、以下の内容を追加します。</p>
-</div>
-<div class="listingblock">
-<div class="title">page-2.html</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-   &lt;meta charset="UTF-8"&gt;
-   &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-   &lt;title&gt;Page 2&lt;/title&gt;
-   &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-   &lt;h1&gt;This is page 2&lt;/h1&gt;
-   &lt;a href="/"&gt;Back to index&lt;/a&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>それから script.js に簡単なロジックを追加します。</p>
-</div>
-<div class="listingblock">
-<div class="title">script.js</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">document.querySelector("#dynamic-content").innerText =
- "This paragraph is dynamically rendered using JavaScript";</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>そして style.css にスタイルを追加します。</p>
-</div>
-<div class="listingblock">
-<div class="title">style.css</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">body {
-   font-family: sans-serif;
-   font-size: 1.5rem;
-}
-
-p:first-of-type {
-   color: #ED1E79;
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_dfx_のデプロイ設定"><a class="anchor" href="#_dfx_のデプロイ設定"></a>DFX のデプロイ設定</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>このウェブサイトを Internet Computer プラットフォーム 上にホストして見れる状態にするには、ファイルを認証済みのアセット Canister にアップロードするように DFX を設定する必要があります。プロジェクトのルートディレクトリ (static-ic-website) に、新しいファイル (dfx.json) を作成します。そして、以下の内容を追加します。</p>
-</div>
-<div class="listingblock">
-<div class="title">dfx.json</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-   "canisters": {
-       "website": {
-           "type": "assets",
-           "source": ["assets"]
-       }
-   }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>これにより、 DFX はアセット Canister を作成し、 asset フォルダの内容をアップロードするように指示します。追加の静的アセットをアップロードしたい場合は、 asset フォルダに追加するか、 source 構成に追加フォルダを追加します。</p>
-</div>
-<div class="paragraph">
-<p>ディレクトリは以下のようになっているはずです：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>├── assets
-│   ├── index.html
-│   ├── page-2.html
-│   ├── script.js
-│   └── style.css
-└── dfx.json</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ウェブサイトをデプロイする"><a class="anchor" href="#_ウェブサイトをデプロイする"></a>ウェブサイトをデプロイする</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>ウェブサイトをデプロイするには、プロジェクトのルートにあるターミナルで、次のコマンドを実行します：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">dfx deploy --network ic</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>コンソールに出力が表示され、次のような成功メッセージが表示されます：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>...
-
-Uploading assets to asset canister...
-Starting batch.
-Staging contents of new and changed assets:
-  /index.html 1/1 (501 bytes)
-  /index.html (gzip) 1/1 (317 bytes)
-  /page-2.html 1/1 (373 bytes)
-  /page-2.html (gzip) 1/1 (258 bytes)
-  /script.js 1/1 (117 bytes)
-  /style.css 1/1 (102 bytes)
-Committing batch.
-Deployed canisters.</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_動作中のウェブサイトを見る"><a class="anchor" href="#_動作中のウェブサイトを見る"></a>動作中のウェブサイトを見る</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>以下を実行して新しい Canister ID を見つけます。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">dfx canister --network ic id website</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>その Canister ID を使って、 https://&lt;Canister ID&gt;.ic0.app にアクセスし、 URL のサブドメインに自分の Canister IDを挿入します。</p>
-</div>
-<div class="paragraph">
-<p>以下のような複数のページで構成されたライブウェブサイトを見ることができます：</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/static-website.png" alt="Static Website"></span></p>
-</div>
 <div class="sect2">
-<h3 id="_次のステップ"><a class="anchor" href="#_次のステップ"></a>次のステップ</h3>
+<h3 id="_adding_new_device"><a class="anchor" href="#_adding_new_device"></a>Adding New Device</h3>
 <div class="paragraph">
-<p>フルスタックの Dapp 構築を考えていますか？
-<a href="../developers-guide/tutorials/custom-frontend.html">フルスタック React チュートリアル</a> をご覧ください。</p>
-</div>
-<div class="paragraph">
-<p><a href="https://forum.dfinity.org">Developer Forum</a> では、Dfinity Foundationのエンジニアや開発者コミュニティからのインスピレーションやサポートを受けることができます。</p>
+<p><span class="image"><img src="_images/encrypted-notes-seq.png" alt="UML sequence diagram showing device registration and synchronization"></span></p>
 </div>
 </div>
 </div>
