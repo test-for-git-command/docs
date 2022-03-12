@@ -15,7 +15,8 @@ sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 
 === Step 1: 認証
 
-まず、 link:https://faucet.dfinity.org[] に移動する必要があります。続行するには、アクティブな GitHub アカウントで接続します。アカウントが対象外の場合は、 xref:quickstart:network-quickstart.html[ネットワーク デプロイ] のガイドに従ってください。
+まず、 link:https://faucet.dfinity.org[] に移動する必要があります。続行するには、アクティブな GitHub アカウントで接続します。
+// アカウントが対象外の場合は、 xref:quickstart:network-quickstart.html[ネットワーク デプロイ] のガイドに従ってください。
 
 image:cycles-faucet/faucet_step_1.png[Connecting to GitHub]
 
@@ -45,7 +46,7 @@ Cycles ウォレットが作成され、使用できるようになりました�
 
 === 次に、このようなガイドがよく見られます。
 
-* link:./host-a-website.html[Host a Static Website]
+// * link:./host-a-website.html[Host a Static Website]
 * link:./local-quickstart.html[Local Development]
 * link:./network-quickstart.html[Network Deployment]
 
@@ -68,7 +69,8 @@ or following the instructions at link:https://smartcontracts.org[].
 
 === Step 1: Authenticate
 
-First, you will need to navigate to link:https://faucet.dfinity.org[]. You will need to connect an active GitHub account to continue. If your account is not eligible, please follow the xref:quickstart:network-quickstart.html[Network Deployment] guide.
+First, you will need to navigate to link:https://faucet.dfinity.org[]. You will need to connect an active GitHub account to continue. 
+// If your account is not eligible, please follow the xref:quickstart:network-quickstart.html[Network Deployment] guide.
 
 image:cycles-faucet/faucet_step_1.png[Connecting to GitHub]
 
@@ -98,7 +100,7 @@ Now you are ready to host a website on the IC or follow one of our dapp tutorial
 
 === Next, people often look at these guides:
 
-* link:./host-a-website.html[Host a Static Website]
+// * link:./host-a-website.html[Host a Static Website]
 * link:./local-quickstart.html[Local Development]
 * link:./network-quickstart.html[Network Deployment]
 ////
