@@ -21,6 +21,9 @@ content:
     - url: https://github.com/Japan-DfinityInfoHub/internet-identity
       branches: HEAD
       start_path: docs
+    - url: https://github.com/Japan-DfinityInfoHub/ic
+      branches: HEAD
+      start_path: rs/rosetta-api/docs
 
 ui:
   bundle:
