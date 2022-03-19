@@ -959,7 +959,7 @@
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this tutorial, we will deploy a simple <code>Hello</code> canister smart contract that has just one function—called <code>greet</code>. The <code>greet</code> function accepts one text argument and returns the result with a greeting. For example, if you call the <code>greet</code> method with the text argument <code>Alice</code>.</p>
+<p>In this tutorial, we will deploy a simple <code>Hello</code> dapp that has just one function—called <code>greet</code>. The <code>greet</code> function accepts one text argument and returns the result with a greeting. For example, if you call the <code>greet</code> method with the text argument <code>Alice</code>.</p>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
@@ -976,20 +976,15 @@
 </div>
 <div class="sect2">
 <h3 id="_concepts_necessary_for_this_tutorial"><a class="anchor" href="#_concepts_necessary_for_this_tutorial"></a>Concepts necessary for this tutorial</h3>
-<div class="sect3">
-<h4 id="_canister_smart_contractdapp"><a class="anchor" href="#_canister_smart_contractdapp"></a>Canister smart contract/dapp</h4>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>A <strong>canister smart contract/dapp</strong> is a type of smart contract that bundles code and state. A canister can be deployed as a smart contract on the Internet Computer and accessed over the Internet.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_cycles"><a class="anchor" href="#_cycles"></a>Cycles</h4>
-<div class="paragraph">
-<p>On the Internet Computer, a <strong>cycle</strong> is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer&#8217;s utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in [SDR] using the convention that one trillion cycles correspond to one SDR.</p>
-</div>
-<div class="paragraph">
-<p>In this tutorial, you will get free cycles from the cycles faucet.</p>
-</div>
+</li>
+<li>
+<p>A <strong>cycle</strong> is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, this is analogous to Ethereum&#8217;s gas: it is what one needs to run their dapp, but it is much more stable and cheaper for developers to use. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer&#8217;s utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in <a href="https://en.wikipedia.org/wiki/Special_drawing_rights">SDR</a> using the convention that one trillion cycles correspond to one SDR. <strong>In this tutorial, you will get free cycles from the cycles faucet.</strong></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1003,17 +998,24 @@
 <p>Linux</p>
 </li>
 <li>
-<p>macOS (12.* Monterey)</p>
+<p>macOS (12.*.*)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Intel</p>
 </li>
 <li>
-<p>Windows</p>
+<p>M1 (may require <a href="https://support.apple.com/en-us/HT211861">Apple&#8217;s Rosetta</a>) that enables a Mac with Apple silicon to use apps built for a Mac with an Intel processor.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_1_installing_tools_5_min"><a class="anchor" href="#_1_installing_tools_5_min"></a>1. Installing tools (5 min)</h2>
+<h2 id="_1_installing_tools"><a class="anchor" href="#_1_installing_tools"></a>1. Installing tools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To build a dapp, users need to install the following:</p>
@@ -1035,7 +1037,7 @@
 <div class="sect2">
 <h3 id="_1_2_the_canister_sdk_aka_dfx"><a class="anchor" href="#_1_2_the_canister_sdk_aka_dfx"></a>1.2 The Canister SDK (AKA "dfx")</h3>
 <div class="paragraph">
-<p>The Canister SDK used in this article is called <code>dfx</code> and it is maintained by the DFINITY foundation. There are many SDK&#8217;s so this is just one.</p>
+<p>The Canister SDK used in this tutorial is called <code>dfx</code> and it is maintained by the DFINITY foundation. There are many SDK&#8217;s so this is just one.</p>
 </div>
 <div class="paragraph">
 <p>To install, one needs to run:</p>
@@ -1063,25 +1065,18 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_2_create_a_default_project_2_min"><a class="anchor" href="#_2_create_a_default_project_2_min"></a>2. Create a default project (2 min)</h2>
+<h2 id="_2_create_a_default_project_1_min"><a class="anchor" href="#_2_create_a_default_project_1_min"></a>2. Create a default project (1 min)</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_2_1_create_a_new_project"><a class="anchor" href="#_2_1_create_a_new_project"></a>2.1 Create a new project</h3>
+<h3 id="_2_1_launch_a_new_project"><a class="anchor" href="#_2_1_launch_a_new_project"></a>2.1 Launch a new project</h3>
 <div class="paragraph">
-<p>Dapps on the Internet Computer start as projects. You create projects using the <code>dfx</code> parent command and its subcommands.</p>
-</div>
-<div class="paragraph">
-<p>For this tutorial, we’ll start with the default sample dapp to illustrate creating dapp using the starter files in a project. When you create a new project, the <code>dfx</code> command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the Explore the default project tutorial.</p>
+<p>Dapps on the Internet Computer start as projects, which are initiated by using the dfx parent command and its subcommands. You create projects using the <code>dfx</code> parent command and its subcommands. This tutorial starts with the default sample dapp to illustrate how to create a dapp using the starter files in a project. When you create a new project, the <code>dfx</code> command-line interface adds a default project directory structure to your workspace.</p>
 </div>
 <div class="paragraph">
 <p>To create a new project for your first application:</p>
 </div>
-<div class="paragraph">
-<p>2.1 Open a terminal shell on your local computer, if you don’t already have one open.</p>
-</div>
-<div class="paragraph">
-<p>2.2 Create a new project named hello by running the following command:</p>
-</div>
+<div class="sect3">
+<h4 id="_2_1_1_open_a_terminal_shell_on_your_computer_and_create_a_new_project_named_hello"><a class="anchor" href="#_2_1_1_open_a_terminal_shell_on_your_computer_and_create_a_new_project_named_hello"></a>2.1.1 Open a terminal shell on your computer and create a new project named "hello"</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dfx new hello</code></pre>
@@ -1096,9 +1091,9 @@
 <div class="paragraph">
 <p><span class="image"><img src="_images/quickstart/dfx-new-hello-2.png" alt="dfx new"></span></p>
 </div>
-<div class="paragraph">
-<p>2.3 Move to your project directory by running the following command:</p>
 </div>
+<div class="sect3">
+<h4 id="_2_1_2_move_to_your_project_directory"><a class="anchor" href="#_2_1_2_move_to_your_project_directory"></a>2.1.2 Move to your project directory</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cd hello</code></pre>
@@ -1109,6 +1104,7 @@
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/quickstart/cd-hello.png" alt="cd new"></span></p>
+</div>
 </div>
 </div>
 </div>
@@ -1124,21 +1120,27 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Terminal window/tab A:</strong> This will show the local version of the IC running</p>
+<p><strong>Terminal window/tab A:</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>This is analogous to how developers often start local servers in web2 projects (e.g. node.js&#8217;s Express, python&#8217;s Django, Ruby&#8217;s Rails, etc&#8230;&#8203;)</p>
+<p>Shows the local version of the IC running</p>
+</li>
+<li>
+<p>Is analogous to how developers often start local servers in web2 projects (e.g. Node.js&#8217;s Express, Python&#8217;s Django, Ruby&#8217;s Rails, etc&#8230;&#8203;)</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Terminal window/tab B:</strong> This will be used to send <strong>messages</strong> to the local version of the IC</p>
+<p><strong>Terminal window/tab B:</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>This is analogous to how developers send HTTP API messages to servers running locally (e.g. Postman, Panic).</p>
+<p>Used to send <strong>messages</strong> to the local version of the IC</p>
+</li>
+<li>
+<p>Is analogous to how developers send HTTP API messages to servers running locally (e.g. Postman, Panic).</p>
 </li>
 </ul>
 </div>
@@ -1148,33 +1150,26 @@
 <div class="paragraph">
 <p>For ease, this tutorial will distinguish between both windows by color scheme:</p>
 </div>
-<div class="paragraph">
-<p><strong>Terminal A</strong></p>
 </div>
+<div class="sect2">
+<h3 id="_terminal_a"><a class="anchor" href="#_terminal_a"></a>Terminal A</h3>
 <div class="paragraph">
 <p><span class="image"><img src="_images/quickstart/dfx-new-hello-2.png" alt="dfx new"></span></p>
 </div>
-<div class="paragraph">
-<p><strong>Terminal B</strong></p>
 </div>
+<div class="sect2">
+<h3 id="_terminal_b"><a class="anchor" href="#_terminal_b"></a>Terminal B</h3>
 <div class="paragraph">
 <p><span class="image"><img src="_images/quickstart/terminal-b-ls.png" alt="terminal b ls"></span></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_3_1_start_the_local_version_of_the_ic_terminal_a"><a class="anchor" href="#_3_1_start_the_local_version_of_the_ic_terminal_a"></a>3.1 Start the local version of the IC (Terminal A)</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Use the Terminal window or tab on your local computer.</p>
-</li>
-<li>
+<div class="paragraph">
 <p>Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder <code>hello</code> because that is the name of the project created in section 2 above.</p>
-</li>
-<li>
-<p>Start the local canister execution environment on your computer in your second terminal by running the following command:</p>
-</li>
-</ol>
+</div>
+<div class="paragraph">
+<p>Start the local canister execution environment in Terminal A:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1185,27 +1180,32 @@
 <p><span class="image"><img src="_images/quickstart/terminal-a-dfx-start.png" alt="dfx start"></span></p>
 </div>
 <div class="paragraph">
-<p>Note: Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click Allow.</p>
+<p>Notes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click "Allow."</p>
+</li>
+<li>
+<p>Check no other network process is running that would create a port conflict on 8000.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><strong>That is it, there is now a local version of the IC running on your machine. Leave this window/tab open and running while you continue.</strong> If the window/tab is closed, the local version of the IC will not be running and the rest of the tutorial will fail.</p>
+<p><strong>Congratulations - there is now a local version of the IC running on your machine. Leave this window/tab open and running while you continue.</strong> If the window/tab is closed, the local version of the IC will not be running and the rest of the tutorial will fail.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_3_2_deploy_the_hello_dapp_to_the_local_version_of_the_ic_terminal_b"><a class="anchor" href="#_3_2_deploy_the_hello_dapp_to_the_local_version_of_the_ic_terminal_b"></a>3.2 Deploy the "hello" dapp to the local version of the IC (Terminal B)</h3>
 <div class="paragraph">
-<p>Note: since this is a local version of the IC, this has fewer steps than deploying to mainnet (which requires cycles).</p>
+<p>Note: since this is a local version of the IC, this section has fewer steps than deploying to mainnet (which requires cycles).</p>
 </div>
 <div class="paragraph">
 <p>To deploy your first dapp locally:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Check that you are still in the root directory for your project, if needed.</p>
-</li>
-</ol>
-</div>
+<div class="sect3">
+<h4 id="_3_2_1_check_that_you_are_still_in_the_root_directory_for_your_project_if_needed"><a class="anchor" href="#_3_2_1_check_that_you_are_still_in_the_root_directory_for_your_project_if_needed"></a>3.2.1 Check that you are still in the root directory for your project, if needed.</h4>
 <div class="paragraph">
 <p>Ensure that node modules are available in your project directory, if needed, by running the following command (it does not hurt to run this many times):</p>
 </div>
@@ -1217,13 +1217,9 @@
 <div class="paragraph">
 <p><span class="image"><img src="_images/quickstart/terminal-b-npm-install.png" alt="npm install"></span></p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Register, build and deploy dapp:</p>
-</li>
-</ol>
 </div>
+<div class="sect3">
+<h4 id="_3_2_2_register_build_and_deploy_dapp"><a class="anchor" href="#_3_2_2_register_build_and_deploy_dapp"></a>3.2.2 Register, build and deploy dapp:</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dfx deploy</code></pre>
@@ -1231,6 +1227,26 @@
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/quickstart/terminal-b-dfx-deploy.png" alt="dfx deploy"></span></p>
+</div>
+<div class="paragraph">
+<p>Your dapp is now composed of two canister smart contracts, as you can see in the copy below (from terminal B):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>hello</code> canister <code>rrkah-fqaaa-aaaaa-aaaaq-cai</code> which contains the backend logic.</p>
+</li>
+<li>
+<p><code>hello_assets</code> canister <code>yjl3-tyaaa-aaaaa-aaaba-cai</code> which contains the frontend assets (e.g. HTML, JS, CSS).</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1246,16 +1262,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>+dfx canister call+</code> command requires you to specify a canister name and a method—or function—to call.</p>
+<p>The <code>dfx canister call</code> command requires you to specify a canister name and a method—or function—to call.</p>
 </li>
 <li>
-<p><code>+hello+</code> specifies the name of the <strong>canister</strong> you want to call.</p>
+<p><code>hello</code> specifies the name of the <strong>canister</strong> you want to call.</p>
 </li>
 <li>
-<p><code>+greet+</code> specifies the name of the <strong>function</strong> you want to call in the <code>+hello+</code> canister.</p>
+<p><code>greet</code> specifies the name of the <strong>function</strong> you want to call in the <code>hello</code> canister.</p>
 </li>
 <li>
-<p><code>+everyone+</code> is the text data type argument that you want to pass to the <code>+greet+</code> function.</p>
+<p><code>everyone</code> is the text data type argument that you want to pass to the <code>greet</code> function.</p>
 </li>
 </ul>
 </div>
@@ -1265,25 +1281,21 @@
 <div class="paragraph">
 <p>Now that you have verified that your dapp has been deployed and tested its operation using the command line, let&#8217;s verify that you can access the front-end using your web browser.</p>
 </div>
-<div class="paragraph">
-<p>3.4.1 On terminal B, start the development server with:</p>
-</div>
+<div class="sect3">
+<h4 id="_3_4_1_on_terminal_b_start_the_development_server_with"><a class="anchor" href="#_3_4_1_on_terminal_b_start_the_development_server_with"></a>3.4.1 On terminal B, start the development server with:</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm start</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_3_4_2_test_dapp_locally_in_the_browser"><a class="anchor" href="#_3_4_2_test_dapp_locally_in_the_browser"></a>3.4.2  Test dapp locally in the browser</h4>
 <div class="paragraph">
-<p>3.4.2  Open a browser.
-3.4.2 Navigate to <a href="http://localhost:8080/" class="bare">http://localhost:8080/</a></p>
+<p>To see your dapp running locally in the browser on <code><a href="http://localhost:8080" class="bare">http://localhost:8080</a></code>.</p>
 </div>
 <div class="paragraph">
-<p>Navigating to this URL displays a simple HTML page with a sample asset image file, an input field, and a button.
-For example:</p>
-</div>
-<div class="paragraph">
-<p>+
-<span class="image"><img src="_images/front-end-prompt.png" alt="Sample HTML page"></span></p>
+<p><span class="image"><img src="_images/front-end-prompt.png" alt="Sample HTML page"></span></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1300,12 +1312,10 @@ For example:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_3_5_stop_the_local_canister_execution_environment"><a class="anchor" href="#_3_5_stop_the_local_canister_execution_environment"></a>3.5 Stop the local canister execution environment</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_3_5_stop_the_local_canister_execution_environment"><a class="anchor" href="#_3_5_stop_the_local_canister_execution_environment"></a>3.5 Stop the local canister execution environment</h3>
 <div class="paragraph">
-<p>After testing the application in the browser, you can stop the local canister execution environment so that it does not continue running in the background.</p>
+<p>After testing the application in the browser, you can stop the local canister execution environment so that it does not continue running in the background. We will not need it running to deploy on-chain.</p>
 </div>
 <div class="paragraph">
 <p>To stop the local deployment:</p>
@@ -1319,10 +1329,10 @@ For example:</p>
 <p>In the terminal B, press Control-C to interrupt the development server process.</p>
 </li>
 <li>
-<p>Stop the local canister execution environment running on your local computer by running the following command:</p>
+<p>Stop the local canister execution environment running on your local computer:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dfx stop</code></pre>
 </div>
 </div>
 </li>
@@ -1330,50 +1340,58 @@ For example:</p>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="_4_deploying_on_chain_10_min"><a class="anchor" href="#_4_deploying_on_chain_10_min"></a>4. Deploying on-chain (10 min)</h2>
+<h2 id="_4_acquiring_cycles_to_deploy_on_chain_10_15_min"><a class="anchor" href="#_4_acquiring_cycles_to_deploy_on_chain_10_15_min"></a>4. Acquiring cycles to deploy on-chain (10-15 min)</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_important_note_about_cycles"><a class="anchor" href="#_important_note_about_cycles"></a>Important note about cycles</h3>
+<h3 id="_4_1_cycles_an_introduction"><a class="anchor" href="#_4_1_cycles_an_introduction"></a>4.1 Cycles: an Introduction</h3>
 <div class="paragraph">
-<p>In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles can be converted from ICP token.</p>
+<p>In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles are created from ICP token.</p>
 </div>
 <div class="paragraph">
-<p>This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume <strong>something</strong> (whether it is Ethereum&#8217;s gas or the IC&#8217;s cycles). The next steps will likely be familiar to those in crypto, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens."</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_4_2_acquiring_cycles_and_adding_them_to_your_canister_terminal_b"><a class="anchor" href="#_4_2_acquiring_cycles_and_adding_them_to_your_canister_terminal_b"></a>4.2 Acquiring cycles and adding them to your canister (Terminal B)</h3>
-<div class="paragraph">
-<p>For the purposes of this tutorial, you can acquire free cycles for your "hello world" dapp from the cycles faucet. Follow the instructions here: <a href="cycles-faucet.html">Claim your free cycles</a>.</p>
+<p>This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume <strong>something</strong> (whether it is Ethereum&#8217;s gas or the IC&#8217;s cycles). The next steps will likely be familiar to those in crypto or blockchain, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens."</p>
 </div>
 <div class="paragraph">
-<p>Few notes about cycles:</p>
+<p>You may wonder why dapps do not just on ICP tokens. Why create a new construct of cycles? The reason is that ICP tokens afluctuate wildly with the crypto market, but cycles are pedictable and relatively stable token which is pegged to <a href="https://en.wikipedia.org/wiki/Special_drawing_rights">SDR</a>. One trillion cycles will always cost one SDR, regardless of the price of ICP.</p>
+</div>
+<div class="paragraph">
+<p>Practical notes about cycles:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Cycles pay for computation and storage</p>
+<p>There is a free <a href="cycles-faucet.html">free cycles faucet</a> that grants new developers 15 trillion cycles</p>
 </li>
 <li>
-<p>Cycles faucet will grant developers 15 trillion cycles</p>
-</li>
-<li>
-<p>It takes 4 trillion cycles to deploy a canister.</p>
+<p>It takes 100 billion cycles to deploy a canister, but in order to load up the canister with sufficient cycles, <code>dfx</code> injects 3 trillion cycles for any canister created (this is a parameter that can be changed).</p>
 </li>
 <li>
 <p>You can see a table of compute and storage costs here: <a href="../developers-guide/computation-and-storage-costs.html">Computation and storage costs</a>.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>In this tutorial, we present two ways of acquiring cycles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Option 1:</strong> Section <strong>4.3</strong> shows one how to get cycles via the cycles faucet (most common for new developers)</p>
+</li>
+<li>
+<p><strong>Option 2:</strong> Section <strong>4.4</strong> shows one how to get cycles via ICP token (most common for developers who want more cycles)</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_4_3_check_the_connection_to_the_internet_computer_blockchain_mainnet_terminal_b"><a class="anchor" href="#_4_3_check_the_connection_to_the_internet_computer_blockchain_mainnet_terminal_b"></a>4.3 Check the connection to the Internet Computer blockchain mainnet (Terminal B)</h3>
+<h3 id="_4_2_check_the_connection_to_the_internet_computer_blockchain_terminal_b"><a class="anchor" href="#_4_2_check_the_connection_to_the_internet_computer_blockchain_terminal_b"></a>4.2 Check the connection to the Internet Computer blockchain (Terminal B)</h3>
 <div class="paragraph">
-<p>As sanity check, it is good practice to check your connection to the IC is stable:</p>
+<p>As sanity check, it is good practice to check if your connection to the IC is stable:</p>
 </div>
 <div class="paragraph">
-<p>Check the current status of the Internet Computer blockchain and your ability to connect to it by running the following command for the network alias ic:</p>
+<p>Verify the current status of the Internet Computer blockchain and your ability to connect to it:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1381,7 +1399,7 @@ For example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>If successful you should see output similar to the following:</p>
+<p>If successful you will see an output resembling the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1392,9 +1410,309 @@ For example:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_4_4_deploying_on_chain_terminal_b"><a class="anchor" href="#_4_4_deploying_on_chain_terminal_b"></a>4.4 Deploying on-chain (Terminal B)</h3>
+<h3 id="_4_3_option_1_acquiring_cycles_via_free_cycles_faucet_2_min"><a class="anchor" href="#_4_3_option_1_acquiring_cycles_via_free_cycles_faucet_2_min"></a>4.3 Option 1: Acquiring cycles via free cycles faucet (2 min)</h3>
 <div class="paragraph">
-<p>You are now ready to deploy your dapp on-chain.</p>
+<p>This is option is best for people who want minimal time investment and have never used cycles faucet (faucet can be used only once).</p>
+</div>
+<div class="paragraph">
+<p>For the purposes of this tutorial, you can acquire free cycles for your <code>Hello</code> dapp from the cycles faucet. Follow the instructions here: <a href="cycles-faucet.html">Claim your free cycles</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_4_3_1_check_your_cycles_balance_terminal_b"><a class="anchor" href="#_4_3_1_check_your_cycles_balance_terminal_b"></a>4.3.1 Check your cycles balance (Terminal B)</h4>
+<div class="paragraph">
+<p>Now that you have used the cycles faucet, you can check your cycles balance:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dfx wallet --network ic balance</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see around 15 trillion cycles if you run this after using the cycles wallet. If so, skip to section <strong>5. Deploying on-chain</strong>.</p>
+</div>
+<div class="paragraph">
+<p>If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work. You should try <strong>4.4 Option 2: Converting ICP token into cycles</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_4_option_2_converting_icp_token_into_cycles_5_min"><a class="anchor" href="#_4_4_option_2_converting_icp_token_into_cycles_5_min"></a>4.4 Option 2: Converting ICP token into cycles (5 min)</h3>
+<div class="paragraph">
+<p>This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.</p>
+</div>
+<div class="sect3">
+<h4 id="_basic_summary_of_this_section"><a class="anchor" href="#_basic_summary_of_this_section"></a>Basic Summary of this section</h4>
+<div class="paragraph">
+<p>To create cycles from ICP, the basic steps (which we will dive deeper in this <strong>4.3</strong>):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Transfer ICP to the <code>account id</code> controlled <strong>by your local version of <code>dfx</code></strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Note: Ths typicall requires transferring ICP <strong>from an exchange, wallet, or NNS Frontend dapp</strong> to the <code>acccount id</code> controlled by <code>dfx</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use <code>dfx</code> to tell Ledger canister to convert your ICP into cycles.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Note: This only works if the <code>account id</code> controlled <code>dfx</code> has ICP tokens.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create a canister which will hold all your cycles and transfer them to your dapps</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_4_4_1_transfer_icp_to_the_account_id_controlled_by_your_local_version_of_dfx_terminal_b"><a class="anchor" href="#_4_4_1_transfer_icp_to_the_account_id_controlled_by_your_local_version_of_dfx_terminal_b"></a>4.4.1 Transfer ICP to the <code>account id</code> controlled <strong>by your local version of <code>dfx</code></strong> (Terminal B)</h4>
+<div class="paragraph">
+<p>When you first installed <code>dfx</code>, it created and saved locally "developer identity" composed of:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Ledger <code>account id</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>this is where ICP controlled by <code>dfx</code> are stored.</p>
+</li>
+<li>
+<p>Example: <code>03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>principal</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>an identifier for an entity on the IC such as a user, a canister (dapps/smart contracts), or a subnet. In this case, <code>dfx</code> has a principal which is how it identifies itself to the IC.</p>
+</li>
+<li>
+<p>Example: <code>tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>1. Find your Ledger <code>account id</code> controlled by dfx</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dfx ledger account-id</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>2. Transfer ICP to your Ledger <code>account id</code></strong></p>
+</div>
+<div class="paragraph">
+<p>You can transfer from any exchange, wallet, or NNS Frontend dapp by sending ICP tokens to the <code>account id</code> from Step #1 above. For the sake of this tutorial, sending it 2 ICP tokens would be more than enough to deploy.</p>
+</div>
+<div class="paragraph">
+<p><strong>3. Confirm there is ICP in the account</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dfx ledger --network ic balance</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If there is no ICP in the account, the rest of the tutorial will not work.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_4_4_2_use_dfx_to_tell_ledger_canister_to_convert_your_icp_into_cycles_terminal_b"><a class="anchor" href="#_4_4_2_use_dfx_to_tell_ledger_canister_to_convert_your_icp_into_cycles_terminal_b"></a>4.4.2 Use <code>dfx</code> to tell Ledger canister to convert your ICP into cycles (Terminal B)</h4>
+<div class="paragraph">
+<p>Now that your <code>account id</code> has ICP tokens, we need to tell the Ledger Canister to convert it into cycles for us. The Ledger canister needs to know WHICH PRINCIPAL will control the cycles created, so we will send it the <code>principal</code> created locally by <code>dfx</code> as part of the developer identity.</p>
+</div>
+<div class="paragraph">
+<p>Note: Savvy readers may wonder why Ledger Canister needs to know the <code>principal</code> at all since the <code>principal</code> controls <code>account id</code>. The answer is that <code>dfx</code> can actually set a <strong>different</strong> principal in case it wants another entity to controls the cycles created in this step.</p>
+</div>
+<div class="paragraph">
+<p><strong>1. Find the <code>principal</code> used by your dfx</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dfx identity get-principal</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is the <code>principal</code> you will use in following sections.</p>
+</div>
+<div class="paragraph">
+<p><strong>2. Tell Ledger Canister to convert your ICP to cycles (and give the <code>principal</code> control of the cycles)</strong></p>
+</div>
+<div class="paragraph">
+<p>We will use this structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// This is just the structure, this will not run
+$ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>$PRINCIPAL = the <code>principal</code> from step 1 above.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Example: <code>tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>$ICP_TOKEN_AMOUNT = the amount of ICP to convert into cycles.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Example: 0.5</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// This is just the structure, this will only work with YOUR principal
+$ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Filling it in with our example <code>principal</code> and amount (<strong>do not copy/paste this or your will lose your cycles</strong>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// This is just an example, this will only work with YOUR principal
+$ dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount 0.5</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the transaction is successful, the ledger records the event and you should see output similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Transfer sent at BlockHeight: 20
+Canister created with id: "gastn-uqaaa-aaaae-aaafq-cai"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This returned a canister with id <code>gastn-uqaaa-aaaae-aaafq-cai</code>. <strong>This is NOT the <code>Hello</code> dapp we are creating in this tutorial.</strong> This is a canister created for you and for only one purpose: <strong>hold your cycles and transfer them to your dapps.</strong></p>
+</div>
+<div class="paragraph">
+<p>The reason for this new canister is simple: by design, cycles can only be contained within canisters. Since this new "cycle-holding canister" has no other purpose, it is sometimes referred to as the "cycles wallet".</p>
+</div>
+<div class="paragraph">
+<p><strong>3. Create a canister which will hold all your cycles and transfer them to your dapps</strong></p>
+</div>
+<div class="paragraph">
+<p>However there is only one last step: the canister created above (while it does hold cycles) is a generic canister and it does not have all the features required from a "cycles wallet", so we will use <code>dfx</code> to update it with the code containing all the cycles wallet features:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// This is just an example, this will only work with YOUR CYCLE WALLET principal from above
+$ dfx identity --network ic deploy-wallet $CYCLES_WALLET_CANISTER_ID</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In our example, $CYCLES_WALLET_CANISTER_ID is <code>gastn-uqaaa-aaaae-aaafq-cai</code> so the command</p>
+</div>
+<div class="paragraph">
+<p>Filling it in with our example <code>$CYCLES_WALLET_CANISTER_ID</code> (<strong>do not copy/paste this or your will lose your cycles</strong>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// This is just an example, this will only work with YOUR principal
+$ dfx identity --network ic deploy-wallet gastn-uqaaa-aaaae-aaafq-cai</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the transaction is successful, the ledger records the event and you should see output similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Creating a wallet canister on the ic network.
+The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae-aaafq-cai"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the next section, we will deploy the <code>Hello</code> dapp. This will require transfering cycles from the recently-created cycles-holding canister (<code>gastn-uqaaa-aaaae-aaafq-cai</code> in the example above).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_4_4_3_check_your_cycles_are_properly_configured_with_your_dfx_terminal_b"><a class="anchor" href="#_4_4_3_check_your_cycles_are_properly_configured_with_your_dfx_terminal_b"></a>4.4.3 Check your cycles are properly configured with your dfx (Terminal B)</h4>
+<div class="paragraph">
+<p>Check that your cycles wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dfx wallet --network ic balance</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command returns the balance for the your cycles wallet. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">15430122328028812 cycles.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For this tutorial, make sure you have at least 3 trillion cycles (3000000000000).</p>
+</div>
+<div class="paragraph">
+<p>If you didn’t convert enough ICP tokens to cycles to complete the operation, you can add cycles to your cycles wallet by running a command similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command converts an additional 1.005 ICP tokens to cycles for the <code>gastn-uqaaa-aaaae-aaafq-cai</code> cycles wallet created in step 2 of 4.3.2. The command returns output similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Transfer sent at BlockHeight: 81520
+Canister was topped up!</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_5_deploying_on_chain_1_min"><a class="anchor" href="#_5_deploying_on_chain_1_min"></a>5. Deploying on-chain (1 min)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_5_1_deploy_the_dapp_on_chain_via_dfx_terminal_b"><a class="anchor" href="#_5_1_deploy_the_dapp_on_chain_via_dfx_terminal_b"></a>5.1 Deploy the dapp on-chain via dfx (Terminal B)</h3>
+<div class="paragraph">
+<p>Now that you have your cycles and your dfx is configured to transfer cycles, you are now ready to deploy your <code>Hello</code> dapp on-chain.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1443,11 +1761,24 @@ Deployed canisters.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Note, a common error one may get in section 4.4: <code>Error: The replica returned an HTTP Error: Http Error: status 403 Forbidden</code>. This error means that the canister does not have enough cycles to deploy.</p>
+<p>In the example above, we created a <code>Hello</code> dapp that is composed of two canisters:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>hello</code> canister <code>5o6tz-saaaa-aaaaa-qaacq-cai</code> which contains the backend logic.</p>
+</li>
+<li>
+<p><code>hello_assets</code> canister <code>5h5yf-eiaaa-aaaaa-qaada-cai</code> which contains the frontend assets (e.g. HTML, JS, CSS).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Note: you will notice that the canister ids of for the same project are different between the local (section 3 of this tutorial) and the on-chain environments.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_4_4_testing_the_on_chain_dapp_via_command_line_terminal_b"><a class="anchor" href="#_4_4_testing_the_on_chain_dapp_via_command_line_terminal_b"></a>4.4 Testing the on-chain dapp via command line (Terminal B)</h3>
+<h3 id="_5_2_testing_the_on_chain_dapp_via_command_line_terminal_b"><a class="anchor" href="#_5_2_testing_the_on_chain_dapp_via_command_line_terminal_b"></a>5.2 Testing the on-chain dapp via command line (Terminal B)</h3>
 <div class="paragraph">
 <p>Now that the canister is deployed on-chain, you can send it a message. Since the canister has a method called <code>greet</code> (which accepts a string as a parameter), we will send it a message.</p>
 </div>
@@ -1457,16 +1788,76 @@ Deployed canisters.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Note the way the message is constructed:
-* <code>dfx canister --network ic call</code> is setup for calling a canister on the IC
-* <code>hello greet</code> means we are sending a message to a canister named <code>hello</code> and evoking its <code>greet</code> method
-* <code>'("everyone": text)'</code> is the parameter we are sending to <code>greet</code> (which accepts <code>Text</code> as its only input).</p>
+<p>Note the way the message is constructed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>dfx canister --network ic call</code> is setup for calling a canister on the IC</p>
+</li>
+<li>
+<p><code>hello greet</code> means we are sending a message to a canister named <code>hello</code> and evoking its <code>greet</code> method</p>
+</li>
+<li>
+<p><code>'("everyone": text)'</code> is the parameter we are sending to <code>greet</code> (which accepts <code>Text</code> as its only input).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_3_see_your_dapp_live_on_chain_via_a_browser"><a class="anchor" href="#_5_3_see_your_dapp_live_on_chain_via_a_browser"></a>5.3 See your dapp live on-chain via a browser</h3>
+<div class="paragraph">
+<p>Find your new canister&#8217;s ID:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dfx canister --network ic id hello</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Take that canister id and visit <code><a href="https://&lt;canister-id&gt;.ic0.app" class="bare">https://&lt;canister-id&gt;.ic0.app</a></code>, inserting the <code>hello_assets</code> canister id as the subdomain in the URL. In this tutorial, it is <code>5h5yf-eiaaa-aaaaa-qaada-cai</code> so it would be <a href="https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app+" class="bare">https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app+</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_5_troubleshooting"><a class="anchor" href="#_5_troubleshooting"></a>5. Troubleshooting</h2>
+<h2 id="_6_conclusion"><a class="anchor" href="#_6_conclusion"></a>6. Conclusion</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_6_1_wrap_up_what_you_have_done"><a class="anchor" href="#_6_1_wrap_up_what_you_have_done"></a>6.1 Wrap-up: What you have done</h3>
+<div class="paragraph">
+<p>You have done the following in this tutorial:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Installed the Canister SDK</p>
+</li>
+<li>
+<p>Built and deployed a dap locally</p>
+</li>
+<li>
+<p>Received free cycles for your dapp</p>
+</li>
+<li>
+<p>Created a "cycles wallet" that can transfer cycles to any other dapps you want to power</p>
+</li>
+<li>
+<p>Deployed your dapp on-chain</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_2_using_your_free_cycles_to_power_other_dapps"><a class="anchor" href="#_6_2_using_your_free_cycles_to_power_other_dapps"></a>6.2 Using your free cycles to power other dapps</h3>
+<div class="paragraph">
+<p>You can use the cycles you received earlier for other dapps.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_7_troubleshooting"><a class="anchor" href="#_7_troubleshooting"></a>7. Troubleshooting</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h3>
@@ -1474,6 +1865,9 @@ Deployed canisters.</code></pre>
 <ul>
 <li>
 <p>Developers who hit any blockers are encouraged to search or post in <a href="https://forum.dfinity.org">IC developer forum</a>.</p>
+</li>
+<li>
+<p><a href="https://wiki.internetcomputer.org/wiki/Internet_Computer_wiki">Internet Computer wiki</a>.</p>
 </li>
 </ul>
 </div>

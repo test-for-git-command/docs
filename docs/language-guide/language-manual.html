@@ -1911,7 +1911,7 @@ The parameters of a program&#8217;s final actor class provide access to the corr
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bnf hljs" data-lang="bnf">&lt;imp&gt; ::= imports
-  import &lt;id&gt;? =? &lt;url&gt;
+  import &lt;pat&gt; =? &lt;url&gt;
 
 &lt;url&gt; ::=
   "&lt;filepath&gt;"                      import module from relative &lt;filepath&gt;.mo
@@ -1921,7 +1921,14 @@ The parameters of a program&#8217;s final actor class provide access to the corr
 </div>
 </div>
 <div class="paragraph">
-<p>An import introduces a resource named '&lt;id&gt;?' referring to a local source module, module from a package of modules, or canister (imported as an actor).</p>
+<p>An import introduces a resource referring to a local source module, module from a package of modules, or canister (imported as an actor).
+The contents of the resource are bound to <code>&lt;pat&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>Though typically a simple identifier, <code>&lt;id&gt;</code>, <code>&lt;pat&gt;</code> can also be any composite pattern binding selective components of the resource.</p>
+</div>
+<div class="paragraph">
+<p>The pattern must be irrefutable.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3108,7 +3115,7 @@ Installation is (necessarily) asynchronous.</p>
 <div class="sect2">
 <h3 id="imports"><a class="anchor" href="#imports"></a>Imports and Urls</h3>
 <div class="paragraph">
-<p>An import <code>import &lt;id&gt;? =? &lt;url&gt;</code> declares an optional identifier <code>&lt;id&gt;?</code> bound to the contents of the text literal <code>&lt;url&gt;</code>. (<code>&lt;id&gt;?</code>, when absent, defaults to some fresh identifier <code>&lt;id&gt;</code>.)</p>
+<p>An import <code>import &lt;pat&gt; =? &lt;url&gt;</code> declares a pattern <code>&lt;pat&gt;</code> bound to the contents of the text literal <code>&lt;url&gt;</code>.</p>
 </div>
 <div class="paragraph">
 <p><code>&lt;url&gt;</code> is a text literal that designates some resource: a local library specified with a relative path, a named module from a named package,
@@ -3120,19 +3127,19 @@ or an external canister, referenced either by numeric canister id or by a named 
 <div class="ulist">
 <ul>
 <li>
-<p><code>"&lt;filepath&gt;"</code> then <code>&lt;id&gt;</code> is bound to the library module defined in file <code>&lt;filepath&gt;.mo</code>.
+<p><code>"&lt;filepath&gt;"</code> then <code>&lt;pat&gt;</code> is bound to the library module defined in file <code>&lt;filepath&gt;.mo</code>.
 <code>&lt;filepath&gt;</code> is interpreted relative to the absolute location of the enclosing file.
 Note the <code>.mo</code> extension is implicit and should <em>not</em> be included in <code>&lt;url&gt;</code>.
 For example, <code>import U "lib/Util"</code> defines <code>U</code> to reference the module in local file
 <code>./lib/Util</code>.</p>
 </li>
 <li>
-<p><code>"mo:&lt;package-name&gt;/&lt;path&gt;"</code> then <code>&lt;id&gt;</code> is bound to the library module defined in file <code>&lt;package-path&gt;/&lt;path&gt;.mo</code> in directory <code>&lt;package-path&gt;</code> referenced by package alias <code>&lt;package-name&gt;</code>.
+<p><code>"mo:&lt;package-name&gt;/&lt;path&gt;"</code> then <code>&lt;pat&gt;</code> is bound to the library module defined in file <code>&lt;package-path&gt;/&lt;path&gt;.mo</code> in directory <code>&lt;package-path&gt;</code> referenced by package alias <code>&lt;package-name&gt;</code>.
 The mapping from <code>&lt;package-name&gt;</code> to <code>&lt;package-path&gt;</code> is determined by a compiler command-line argument <code>--package &lt;package-name&gt; &lt;package-path&gt;</code>. For example, <code>import L "mo:base/List"</code> defines <code>L</code> to reference the <code>List</code> library in
  package alias <code>base</code>.</p>
 </li>
 <li>
-<p><code>"ic:&lt;canisterid&gt;"</code> then <code>&lt;id&gt;</code> is bound to a Motoko actor whose Motoko type is determined by the canister&#8217;s IDL interface.
+<p><code>"ic:&lt;canisterid&gt;"</code> then <code>&lt;pat&gt;</code> is bound to a Motoko actor whose Motoko type is determined by the canister&#8217;s IDL interface.
 The IDL interface of canister <code>&lt;canisterid&gt;</code> must be found in file <code>&lt;actorpath&gt;/&lt;canisterid&gt;.did</code>.
 The compiler assumes that  <code>&lt;actorpath&gt;</code> is specified by command line argument <code>--actor-idl &lt;actorpath&gt;</code> and that file <code>&lt;actorpath&gt;/&lt;canisterid&gt;.did</code> exists.
 For example, <code>import C "ic:lg264-qjkae"</code> defines <code>C</code> to reference the actor with canister id <code>lg264-qjkae</code> and IDL file <code>lg264-qjkae.did</code>.</p>
@@ -3151,7 +3158,10 @@ For example, <code>import C "canister:counter"</code> defines <code>C</code> to 
 </div>
 <div class="paragraph">
 <p>(Remark: when building multi-canister projects with the DFINITY Canister SDK, Motoko programs can typically import canisters by alias (e.g. <code>import C "canister:counter"</code>), without specifying low-level canister ids (e.g. <code>import C "ic:lg264-qjkae"</code>).
-The SDK tooling takes care of supplying the appropriate command-line arguments to the Motoko compiler).</p>
+The SDK tooling takes care of supplying the appropriate command-line arguments to the Motoko compiler.)</p>
+</div>
+<div class="paragraph">
+<p>(Remark: sensible choices for <code>&lt;pat&gt;</code> are identifiers, such as <code>Array</code>, or object patterns like <code>{ cons; nil = empty }</code>, which allow selective importing of individual fields, under original or other names.)</p>
 </div>
 </div>
 <div class="sect2">
