@@ -1,7 +1,7 @@
 = Internet Computer で静的なウェブサイトをホストする
 =================================================
 
-始める前に、私たちの {sdk-short-name} (DFX) と Cycle ウォレットがセットアップされていることを確認してください。 Cycle ウォレットをセットアップするには、link:cycles-faucet{outfilesuffix}[Fauset クイックスタート] を見るか、または ICP を購入して link:network-quickstart{outfilesuffix}[Network Deployment] ガイドに従ってください。
+始める前に、私たちの {sdk-short-name} (DFX) と Cycle ウォレットがセットアップされていることを確認してください。 Cycle ウォレットをセットアップするには、link:cycles-faucet{outfilesuffix}[Fauset クイックスタート] を見るか、または ICP を購入して link:./quickstart/network-quickstart{outfilesuffix}[Network Deployment] ガイドに従ってください。
 
 == プロジェクトのセットアップ
 
