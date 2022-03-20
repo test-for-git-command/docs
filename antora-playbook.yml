@@ -10,8 +10,7 @@ content:
       branches: HEAD
       start_path: doc
     - url: https://github.com/Japan-DfinityInfoHub/motoko-base
-      branches: HEAD
-      start_path: doc
+      branches: doc-pages
     - url: https://github.com/Japan-DfinityInfoHub/cdk-rs
       branches: HEAD
       start_path: docs
