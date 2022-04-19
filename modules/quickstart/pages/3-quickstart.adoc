@@ -1,0 +1,160 @@
+= 3. Deploying the Hello Dapp on Local Machine (3 min)
+
+Now that your `hello` project is created, the next step is to deploy it locally. To deploy locally, `dfx` can start a local instance of the execution environment. This environment is not a full IC replica, nor does it download any of the state of an IC replica. It is a lightweight environment designed exlcusively for deploying dapps.
+
+For this, developers should keep two terminals open:
+
+* *Terminal window/tab A:* 
+
+** Shows the local instance of the execution environment running
+** Is analogous to how developers often start local servers in web2 projects (e.g. Node.js's Express, Python's Django, Ruby's Rails, etc...)
+
+* *Terminal window/tab B:* 
+** Used to send *messages* to the local instance of the execution environment
+** Is analogous to how developers send HTTP API messages to servers running locally (e.g. Postman, Panic).
+
+For ease, this tutorial will distinguish between both windows by color scheme:
+
+=== Terminal A
+
+image:quickstart/dfx-new-hello-2.png[dfx new]
+
+
+=== Terminal B
+
+image:quickstart/terminal-b-ls.png[terminal b ls]
+
+== 3.1 Start the Local Instance of the Execution Environment (Terminal A)
+
+Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
+
+Start the local canister execution environment in Terminal A:
+
+[source,bash]
+----
+dfx start
+----
+
+image:quickstart/terminal-a-dfx-start.png[dfx start]
+
+
+Notes: 
+
+*  Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click "Allow." 
+
+* Check no other network process is running that would create a port conflict on 8000.
+
+*Congratulations - there is now a local Instance of the execution environmentof the IC running on your machine. Leave this window/tab open and running while you continue.* If the window/tab is closed, the local instance of the execution environment of the IC will not be running and the rest of the tutorial will fail.
+
+== 3.2 Deploy the "hello" Dapp to the Locally (Terminal B)
+
+Note: since this is a local deployment, this section has fewer steps than deploying to mainnet (which requires link:developers-guide/concepts/tokens-cycles[cycles]).
+
+To deploy your first dapp locally:
+
+=== 3.2.1 Check that you are still in the root directory for your project, if needed.
+
+Ensure that node modules are available in your project directory, if needed, by running the following command (it does not hurt to run this many times):
+
+[source,bash]
+----
+npm install
+----
+
+image:quickstart/terminal-b-npm-install.png[npm install]
+
+=== 3.2.2 Register, build and deploy dapp:
+
+[source,bash]
+----
+dfx deploy
+----
+
+image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
+
+Your dapp is now composed of two canisters as you can see in the copy below (from terminal B):
+
+[source, bash]
+----
+Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
+----
+
+a. `hello` canister `rrkah-fqaaa-aaaaa-aaaaq-cai` which contains the backend logic.
+
+b. `hello_assets` canister `yjl3-tyaaa-aaaaa-aaaba-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
+
+== 3.3 Testing the Dapp Locally via the Command Line (Terminal B)
+
+Now that the canister is deployed to local replica, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
+
+[source,bash]
+----
+dfx canister call hello greet everyone
+----
+
+* The `dfx canister call` command requires you to specify a canister name and a method—or function—to call.
+* `hello` specifies the name of the *canister* you want to call.
+* `greet` specifies the name of the *function* you want to call in the `hello` canister.
+* `everyone` is the text data type argument that you want to pass to the `greet` function.
+
+== 3.4 Testing the Dapp Locally via the Browser
+
+Now that you have verified that your dapp has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
+
+=== 3.4.1 On terminal B, start the development server with:
+
+[source,bash]
+----
+npm start
+----
+
+=== 3.4.2  Test the dapp locally in the browser
+
+To see your dapp running locally in the browser on +http://localhost:8080+.
+
+image:front-end-prompt.png[Sample HTML page]
+
+. Input a name, then click *Click Me* to return a greeting.
++
+For example:
++
+image:front-end-result.png[Hello, everyone! greeting]
+
+== 3.5 Stop the local canister execution environment
+
+After testing the application in the browser, you can stop the local canister execution environment so that it does not continue running in the background. We will not need it running to deploy on-chain.
+
+To stop the local deployment:
+
+. In the terminal A, press Control-C to interrupt the local network process.
+
+. In the terminal B, press Control-C to interrupt the development server process.
+
+. Stop the local canister execution environment running on your local computer:
++
+[source,bash]
+----
+dfx stop
+----
+
+== Conclusion
+
+You have now tested the dapp by deploing it locally. You are ready to acquire cycles to deploy on-chain.
+
+Continue with the main tutorial: link:quickstart-intro{outfilesuffix}[quickstart intro].
+
+== Troubleshooting
+
+=== Node.js is not properly installed
+
+If your dapp does not show in the browser, it is possible that Node.js is not installed. Confirm it is installed by running: 
+
+== Prior installations of dfx
+
+If you have previously created IC dapps before February 2022, you may need to do a clean install. You can delete SDK and associated profiles and re-install it. Follow the instructions here: link:../developers-guide/install-upgrade-remove{outfilesuffix}[Install, upgrade, or remove software].
+
+[source,bash]
+----
+node --version
+----

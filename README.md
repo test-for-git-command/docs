@@ -1,5 +1,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # （非公式） Dfinity ドキュメント翻訳プロジェクト
@@ -125,11 +127,11 @@ Special thanks to these wonderful people ([emoji key](https://allcontributors.or
 
 You can get started right away by downloading the Internet Computer Software Development Kit (SDK) and cloning an existing sample project or by exploring the documentation. Check out the links below to begin building smart contract canisters to run on the Internet Computer:
 
-- [_Get the SDK_](https://sdk.dfinity.org/docs/download.html) Download the SDK for the Internet Computer.
-- [_Quick Start_](https://sdk.dfinity.org/docs/quickstart/quickstart-intro.html) Deploy your first app on the Internet Computer.
+- [_Get the SDK_](https://smartcontracts.org/docs/download.html) Download the SDK for the Internet Computer.
+- [_Quick Start_](https://smartcontracts.org/docs/quickstart/quickstart-intro.html) Deploy your first app on the Internet Computer.
 - [_Examples Repository_](https://github.com/dfinity/examples) Explore on your own in the examples repository.
-- [_Language Guide_](https://sdk.dfinity.org/docs/language-guide/motoko.html) Explore the Motoko programming language.
-- [_Videos_](https://sdk.dfinity.org/docs/videos-tutorials.html) Watch the _Building Applications for the Internet Computer: Fundamentals_ video series.
+- [_Language Guide_](https://smartcontracts.org/docs/language-guide/motoko.html) Explore the Motoko programming language.
+- [_Videos_](https://smartcontracts.org/docs/videos-tutorials.html) Watch the _Building Applications for the Internet Computer: Fundamentals_ video series.
 
 # Contributing to the documentation
 
@@ -144,7 +146,7 @@ To update the left-side site navigation, make changes to [nav.adoc](modules/ROOT
 
 ## Testing your changes locally
 
-To test your changes locally, clone the [dfinity-docs-playbook] https://github.com/dfinity/dfinity-docs-playbook and follow the installation instructions. Push the changes you want to preview up to a branch on GitHub. You will need to modify the 
+To test your changes locally, clone the [dfinity-docs-playbook] https://github.com/dfinity/dfinity-docs-playbook and follow the installation instructions. Push the changes you want to preview up to a branch on GitHub. You will need to modify the
 antora-playbook.yml to point to your branch, which will look something like
 
 ```
@@ -159,6 +161,6 @@ content:
 
 Then, run `npm run build` to compile the documentation.
 
-You will then need to open the static directory in your browser with a simple static file server to preview your changes. 
+You will then need to open the static directory in your browser with a simple static file server to preview your changes.
 
 > Note - the root page of the site automatically redirects to https://smartcontracts.org, so you will need to skip past the index to another page. For example, http://127.0.0.1:5500/build/site/docs/quickstart/local-quickstart.html.
