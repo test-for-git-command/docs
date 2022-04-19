@@ -1,36 +1,3 @@
-= クイックスタート
-=======
-= "Hello World" Dapp を 10 分でデプロイする
-:description: Download the DFINITY Canister SDK and learn how to deploy your first application.
-:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
-:proglang: Motoko
-:IC: Internet Computer
-:company-id: DFINITY
-ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-
-[[quick-start-intro]]
-この {sdk-long-name} は、Canister スマートコントラクトのアプリケーションを作成し、{IC} ブロックチェーンのメインネットにデプロイするためのツール、サンプルコード、ドキュメントを提供しています。
-_クイックスタート_ チュートリアルでは、{sdk-short-name} を初めてインストールする方のために、最初のアプリケーションを作成、ビルド、デプロイする方法を説明します。
-
-== はじめに
-説明をシンプルにして作業に集中できるように、 _クイックスタート_ は最初のスマートコントラクトや Dapp を 20 分以内にデプロイできるよう、意図的に説明をフォーカスしています。
-
-link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy hello world smart contract in 20 minutes] をご覧ください。
-
-== 追加のコードサンプル
-
-最初の Dapp が完成したら、link:../examples/index{outfilesuffix}[Sample code and dapps] で、よりロバストな例（DAO、NFT など）を参照すると良いでしょう。
-
-== もっと学びたいですか？
-
-さらに詳しい情報を知りたい方や、実際に導入する前にデモを見たい方は、以下の関連資料をご覧ください。
-
-* link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#using-tokens[ICP トークンの使い方 (概要)]
-* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Internet Computer 上での構築: 基礎 (ビデオ)]
-* link:https://www.youtube.com/watch?v=60uHQfoA8Dk[DFINITY Canister SDK とは何か (ビデオ)]
-* link:https://www.youtube.com/watch?v=yqIoiyuGYNA[はじめてのアプリケーション構築と展開 (ビデオ)]
-
-////
 = Quick start
 =======
 = Deploy a "Hello World" Dapp in 10 Minutes
@@ -139,4 +106,3 @@ If you are looking for more information before getting started or want to view a
 * link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the Internet Computer: Fundamentals (video)]
 * link:https://www.youtube.com/watch?v=60uHQfoA8Dk[What is the DFINITY Canister SDK (video)]
 * link:https://www.youtube.com/watch?v=yqIoiyuGYNA[Deploying your first dapp (video)]
-////
