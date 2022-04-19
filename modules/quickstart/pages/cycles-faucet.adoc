@@ -3,7 +3,7 @@
 
 Internet Computer のブロックチェーン上に最初のスマートコントラクトをデプロイする準備はできましたか？私たちの Cycle フォーセットを使って、わずか数分で20ドルの無料の Cycle をセットアップすることができます。
 
-始める前に、 {sdk-short-name} (DFX)がインストールされていることを、次のコマンドで確認します。
+始める前に、 {sdk-short-name} (`dfx`)がインストールされていることを、次のコマンドで確認します。
 [source,sh]
 ----
 sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
@@ -57,7 +57,7 @@ Cycles Faucet Quickstart
 
 Ready to deploy your first smart contract on the Internet Computer blockchain? You can use our Cycles Faucet to get set up with $20 in free cycles in just a few minutes.
 
-Before you begin, make sure you have the {sdk-short-name} (DFX) installed by running
+Before you begin, make sure you have the {sdk-short-name} (`dfx`) installed by running
 [source,sh]
 ----
 sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"

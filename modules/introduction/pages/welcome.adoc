@@ -10,6 +10,13 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 ここにたどり着いたということは、 Internet Computer についてもっと知りたいと思っているのではないでしょうか。ここはまさにそのための場所です。早速始めましょう！
 
+Internet Computer の SDK をダウンロードするには、以下のコマンドをターミナルで実行してください。
+
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
+----
+
 NOTE: 認可された開発者は、20ドル相当の無料の Cycles を利用して、 Internet Computer のブロックチェーンに Canister と呼ばれるスマートコントラクトをデプロイすることができます。 https://faucet.dfinity.org/auth[無料の Cycles を申請する]
 
 [[for-first-timers]]
@@ -81,6 +88,13 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 Hello there!
 
 If you’ve landed here, you’re interested in learning more about the Internet Computer. You’re in the right place — take a look below for where to get started!
+
+To download the Internet Computer SDK, run the following command in your terminal.
+
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
+----
 
 NOTE: Qualified developers can access $20 worth of free cycles to begin deploying canister smart contracts to the Internet Computer blockchain. https://faucet.dfinity.org/auth[Claim your free cycles]
 
