@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Encrypted Notes Dapp :: Dfinity 日本語ドキュメント</title>
-    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/examples/encrypted-notes.html">
+    <title>コードサンプル :: Dfinity 日本語ドキュメント</title>
+    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/samples/index.html">
+    <meta name="description" content="Quick links to example code for common use-cases for your dapp">
+    <meta name="keywords" content="Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding,dapp,example,code,rust,Motoko">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
@@ -135,26 +137,42 @@
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstart/how-to-deploy-hello-world-smart-contract.html">Deploy your first dapp in 20 minutes</a>
+    <a class="nav-link" href="../quickstart/1-quickstart.html">1. Installing Tools</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/2-quickstart.html">2. Create a Project</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/3-quickstart.html">3. Deploy Locally</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/4-quickstart.html">4. Acquire Cycles</a>
     
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstart/cycles-faucet.html">Claim Your Free Cycles</a>
     
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/5-quickstart.html">5. Deploy On-chain</a>
+    
+  </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">コードの例</a>
+    <a class="nav-link" href="index.html">Sample Code</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="hello.html">Hello Example</a>
+    <a class="nav-link" href="hello.html">Hello World</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="host-a-website.html">Host a Static Website</a>
+    <a class="nav-link" href="host-a-website.html">Static Website</a>
     
   </li>
   <li class="nav-item" data-depth="2">
@@ -169,7 +187,7 @@
     <a class="nav-link" href="dao.html">Basic DAO</a>
     
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="encrypted-notes.html">Encrypted Note-taking</a>
     
   </li>
@@ -203,6 +221,10 @@
     <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.9.3-rn.html">0.9.3</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../release-notes/0.9.2-rn.html">0.9.2</a>
     
@@ -1130,172 +1152,212 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Developer Center</a></li>
-    <li><a href="index.html">コードの例</a></li>
-    <li><a href="encrypted-notes.html">Encrypted Note-taking</a></li>
+    <li><a href="index.html">Sample Code</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/examples/pages/encrypted-notes.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/samples/pages/index.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Encrypted Notes Dapp</h1>
+<h1 class="page">コードサンプル</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p><a href="https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp">Encrypted Notes</a> is an experimental dapp for authoring and storing confidential information in the form of short pieces of text. The user can access their notes via any number of automatically synchronized devices authenticated via <a href="https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html">Internet Identity</a>. Thanks to the end-to-end encryption performed by the dapp’s frontend, the user does not need to trust the dapp’s backend.</p>
-</div>
-<div class="paragraph">
-<p>You can play around with the <a href="https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/">dapp deployed on the IC</a>.</p>
+<div id="example-code-intro" class="paragraph">
+<p>以下のサンプルアプリをご覧いただき、IC を利用したアプリで何ができるかご確認ください。すべてのサンプルとその他のプロジェクトは <a href="https://github.com/dfinity/examples">Examples Repo</a> で見つけることができます。 <a href="https://github.com/dfinity/awesome-dfinity">Awesome Dfinity</a> （私たちのコミュニティから集められたオープンソースプロジェクトや事例を集めたもの）や <a href="./hackathon-projects.html">Hackathon projects</a> でさらなる事例を見つけることができます。</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_idea"><a class="anchor" href="#_idea"></a>Idea</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>We wanted to build an example of a simple (but not too simple) dapp running purely on the IC. This example relies upon the <em>web-serving</em> and <em>storage capabilities</em> of the IC. We focused on the following two key features for our example dapp: (1) client-side, <em>end-to-end encryption</em> and (2) <em>multi-user</em> and <em>multi-device</em> support.</p>
-</div>
-<div class="paragraph">
-<p>To demonstrate the potential of the IC as a platform for developing such dapps, we implemented this example using two distinct Canister Development Kits (CDKs). The Motoko CDK allows developers to implement actor-based dapps using the <a href="https://smartcontracts.org/docs/language-guide/motoko.html">Motoko</a> language. The Rust CDK allows implementing dapps in <a href="https://smartcontracts.org/docs/rust-guide/rust-intro.html">Rust</a>. In both cases, canisters are compiled into WebAssembly files that are then deployed onto the IC.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_approach"><a class="anchor" href="#_approach"></a>Approach</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The basic functionality of Encrypted Notes consists of two main components.</p>
-</div>
-<div class="paragraph">
-<p>First, we re-used the code of a (non-encrypted) dapp called <a href="https://github.com/pattad/ic_notes">IC-Notes</a>. In particular IC-Notes relies on the <a href="https://smartcontracts.org/docs/ic-identity-guide/auth-how-to.html">Internet Identity</a> (II) canister for user authentication, an approach that is also inherited by Encrypted Notes. For development purposes, we deploy a local instance of the II canister (along with a local instance of Encrypted Notes); when deploying Encrypted Notes onto the mainnet, the real-world instance of II is used for authentication.</p>
-</div>
-<div class="paragraph">
-<p>Second, we enabled client-side, end-to-end encryption for the note contents, borrowing the solution from another existing dapp called <a href="https://github.com/timohanke/icvault">IC-Vault</a>. Our Encrypted Notes dapp follows the approach of IC-Vault to support managing multiple devices.</p>
-</div>
-<div class="paragraph">
-<p>In the context of the canisters discussed in this document, a device is not necessarily a separate physical device but a logical instance device, e.g., a web browser, with its own local data storage. For example, we consider two web browsers running on the same laptop as two independent devices; these browsers generate their own encryption keys. In contrast, the II canister relies on hardware-generated encryption keys, distinguishing only hardware devices.</p>
-</div>
-<div class="paragraph">
-<p>To support multiple devices per user, IC-Vault employs a device manager, a canister that securely synchronizes device-specific keys across all the devices that are associated with a user. The remainder of this document focuses on the Encrypted Notes canister that implements a device manager in a similar way but as part of its main canister.</p>
-</div>
-<div class="paragraph">
-<p>For further details and user stories, please refer to the <a href="https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md">README file</a>.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/encrypted-notes-arch.png" alt="High-level architecture overview diagram of the Encrypted Notes dapp"></span></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_note_management"><a class="anchor" href="#_note_management"></a>Note management</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Users are linked to II in the frontend, getting the user a principal that can be used for calling API queries and updates.</p>
-</li>
-<li>
-<p>Internally, we store the map of the form <code>Principal → [Notes]</code>
-and a <code>counter</code>.</p>
-</li>
-<li>
-<p><code>counter</code> stores the number of notes the canister has created (across all principals).</p>
-</li>
-<li>
-<p>Method <code>create</code> adds a note to its principal’s entry (if it exists),
-or adds the principal to the map with the <code>note_id == counter</code>,
-and then increments <code>counter</code>.</p>
-</li>
-<li>
-<p>Method <code>update</code> pulls a note, for the caller’s Principal and for the provided <code>note_id</code> and replaces it with the provided <code>text</code> (this <code>text</code> is assumed to be encrypted by the frontend).</p>
-</li>
-<li>
-<p>Method <code>delete</code> finds the note with the given <code>note_id</code> in the map and removes it. To ensure that note IDs are always globally unique, we do not decrease <code>counter</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_cryptography"><a class="anchor" href="#_cryptography"></a>Cryptography</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Encryption of notes is entirely client-side. However, our example dapp is still not protected against potentially data-revealing attacks by a possibly malicious node provider. For example, the attacker can infer how many notes a particular user has, user activity statistics, etc. Therefore, please carefully read the <a href="https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md#disclaimer-please-read-carefully">disclaimer</a> before using any of the code or patterns from this dapp.</p>
-</li>
-<li>
-<p>Recall that, in our definition, a device is not necessarily a separate physical device but simply a web browser instance with an independent local storage.</p>
-</li>
-<li>
-<p>The dapp uses three different kinds of keys:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Symmetric AES-GCM <em>secret key</em>: used to encrypt the notes of a given principal. The notes of a principal are stored in the Encrypted Notes canister encrypted with this secret key. Thus the frontend of the dapp needs to know this secret key to decrypt notes from this user and to send encrypted notes to be stored in the Encrypted Notes canister.</p>
-</li>
-<li>
-<p>Device RSA-OAEP <em>public key</em>: used to encrypt the symmetric AES <em>secret key</em> of the principal. The encrypted secret key is stored in the canister for each device registered to the principal. The same key is used for different principals using that device.</p>
-</li>
-<li>
-<p>Device RSA-OAEP <em>private key</em>: used to decrypt the symmetric AES <em>secret key</em> stored in the Encrypted Notes canister for a given principal. Once the frontend  decrypts the secret key, it can use this key for decrypting the notes stored in the Encrypted Notes canister.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>We store a map of the form:</p>
-<div class="literalblock">
-<div class="content">
-<pre>Principal → (DeviceAlias → PublicKey,
-             DeviceAlias → CipherText)</pre>
-</div>
-</div>
-</li>
-<li>
-<p>This map is used for managing user devices, as explained next.</p>
-</li>
-<li>
-<p>To register a device, the frontend generates a device alias, a public key, and a private key (held in its local storage).</p>
-</li>
-<li>
-<p>Adding a device:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Device registration:</strong> If this identity is already known, a new device will remain unsynced at first; at this time, only the <code>alias</code> and <code>publickey</code> of this device will be added to the Encrypted Notes canister.</p>
-</li>
-<li>
-<p><strong>Device synchronization:</strong> Once an unsynced device obtains the list of all unsynced devices for this II, it will encrypt the symmetric AES <em>secret key</em> under each unsynced device&#8217;s public key. Afterwards, the unsynced device obtains the encrypted symmetric AES <em>secret key</em>, decrypts it, and then uses it to decrypt the existing notes stored in the Encrypted Notes canister.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Once authenticated with II:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>If this identity is not known, then the frontend generates a symmetric AES <em>secret key</em> and encrypts it with its own public key. Then the frontend calls <code>seed(publickey, ciphertext)</code>, adding that ciphertext and its associated <code>publickey</code> to the map.</p>
-</li>
-<li>
-<p>If a user wants to register a subsequent device, the frontend calls <code>register_device</code>, passing in the <code>alias</code> and <code>publickey</code> of that device. The frontend then calls <code>submit_ciphertexts([publickey, ciphertext])</code> for all the devices it needs to register. This allows the registered devices to pull and decrypt the AES key to encrypt and decrypt the user notes.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_sequence_diagrams"><a class="anchor" href="#_sequence_diagrams"></a>Sequence Diagrams</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_adding_new_device"><a class="anchor" href="#_adding_new_device"></a>Adding New Device</h3>
+<h3 id="_hello_world"><a class="anchor" href="#_hello_world"></a>Hello world</h3>
 <div class="paragraph">
-<p><span class="image"><img src="_images/encrypted-notes-seq.png" alt="UML sequence diagram showing device registration and synchronization"></span></p>
+<p><em>hello world</em> に相当する Dapp で、バックエンドとフロントエンドの Canister に分かれて Web ページを提供します。<br>
+<a href="https://github.com/dfinity/examples/tree/master/motoko/hello">Motoko</a> • <a href="https://github.com/dfinity/examples/tree/master/rust/hello">Rust</a> • <a href="https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/">See running</a> • <a href="hello.html">Technical docs</a></p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_静的なウェブサイト"><a class="anchor" href="#_静的なウェブサイト"></a>静的なウェブサイト</h3>
+<div class="paragraph">
+<p>このチュートリアルでは、静的な Web サイトの構造を設定し、コンテンツと基本的なスタイルを追加して IC にデプロイする方法を紹介します。<br>
+<a href="host-a-website.html">Technical docs</a> • <a href="https://www.youtube.com/watch?v=JAQ1dkFvfPI">Video guide</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ベーシックな_dex"><a class="anchor" href="#_ベーシックな_dex"></a>ベーシックな DEX</h3>
+<div class="paragraph">
+<p>IC 上で Defi アプリケーションを実現するために、Canister はトークン Canister や Ladger Canister とインタラクションする必要があります。このサンプルアプリでは、取引所が資金を預かり、ユーザーの取引に応じて残高を更新し、資金が引き出されると預金をユーザーに返す方法を通じてこれらのインタラクションを説明します。<br>
+<a href="https://github.com/dfinity/examples/tree/master/motoko/defi">Motoko</a> • <a href="https://github.com/dfinity/examples/tree/master/rust/defi">Rust</a> • <a href="https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/">See running</a> • <a href="dex.html">Technical docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nft_のミント"><a class="anchor" href="#_nft_のミント"></a>NFT のミント</h3>
+<div class="paragraph">
+<p>この NFT ミント Dapp は、ユーザーが生成した NFT を簡単に作成し、それを共有することができることを紹介しています。このアプリは、https://github.com/Psychedelic/DIP721[DIP721] NFT スタンダードを使用しています。<br>
+<a href="https://github.com/dfinity/examples/tree/master/rust/dip721-nft-container">Rust</a> • <a href="#examples:nft.adoc" class="page unresolved">Technical docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ベーシックな_dao"><a class="anchor" href="#_ベーシックな_dao"></a>ベーシックな DAO</h3>
+<div class="paragraph">
+<p>分散型ガバナンスは IC のハイライトであり、以下のベーシックな DAO のサンプルコードによって説明されています。これは、アカウントと対応するトークンのセットを初期化する方法、アカウントの所有者が他のアカウントの所有者に投票するための提案を提出する方法、および十分な賛成票を得た提案が実行される方法を示しています。<br>
+<a href="https://github.com/dfinity/examples/tree/master/motoko/basic_dao">Motoko</a> • <a href="https://github.com/dfinity/examples/tree/master/rust/basic_dao">Rust</a> • <a href="dao.html">Technical docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_暗号化されたノート"><a class="anchor" href="#_暗号化されたノート"></a>暗号化されたノート</h3>
+<div class="paragraph">
+<p><a href="https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html">Internet Identity</a> サービスとエンドツーエンドの暗号化を用いて、複数のデバイスから秘密のメモを作成/アクセス/変更することができます。このサンプルコードは、ICの <em>ウェブサービス機能</em> と <em>ストレージ機能</em> に依存しており、(1）クライアントサイドのエンドツーエンド暗号化、（2）マルチユーザーおよびマルチデバイスのサポート、の 2 つの重要な機能をハイライトしています。<br>
+<a href="https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_motoko">Motoko</a> •
+<a href="https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_rust">Rust</a> • <a href="https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/">See running</a> • <a href="encrypted-notes.html">Technical docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_トークンの送金"><a class="anchor" href="#_トークンの送金"></a>トークンの送金</h3>
+<div class="paragraph">
+<p>このサンプルコードは、Dapp が最もアクティブなユーザーにトークンを転送する方法を示しています。<br>
+<a href="https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer">Motoko</a> • <a href="https://github.com/dfinity/examples/tree/master/rust/tokens_transfer">Rust</a> • <a href="tokentransfer.html">Technical docs</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="motoko-playground"><a class="anchor" href="#motoko-playground"></a>Motoko Playground</h3>
+<div class="paragraph">
+<p>Motoko で書かれたコードサンプルのレリポジトリへのリンク集です。ほとんどは <a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/">Motoko playground</a> でも公開されています。Playground は、SDKをダウンロードして使い方を学ぶことなく Motoko のサンプルを試すことができる最もシンプルな環境ですが、フロントエンドを持つ Dapp はサポートしません。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_基礎"><a class="anchor" href="#_基礎"></a>基礎</h3>
+<div class="paragraph">
+<p>IC と Motoko の基本的な概念を示す、入門用サンプル集です。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/actor_reference">Actor_reference</a> では Actor（参照）としての IC マネジメント Canister を紹介します。</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/counter">Counter</a> では基本的な （静的） 変数のデモを紹介します。</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/echo">Echo</a> では基本的なクエリ関数のデモを紹介します。</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/factorial">Factorial</a> では基本的な階乗のデモを紹介します。</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/hello_cycles">Hello_cycles</a> では Cycles の受信と転送、残高の確認を紹介します。</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/whoami">Whoami</a> では呼び出し元の Principal を報告する単純な Canister を紹介します。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_中級"><a class="anchor" href="#_中級"></a>中級</h3>
+<div class="paragraph">
+<p>中級編のサンプルでは、基本的なコンセプトを一般的なユースケースでどう使うかを紹介しています。このサンプルでは、Motoko で簡単なバックエンド機能を構築する方法を紹介します。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/classes">Classes</a> では動的な Actor（クラス）のインスタンス化について紹介します。</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/pub-sub">Pub-sub</a> では複数の Canisters で、パブリッシャーとサブスクライバーの Canister 間通話を行う方法について紹介します。</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">Quicksort</a> では Motoko のクイックソートによる配列のソートの方法を紹介します。</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/simple-to-do">Simple-to-do</a> は CRUD 的なデモサービスで、フロントエンドはありません。phone-book と superheroes もご覧ください.</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/calc">Calc</a> は counter demo の発展型です。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_最小限のフロントエンド"><a class="anchor" href="#_最小限のフロントエンド"></a>最小限のフロントエンド</h3>
+<div class="paragraph">
+<p>これらの例では、最小限のフロントエンドコンポーネントを使用しています。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/random_maze">Random_maze</a> は IC ベースのランダムな迷路生成です。</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/cert-var">Cert_var</a> は単純な認証済み変数（単一の32ビット）で、クライアントサイドの証明書検証を行うものです。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_フルスタック"><a class="anchor" href="#_フルスタック"></a>フルスタック</h3>
+<div class="paragraph">
+<p>これらの例では、（ <code>React.Component</code> を介してを介して）"従来の" フロントエンドコンポーネントを使用しています。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/life">Life</a> では Motoko Canister で動作する Conway の <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a> のデモンストレーションをおこないます。3つのバージョン間のアップグレードと、ステーブル変数を使った状態の移行のデモンストレーションを行う</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/phone-book">Phone-book</a> は CRUD ライクなデモサービスです。</p>
+</li>
+<li>
+<p><a href="https://github.com/dfinity/examples/tree/master/motoko/superheroes">Superheroes</a> はシンプルな CRUD Dapp です。</p>
+</li>
+<li>
+<p><a href="https://github.com/krpeacock/auth-client-demo">Auth Client Demo</a> は Internet Identity を使った単純な認証のデモです。</p>
+</li>
+<li>
+<p><a href="https://github.com/krpeacock/ic-avatar">IC-Avatar</a> は Motoko + React のフルスタックアプリで、より高度な認証、画像アップロード、楽観的更新（Optimistic updates）が可能です。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="motoko-advanced"><a class="anchor" href="#motoko-advanced"></a>アドバンス</h3>
+<div class="paragraph">
+<p>コミュニティから寄稿された大規模なサンプルで、必ずしも最新のものではありません。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Motoko での <a href="https://github.com/ninegua/reversi">リバーシゲーム</a> （ <a href="https://ninegua.github.io/reversi">Blog post</a> 付属）</p>
+</li>
+<li>
+<p>Motoko での <a href="https://github.com/enzoh/motoko-qr">QR コードジェネレータ</a> （
+<a href="https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865b">Medium article</a> 付属）</p>
+</li>
+<li>
+<p><a href="https://github.com/timohanke/icvault">IC Vault</a> は E2E のコンテンツ暗号化のデモです。</p>
+</li>
+<li>
+<p>Motoko での <a href="https://github.com/nomeata/motoko-certified-http">認証アセット Canister</a> と <a href="https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263">フォーラムへのポスト</a> は Internet Computer に認証された変数の大規模なアプリケーションのデモです。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rust-videos"><a class="anchor" href="#rust-videos"></a>Dapps 構築のためのビデオガイド</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.youtube.com/playlist?list=PLuhDt1vhGcrez-f3I0_hvbwGZHZzkZ7Ng">community conversations</a>シリーズは、Rust で Dappsを作るためのインストラクションと、Rust で Dapps を作るためのベストプラクティスを紹介するビデオです。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.youtube.com/watch?v=6wyIhzsFbKw">Community conversations | overview of building a dapp in Rust</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=36L33S_DYHY&amp;ab_channel=DFINITY">Community conversations | best practices for canisters in Rust</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>その他の有用なビデオシリーズとしては、https://www.youtube.com/watch?v=M2XnywvwxFM&amp;list=PLuhDt1vhGcrfQGLWqhUo9-DFD5JaHqCh1[Coding with Kyle] があります。</p>
 </div>
 </div>
 </div>

@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Dfinity 日本語ドキュメント</title>
+    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/samples/codelabs/minimalistic-rust-dapp.html">
+    <meta name="generator" content="Antora 2.3.4">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:title" content="Internet Computer | Documentation" />
+<meta property="og:description" content="Documentation for the internet computer." />
+<meta property="og:image" content="../../../_/img/share.jpg" />
+<meta property="og:image:url" content="../../../_/img/share.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DFINITYDev" />
+<meta name="twitter:image" content="../../../_/img/logo-RGB.png" />
+<meta name="twitter:image:alt" content="DFINITY Logo" />
+    <!-- Appzi: Capture Insightful Feedback -->
+    <script async src="https://w.appzi.io/w.js?token=Zrf92"></script>
+    <!-- End Appzi -->
+
+    <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<script>
+  function switchToLightMode(persist) {
+    document.querySelector("body").classList.remove("dark-mode");
+    if (persist) {
+      localStorage.setItem("theme-preference", "light");
+    }
+  }
+  function switchToDarkMode(persist) {
+    document.querySelector("body").classList.add("dark-mode");
+    if (persist) {
+      localStorage.setItem("theme-preference", "dark");
+    }
+  }
+
+  var themePreference = localStorage.getItem("theme-preference");
+
+  if (themePreference == "dark") {
+    switchToDarkMode(false);
+  } else if (themePreference == "light") {
+    switchToLightMode(false);
+  } else {
+    // dark mode by default
+    switchToDarkMode(false);
+
+    // uncomment to enable setting the defult by user preference
+    // try {
+    //   if (
+    //     window.matchMedia &&
+    //     window.matchMedia("(prefers-color-scheme: dark)").matches
+    //   ) {
+    //     switchToDarkMode(false);
+    //   }
+    // } catch {}
+  }
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="logo-container" href="/docs/introduction/welcome.html">
+        <img class="header-logo" src="../../../_/img/logo.svg">
+        <img class="header-logo dark" src="../../../_/img/logo-dark.svg">
+        <h1 class="header-title">Dfinity 日本語ドキュメント</h1>
+      </a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+          <a class="navbar-item" target="blank" href="https://dfinity.org/">DFINITY.org</a>
+          <a class="navbar-item" target="blank" href="https://forum.dfinity.org/">Forum</a>
+          <!--<a class="navbar-item" target="blank" href="mailto:support@dfinity.org?subject=Feedback - SDK Developer Center">Email us</a>-->
+          <a class="navbar-item" target="blank" href="https://support.dfinity.org/">Support</a>          
+          <a class="navbar-item" target="blank" href="https://www.twitter.com/dfinitydev">
+            <img class="light-only" src="../../../_/img/social/twitter-icon.svg">
+            <img class="dark-only" src="../../../_/img/social/twitter-icon-dark.svg">
+          </a>
+      </div>
+    <div class="nav-items-wrapper">
+      <button class="to-light-mode dark-only" aria-label="switch to light mode" onclick="switchToLightMode(true)"></button>
+      <button class="to-dark-mode light-only" aria-label="switch to dark mode" onclick="switchToDarkMode(true)"></button>
+      <div class="search-container">
+  <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M11.8654 12.5892C10.8213 13.4695 9.47259 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.47209 13.4699 10.8204 12.5901 11.8643L17.3625 16.6367L16.6377 17.3615L11.8654 12.5892ZM12.9333 8C12.9333 10.7246 10.7246 12.9333 8 12.9333C5.2754 12.9333 3.06667 10.7246 3.06667 8C3.06667 5.2754 5.2754 3.06667 8 3.06667C10.7246 3.06667 12.9333 5.2754 12.9333 8Z"
+      fill="black" />
+  </svg>
+
+
+  <input class="search-input" placeholder="Search" type="search" />
+</div>      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      </div>
+      
+    <div class="gradient-decoration"></div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="docs" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title">Docs</h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../introduction/welcome.html"><strong>はじめに</strong></a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../introduction/welcome.html#for-first-timers">はじめての方へ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../introduction/welcome.html#for-developers">開発者の方へ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../introduction/welcome.html#for-protocol-enthusiasts">プロトコル愛好家の方へ</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../quickstart/quickstart-intro.html">クイックスタート</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../quickstart/1-quickstart.html">1. Installing Tools</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../quickstart/2-quickstart.html">2. Create a Project</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../quickstart/3-quickstart.html">3. Deploy Locally</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../quickstart/4-quickstart.html">4. Acquire Cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../quickstart/cycles-faucet.html">Claim Your Free Cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../quickstart/5-quickstart.html">5. Deploy On-chain</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Sample Code</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../hello.html">Hello World</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../host-a-website.html">Static Website</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../dex.html">Basic DEX</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../nft.html">NFT Minting</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../dao.html">Basic DAO</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../encrypted-notes.html">Encrypted Note-taking</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tokentransfer.html">Token Transfer</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">開発者ドキュメント</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">はじめる</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">SDK の紹介</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/install-upgrade-remove.html">ソフトウェアのインストール・アップグレード・削除</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../release-notes/sdk-release-notes.html">Release notes</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.9.3-rn.html">0.9.3</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.9.2-rn.html">0.9.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.9.0-rn.html">0.9.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.8.4-rn.html">0.8.4</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.8.3-rn.html">0.8.3</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.8.2-rn.html">0.8.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.8.1-rn.html">0.8.1</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.8.0-rn.html">0.8.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.7.7-rn.html">0.7.7</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.7.2-rn.html">0.7.2</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.7.1-rn.html">0.7.1</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.7.0-rn.html">0.7.0</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.6.26-rn.html">0.6.26</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.6.25-rn.html">0.6.25</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.6.24-rn.html">0.6.24</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.6.23-rn.html">0.6.23</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.6.22-rn.html">0.6.22</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.6.21-rn.html">0.6.21</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../release-notes/0.6.20-rn.html">0.6.20</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">DFX の紹介</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/cli-reference.html">DFX commands</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/cli-reference/dfx-envars.html">DFX environment variables</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/glossary.html">用語集</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Internet Computer で開発する</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">開発方法を学習する</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/sdk-guide.html">IC 上でのスマートコントラクト開発</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/design-apps.html">Design apps</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/customize-projects.html">Manage projects</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/working-with-canisters.html">Canister を管理する</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/default-wallet.html">Use the default cycles wallet</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/explore-templates.html">デフォルトプロジェクトを探索する</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/define-an-actor.html">Actor を使って処理を要求する</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/hello-location.html">テキスト引数を渡す</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/counter-tutorial.html">Increment a natural number</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/calculator.html">Use integers in calculator functions</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/phonebook.html">Import library modules</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/multiple-actors.html">Use multiple actors</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/intercanister-calls.html">Make inter-canister calls</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/access-control.html">Add access control with identities</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/simple-cycles.html">Accept cycles from a wallet</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/reproducible-builds.html">Build canisters reproducibly</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/troubleshooting.html">Troubleshoot issues</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">開発言語を探る</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/work-with-languages.html">さまざまな言語での開発</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../language-guide/motoko.html">Motoko</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../base-libraries/stdlib-intro.html">Motoko 標準ライブラリ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Motoko ガイド</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/about-this-guide.html">言語ガイドについて</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/motoko-introduction.html">イントロダクション</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/basic-concepts.html">基本的なコンセプトと用語</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/mutable-state.html">ミュータブルなステート</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/local-objects-classes.html">ローカルオブジェクトとクラス</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/actors-async.html">Actor と async データ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/errors.html">エラーハンドリング</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/pattern-matching.html">パターンマッチング</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/sharing.html">データと挙動を共有する</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/modules-and-imports.html">モジュールとインポート</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/control-flow.html">命令的制御フロー</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/structural-equality.html">構造的等価性</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/actor-classes.html">Actor クラス</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/caller-id.html">プリンシパルと Caller の識別</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/cycles.html">Cycle を管理する</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/upgrades.html">ステーブル（Stable）変数とアップグレード方法</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/compatibility.html">アップグレード互換性</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/stablememory.html">The ExperimentalStableMemory library</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/heartbeats.html">Heartbeats</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/language-manual.html">Language quick reference</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/compiler-ref.html">コンパイラリファレンス</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/motoko-grammar.html">Motoko の文法</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/overview.html">Concise overview of Motoko</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../language-guide/style.html">Motoko style guidelines</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../rust-guide/rust-intro.html">Rust</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../rust-guide/rust-quickstart.html">Hello World! クイックスタート</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../rust-guide/rust-counter.html">シンプルなカウンターのチュートリアル</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../rust-guide/multiply-dependency.html">基本的な依存関係のチュートリアル</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../rust-guide/rust-profile.html">プロフィールのチュートリアル</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../rust-guide/rust-optimize.html">Rust プログラムの最適化</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../candid-guide/candid-intro.html">Candid</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../../candid-guide/candid-concepts.html">Candid とは？</a>
+    
+  </li>
+  <li class="nav-item" data-depth="5">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../candid-guide/candid-howto.html">Candid の使い方</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="6">
+    <a class="nav-link" href="../../candid-guide/candid-types.html">サポートされている型</a>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text"><a href="https://github.com/dfinity/candid" target="_blank" rel="noopener">Candid の仕様</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="6">
+    <span class="nav-text"><a href="https://docs.rs/candid" target="_blank" rel="noopener">Candid Rust クレート</a></span>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Internet Identity の紹介</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../ic-identity-guide/what-is-ic-identity.html">Internet Identity とは</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../ic-identity-guide/auth-how-to.html">Internet Identity の使い方</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../ic-identity-guide/hello-guide.html">Windows Hello ガイド</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Frontend development</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/webpack-config.html">Add frontend assets</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/custom-frontend.html">フロントエンドのカスタマイズ</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../developers-guide/tutorials/my-contacts.html">スタイルシートの追加</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Security Best Practices</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../security-best-practices/introduction.html">Introduction</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../security-best-practices/general-security-best-practices.html">General Security Best Practices</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../security-best-practices/web-app-development-security-best-practices.html">Web App Development Security Best Practices</a>
+    
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../security-best-practices/rust-canister-development-security-best-practices.html">Rust Canister Development Security Best Practices</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">プロトコルドキュメント</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../developers-guide/concepts/concepts-intro.html">概念</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../developers-guide/concepts/what-is-IC.html">Internet Computer とは</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#interface-spec:index.adoc">Internet Computer Interface Specification</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../developers-guide/concepts/nodes-subnets.html">ノードとサブネット</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../developers-guide/concepts/data-centers.html">分散型データセンター</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../developers-guide/concepts/canisters-code.html">Canisters and code</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../developers-guide/concepts/trust-in-canisters.html">Trust in canisters</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../developers-guide/concepts/tokens-cycles.html">トークンと Cycle</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../developers-guide/concepts/governance.html">Neurons and governance</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../developers-guide/concepts/bitcoin-integration.html">Bitcoin integration</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">一般ドキュメント</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of self-custody</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../token-holders/custody-options-intro.html">Choosing self-custody for digital assets</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../token-holders/self-custody-quickstart.html">Self-custody quick start</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of ledger</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integration/ledger-quick-start.html">Ledger quick start</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview of the NNS App</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../token-holders/nns-app-quickstart.html">NNS App quick start</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Additional Resources</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer videos</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=oxEr8UzGeBo&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=11&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Internet Identity</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=4eSceDOS-Ms&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=21&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Motoko</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=GzkRsbqPaA0&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Building a multiplayer game for the Internet Computer</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=b_nc6yx5_DQ&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=7&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Deploying static sites to the Internet Computer</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://www.youtube.com/watch?v=2miweY9-vZc&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=6&amp;ab_channel=DFINITY" target="_blank" rel="noopener">Zero to fullstack: web apps on the Internet Computer </a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Protocol videos</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://dfinity.org/technicals/" target="_blank" rel="noopener">Technical library</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer tooling</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../download.html">DFINITY Canister SDK</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cdk-rs" target="_blank" rel="noopener">Rust CDK</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/kritzcreek/vessel" target="_blank" rel="noopener">Vessel Package Manager</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko" target="_blank" rel="noopener">Motoko VS Code Extension</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/agent-js" target="_blank" rel="noopener">Agent JS</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/sudograph/sudograph" target="_blank" rel="noopener">Sudograph</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/cycles-wallet" target="_blank" rel="noopener">Cycles Wallet</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/" target="_blank" rel="noopener">Motoko Playground</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://github.com/dfinity/quill" target="_blank" rel="noopener">Quill</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Community created resources</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://ic.rocks/" target="_blank" rel="noopener">ic.rocks (Block explorer)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://plugwallet.ooo/" target="_blank" rel="noopener">Plug (Browser-based wallet extension)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://fleek.co/" target="_blank" rel="noopener">Fleek (Netlify for the open web)</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="http://faucet.dfinity.org/" target="_blank" rel="noopener">Cycles Faucet</a></span>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../developers-guide/computation-and-storage-costs.html">Computation and Storage Costs</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Community</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://discord.gg/cA7y6ezyE2" target="_blank" rel="noopener">Developer Discord</a></span>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://forum.dfinity.org/" target="_blank" rel="noopener">Developer Forum</a></span>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../base-libraries/stdlib-intro.html">Motoko Base Library</a>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Array.html">Array</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/AssocList.html">AssocList</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Blob.html">Blob</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Bool.html">Bool</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Buffer.html">Buffer</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/CertifiedData.html">CertifiedData</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Char.html">Char</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Debug.html">Debug</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Deque.html">Deque</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Error.html">Error</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/ExperimentalCycles.html">ExperimentalCycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/ExperimentalInternetComputer.html">ExperimentalInternetComputer</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/ExperimentalStableMemory.html">ExperimentalStableMemory</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Float.html">Float</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Func.html">Func</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Hash.html">Hash</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/HashMap.html">HashMap</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Heap.html">Heap</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Int.html">Int</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Int8.html">Int8</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Int16.html">Int16</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Int32.html">Int32</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Int64.html">Int64</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Iter.html">Iter</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/IterType.html">IterType</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/List.html">List</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Nat.html">Nat</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Nat8.html">Nat8</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Nat16.html">Nat16</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Nat32.html">Nat32</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Nat64.html">Nat64</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/None.html">None</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Option.html">Option</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Order.html">Order</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Prelude.html">Prelude</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Principal.html">Principal</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/RBTree.html">RBTree</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Random.html">Random</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Result.html">Result</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Stack.html">Stack</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Text.html">Text</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Time.html">Time</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/Trie.html">Trie</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/TrieMap.html">TrieMap</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../base-libraries/TrieSet.html">TrieSet</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Financial integration</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Rosetta API documentation</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../rosetta-api/transfers.html">Transfer ICP</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../rosetta-api/neuron-lifecycle.html">Intoduction: neuron lifecycle</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../rosetta-api/staking-support.html">Stake ICP and manage neurons</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../rosetta-api/staking-tutorial.html">Tutorial: ICP staking workflow</a>
+    
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Ledger canister smart contract</span>
+    
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../rosetta-api/ledger-local-setup.html">Setup Ledger locally</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../rosetta-api/deploy-new-token.html">Deploy your own token</a>
+    
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../rosetta-api/ledger.html">Ledger specification</a>
+    
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Developer Center</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Developer Center</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle">Table of contents</button>
+  <a href="../../introduction/welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/samples/pages/codelabs/minimalistic-rust-dapp.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  </div>
+<div class="main-content">
+<article class="doc">
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Minimalistic Motoko Dapp</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        var parentNode = document.body.parentNode
+        parentNode.getElementsByClassName('doc')[0].style.maxWidth = "1000%";
+        parentNode.getElementsByClassName('nav-container')[0].style.display = "none";
+        parentNode.getElementsByClassName('toolbar')[0].style.display = "none";
+        parentNode.getElementsByClassName('footer')[0].style.display = "none";
+        parentNode.getElementsByClassName('doc')[0].style.width = "100%";
+        parentNode.getElementsByClassName('doc')[0].style.margin = "0px";
+        parentNode.getElementsByClassName('doc')[0].style.padding = "0px";
+        parentNode.getElementsByClassName('content')[0].style.width = "100%";
+        parentNode.getElementsByClassName('content')[0].style.height = "100%";
+        parentNode.getElementsByClassName('body')[0].style.width = "100%";
+        parentNode.getElementsByClassName('body')[0].style.height = "100%";
+
+        document.getElementById('arrow-back').href = "javascript:window.close();";
+        document.getElementById('done').href = "javascript:window.close();";
+    });
+</script>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="minimal_rust_dapp"
+                  title="Minimalistic Motoko Dapp"
+                  environment="web"
+                  feedback-link="https://github.com/dfinity/docs">
+
+      <google-codelab-step label="Introduction" duration="1">
+        <p>This CodeLab shows how to build a minimalistic dapp based on the default dapp template installed by DFX when creating a new Rust project. The dapp is a simple website with a counter. Every time a button is pressed, a counter is incremented.</p>
+<p>This CodeLab covers:</p>
+<ul>
+<li>Create new canister smart contract using the SDK (DFX)</li>
+<li>Use the default project as a template as the starting point for the new project</li>
+<li>Add backend functions for a counter (count, get count and reset count)</li>
+<li>Implement backend functions in the frontend</li>
+<li>Deploy the canister smart contract locally</li>
+<li>Test backend with Candid UI and command line using DFX, and test frontend in browser</li>
+</ul>
+<p>The frontend will look like this:</p>
+<p class="image-container"><img alt="Dapp frontend" src="../_images/d71d39c63ca9f522.png"></p>
+
+
+      </google-codelab-step>
+
+      <google-codelab-step label="Create New Project" duration="3">
+        <p>Run this command to create project:</p>
+<pre><code language="language-bash" class="language-bash">$ dfx new --type=rust minimal_rust_dapp
+</code></pre>
+<p>DFX will create a new directory called <em>minimal_rust_dapp</em>, and in this directory you will find all the files, both frontend, backend, configurations etc. for the default project. The default project can be deployed without any changes as it is.</p>
+<p class="image-container"><img alt="Default project" src="https://smartcontracts.org/docs/examples/_images/f824214c6a3e694a.png"></p>
+<p>The <code>src</code> directory will contain the default frontend and backend code.</p>
+<p>The <code>dfx.json</code> file contains the canister configuration. It defines the canister(s), where the source code for the canister(s) is located, the type of canister(s) and which version of DFX the project was created with.</p>
+
+
+      </google-codelab-step>
+
+      <google-codelab-step label="Modify the Backend" duration="5">
+        <p>As the first step, add a few backend functions. The backend functions are located in the <code>src/minimal_rust_dapp/lib.rs</code> Rust file.</p>
+<p>The existing code from the default project is not needed, so the greet() function is deleted.</p>
+<h2 is-upgraded>Counter variable</h2>
+<p>Two functions are created to make the counter work: get() and increment(). The current counter value is stored as a number.</p>
+<pre><code language="language-rust" class="language-rust">static mut COUNTER: u64 = 0;
+</code></pre>
+<h2 is-upgraded>get()</h2>
+<p>The <code>get()</code> function returns the current counter value.</p>
+<pre><code language="language-rust" class="language-rust">#[ic_cdk_macros::query]
+fn get() -&gt; u64 {
+    unsafe { COUNTER }
+}
+</code></pre>
+<h2 is-upgraded>increment()</h2>
+<p>The <code>increment()</code> function increments the counter variable. This function is envoked when the user is clicking the button on the frontend, or when the function is called through the Candid interface.</p>
+<pre><code language="language-rust" class="language-rust">#[ic_cdk_macros::update]
+fn increment() -&gt; u64 {
+    unsafe {
+        COUNTER += 1;
+        COUNTER
+    }
+}
+</code></pre>
+<p>The function is returning the incremented counter variable.</p>
+<h2 is-upgraded>The completed backend file</h2>
+<p>The <code>main.mo</code> file looks like this when it&#39;s all put together:</p>
+<pre><code language="language-rust" class="language-rust">static mut COUNTER: u64 = 0;
+
+#[ic_cdk_macros::query]
+fn get() -&gt; u64 {
+    unsafe { COUNTER }
+}
+
+#[ic_cdk_macros::update]
+fn increment() -&gt; u64 {
+    unsafe {
+        COUNTER += 1;
+        COUNTER
+    }
+}
+</code></pre>
+
+
+      </google-codelab-step>
+
+      <google-codelab-step label="Modify the Candid interface" duration="2">
+        <p>After modifying the backend, the Candid interface must be modified to match the backend. The Candid interface is located in the <code>src/minimal_rust_dapp/minimal_rust_dapp.did</code> Candid file.</p>
+<p>Remove the existing code in the Candid interface file, and replace it with the following:</p>
+<pre><code language="language-rust" class="language-rust">service : {
+    &#34;get&#34;: () -&gt; (nat64) query;
+    &#34;increment&#34;: () -&gt; (nat64);
+}
+</code></pre>
+
+
+      </google-codelab-step>
+
+      <google-codelab-step label="Test the Backend" duration="7">
+        <p>At this point the backend can be deployed and its functionality can be tested. The backend can be tested in different ways, and in this step the backend is tested by making requests through DFX calls and by using the web interface created by Candid.</p>
+<h2 is-upgraded>Deploy canisters</h2>
+<p>First the dapp has to be deployed, which is done locally for this CodeLab. The local network is started by running this command:</p>
+<pre><code language="language-bash" class="language-bash">$ dfx start --background
+</code></pre>
+<p>When the local network is up and running, run this command to deploy the canisters:</p>
+<pre><code language="language-bash" class="language-bash">$ dfx deploy
+</code></pre>
+<h2 is-upgraded>DFX</h2>
+<p>DFX has a subset of commands for canister operations, and one of them enables calling the functions added to the <code>lib.rs</code> file in the previous steps. In the following examples the initial value is 0. <code>increment</code> will increment value and return 1 and  <code>get</code> will return the current value.</p>
+<p>Command usage: <code>dfx canister call &#60project&#62  &#60function&#62</code></p>
+<pre><code language="language-bash" class="language-bash">$ dfx canister call minimal_rust_dapp increment
+(1 : Nat)
+</code></pre>
+<pre><code language="language-bash" class="language-bash">$ dfx canister call minimal_rust_dapp get
+(1 : Nat)
+</code></pre>
+<h2 is-upgraded>Candid UI</h2>
+<p>The Candid UI provides an easy, user friendly interface for testing the backend. The UI is automatically generated, and the canister ID can be found in the <code>canister_ids.json</code> file.</p>
+<p>The localhost version of the <code>canister_ids.json</code> file can be found in <code>.dfx/local/canister_ids.json</code> and the URL is:</p>
+<p><strong>http://&lt;candid_canister_id&gt;.localhost:8000/?id=&lt;backend_canister_id&gt;</strong></p>
+<p class="image-container"><img alt="Candid UI" src="../_images/af3e45eb47eb3f14.png"></p>
+
+
+      </google-codelab-step>
+
+      <google-codelab-step label="Modify the Frontend" duration="5">
+        <p>The default project has an <code>index.html</code> file with page HTML and an <code>index.js</code> file with an implementation of the backend functions.</p>
+<h2 is-upgraded>HTML</h2>
+<p>For this CodeLab the changes to the <code>index.html</code> file is minor. The button is kept and so is the section showing the result, just simplified.</p>
+<pre><code language="language-html" class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&#34;en&#34;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&#34;UTF-8&#34;&gt;
+        &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width&#34;&gt;
+        &lt;title&gt;hack&lt;/title&gt;
+        &lt;base href=&#34;/&#34;&gt;
+
+        &lt;link type=&#34;text/css&#34; rel=&#34;stylesheet&#34; href=&#34;main.css&#34; /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;img src=&#34;logo.png&#34; alt=&#34;DFINITY logo&#34; /&gt;
+        &lt;section&gt;
+            &lt;button id=&#34;clickMeBtn&#34;&gt;Click Me!&lt;/button&gt;
+        &lt;/section&gt;
+        &lt;section id=&#34;counter&#34;&gt;&lt;/section&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 is-upgraded>Javascript</h2>
+<p>The existing event listener for button click is modified to call the <code>increment()</code> function, and an event listener for page load is added to get the initial value of the counter with <code>get()</code>. The backend functions are still imported through the Candid interface.</p>
+<pre><code language="language-javascript" class="language-javascript">import { minimaldapp } from &#34;../../declarations/minimal_rust_dapp&#34;;
+
+document.addEventListener(&#39;DOMContentLoaded&#39;, async function () {
+  const counter = await minimaldapp.get();
+  document.getElementById(&#34;counter&#34;).innerText = &#34;Counter: &#34; + counter;
+})
+
+document.getElementById(&#34;clickMeBtn&#34;).addEventListener(&#34;click&#34;, async () =&gt; {
+  const counter = await minimaldapp.increment();
+  document.getElementById(&#34;counter&#34;).innerText = &#34;Counter: &#34; + counter;
+});
+</code></pre>
+
+
+      </google-codelab-step>
+
+      <google-codelab-step label="Test the Frontend" duration="3">
+        <p>The canisters must be re-deployed since the frontend has changed since the deployment of the backend changes in step . Assuming the local network is still running, re-deploy with this command:</p>
+<pre><code language="language-bash" class="language-bash">$ dfx deploy
+</code></pre>
+<p>The URL for the frontend is depending on the canister ID. As described step 4, get the canister ID, the UI canister in this case, from the canister_IDs.json file. The URL will look like this:</p>
+<p><strong>https://&lt;ui_canister_id&gt;.localhost:8000</strong></p>
+<p class="image-container"><img alt="Dapp frontend" src="../d71d39c63ca9f522.png"></p>
+
+
+      </google-codelab-step>
+
+      <google-codelab-step label="Summary" duration="1">
+        <p>This CodeLab walks through the very basic steps of creating and deploying a dapp locally, using Motoko and HTML/Javascript.</p>
+<p>For information about deploying the dapp to the Internet Computer, see the documentation <a href="https://smartcontracts.org/docs/quickstart/network-quickstart.html" target="_blank">here</a>.</p>
+
+
+      </google-codelab-step>
+
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
+</article>
+<aside class="toc sidebar">
+  
+  <div class="toc-menu"></div>
+</aside></div>
+</main></div>
+<footer class="footer">
+  <div class="footer-container">
+    <a href="http://www.dfinity.org"><img class="footer-logo" src="../../../_/img/logo.svg"></a>
+    <nav class="footer-nav">
+      <div class="col1">
+        <h5 class="footer-header">Developers</h5>
+        <a class="footer-link" href="http://www.dfinity.org/faq">
+          FAQ
+        </a>
+        <a class="footer-link" href="#">
+          Developers
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/data-centers">
+          Data Centers
+        </a>
+        <a class="footer-link" href="https://support.dfinity.org">
+          Support
+        </a>
+      </div>
+
+      <div class="col2">
+        <h5 class="footer-header">Team</h5>
+        <a class="footer-link" href="http://www.dfinity.org/foundation">
+          Foundation
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/foundation#events">
+          Events
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/careers">
+          Careers
+        </a>
+      </div>
+
+
+      <div class="col3">
+        <h5 class="footer-header">Media</h5>
+        <a class="footer-link" href="http://www.dfinity.org/media">
+          Featured Videos
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/media#featured-stories">
+          Featured Stories
+        </a>
+        <a class="footer-link" href="http://www.dfinity.org/newsletter">
+          Newsletter
+        </a>
+      </div>
+
+      <div class="social-icons">
+
+        <a class="social-icon-link" target="blank" href="https://github.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 0C5.3625 0 0 5.3625 0 12C0 17.2875 3.45 21.7875 8.2125 23.4C8.8125 23.5125 9.0375 23.1375 9.0375 22.8375C9.0375 22.5375 9.0375 21.7875 9.0375 20.8125C5.7 21.525 4.9875 19.2 4.9875 19.2C4.425 17.8125 3.6375 17.4375 3.6375 17.4375C2.55 16.6875 3.7125 16.725 3.7125 16.725C4.9125 16.8 5.55 17.9625 5.55 17.9625C6.6375 19.8 8.3625 19.275 9.0375 18.975C9.15 18.1875 9.45 17.6625 9.7875 17.3625C7.125 17.0625 4.3125 16.0125 4.3125 11.4375C4.3125 10.125 4.7625 9.075 5.55 8.2125C5.4375 7.9125 5.025 6.675 5.6625 5.025C5.6625 5.025 6.675 4.6875 8.9625 6.2625C9.9375 6 10.95 5.85 11.9625 5.85C12.975 5.85 14.025 6 14.9625 6.2625C17.25 4.725 18.2625 5.025 18.2625 5.025C18.9 6.675 18.4875 7.9125 18.375 8.2125C19.1625 9.0375 19.6125 10.125 19.6125 11.4375C19.6125 16.05 16.8 17.0625 14.1375 17.3625C14.55 17.7375 14.9625 18.45 14.9625 19.575C14.9625 21.1875 14.9625 22.4625 14.9625 22.875C14.9625 23.2125 15.1875 23.5875 15.7875 23.4375C20.55 21.7875 24 17.2875 24 12C24 5.3625 18.6375 0 12 0Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+        <a class="social-icon-link" target="blank" href="https://medium.com/dfinity-network-blog">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M22.3125 1H1.6875C1.50516 1 1.3303 1.07243 1.20136 1.20136C1.07243 1.3303 1 1.50516 1 1.6875L1 22.3125C1 22.4948 1.07243 22.6697 1.20136 22.7986C1.3303 22.9276 1.50516 23 1.6875 23H22.3125C22.4948 23 22.6697 22.9276 22.7986 22.7986C22.9276 22.6697 23 22.4948 23 22.3125V1.6875C23 1.50516 22.9276 1.3303 22.7986 1.20136C22.6697 1.07243 22.4948 1 22.3125 1V1ZM19.2768 6.21228L18.0971 7.34356C18.0471 7.38153 18.0085 7.43245 17.9854 7.4908C17.9623 7.54916 17.9557 7.61272 17.9661 7.67459V15.9875C17.9557 16.0494 17.9623 16.1129 17.9854 16.1713C18.0085 16.2296 18.0471 16.2806 18.0971 16.3185L19.2493 17.4498V17.698H13.4534V17.4498L14.6469 16.2903C14.7641 16.1731 14.7641 16.1388 14.7641 15.9593V9.24072L11.4455 17.6698H10.9987L7.13319 9.24072V14.8899C7.11729 15.0071 7.12828 15.1264 7.16533 15.2387C7.20237 15.351 7.2645 15.4535 7.347 15.5382L8.89937 17.4213V17.6695H4.49731V17.4213L6.04969 15.5382C6.13152 15.4534 6.19226 15.3505 6.22701 15.2379C6.26177 15.1253 6.26956 15.0061 6.24975 14.8899V8.35866C6.25855 8.26945 6.24627 8.17943 6.21391 8.09584C6.18155 8.01225 6.13001 7.93743 6.06344 7.87741L4.68362 6.21503V5.96684H8.96847L12.2805 13.2303L15.1924 5.96684H19.2768V6.21228Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+        <a class="social-icon-link" target="blank" href="https://twitter.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23 5.33654C22.175 5.67308 21.3156 5.94231 20.4219 6.04327C21.35 5.50481 22.0719 4.62981 22.4156 3.58654C21.5562 4.09135 20.5938 4.46154 19.5625 4.66346C18.7031 3.78846 17.5344 3.25 16.2281 3.25C13.7187 3.25 11.725 5.23558 11.725 7.65865C11.725 7.99519 11.7594 8.33173 11.8281 8.66827C8.08125 8.5 4.74688 6.71635 2.54688 4.05769C2.16875 4.69712 1.92813 5.47115 1.92813 6.27885C1.92813 7.82692 2.71875 9.17308 3.92188 9.94712C3.16562 9.91346 2.47812 9.71154 1.89375 9.40865C1.89375 9.44231 1.89375 9.44231 1.89375 9.47596C1.89375 11.6298 3.44063 13.4135 5.50313 13.8173C5.125 13.9183 4.7125 13.9856 4.3 13.9856C4.025 13.9856 3.71562 13.9519 3.44062 13.9183C4.025 15.6683 5.675 16.9471 7.66875 16.9808C6.12187 18.1587 4.1625 18.8654 2.06562 18.8654C1.6875 18.8654 1.34375 18.8317 1 18.7981C2.99375 20.0096 5.36563 20.75 7.90938 20.75C16.2281 20.75 20.7656 14.0192 20.7656 8.16346C20.7656 7.96154 20.7656 7.79327 20.7656 7.59135C21.625 6.98558 22.3813 6.21154 23 5.33654Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://forum.dfinity.org/">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12.0932 1C6.0727 1 1 5.83706 1 11.8085C1 12 1.00488 23 1.00488 23L12.0933 22.9901C18.1188 22.9901 23 17.9666 23 11.9951C23 6.02373 18.1188 1 12.0932 1ZM12 18.2857C11.0473 18.2857 10.1388 18.0745 9.32853 17.6916L5.34597 18.6786L6.47047 14.9956C5.98926 14.1067 5.71423 13.0853 5.71423 12C5.71423 8.52815 8.52811 5.71428 12 5.71428C15.4719 5.71428 18.2857 8.52815 18.2857 12C18.2857 15.472 15.4719 18.2857 12 18.2857Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://www.linkedin.com/company/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M1 4.35878C1 3.01688 2.03589 2 3.61924 2C5.20139 2 6.17406 3.01448 6.20507 4.35519C6.20507 5.67205 5.20139 6.71456 3.58942 6.71456H3.55841C2.00666 6.71456 1 5.67562 1 4.35878ZM17.5581 8.28158C15.1017 8.28158 13.5625 9.61217 13.278 10.5449V8.41225H8.46122C8.52324 9.54475 8.46122 21.9995 8.46122 21.9995H13.278V14.647C13.278 14.5987 13.2778 14.5505 13.2775 14.5025C13.2756 14.1436 13.2736 13.7952 13.383 13.5365C13.714 12.7194 14.4255 11.8719 15.7046 11.8719C17.3775 11.8719 18.1378 13.128 18.1378 14.9685V21.9995H23V14.4448C23 10.236 20.6056 8.28158 17.5581 8.28158ZM1.55371 8.41275H5.84157V22H1.55371V8.41275Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+        <a class="social-icon-link" target="blank" href="https://youtube.com/dfinity">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23.775 7.6375C23.775 7.6375 23.55 5.9875 22.8375 5.2375C21.9375 4.3 20.8875 4.2625 20.4375 4.225C17.025 4 12 4 12 4C12 4 6.975 4 3.6 4.225C3.1125 4.2625 2.1 4.3 1.2 5.2375C0.4875 5.95 0.2625 7.6375 0.2625 7.6375C0.2625 7.6375 0 9.5875 0 11.5375V13.375C0 15.325 0.225 17.275 0.225 17.275C0.225 17.275 0.45 18.925 1.1625 19.675C2.0625 20.6125 3.2625 20.6125 3.825 20.6875C5.7375 20.875 12 20.9125 12 20.9125C12 20.9125 17.025 20.9125 20.4 20.65C20.8875 20.6125 21.9 20.575 22.8 19.6375C23.5125 18.925 23.7375 17.2375 23.7375 17.2375C23.7375 17.2375 24 15.2875 24 13.3375V11.5C24 9.5875 23.775 7.6375 23.775 7.6375ZM9.525 15.55V8.8L16.0125 12.175L9.525 15.55Z"
+              fill="#333333" />
+          </svg>
+
+        </a>
+
+      </div>
+    </nav>
+
+    <div class="legal-container">
+      <span class="legal" id="year">
+        © 2020 DFINITY
+      </span>
+      <a class="legal footer-link" href="http://www.dfinity.org/terms-of-use">
+        Terms of Use
+      </a>
+      <a class="legal footer-link" href="http://www.dfinity.org/cookie-policy">
+        Cookie Policy
+      </a>
+      <a class="legal footer-link" href="http://www.dfinity.org/privacy-policy">
+        Privacy Policy
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+  var today = new Date();
+  var year = today.getFullYear();
+  document.getElementById("year").innerHTML = `© ${year} DFINITY`;
+</script><script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+    apiKey: 'b93d56cc4b00b0afbcdaacab04dcf25b',
+    indexName: 'dfinity_sdk',
+    inputSelector: '.search-input',
+    debug: false // Set debug to true if you want to inspect the dropdown
+  });
+</script>
+
+<!-- Start of dfinity Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=53121947-c10a-484c-b99b-f89a9fb6f63e"> </script>
+<!-- End of dfinity Zendesk Widget script -->
+
+<script src="../../../_/js/vendor/run_repl.js"></script>
+<script type="module">
+  import {CodeJar} from 'https://cdn.jsdelivr.net/npm/codejar@3.2.3/codejar.min.js';
+  import {withLineNumbers} from 'https://cdn.jsdelivr.net/npm/codejar@3.2.3/linenumbers.js';
+  window.CodeJar = CodeJar;
+  window.withLineNumbers = withLineNumbers;
+</script> 
+<script type="text/javascript">
+async function addPackage(name, repo, version, dir) {
+  const meta_url = `https://data.jsdelivr.com/v1/package/gh/${repo}@${version}/flat`;
+  const base_url = `https://cdn.jsdelivr.net/gh/${repo}@${version}`;
+  const response = await fetch(meta_url);
+  const json = await response.json()
+  const promises = [];
+  const fetchedFiles = [];
+  for (const f of json.files) {
+    if (f.name.startsWith(`/${dir}/`) && /\.mo$/.test(f.name)) {
+      const promise = (async () => {
+        const content = await (await fetch(base_url + f.name)).text();
+        const stripped = name + f.name.slice(dir.length + 1);
+        fetchedFiles.push(stripped);
+        Motoko.saveFile(stripped, content);
+      })();
+      promises.push(promise);
+    }
+  }
+  Promise.all(promises).then(() => {
+    Motoko.addPackage(name, name + '/');
+    console.log(`Loaded motoko library "${name}"`);
+    changeCodeBlock(); // from run_repl.js
+  });
+}
+function loadBase() {
+  addPackage('base', 'dfinity/motoko-base', '', 'src');
+}
+</script>
+<script async src="https://download.dfinity.systems/motoko//js/moc-interpreter-.js" onload="loadBase()">
+</script>
+  </body>
+</html>

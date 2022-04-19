@@ -135,46 +135,62 @@
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstart/how-to-deploy-hello-world-smart-contract.html">Deploy your first dapp in 20 minutes</a>
+    <a class="nav-link" href="../quickstart/1-quickstart.html">1. Installing Tools</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/2-quickstart.html">2. Create a Project</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/3-quickstart.html">3. Deploy Locally</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/4-quickstart.html">4. Acquire Cycles</a>
     
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstart/cycles-faucet.html">Claim Your Free Cycles</a>
     
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/5-quickstart.html">5. Deploy On-chain</a>
+    
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../examples/index.html">コードの例</a>
+    <a class="nav-link" href="../samples/index.html">Sample Code</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/hello.html">Hello Example</a>
+    <a class="nav-link" href="../samples/hello.html">Hello World</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/host-a-website.html">Host a Static Website</a>
+    <a class="nav-link" href="../samples/host-a-website.html">Static Website</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/dex.html">Basic DEX</a>
+    <a class="nav-link" href="../samples/dex.html">Basic DEX</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/nft.html">NFT Minting</a>
+    <a class="nav-link" href="../samples/nft.html">NFT Minting</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/dao.html">Basic DAO</a>
+    <a class="nav-link" href="../samples/dao.html">Basic DAO</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/encrypted-notes.html">Encrypted Note-taking</a>
+    <a class="nav-link" href="../samples/encrypted-notes.html">Encrypted Note-taking</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../examples/tokentransfer.html">Token Transfer</a>
+    <a class="nav-link" href="../samples/tokentransfer.html">Token Transfer</a>
     
   </li>
 </ul>
@@ -203,6 +219,10 @@
     <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.9.3-rn.html">0.9.3</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../release-notes/0.9.2-rn.html">0.9.2</a>
     
@@ -1142,7 +1162,7 @@
 <article class="doc">
 <h1 class="page">Rust Canister Development Security Best Practices</h1>
 <div class="sect1">
-<h2 id="_immutable_smart_contracts"><a class="anchor" href="#_immutable_smart_contracts"></a>Immutable Smart Contracts</h2>
+<h2 id="_smart_contracts_canister_control"><a class="anchor" href="#_smart_contracts_canister_control"></a>Smart Contracts Canister Control</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_use_a_decentralized_governance_system_like_sns_to_make_a_canister_have_a_decentralized_controller"><a class="anchor" href="#_use_a_decentralized_governance_system_like_sns_to_make_a_canister_have_a_decentralized_controller"></a>Use a decentralized governance system like SNS to make a canister have a decentralized controller</h3>
@@ -1157,30 +1177,37 @@
 <div class="ulist">
 <ul>
 <li>
-<p>To implement an immutable canister smart contract, you cannot be the controller of the canister. Control must be passed to the service nervous system (SNS) or a decentralized governance system.</p>
+<p>Consider passing canister control to a decentralized governance system such as the Internet Computer&#8217;s Service Nervous System (SNS), so that changes to the canister are only executed if the SNS community approves them collectively through voting. If an SNS is used, use an SNS on the SNS subnet as this guarantees that the SNS is running an NNS-blessed version and maintained as part of the IC. These SNSs will be available soon. See the <a href="https://dfinity.org/roadmap/">roadmap</a> and the <a href="https://forum.dfinity.org/t/open-governance-canister-for-sns-design-proposal/10224">design proposal</a></p>
 </li>
 <li>
-<p>Another option to create an immutable canister smart contract is to remove the canister controller completely. But note that this implies that the canister cannot be upgraded, which may have severe implications in case e.g. a bug would be found.</p>
-</li>
+<p>Another option would be to create an immutable canister smart contract by removing the canister controller completely. However, note that this implies that the canister cannot be upgraded, which may have severe implications in case e.g. a bug were found. The option to use a decentralized governance system and thus being able to upgrade smart contracts is a big advantage of the Internet Computer ecosystem compared to other blockchains.</p>
+<div class="ulist">
+<ul>
 <li>
 <p>Note that, contrary to some other blockchains, also immutable smart contracts need cycles to run, and they can receive cycles.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>It is also possible to implement a DAO (<a href="https://en.wikipedia.org/wiki/Decentralized_autonomous_organization">Decentralized Autonomous Organization</a>) on the IC from scratch. If you decide to do this (e.g. along the lines of the <a href="https://smartcontracts.org/docs/samples/dao.html">basic DAO example</a>), be aware that this is security critical and must be security reviewed carefully. Furthermore, users will need to verify that the DAO is controlled by itself.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_verify_the_immutability_of_smart_contracts_you_depend_on"><a class="anchor" href="#_verify_the_immutability_of_smart_contracts_you_depend_on"></a>Verify the immutability of smart contracts you depend on</h3>
+<h3 id="_verify_the_ownership_of_smart_contracts_you_depend_on"><a class="anchor" href="#_verify_the_ownership_of_smart_contracts_you_depend_on"></a>Verify the ownership of smart contracts you depend on</h3>
 <div class="sect3">
 <h4 id="_security_concern_2"><a class="anchor" href="#_security_concern_2"></a>Security Concern</h4>
 <div class="paragraph">
-<p>If a canister depends on a canister smart contract (i.e. makes inter-canister calls to it), it is essential that the canister smart contract is immutable. Otherwise, i.e. if it has a controller, they could modify the smart contract whenever they like, e.g. to steal assets held by the canister.</p>
+<p>If a canister depends on another canister smart contract (i.e. makes inter-canister calls to it), it is essential that the canister smart contract that one depends on is owned by a decentralized governance system. Otherwise, i.e. if it has a controller, they could modify the smart contract without others noticing, e.g. to steal assets held by the canister.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_recommendation_2"><a class="anchor" href="#_recommendation_2"></a>Recommendation</h4>
 <div class="paragraph">
-<p>If you interact with a canister that must be an immutable smart contract, make sure it is controlled by the NNS, service nervous system (SNS) or a decentralized governance system.</p>
+<p>If you interact with a canister that you require to be decentralized, make sure it is controlled by the NNS, a service nervous system (SNS) or a decentralized governance system, and review under what conditions and by whom the smart contract can be changed.</p>
 </div>
 </div>
 </div>

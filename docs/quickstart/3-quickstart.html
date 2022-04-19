@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Token Transfer Sample Code :: Dfinity 日本語ドキュメント</title>
-    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/examples/tokentransfer.html">
+    <title>3. Deploying the Hello Dapp on Local Machine (3 min) :: Dfinity 日本語ドキュメント</title>
+    <link rel="canonical" href="https://nifty-beaver-611cb8.netlify.app/docs/quickstart/3-quickstart.html">
     <meta name="generator" content="Antora 2.3.4">
 <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /><meta property="og:image:width" content="1200" />
@@ -131,50 +131,66 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../quickstart/quickstart-intro.html">クイックスタート</a>
+    <a class="nav-link" href="quickstart-intro.html">クイックスタート</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstart/how-to-deploy-hello-world-smart-contract.html">Deploy your first dapp in 20 minutes</a>
+    <a class="nav-link" href="1-quickstart.html">1. Installing Tools</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstart/cycles-faucet.html">Claim Your Free Cycles</a>
+    <a class="nav-link" href="2-quickstart.html">2. Create a Project</a>
+    
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="3-quickstart.html">3. Deploy Locally</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4-quickstart.html">4. Acquire Cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cycles-faucet.html">Claim Your Free Cycles</a>
+    
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5-quickstart.html">5. Deploy On-chain</a>
     
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">コードの例</a>
+    <a class="nav-link" href="../samples/index.html">Sample Code</a>
     
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="hello.html">Hello Example</a>
+    <a class="nav-link" href="../samples/hello.html">Hello World</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="host-a-website.html">Host a Static Website</a>
+    <a class="nav-link" href="../samples/host-a-website.html">Static Website</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="dex.html">Basic DEX</a>
+    <a class="nav-link" href="../samples/dex.html">Basic DEX</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="nft.html">NFT Minting</a>
+    <a class="nav-link" href="../samples/nft.html">NFT Minting</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="dao.html">Basic DAO</a>
+    <a class="nav-link" href="../samples/dao.html">Basic DAO</a>
     
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="encrypted-notes.html">Encrypted Note-taking</a>
+    <a class="nav-link" href="../samples/encrypted-notes.html">Encrypted Note-taking</a>
     
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="tokentransfer.html">Token Transfer</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../samples/tokentransfer.html">Token Transfer</a>
     
   </li>
 </ul>
@@ -203,6 +219,10 @@
     <a class="nav-link" href="../release-notes/sdk-release-notes.html">Release notes</a>
     
 <ul class="nav-list">
+  <li class="nav-item" data-depth="5">
+    <a class="nav-link" href="../release-notes/0.9.3-rn.html">0.9.3</a>
+    
+  </li>
   <li class="nav-item" data-depth="5">
     <a class="nav-link" href="../release-notes/0.9.2-rn.html">0.9.2</a>
     
@@ -1130,20 +1150,290 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Developer Center</a></li>
-    <li><a href="index.html">コードの例</a></li>
-    <li><a href="tokentransfer.html">Token Transfer</a></li>
+    <li><a href="quickstart-intro.html">クイックスタート</a></li>
+    <li><a href="3-quickstart.html">3. Deploy Locally</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/examples/pages/tokentransfer.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
+  <div class="edit-this-page"><a href="https://github.com/Japan-DfinityInfoHub/docs/edit/main/modules/quickstart/pages/3-quickstart.adoc"><svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a></div>
   </div>
 <div class="main-content">
 <article class="doc">
-<h1 class="page">Token Transfer Sample Code</h1>
+<h1 class="page">3. Deploying the Hello Dapp on Local Machine (3 min)</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Tokens Transfer is a canister that can transfer token from its account to other accounts. It is an example of a canister that uses the Ledger canister. Sample code is available in <a href="https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer">Motoko</a> and <a href="https://github.com/dfinity/examples/tree/master/rust/tokens_transfer">Rust</a>.</p>
+<p>Now that your <code>hello</code> project is created, the next step is to deploy it locally. To deploy locally, <code>dfx</code> can start a local instance of the execution environment. This environment is not a full IC replica, nor does it download any of the state of an IC replica. It is a lightweight environment designed exlcusively for deploying dapps.</p>
 </div>
 <div class="paragraph">
-<p>The sample code revolves around one core transfer function which takes as input the amount of tokens to transfer, the account (and optionally the subaccount) to which to transfer the tokens and returns either success or an error in case e.g. the tokens transfer canister doesn&#8217;t have enough tokens to do the transfer. In case of success, a unique identifier of the transaction is returned. This identifier will be stored in the memo of the transaction in the Ledger.</p>
+<p>For this, developers should keep two terminals open:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Terminal window/tab A:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Shows the local instance of the execution environment running</p>
+</li>
+<li>
+<p>Is analogous to how developers often start local servers in web2 projects (e.g. Node.js&#8217;s Express, Python&#8217;s Django, Ruby&#8217;s Rails, etc&#8230;&#8203;)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Terminal window/tab B:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Used to send <strong>messages</strong> to the local instance of the execution environment</p>
+</li>
+<li>
+<p>Is analogous to how developers send HTTP API messages to servers running locally (e.g. Postman, Panic).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For ease, this tutorial will distinguish between both windows by color scheme:</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_terminal_a"><a class="anchor" href="#_terminal_a"></a>Terminal A</h3>
+<div class="paragraph">
+<p><span class="image"><img src="_images/quickstart/dfx-new-hello-2.png" alt="dfx new"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_terminal_b"><a class="anchor" href="#_terminal_b"></a>Terminal B</h3>
+<div class="paragraph">
+<p><span class="image"><img src="_images/quickstart/terminal-b-ls.png" alt="terminal b ls"></span></p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_1_start_the_local_instance_of_the_execution_environment_terminal_a"><a class="anchor" href="#_3_1_start_the_local_instance_of_the_execution_environment_terminal_a"></a>3.1 Start the Local Instance of the Execution Environment (Terminal A)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder <code>hello</code> because that is the name of the project created in section 2 above.</p>
+</div>
+<div class="paragraph">
+<p>Start the local canister execution environment in Terminal A:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/quickstart/terminal-a-dfx-start.png" alt="dfx start"></span></p>
+</div>
+<div class="paragraph">
+<p>Notes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click "Allow."</p>
+</li>
+<li>
+<p>Check no other network process is running that would create a port conflict on 8000.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Congratulations - there is now a local Instance of the execution environmentof the IC running on your machine. Leave this window/tab open and running while you continue.</strong> If the window/tab is closed, the local instance of the execution environment of the IC will not be running and the rest of the tutorial will fail.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_2_deploy_the_hello_dapp_to_the_locally_terminal_b"><a class="anchor" href="#_3_2_deploy_the_hello_dapp_to_the_locally_terminal_b"></a>3.2 Deploy the "hello" Dapp to the Locally (Terminal B)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Note: since this is a local deployment, this section has fewer steps than deploying to mainnet (which requires <a href="developers-guide/concepts/tokens-cycles">cycles</a>).</p>
+</div>
+<div class="paragraph">
+<p>To deploy your first dapp locally:</p>
+</div>
+<div class="sect2">
+<h3 id="_3_2_1_check_that_you_are_still_in_the_root_directory_for_your_project_if_needed"><a class="anchor" href="#_3_2_1_check_that_you_are_still_in_the_root_directory_for_your_project_if_needed"></a>3.2.1 Check that you are still in the root directory for your project, if needed.</h3>
+<div class="paragraph">
+<p>Ensure that node modules are available in your project directory, if needed, by running the following command (it does not hurt to run this many times):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/quickstart/terminal-b-npm-install.png" alt="npm install"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_2_2_register_build_and_deploy_dapp"><a class="anchor" href="#_3_2_2_register_build_and_deploy_dapp"></a>3.2.2 Register, build and deploy dapp:</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx deploy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/quickstart/terminal-b-dfx-deploy.png" alt="dfx deploy"></span></p>
+</div>
+<div class="paragraph">
+<p>Your dapp is now composed of two canisters as you can see in the copy below (from terminal B):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>hello</code> canister <code>rrkah-fqaaa-aaaaa-aaaaq-cai</code> which contains the backend logic.</p>
+</li>
+<li>
+<p><code>hello_assets</code> canister <code>yjl3-tyaaa-aaaaa-aaaba-cai</code> which contains the frontend assets (e.g. HTML, JS, CSS).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_3_testing_the_dapp_locally_via_the_command_line_terminal_b"><a class="anchor" href="#_3_3_testing_the_dapp_locally_via_the_command_line_terminal_b"></a>3.3 Testing the Dapp Locally via the Command Line (Terminal B)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that the canister is deployed to local replica, you can send it a message. Since the canister has a method called <code>greet</code> (which accepts a string as a parameter), we will send it a message.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx canister call hello greet everyone</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>dfx canister call</code> command requires you to specify a canister name and a method—or function—to call.</p>
+</li>
+<li>
+<p><code>hello</code> specifies the name of the <strong>canister</strong> you want to call.</p>
+</li>
+<li>
+<p><code>greet</code> specifies the name of the <strong>function</strong> you want to call in the <code>hello</code> canister.</p>
+</li>
+<li>
+<p><code>everyone</code> is the text data type argument that you want to pass to the <code>greet</code> function.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_4_testing_the_dapp_locally_via_the_browser"><a class="anchor" href="#_3_4_testing_the_dapp_locally_via_the_browser"></a>3.4 Testing the Dapp Locally via the Browser</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that you have verified that your dapp has been deployed and tested its operation using the command line, let&#8217;s verify that you can access the front-end using your web browser.</p>
+</div>
+<div class="sect2">
+<h3 id="_3_4_1_on_terminal_b_start_the_development_server_with"><a class="anchor" href="#_3_4_1_on_terminal_b_start_the_development_server_with"></a>3.4.1 On terminal B, start the development server with:</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm start</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_4_2_test_the_dapp_locally_in_the_browser"><a class="anchor" href="#_3_4_2_test_the_dapp_locally_in_the_browser"></a>3.4.2  Test the dapp locally in the browser</h3>
+<div class="paragraph">
+<p>To see your dapp running locally in the browser on http://localhost:8080.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/front-end-prompt.png" alt="Sample HTML page"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Input a name, then click <strong>Click Me</strong> to return a greeting.</p>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/front-end-result.png" alt="Hello" width="everyone! greeting"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_5_stop_the_local_canister_execution_environment"><a class="anchor" href="#_3_5_stop_the_local_canister_execution_environment"></a>3.5 Stop the local canister execution environment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After testing the application in the browser, you can stop the local canister execution environment so that it does not continue running in the background. We will not need it running to deploy on-chain.</p>
+</div>
+<div class="paragraph">
+<p>To stop the local deployment:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the terminal A, press Control-C to interrupt the local network process.</p>
+</li>
+<li>
+<p>In the terminal B, press Control-C to interrupt the development server process.</p>
+</li>
+<li>
+<p>Stop the local canister execution environment running on your local computer:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dfx stop</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You have now tested the dapp by deploing it locally. You are ready to acquire cycles to deploy on-chain.</p>
+</div>
+<div class="paragraph">
+<p>Continue with the main tutorial: <a href="quickstart-intro.html">quickstart intro</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_node_js_is_not_properly_installed"><a class="anchor" href="#_node_js_is_not_properly_installed"></a>Node.js is not properly installed</h3>
+<div class="paragraph">
+<p>If your dapp does not show in the browser, it is possible that Node.js is not installed. Confirm it is installed by running:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prior_installations_of_dfx"><a class="anchor" href="#_prior_installations_of_dfx"></a>Prior installations of dfx</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you have previously created IC dapps before February 2022, you may need to do a clean install. You can delete SDK and associated profiles and re-install it. Follow the instructions here: <a href="../developers-guide/install-upgrade-remove.html">Install, upgrade, or remove software</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">node --version</code></pre>
+</div>
+</div>
+</div>
 </div>
 </article>
 <aside class="toc sidebar">
