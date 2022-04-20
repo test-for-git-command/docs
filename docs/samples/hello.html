@@ -1160,33 +1160,34 @@
 <article class="doc">
 <h1 class="page">Hello, World!</h1>
 <div class="paragraph">
-<p>This sample demonstrates a dead simple dapp consisting of two canister smart contracts:</p>
+<p>このサンプルは、以下の 2つの Canister スマートコントラクトからなるごく単純な Dapp です。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>a simple backend canister, <code>hello</code>, implementing the logic of the application, and</p>
+<p>アプリケーションのロジックを実装しているシンプルなバックエンド Canister である <code>hello</code>
+と</p>
 </li>
 <li>
-<p>a simple frontend asset canister, <code>hello_assets</code>, serving the assets of the dapp&#8217;s web user interface.</p>
+<p>Dapp の Web ユーザーインターフェースのアセットを提供するシンプルなフロントエンドアセット Caninster である <code>hello_assets</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>It is the dapp equivalent of the ubiquitous <em>hello world</em> and can be seen running <a href="https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/">here on the IC</a>.</p>
+<p>これは、よくある <em>hello world</em> に相当する Dapp で、 <a href="https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/">IC 上のここで</a> 動作しているのを見ることができます。</p>
 </div>
 <div class="paragraph">
-<p>This sample is based on the default project created by running <code>dfx new</code> as described in the
-<a href="../quickstart/local-quickstart.html">Motoko</a> and
-<a href="../rust-guide/rust-quickstart.html">Rust</a> quickstart documents.</p>
+<p>このサンプルは、以下の説明に従って <code>dfx new</code> を実行して作成されたデフォルトのプロジェクトに基づいています。
+<a href="../quickstart/local-quickstart.html">Motoko</a> と
+<a href="../rust-guide/rust-quickstart.html">Rust</a> のクイックスタートドキュメント。</p>
 </div>
 <div class="paragraph">
-<p>The sample code is available from the
+<p>サンプルコードはこちらの github の
 <a href="https://github.com/dfinity/examples">samples</a>
-repository in both <a href="https://github.com/dfinity/examples/tree/master/motoko/hello">Motoko</a> and <a href="https://github.com/dfinity/examples/tree/master/rust/hello">Rust</a>.</p>
+リポジトリの、 <a href="https://github.com/dfinity/examples/tree/master/motoko/hello">Motoko</a> と <a href="https://github.com/dfinity/examples/tree/master/rust/hello">Rust</a> のどちらでも見ることができます。</p>
 </div>
 <div class="paragraph">
-<p>Canister <code>hello</code>, whether implemented in Motoko or Rust, presents the same Candid interface:</p>
+<p>Canister <code>hello</code> は Motoko で実装されても Rust で実装されても、同じ Candid インターフェイスを提供します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1196,18 +1197,18 @@ repository in both <a href="https://github.com/dfinity/examples/tree/master/moto
 </div>
 </div>
 <div class="paragraph">
-<p>The frontend canister, <code>hello_assets</code>, displays an HTML page with a text box for the argument and a button for calling the function greet with that argument.
-The result of the call is displayed in a message box.</p>
+<p>フロントエンド Canister である <code>hello_assets</code> は、引数入力のためのテキストボックスと、その引数で greet 関数を呼び出すためのボタンを持つ HTML ページを表示します。
+呼び出しの結果はメッセージボックスに表示されます。</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/hello.png" alt="hello frontend"></span></p>
+<p><span class="image"><img src="_images/hello.png" alt="hello フロントエンド"></span></p>
 </div>
 <div class="paragraph">
-<p>The frontend canister is a generic canister provided by <code>dfx</code> but
-the assets it serves to browsers are determined by the dfx project settings and project files.</p>
+<p>フロントエンド Canister は <code>dfx</code> によって提供される汎用的な Canister ですが、
+ブラウザに提供するアセットは、dfxプロジェクトの設定とプロジェクトファイルによって決定されます。</p>
 </div>
 <div class="paragraph">
-<p>The frontend canister and its assets are identical for both projects.</p>
+<p>フロントエンド Canister とそのアセットは、両方のプロジェクトで同じものです。</p>
 </div>
 </article>
 <aside class="toc sidebar">
